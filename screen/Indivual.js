@@ -1,17 +1,41 @@
 import React from 'react'
-
 import {
-    Button
-} from 'react-native-paper'
+    View,
+    StyleSheet
+} from 'react-native'
+
+import { SIZES, COLORS } from '../const'
+
+import Header from '../nav/Header'
 
 const Indivual = () => {
     return (
         <>
-            <Button icon="camera" mode="contained" onPress={() => console.log('Pressed')}>
-                Indivual
-            </Button>
+            <Header>
+                <View style={styles.fake_post}></View>
+                <View style={styles.fake_post}></View>
+                <View style={styles.fake_post}></View>
+                <View style={styles.fake_post}></View>
+                <View style={styles.fake_post}></View>
+                <View style={styles.fake_post}></View>
+            </Header>
         </>
     )
 }
 
 export default Indivual
+
+const styles = StyleSheet.create({
+    fake_post: {
+        height: 244,
+        marginBottom: SIZES.base(),
+        backgroundColor: COLORS.white,
+        shadowColor: COLORS.secondary1,
+        shadowOffset: {
+            width: 0,
+            height: 3
+        },
+        shadowRadius: 2,
+        shadowOpacity: .3
+    }
+})
