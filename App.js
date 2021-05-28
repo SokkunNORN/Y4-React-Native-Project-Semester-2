@@ -6,19 +6,15 @@
  * @flow strict-local
  */
 
-import React from 'react';
-
-import {
-  SafeAreaView
-} from 'react-native';
-
-import ButtonView from './screen/index'
+import React from 'react'
+import { NavigationContainer } from '@react-navigation/native';
+import BottomNav from './nav/BottomNav'
 
 const App = () => {
   return (
-    <SafeAreaView>
-      <ButtonView />
-    </SafeAreaView>
+    <NavigationContainer>
+        <BottomNav />
+    </NavigationContainer>
   );
 };
 
