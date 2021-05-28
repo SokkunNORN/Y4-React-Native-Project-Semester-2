@@ -34,7 +34,8 @@ export default Header
 
 const styles = StyleSheet.create({
     safearea: {
-        elevation: 0
+        elevation: 0,
+        backgroundColor: COLORS.primary
     },
     scroll: {
         height: 100 + '%',
