@@ -37,11 +37,11 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.primary
     },
     safearea: {
-        backgroundColor: COLORS.white
+        backgroundColor: COLORS.secondary
     },
     scroll: {
-        maxHeight: SIZES.height - 180,
+        maxHeight: SIZES.height - 190,
         height: 100 + '%',
-        backgroundColor: COLORS.white
+        backgroundColor: COLORS.secondary
     }
 })

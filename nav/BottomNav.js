@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.primary,
     position: 'absolute',
     overflow: 'hidden',
-    borderRadius: (SIZES.radius(17), SIZES.radius(17)),
+    borderRadius: (SIZES.radius(), SIZES.radius()),
     shadowOffset: {
       width: 0,
       height: SIZES.space(10)
