@@ -1,29 +1,58 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
     SafeAreaView,
     StyleSheet,
-    ScrollView
+    Animated,
+    StatusBar
 } from 'react-native'
 import {
     Appbar
 } from 'react-native-paper'
 
+import Search from './Search'
+
 import { COLORS, SIZES } from '../consts'
 
-const Header = (props) => {
+const Header = props => {
+
+    const [scrollYValue, setScrollYValue] = useState(new Animated.Value(0));
+    const clampedScroll = Animated.diffClamp(
+        Animated.add(
+            scrollYValue.interpolate({
+                inputRange: [0, 1],
+                outputRange: [0, 1],
+                extrapolateLeft: 'clamp',
+            }),
+            new Animated.Value(0),
+        ),
+        0,
+        50,
+    )
+
     return (
-        <>
-            <Appbar.Header style={ styles.header }>
-                <Appbar.Content title="ChatPlus" titleStyle={styles.headerTitle}/>
-                <Appbar.Action />
-                <Appbar.Action icon="plus" color={ COLORS.warning } onPress={() => {}} />
-            </Appbar.Header>
-            <SafeAreaView style={styles.safearea}>
-                <ScrollView style={styles.scroll}>
-                    { props.children }
-                </ScrollView>
-            </SafeAreaView>
-        </>
+        <SafeAreaView style={ styles.safearea }>
+            <Animated.View>
+                <StatusBar barStyle='light-content' />
+                <Appbar.Header style={ styles.header }>
+                    <Appbar.Content title="ChatPlus" titleStyle={styles.headerTitle}/>
+                    <Appbar.Action />
+                    <Appbar.Action icon="plus" color={ COLORS.warning } onPress={() => {}} />
+                </Appbar.Header>
+                <Search clampedScroll={clampedScroll} />
+                <Animated.ScrollView
+                    showsVerticalScrollIndicator={false}
+                    style={ styles.scroll }
+                    onScroll={Animated.event(
+                        [{ nativeEvent: { contentOffset: { y: scrollYValue } } }],
+                        () => { }
+                    )}
+                    contentInsetAdjustmentBehavior="automatic">
+                    {
+                        props.children 
+                    }
+                    </Animated.ScrollView>
+            </Animated.View>
+        </SafeAreaView>
     )
 }
 
@@ -39,11 +68,13 @@ const styles = StyleSheet.create({
         fontSize: SIZES.font(24)
     },
     safearea: {
-        backgroundColor: COLORS.primary
+        backgroundColor: COLORS.dark
     },
     scroll: {
-        maxHeight: SIZES.height - 190,
+        maxHeight: SIZES.height - 135,
         height: 100 + '%',
-        backgroundColor: COLORS.primary
+        backgroundColor: COLORS.primary,
+        paddingTop: SIZES.base(5) - 4,
+        paddingBottom: 135
     }
 })

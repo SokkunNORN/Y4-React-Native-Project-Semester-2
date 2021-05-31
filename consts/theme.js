@@ -17,10 +17,11 @@ export const COLORS = {
 export const SIZES = {
     // global sizes
     base: (times = 2) => times * 8,
-    radius: 8,
     font: (size = 14) => size,
-    radius: (size = 30) => size,
+    radius: (size = 2) => size * 8,
     space: (size = 16) => size,
+    defaultHieghtTextField: 44,
+    customHiegthTextField: (value = 10) => 44 - value,
 
     // dimentsions
     width,
