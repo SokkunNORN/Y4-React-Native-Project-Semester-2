@@ -1,7 +1,6 @@
 import React from 'react'
 import {
     SafeAreaView,
-    Platform,
     StyleSheet,
     ScrollView
 } from 'react-native'
@@ -11,15 +10,13 @@ import {
 
 import { COLORS, SIZES } from '../consts'
 
-const MORE_ICON = Platform.OS === 'ios' ? 'dots-horizontal' : 'dots-vertical';
-
 const Header = (props) => {
     return (
         <>
             <Appbar.Header style={ styles.header }>
                 <Appbar.Content title="ChatPlus" titleStyle={styles.headerTitle}/>
                 <Appbar.Action />
-                <Appbar.Action icon="plus" style={styles.headerAction} onPress={() => {}} />
+                <Appbar.Action icon="plus" color={ COLORS.warning } onPress={() => {}} />
             </Appbar.Header>
             <SafeAreaView style={styles.safearea}>
                 <ScrollView style={styles.scroll}>
@@ -40,9 +37,6 @@ const styles = StyleSheet.create({
         color: COLORS.warning,
         fontWeight: 'bold',
         fontSize: SIZES.font(24)
-    },
-    headerAction: {
-        backgroundColor: COLORS.warning
     },
     safearea: {
         backgroundColor: COLORS.primary
