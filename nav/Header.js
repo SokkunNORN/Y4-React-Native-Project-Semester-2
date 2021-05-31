@@ -17,9 +17,9 @@ const Header = (props) => {
     return (
         <>
             <Appbar.Header style={ styles.header }>
-                <Appbar.Content title="ChatPlus" />
-                <Appbar.Action icon="magnify" onPress={() => {}} />
-                <Appbar.Action icon={MORE_ICON} onPress={() => {}} />
+                <Appbar.Content title="ChatPlus" titleStyle={styles.headerTitle}/>
+                <Appbar.Action icon="magnify" style={styles.headerAction} onPress={() => {}} />
+                <Appbar.Action icon={MORE_ICON} style={styles.headerAction} onPress={() => {}} />
             </Appbar.Header>
             <SafeAreaView style={styles.safearea}>
                 <ScrollView style={styles.scroll}>
@@ -35,6 +35,13 @@ export default Header
 const styles = StyleSheet.create({
     header: {
         backgroundColor: COLORS.dark
+    },
+    headerTitle: {
+        color: COLORS.warning,
+        fontWeight: 'bold'
+    },
+    headerAction: {
+        backgroundColor: COLORS.warning
     },
     safearea: {
         backgroundColor: COLORS.primary

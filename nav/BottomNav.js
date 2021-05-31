@@ -61,16 +61,7 @@ export default BottomNav
 
 const styles = StyleSheet.create({
   bottomTabBar: {
-    backgroundColor: COLORS.dark,
-    position: 'absolute',
-    overflow: 'hidden',
-    borderRadius: (SIZES.radius(), SIZES.radius()),
-    shadowOffset: {
-      width: 0,
-      height: SIZES.space(10)
-    },
-    paddingTop: SIZES.space(7),
-    height: 90
+    backgroundColor: COLORS.dark
   },
   icon: {
     width: 40,
