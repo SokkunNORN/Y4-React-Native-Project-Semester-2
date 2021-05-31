@@ -16,12 +16,12 @@ const MORE_ICON = Platform.OS === 'ios' ? 'dots-horizontal' : 'dots-vertical';
 const Header = (props) => {
     return (
         <>
-            <Appbar.Header style={ styles.safearea }>
+            <Appbar.Header style={ styles.header }>
                 <Appbar.Content title="ChatPlus" />
                 <Appbar.Action icon="magnify" onPress={() => {}} />
                 <Appbar.Action icon={MORE_ICON} onPress={() => {}} />
             </Appbar.Header>
-            <SafeAreaView>
+            <SafeAreaView style={styles.safearea}>
                 <ScrollView style={styles.scroll}>
                     { props.children }
                 </ScrollView>
@@ -33,12 +33,15 @@ const Header = (props) => {
 export default Header
 
 const styles = StyleSheet.create({
-    safearea: {
+    header: {
         backgroundColor: COLORS.primary
     },
+    safearea: {
+        backgroundColor: COLORS.white
+    },
     scroll: {
-        maxHeight: SIZES.height - 190,
+        maxHeight: SIZES.height - 180,
         height: 100 + '%',
-        backgroundColor: COLORS.secondary
+        backgroundColor: COLORS.white
     }
 })
