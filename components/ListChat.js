@@ -8,7 +8,8 @@ import {
 
 import {
     List,
-    Badge
+    Badge,
+    Avatar
 } from 'react-native-paper'
 
 import {
@@ -31,7 +32,7 @@ const ListChat = ({
                 description='Item description'
                 left={ props => (
                     <View style={ styles.profile }>
-                        <List.Icon {...props} icon="car" />
+                        <Avatar.Image size={50} source={require('../asset/profile.jpeg')} />
                     </View>
                 )}
                 right={ () => (

@@ -13,6 +13,8 @@ import Search from './Search'
 
 import { COLORS, SIZES } from '../consts'
 
+console.disableYellowBox = true;
+
 const Header = props => {
 
     const [scrollYValue, setScrollYValue] = useState(new Animated.Value(0));
@@ -44,7 +46,7 @@ const Header = props => {
                     style={ styles.scroll }
                     onScroll={Animated.event(
                         [{ nativeEvent: { contentOffset: { y: scrollYValue } } }],
-                        () => { }
+                        () => {}
                     )}
                     contentInsetAdjustmentBehavior="automatic">
                     {
@@ -71,10 +73,9 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.dark
     },
     scroll: {
-        maxHeight: SIZES.height - 135,
+        maxHeight: SIZES.height - 190,
         height: 100 + '%',
         backgroundColor: COLORS.primary,
-        paddingTop: SIZES.base(5) - 4,
-        paddingBottom: 135
+        paddingTop: SIZES.base(5) - 4
     }
 })
