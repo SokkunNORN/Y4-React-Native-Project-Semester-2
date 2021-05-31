@@ -19,8 +19,8 @@ const BottomNav = () => {
   return (
     <Tab.Navigator
       initialRouteName="Indivual"
-      activeColor="#f0edf6"
-      inactiveColor="#3e2465"
+      activeColor={COLORS.white}
+      inactiveColor={COLORS.info}
       barStyle={styles.bottomTabBar}
     >
       <Tab.Screen
@@ -61,7 +61,16 @@ export default BottomNav
 
 const styles = StyleSheet.create({
   bottomTabBar: {
-    backgroundColor: COLORS.primary
+    backgroundColor: COLORS.primary,
+    position: 'absolute',
+    overflow: 'hidden',
+    borderRadius: (SIZES.radius(), SIZES.radius()),
+    shadowOffset: {
+      width: 0,
+      height: SIZES.space(10)
+    },
+    paddingTop: SIZES.space(7),
+    height: 90
   },
   icon: {
     width: 40,
