@@ -18,8 +18,9 @@ const Indivual = () => {
         <>
             <Header>
                 {
-                    items.map(item => (
+                    items.map((item, i) => (
                         <ListChat
+                            key={ i }
                             item={ item }
                             selectedItem={ selectedItem }
                             setSelectItem={ value => setSelectedItem(value) }
