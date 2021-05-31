@@ -9,7 +9,7 @@ import {
 } from 'react-native-paper'
 
 import {
-    COLORS
+    COLORS, SIZES
 } from '../consts'
 
 const ListChat = ({
@@ -21,10 +21,13 @@ const ListChat = ({
         <>
             <List.Item
                 onPress={ () => setSelectItem(item) }
-                style={ selectedItem == item ? styles.selected : styles.unselect }
+                style={[
+                    selectedItem == item ? styles.selected : styles.unselect,
+                    styles.list
+                ]}
                 title={ item }
                 description="Item description"
-                left={props => <List.Icon {...props} icon="folder" />}
+                left={props => <List.Icon {...props} icon="car" />}
             />
         </>
     )
@@ -34,9 +37,17 @@ export default ListChat
 
 const styles = StyleSheet.create({
     selected: {
-        backgroundColor: COLORS.secondary 
+        backgroundColor: COLORS.secondary
     },
     unselect: {
         backgroundColor: COLORS.white
+    },
+    list: {
+        marginLeft: SIZES.base(1),
+        marginRight: SIZES.base(1),
+        marginTop: SIZES.base(.25),
+        marginBottom: SIZES.base(.25),
+        padding: (SIZES.base(), SIZES.base()),
+        borderRadius: SIZES.radius(SIZES.base())
     }
 })

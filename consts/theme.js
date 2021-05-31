@@ -6,7 +6,7 @@ export const COLORS = {
     // base colors
     primary: '#690EB8',
     info: '#9116E8',
-    secondary: '#F0F0F0',
+    secondary: '#EAEAEA',
     secondary1: '#808080',
 
     white: '#FFF',
