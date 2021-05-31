@@ -1,10 +1,10 @@
 
-import Indivual from './Indivual'
-import Group from './Group'
+import Chat from './Chat'
+import Discover from './Discover'
 import Setting from './Setting'
 
 export {
-    Indivual,
-    Group,
+    Chat,
+    Discover,
     Setting
 }

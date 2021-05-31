@@ -4,14 +4,14 @@ import {
     Button
 } from 'react-native-paper'
 
-const Group = () => {
+const Discover = () => {
     return (
         <>
             <Button icon="camera" mode="contained" onPress={() => console.log('Pressed')}>
-                Group
+                Discover
             </Button>
         </>
     )
 }
 
-export default Group
+export default Discover

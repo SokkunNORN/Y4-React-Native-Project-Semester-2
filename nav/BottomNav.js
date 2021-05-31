@@ -2,44 +2,44 @@ import React from 'react'
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import {
-    Indivual,
-    Group,
-    Setting
+  Chat,
+  Discover,
+  Setting
 } from '../screen'
 
 import {
   StyleSheet
 } from 'react-native'
 
-import { SIZES, COLORS } from '../consts'
+import { COLORS } from '../consts'
 
 const Tab = createMaterialBottomTabNavigator();
 
 const BottomNav = () => {
   return (
     <Tab.Navigator
-      initialRouteName="Indivual"
+      initialRouteName="Chat"
       activeColor={COLORS.warning}
       inactiveColor={COLORS.secondary1}
       barStyle={styles.bottomTabBar}
     >
       <Tab.Screen
-        name="Indivual"
-        component={ Indivual }
+        name="Chat"
+        component={ Chat }
         options={{
-          title: null,
-          tabBarIcon: ({ color }) => (
-            <Icon style={styles.icon} name="account" color={color} size={40} />
+          title: "Chats",
+          tabBarIcon: ({ color, focused }) => (
+            <Icon name={ focused ? "comment-text-multiple" : "comment-text-multiple-outline"} color={color} size={26} />
           )
         }}
       />
       <Tab.Screen
-        name="Group"
-        component={ Group }
+        name="Discover"
+        component={ Discover }
         options={{
-          title: null,
-          tabBarIcon: ({ color }) => (
-            <Icon style={styles.icon} name="account-multiple" color={color} size={40} />
+          title: "Discover",
+          tabBarIcon: ({ color, focused }) => (
+            <Icon name={ focused ? "compass" : "compass-outline"} color={color} size={26} />
           )
         }}
       />
@@ -47,9 +47,9 @@ const BottomNav = () => {
         name="Setting"
         component={ Setting }
         options={{
-          title: null,
-          tabBarIcon: ({ color }) => (
-            <Icon style={styles.icon} name="cog" color={color} size={40} />
+          title: "Settings",
+          tabBarIcon: ({ color, focused }) => (
+            <Icon name={focused ? "cog" : "cog-outline"} color={color} size={26} />
           )
         }}
       />
@@ -62,9 +62,5 @@ export default BottomNav
 const styles = StyleSheet.create({
   bottomTabBar: {
     backgroundColor: COLORS.dark
-  },
-  icon: {
-    width: 40,
-    height: 40
   }
 })
