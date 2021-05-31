@@ -20,7 +20,6 @@ const ListChat = ({
     return (
         <>
             <List.Item
-                key={ item }
                 onPress={ () => setSelectItem(item) }
                 style={ selectedItem == item ? styles.selected : styles.unselect }
                 title={ item }
