@@ -1,16 +1,14 @@
 import React from 'react'
 
-import {
-    Button
-} from 'react-native-paper'
+import Header from '../nav/Header'
 
 const Discover = () => {
     return (
-        <>
-            <Button icon="camera" mode="contained" onPress={() => console.log('Pressed')}>
-                Discover
-            </Button>
-        </>
+        <Header
+            title='Discover'
+            icon='check-circle'
+        >
+        </Header>
     )
 }
 

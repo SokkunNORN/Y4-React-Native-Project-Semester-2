@@ -6,7 +6,8 @@ import {
     StatusBar
 } from 'react-native'
 import {
-    Appbar
+    Appbar,
+    
 } from 'react-native-paper'
 
 import Search from './Search'
@@ -36,11 +37,11 @@ const Header = props => {
             <Animated.View>
                 <StatusBar barStyle='light-content' />
                 <Appbar.Header style={ styles.header }>
-                    <Appbar.Content title="ChatPlus" titleStyle={styles.headerTitle}/>
+                    <Appbar.Content title={ props.title } titleStyle={styles.headerTitle}/>
                     <Appbar.Action />
-                    <Appbar.Action icon="plus" color={ COLORS.warning } onPress={() => {}} />
+                    <Appbar.Action icon={props.icon} color={ COLORS.warning } onPress={() => {}} />
                 </Appbar.Header>
-                <Search clampedScroll={clampedScroll} />
+                { props.isSearch && <Search clampedScroll={clampedScroll} /> }
                 <Animated.ScrollView
                     showsVerticalScrollIndicator={false}
                     style={ styles.scroll }

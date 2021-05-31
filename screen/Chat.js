@@ -10,7 +10,12 @@ const Chat = () => {
 
     return (
         <>
-            <Header>
+            <Header
+                title="ChatPlus"
+                isNotDiscover
+                isSearch
+                icon='plus'
+            >
                 {
                     items.map((item, i) => (
                         <ListChat

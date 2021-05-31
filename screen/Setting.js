@@ -1,16 +1,16 @@
 import React from 'react'
 
-import {
-    Button
-} from 'react-native-paper'
+import Header from '../nav/Header'
 
 const Setting = () => {
     return (
-        <>
-            <Button icon="camera" mode="contained" onPress={() => console.log('Pressed')}>
-                Setting
-            </Button>
-        </>
+        <Header
+            title='Settings'
+            isNotDiscover
+            icon='pencil-box-outline'
+        >
+           
+        </Header>
     )
 }
 
