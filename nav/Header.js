@@ -34,14 +34,14 @@ export default Header
 
 const styles = StyleSheet.create({
     header: {
-        backgroundColor: COLORS.primary
+        backgroundColor: COLORS.dark
     },
     safearea: {
-        backgroundColor: COLORS.secondary
+        backgroundColor: COLORS.primary
     },
     scroll: {
         maxHeight: SIZES.height - 190,
         height: 100 + '%',
-        backgroundColor: COLORS.secondary
+        backgroundColor: COLORS.primary
     }
 })
