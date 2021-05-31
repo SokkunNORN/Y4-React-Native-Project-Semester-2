@@ -1,11 +1,14 @@
 import React from 'react'
 
 import {
-    StyleSheet
+    StyleSheet,
+    View,
+    Text
 } from 'react-native'
 
 import {
-    List
+    List,
+    Badge
 } from 'react-native-paper'
 
 import {
@@ -21,13 +24,23 @@ const ListChat = ({
         <>
             <List.Item
                 onPress={ () => setSelectItem(item) }
-                style={[
-                    selectedItem == item ? styles.selected : styles.unselect,
-                    styles.list
-                ]}
+                style={ styles.list }
+                titleStyle={ styles.title }
+                descriptionStyle={ selectedItem == item ? styles.selected : styles.unselect }
                 title={ item }
-                description="Item description"
-                left={props => <List.Icon {...props} icon="car" />}
+                description='Item description'
+                left={ props => (
+                    <View style={ styles.profile }>
+                        <List.Icon {...props} icon="car" />
+                    </View>
+                )}
+                right={ () => (
+                    <View>
+                        <Text style={ styles.timing }>6:47AM</Text>
+                        <Text></Text>
+                        <Badge style={{ backgroundColor: COLORS.white }}>2</Badge>
+                    </View>
+                )}
             />
         </>
     )
@@ -37,17 +50,29 @@ export default ListChat
 
 const styles = StyleSheet.create({
     selected: {
-        backgroundColor: COLORS.secondary
+        color: COLORS.secondary1
     },
     unselect: {
-        backgroundColor: COLORS.white
+        color: COLORS.white
     },
     list: {
-        marginLeft: SIZES.base(1),
-        marginRight: SIZES.base(1),
-        marginTop: SIZES.base(.25),
-        marginBottom: SIZES.base(.25),
-        padding: (SIZES.base(), SIZES.base()),
-        borderRadius: SIZES.radius(SIZES.base())
+        backgroundColor: COLORS.primary,
+        paddingLeft: SIZES.base(),
+        paddingRight: SIZES.base(),
+        borderBottomColor: COLORS.secondary1,
+        borderBottomWidth: .167,
+        height: 67
+    },
+    title: {
+        color: COLORS.white
+    },
+    profile: {
+        backgroundColor: COLORS.secondary,
+        height: 50,
+        width: 50,
+        borderRadius: 25
+    },
+    timing: {
+        color: COLORS.secondary1
     }
 })
