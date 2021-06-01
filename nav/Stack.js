@@ -1,6 +1,7 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import Header from './Header'
+import DetailHeader from '../components/DetailHeader'
 import {
   Chat,
   ChatDetail,
@@ -37,6 +38,18 @@ export const ChatStackScreen = () => {
         <Stack.Screen
           name="ChatDetail"
           component={ ChatDetail }
+          options={{
+            header: ({ scene, previous, navigation }) => (
+              <DetailHeader
+                scene={ scene } 
+                previous={ previous } 
+                navigation={ navigation } 
+                title="ChatPlus"
+                isSearch
+                icon="plus"
+              />
+            ),
+          }}
         />
       </Stack.Navigator>
     )
