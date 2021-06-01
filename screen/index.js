@@ -1,12 +1,12 @@
 
 import Chat from './Chat'
-import Search from './Search'
+import ChatDetail from './ChatDetail'
 import Discover from './Discover'
 import Setting from './Setting'
 
 export {
     Chat,
-    Search,
+    ChatDetail,
     Discover,
     Setting
 }

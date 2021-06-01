@@ -5,12 +5,12 @@ import {
     Text
 } from 'react-native'
 
-const Search = () => {
+const ChatDetail = () => {
     return (
         <>
-            <View><Text>This is search</Text></View>
+            <View><Text>This is ChatDetail</Text></View>
         </>
     )
 }
 
-export default Search
+export default ChatDetail

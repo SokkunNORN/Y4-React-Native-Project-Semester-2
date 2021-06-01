@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigation } from '@react-navigation/native'
 
 import {
     StyleSheet,
@@ -21,10 +22,13 @@ const ListChat = ({
   selectedItem = null,
   setSelectItem = () => {}
 }) => {
+
+    const navigation = useNavigation()
+
     return (
         <>
             <List.Item
-                onPress={ () => setSelectItem(item) }
+                onPress={ () => navigation.push('ChatDetail') }
                 style={ styles.list }
                 titleStyle={ styles.title }
                 descriptionStyle={ selectedItem == item ? styles.selected : styles.unselect }

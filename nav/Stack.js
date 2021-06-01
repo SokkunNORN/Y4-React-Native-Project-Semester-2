@@ -2,10 +2,10 @@ import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import Header from './Header'
 import {
-    Chat,
-    Search,
-    Discover,
-    Setting
+  Chat,
+  ChatDetail,
+  Discover,
+  Setting
 } from '../screen'
 import { COLORS } from '../consts'
 
@@ -34,7 +34,10 @@ export const ChatStackScreen = () => {
             ),
           }}
         />
-        <Stack.Screen name="Search" component={ Search } />
+        <Stack.Screen
+          name="ChatDetail"
+          component={ ChatDetail }
+        />
       </Stack.Navigator>
     )
 }
