@@ -1,51 +1,42 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {
     SafeAreaView,
     StyleSheet,
-    Animated,
     StatusBar
 } from 'react-native'
 import {
-    Appbar,
-    
+    Appbar
 } from 'react-native-paper'
 
 import { COLORS, SIZES } from '../consts'
 
 console.disableYellowBox = true;
 
-const SearchIcon = () => {
+const SearchIcon = ({ navigation }) => {
     return (
-        <Appbar.Action icon='magnify' color={ COLORS.warning } onPress={() => {}}/>
+        <Appbar.Action
+            style={ styles.appbar_icon }
+            icon='magnify'
+            color={ COLORS.warning }
+            onPress={() => navigation.push('Search')}
+        />
     )
 }
 
 const Header = props => {
-
-    const [scrollYValue, setScrollYValue] = useState(new Animated.Value(0));
-
     return (
         <SafeAreaView style={ styles.safearea }>
-            <Animated.View>
-                <StatusBar barStyle='light-content' />
-                <Appbar.Header style={ styles.header }>
-                    <Appbar.Content title={ props.title } titleStyle={styles.headerTitle}/>
-                    { props.isSearch ? <SearchIcon /> : <Appbar.Action /> }
-                    <Appbar.Action icon={props.icon} color={ COLORS.warning } onPress={() => {}} />
-                </Appbar.Header>
-                <Animated.ScrollView
-                    showsVerticalScrollIndicator={false}
-                    style={ styles.scroll }
-                    onScroll={Animated.event(
-                        [{ nativeEvent: { contentOffset: { y: scrollYValue } } }],
-                        () => {}
-                    )}
-                    contentInsetAdjustmentBehavior="automatic">
-                    {
-                        props.children 
-                    }
-                    </Animated.ScrollView>
-            </Animated.View>
+            <StatusBar barStyle='light-content' />
+            <Appbar.Header style={ styles.header }>
+                <Appbar.Content title={ props.title } titleStyle={styles.headerTitle}/>
+                { props.isSearch ? <SearchIcon navigation={ props.navigation }/> : <Appbar.Action /> }
+                <Appbar.Action
+                    style={ styles.appbar_icon }
+                    icon={ props.icon } 
+                    color={ COLORS.warning } 
+                    onPress={() => {}}
+                />
+            </Appbar.Header>
         </SafeAreaView>
     )
 }
@@ -64,8 +55,7 @@ const styles = StyleSheet.create({
     safearea: {
         backgroundColor: COLORS.dark
     },
-    scroll: {
-        maxHeight: SIZES.height - 190,
+    appbar_icon: {
         backgroundColor: COLORS.primary
     }
 })

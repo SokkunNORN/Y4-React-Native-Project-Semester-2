@@ -1,11 +1,12 @@
 import React from 'react'
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import {
-  Chat,
-  Discover,
-  Setting
-} from '../screen'
+  ChatStackScreen,
+  DiscoverStackScreen,
+  SettingStackScreen
+} from './Stack'
+
 
 import {
   StyleSheet
@@ -13,7 +14,7 @@ import {
 
 import { COLORS } from '../consts'
 
-const Tab = createMaterialBottomTabNavigator();
+const Tab = createMaterialBottomTabNavigator()
 
 const BottomNav = () => {
   return (
@@ -25,7 +26,7 @@ const BottomNav = () => {
     >
       <Tab.Screen
         name="Chat"
-        component={ Chat }
+        component={ ChatStackScreen }
         options={{
           title: "Chats",
           tabBarIcon: ({ color, focused }) => (
@@ -35,7 +36,7 @@ const BottomNav = () => {
       />
       <Tab.Screen
         name="Discover"
-        component={ Discover }
+        component={ DiscoverStackScreen }
         options={{
           title: "Discover",
           tabBarIcon: ({ color, focused }) => (
@@ -45,7 +46,7 @@ const BottomNav = () => {
       />
       <Tab.Screen
         name="Setting"
-        component={ Setting }
+        component={ SettingStackScreen }
         options={{
           title: "Settings",
           tabBarIcon: ({ color, focused }) => (
