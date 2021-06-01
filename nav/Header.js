@@ -10,27 +10,19 @@ import {
     
 } from 'react-native-paper'
 
-import Search from './Search'
-
 import { COLORS, SIZES } from '../consts'
 
 console.disableYellowBox = true;
 
+const SearchIcon = () => {
+    return (
+        <Appbar.Action icon='magnify' color={ COLORS.warning } onPress={() => {}}/>
+    )
+}
+
 const Header = props => {
 
     const [scrollYValue, setScrollYValue] = useState(new Animated.Value(0));
-    const clampedScroll = Animated.diffClamp(
-        Animated.add(
-            scrollYValue.interpolate({
-                inputRange: [0, 1],
-                outputRange: [0, 1],
-                extrapolateLeft: 'clamp',
-            }),
-            new Animated.Value(0),
-        ),
-        0,
-        50,
-    )
 
     return (
         <SafeAreaView style={ styles.safearea }>
@@ -38,10 +30,9 @@ const Header = props => {
                 <StatusBar barStyle='light-content' />
                 <Appbar.Header style={ styles.header }>
                     <Appbar.Content title={ props.title } titleStyle={styles.headerTitle}/>
-                    <Appbar.Action />
+                    { props.isSearch ? <SearchIcon /> : <Appbar.Action /> }
                     <Appbar.Action icon={props.icon} color={ COLORS.warning } onPress={() => {}} />
                 </Appbar.Header>
-                { props.isSearch && <Search clampedScroll={clampedScroll} /> }
                 <Animated.ScrollView
                     showsVerticalScrollIndicator={false}
                     style={ styles.scroll }
@@ -75,8 +66,6 @@ const styles = StyleSheet.create({
     },
     scroll: {
         maxHeight: SIZES.height - 190,
-        height: 100 + '%',
-        backgroundColor: COLORS.primary,
-        paddingTop: SIZES.base(5) - 4
+        backgroundColor: COLORS.primary
     }
 })
