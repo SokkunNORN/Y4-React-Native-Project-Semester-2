@@ -7,13 +7,13 @@
  */
 
 import React from 'react'
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native'
 import BottomNav from './nav/BottomNav'
 
 const App = () => {
   return (
     <NavigationContainer>
-        <BottomNav />
+      <BottomNav />
     </NavigationContainer>
   );
 };

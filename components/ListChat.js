@@ -14,7 +14,7 @@ import {
 
 import {
     COLORS, SIZES
-} from '../consts'
+} from '../constant'
 
 const ListChat = ({
   item = null,
@@ -32,7 +32,7 @@ const ListChat = ({
                 description='Item description'
                 left={ props => (
                     <View style={ styles.profile }>
-                        <Avatar.Image size={50} source={require('../asset/profile.jpeg')} />
+                        <Avatar.Image size={60} source={require('../asset/profile.jpeg')} />
                     </View>
                 )}
                 right={ () => (
@@ -61,17 +61,16 @@ const styles = StyleSheet.create({
         paddingLeft: SIZES.base(),
         paddingRight: SIZES.base(),
         borderBottomColor: COLORS.secondary1,
-        borderBottomWidth: .167,
-        height: 67
+        borderBottomWidth: .167
     },
     title: {
         color: COLORS.white
     },
     profile: {
         backgroundColor: COLORS.secondary,
-        height: 50,
-        width: 50,
-        borderRadius: 25
+        height: 60,
+        width: 60,
+        borderRadius: 30
     },
     timing: {
         color: COLORS.secondary1

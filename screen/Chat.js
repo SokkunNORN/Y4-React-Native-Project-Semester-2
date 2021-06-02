@@ -1,10 +1,15 @@
 import React, { useState } from 'react'
-
-import Header from '../nav/Header'
+import { useNavigation } from '@react-navigation/native'
+import Routes from '../routes'
+import {
+    ScrollView
+} from 'react-native'
+import Header from '../components/header/Header'
 import ListChat from '../components/ListChat'
 
 const Chat = () => {
 
+  const navigation = useNavigation()
   const items = ['Apple', 'Banana', 'Cat', 'Dog', 'Eat', 'Book', 'Computer', 'Phone', 'Duck', 'Song', 'Chicken', 'Banana', 'Cat', 'Dog', 'Eat', 'Book', 'Computer', 'Phone', 'Duck', 'Song', 'Chicken'];
   const [selectedItem, setSelectedItem] = useState([items[0]]);
 
@@ -12,21 +17,21 @@ const Chat = () => {
         <>
             <Header
                 title="ChatPlus"
-                isNotDiscover
                 isSearch
-                icon='plus'
-            >
+                icon="plus"
+            />
+            <ScrollView>
                 {
                     items.map((item, i) => (
                         <ListChat
                             key={ i }
                             item={ item }
                             selectedItem={ selectedItem }
-                            setSelectItem={ value => setSelectedItem(value) }
+                            setSelectItem={ value => navigation.push(Routes.CHAT_DETAIL) }
                         />
                     ))
-                }
-            </Header>
+                }   
+            </ScrollView>
         </>
     )
 }

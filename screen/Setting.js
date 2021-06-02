@@ -1,16 +1,14 @@
 import React from 'react'
-
-import Header from '../nav/Header'
+import Header from '../components/header/Header'
 
 const Setting = () => {
     return (
-        <Header
-            title='Settings'
-            isNotDiscover
-            icon='pencil-box-outline'
-        >
-           
-        </Header>
+        <>
+            <Header
+                title="Settings"
+                icon="pencil-box-outline"
+            />
+        </>
     )
 }
 

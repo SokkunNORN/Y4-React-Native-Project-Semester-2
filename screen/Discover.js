@@ -1,14 +1,15 @@
 import React from 'react'
-
-import Header from '../nav/Header'
+import Header from '../components/header/Header'
 
 const Discover = () => {
     return (
-        <Header
-            title='Discover'
-            icon='check-circle'
-        >
-        </Header>
+        <>
+            <Header
+                title="Discover"
+                isJoined
+                icon="check-circle"
+            />
+        </>
     )
 }
 
