@@ -6,6 +6,7 @@ const Discover = () => {
         <>
             <Header
                 title="Discover"
+                isJoined
                 icon="check-circle"
             />
         </>

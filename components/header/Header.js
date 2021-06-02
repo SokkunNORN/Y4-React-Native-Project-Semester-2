@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 import {
     SafeAreaView,
     StyleSheet,
-    StatusBar,
-    Button
+    StatusBar
 } from 'react-native'
 import {
     Appbar,
-    Searchbar
+    Searchbar,
+    Button
 } from 'react-native-paper'
 import { COLORS, SIZES } from '../../constant'
 
@@ -42,15 +42,28 @@ const Header = props => {
                         !isShowSearchField ? styles.showElement : styles.blockElement
                     ]}/>
                 { props.isSearch ? <SearchIcon navigation={ props.navigation } /> : <Appbar.Action /> }
-                <Appbar.Action
-                    style={[
-                        styles.appbar_icon,
-                        !isShowSearchField ? styles.showElement : styles.blockElement
-                    ]}
-                    icon={ props.icon } 
-                    color={ COLORS.warning } 
-                    onPress={() => {}}
-                />
+                { 
+                    props.isJoined ?
+                        <Button
+                            icon={ props.icon }
+                            color={ COLORS.warning }
+                            style={ styles.joinBtn }
+                            labelStyle={ styles.labelStyle }
+                            uppercase={ false }
+                            mode='outlined'
+                            onPress={() => {}}>
+                            Joined
+                        </Button>
+                    : <Appbar.Action
+                        style={[
+                            styles.appbar_icon,
+                            !isShowSearchField ? styles.showElement : styles.blockElement
+                        ]}
+                        icon={ props.icon } 
+                        color={ COLORS.warning } 
+                        onPress={() => {}}
+                    /> 
+                }
                 <Searchbar
                     placeholder="Search"
                     onChangeText={ () => {} }
@@ -65,12 +78,15 @@ const Header = props => {
                     iconColor={ COLORS.secondary1 }
                 />
                 {
-                    isShowSearchField ? <Button 
-                                            title='Cancel'
-                                            color={ COLORS.warning }
-                                            style={ styles.cancelBtn }
-                                            onPress={ () => setIsShowSearchField(false) }
-                                         /> : <></>
+                    isShowSearchField ?
+                    <Button 
+                        color={ COLORS.warning }
+                        uppercase={ false }
+                        labelStyle={ styles.labelStyle }
+                        mode='text'
+                        onPress={ () => setIsShowSearchField(false) }>
+                        Cancel
+                    </Button> : <></>
                 }
             </Appbar.Header>
         </SafeAreaView>
@@ -108,13 +124,20 @@ const styles = StyleSheet.create({
       width: SIZES.width - SIZES.base(14),
       position: 'absolute'
     },
-    cancelBtn: {
-        position: 'absolute'
-    },
     showElement: {
         opacity: 1
     },
     blockElement: {
         opacity: 0
+    },
+    joinBtn: {
+        marginRight: SIZES.base(),
+        borderColor: COLORS.warning,
+        borderWidth: .9,
+        borderRadius: SIZES.radius(4),
+    },
+    labelStyle: {
+        fontSize: SIZES.font(),
+        fontWeight: 'normal'
     }
 })
