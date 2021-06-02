@@ -11,8 +11,89 @@ import {
     View
 } from 'react-native'
 import { SIZES, COLORS } from '../constant'
+import ListSetting from '../components/ListSetting'
 
 const Setting = () => {
+
+    const lists = [
+        [
+            {
+                title: 'COVID-19 Vault',
+                icon: 'virus-outline',
+                iconColor: COLORS.danger,
+                rightTxt: null
+            }
+        ],
+        [
+            {
+                title: 'Language',
+                icon: 'virus-outline',
+                iconColor: COLORS.warning,
+                rightTxt: 'English'
+            },
+            {
+                title: 'Language',
+                icon: 'web',
+                iconColor: COLORS.green,
+                rightTxt: null
+            },
+            {
+                title: 'Dark Mode',
+                icon: 'brightness-6',
+                iconColor: COLORS.secondary1,
+                rightTxt: 'System'
+            }
+        ],
+        [
+            {
+                title: 'Stickers',
+                icon: 'sticker-circle-outline',
+                iconColor: COLORS.ping,
+                rightTxt: null
+            }
+        ],
+        [
+            {
+                title: 'Invite Frinds to Chat Plus',
+                icon: 'account-alert-outline',
+                iconColor: COLORS.ligthPing,
+                rightTxt: null
+            }
+        ],
+        [
+            {
+                title: 'Support',
+                icon: 'help-circle-outline',
+                iconColor: COLORS.info,
+                rightTxt: null
+            }
+        ],
+        [
+            {
+                title: 'Blocked User',
+                icon: 'block-helper',
+                iconColor: COLORS.danger,
+                rightTxt: null
+            }
+        ],
+        [
+            {
+                title: 'Version',
+                icon: 'cog-outline',
+                iconColor: COLORS.warning,
+                rightTxt: null
+            }
+        ],
+        [
+            {
+                title: 'Log Out',
+                icon: 'logout-variant',
+                iconColor: COLORS.danger,
+                rightTxt: null
+            }
+        ]
+    ]
+
     return (
         <>
             <Header
@@ -37,6 +118,12 @@ const Setting = () => {
                         <Title style={ styles.whileColor }>About</Title>
                     </Card.Content>
                 </Card>
+
+                {
+                    lists.map(items => (
+                        <ListSetting items={ items } />
+                    ))
+                }
             </ScrollView>
         </>
     )
