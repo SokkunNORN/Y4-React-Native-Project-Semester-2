@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { useNavigation } from '@react-navigation/native'
+import Routes from '../routes'
 import {
     ScrollView
 } from 'react-native'
@@ -7,6 +9,7 @@ import ListChat from '../components/ListChat'
 
 const Chat = () => {
 
+  const navigation = useNavigation()
   const items = ['Apple', 'Banana', 'Cat', 'Dog', 'Eat', 'Book', 'Computer', 'Phone', 'Duck', 'Song', 'Chicken', 'Banana', 'Cat', 'Dog', 'Eat', 'Book', 'Computer', 'Phone', 'Duck', 'Song', 'Chicken'];
   const [selectedItem, setSelectedItem] = useState([items[0]]);
 
@@ -24,7 +27,7 @@ const Chat = () => {
                             key={ i }
                             item={ item }
                             selectedItem={ selectedItem }
-                            setSelectItem={ value => setSelectedItem(value) }
+                            setSelectItem={ value => navigation.push(Routes.CHAT_DETAIL) }
                         />
                     ))
                 }   

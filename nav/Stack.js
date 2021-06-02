@@ -6,6 +6,7 @@ import {
   Discover,
   Setting
 } from '../screen'
+import Routes from '../routes'
 import { COLORS } from '../constant'
 
 const Stack = createStackNavigator()
@@ -18,14 +19,14 @@ export const ChatStackScreen = () => {
         }
       }}>
         <Stack.Screen
-          name="Chat"
+          name={ Routes.CHAT }
           component={ Chat }
           options={{
             headerShown: false
           }}
         />
         <Stack.Screen
-          name="ChatDetail"
+          name={ Routes.CHAT_DETAIL}
           component={ ChatDetail }
           options={{
             headerShown: false
@@ -43,7 +44,7 @@ export const DiscoverStackScreen = () => {
         }
       }}>
         <Stack.Screen
-          name="Discover"
+          name={ Routes.DISCOVER }
           component={ Discover }
           options={{
             headerShown: false
@@ -61,7 +62,7 @@ export const SettingStackScreen = () => {
           }
       }}>
         <Stack.Screen
-          name="Settings"
+          name={ Routes.SETTINGS }
           component={ Setting }
           options={{
             headerShown: false
