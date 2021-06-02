@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import {
     ScrollView
 } from 'react-native'
+import Header from '../nav/Header'
 
 import ListChat from '../components/ListChat'
 
@@ -11,18 +12,25 @@ const Chat = () => {
   const [selectedItem, setSelectedItem] = useState([items[0]]);
 
     return (
-        <ScrollView>
-            {
-                items.map((item, i) => (
-                    <ListChat
-                        key={ i }
-                        item={ item }
-                        selectedItem={ selectedItem }
-                        setSelectItem={ value => setSelectedItem(value) }
-                    />
-                ))
-            }   
-        </ScrollView>
+        <>
+            <Header
+                title="ChatPlus"
+                isSearch
+                icon="plus"
+            />
+            <ScrollView>
+                {
+                    items.map((item, i) => (
+                        <ListChat
+                            key={ i }
+                            item={ item }
+                            selectedItem={ selectedItem }
+                            setSelectItem={ value => setSelectedItem(value) }
+                        />
+                    ))
+                }   
+            </ScrollView>
+        </>
     )
 }
 

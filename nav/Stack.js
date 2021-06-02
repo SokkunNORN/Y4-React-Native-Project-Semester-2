@@ -23,32 +23,14 @@ export const ChatStackScreen = () => {
           name="Chat"
           component={ Chat }
           options={{
-            header: ({ scene, previous, navigation }) => (
-              <Header
-                scene={ scene } 
-                previous={ previous } 
-                navigation={ navigation } 
-                title="ChatPlus"
-                isSearch
-                icon="plus"
-              />
-            ),
+            headerShown: false
           }}
         />
         <Stack.Screen
           name="ChatDetail"
           component={ ChatDetail }
           options={{
-            header: ({ scene, previous, navigation }) => (
-              <DetailHeader
-                scene={ scene } 
-                previous={ previous } 
-                navigation={ navigation } 
-                title="ChatPlus"
-                isSearch
-                icon="plus"
-              />
-            ),
+            headerShown: false
           }}
         />
       </Stack.Navigator>
@@ -63,18 +45,10 @@ export const DiscoverStackScreen = () => {
         }
       }}>
         <Stack.Screen
-          name="Chat"
+          name="Discover"
           component={ Discover }
           options={{
-            header: ({ scene, previous, navigation }) => (
-              <Header
-                scene={ scene } 
-                previous={ previous } 
-                navigation={ navigation } 
-                title="Discover"
-                icon="check-circle"
-              />
-            ),
+            headerShown: false
           }}
         />
       </Stack.Navigator>
@@ -89,18 +63,10 @@ export const SettingStackScreen = () => {
           }
       }}>
         <Stack.Screen
-          name="Chat"
+          name="Settings"
           component={ Setting }
           options={{
-            header: ({ scene, previous, navigation }) => (
-              <Header
-                scene={ scene } 
-                previous={ previous } 
-                navigation={ navigation } 
-                title="Settings"
-                icon="pencil-box-outline"
-              />
-            ),
+            headerShown: false
           }}
         />
       </Stack.Navigator>

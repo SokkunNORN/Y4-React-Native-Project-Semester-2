@@ -16,7 +16,7 @@ console.disableYellowBox = true
 
 const Header = props => {
 
-    const [isShowSearchField, setIsShowSearchField] = useState(true)
+    const [isShowSearchField, setIsShowSearchField] = useState(false)
 
     const SearchIcon = () => {
         return (
