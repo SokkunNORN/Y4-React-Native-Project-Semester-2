@@ -26,6 +26,17 @@ const DetailHeader = props => {
                     color={ COLORS.warning } 
                     onPress={ () => navigation.pop() }
                 />
+                <Appbar.Content
+                    title={ props.title || '' }
+                    titleStyle={[
+                        styles.headerTitle
+                    ]}
+                />
+                <Appbar.Action
+                    icon={ props.iconRight || '' }
+                    color={ COLORS.warning } 
+                    onPress={ () => {} }
+                />
             </Appbar.Header>
         </SafeAreaView>
     )
@@ -39,28 +50,14 @@ const styles = StyleSheet.create({
     },
     headerTitle: {
         color: COLORS.warning,
-        fontWeight: 'bold',
-        fontSize: SIZES.font(24)
+        fontWeight: 'normal',
+        fontSize: SIZES.font(18)
     },
     safearea: {
         backgroundColor: COLORS.dark
     },
     appbar_icon: {
         backgroundColor: COLORS.primary
-    },
-    searchField: {
-      borderWidth: .167,
-      borderColor: COLORS.secondary1,
-      borderRadius: SIZES.radius(1),
-      marginLeft: SIZES.base(),
-      marginRight: SIZES.base(),
-      marginBottom: SIZES.base(1),
-      backgroundColor: COLORS.primary,
-      tintColor: COLORS.white,
-      color: COLORS.white,
-      height: SIZES.customHiegthTextField(8),
-      width: SIZES.width - SIZES.base(14),
-      position: 'absolute'
     },
     cancelBtn: {
         position: 'absolute'

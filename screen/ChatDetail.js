@@ -8,7 +8,9 @@ import DetailHeader from '../components/header/DetailHeader'
 const ChatDetail = () => {
     return (
         <>
-            <DetailHeader />
+            <DetailHeader 
+                title='ABC'
+            />
             <View><Text>This is ChatDetail</Text></View>
         </>
     )
