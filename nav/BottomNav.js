@@ -7,7 +7,6 @@ import {
   SettingStackScreen
 } from './Stack'
 
-
 import {
   StyleSheet
 } from 'react-native'

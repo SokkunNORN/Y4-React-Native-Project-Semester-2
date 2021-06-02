@@ -3,7 +3,6 @@ import {
     ScrollView
 } from 'react-native'
 import Header from '../components/header/Header'
-
 import ListChat from '../components/ListChat'
 
 const Chat = () => {
