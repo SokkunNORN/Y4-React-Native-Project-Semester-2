@@ -12,7 +12,7 @@ import {
   StyleSheet
 } from 'react-native'
 
-import { COLORS } from '../consts'
+import { COLORS } from '../constant'
 
 const Tab = createMaterialBottomTabNavigator()
 

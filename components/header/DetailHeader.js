@@ -4,14 +4,13 @@ import { useNavigation } from '@react-navigation/native'
 import {
     SafeAreaView,
     StyleSheet,
-    StatusBar,
-    Button
+    StatusBar
 } from 'react-native'
 import {
     Appbar
 } from 'react-native-paper'
 
-import { COLORS, SIZES } from '../consts'
+import { COLORS, SIZES } from '../../constant'
 
 console.disableYellowBox = true
 

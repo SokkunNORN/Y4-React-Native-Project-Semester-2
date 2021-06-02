@@ -5,7 +5,7 @@ import {
     Text
 } from 'react-native'
 
-import DetailHeader from '../components/DetailHeader'
+import DetailHeader from '../components/header/DetailHeader'
 
 const ChatDetail = () => {
     return (

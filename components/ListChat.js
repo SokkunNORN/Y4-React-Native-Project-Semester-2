@@ -15,7 +15,7 @@ import {
 
 import {
     COLORS, SIZES
-} from '../consts'
+} from '../constant'
 
 const ListChat = ({
   item = null,

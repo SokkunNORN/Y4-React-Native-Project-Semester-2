@@ -1,5 +1,5 @@
 import React from 'react'
-import Header from '../nav/Header'
+import Header from '../components/header/Header'
 
 const Setting = () => {
     return (

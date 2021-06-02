@@ -1,14 +1,12 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
-import Header from './Header'
-import DetailHeader from '../components/DetailHeader'
 import {
   Chat,
   ChatDetail,
   Discover,
   Setting
 } from '../screen'
-import { COLORS } from '../consts'
+import { COLORS } from '../constant'
 
 const Stack = createStackNavigator()
 

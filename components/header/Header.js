@@ -10,7 +10,7 @@ import {
     Searchbar
 } from 'react-native-paper'
 
-import { COLORS, SIZES } from '../consts'
+import { COLORS, SIZES } from '../../constant'
 
 console.disableYellowBox = true
 
