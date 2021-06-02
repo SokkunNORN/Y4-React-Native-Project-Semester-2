@@ -58,7 +58,7 @@ export const SettingStackScreen = () => {
     return (
       <Stack.Navigator screenOptions={{
           cardStyle: {
-            backgroundColor: COLORS.primary
+            backgroundColor: COLORS.dark
           }
       }}>
         <Stack.Screen
