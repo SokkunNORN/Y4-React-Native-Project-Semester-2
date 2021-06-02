@@ -5,7 +5,8 @@ import {
 } from 'react-native'
 
 import {
-    List
+    List,
+    Paragraph
 } from 'react-native-paper'
 
 import {
@@ -22,11 +23,28 @@ const ListSetting = ({
                 {
                     items.map(item => (
                         <List.Item
+                            onPress={ () => setSelectItem(item) }
                             style={ styles.list }
                             titleStyle={ styles.title }
                             title={ item.title } 
                             left={() => <List.Icon color={ item.iconColor } icon={ item.icon } />}
-                            right={() => <List.Icon style={ styles.iconRight } color={ COLORS.secondary1 } icon="chevron-right" />}
+                            right={() => 
+                                <>
+                                    <Paragraph style={[
+                                        styles.rightTxt,
+                                        !item.isIconRight && styles.rightTxtPadding
+                                    ]}>{ item.rightTxt }</Paragraph>
+                                    {
+
+                                        item.isIconRight ? 
+                                        <List.Icon
+                                            style={ styles.iconRight }
+                                            color={ COLORS.secondary1 }
+                                            icon="chevron-right"
+                                        /> : <></>
+                                    }
+                                </>
+                            }
                         />
                     ))
                 }
@@ -49,5 +67,12 @@ const styles = StyleSheet.create({
     },
     iconRight: {
         marginRight: 0
+    },
+    rightTxt: {
+        color: COLORS.warning,
+        paddingTop: SIZES.base()
+    },
+    rightTxtPadding: {
+        marginRight: SIZES.base()
     }
 })

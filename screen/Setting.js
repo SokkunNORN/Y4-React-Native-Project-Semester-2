@@ -21,7 +21,8 @@ const Setting = () => {
                 title: 'COVID-19 Vault',
                 icon: 'virus-outline',
                 iconColor: COLORS.danger,
-                rightTxt: null
+                rightTxt: null,
+                isIconRight: true
             }
         ],
         [
@@ -29,19 +30,22 @@ const Setting = () => {
                 title: 'Language',
                 icon: 'virus-outline',
                 iconColor: COLORS.warning,
-                rightTxt: 'English'
+                rightTxt: 'English',
+                isIconRight: true
             },
             {
                 title: 'Language',
                 icon: 'web',
                 iconColor: COLORS.green,
-                rightTxt: null
+                rightTxt: null,
+                isIconRight: true
             },
             {
                 title: 'Dark Mode',
                 icon: 'brightness-6',
                 iconColor: COLORS.secondary1,
-                rightTxt: 'System'
+                rightTxt: 'System',
+                isIconRight: true
             }
         ],
         [
@@ -49,7 +53,8 @@ const Setting = () => {
                 title: 'Stickers',
                 icon: 'sticker-circle-outline',
                 iconColor: COLORS.ping,
-                rightTxt: null
+                rightTxt: null,
+                isIconRight: true
             }
         ],
         [
@@ -57,7 +62,8 @@ const Setting = () => {
                 title: 'Invite Frinds to Chat Plus',
                 icon: 'account-alert-outline',
                 iconColor: COLORS.ligthPing,
-                rightTxt: null
+                rightTxt: null,
+                isIconRight: true
             }
         ],
         [
@@ -65,7 +71,8 @@ const Setting = () => {
                 title: 'Support',
                 icon: 'help-circle-outline',
                 iconColor: COLORS.info,
-                rightTxt: null
+                rightTxt: null,
+                isIconRight: true
             }
         ],
         [
@@ -73,7 +80,8 @@ const Setting = () => {
                 title: 'Blocked User',
                 icon: 'block-helper',
                 iconColor: COLORS.danger,
-                rightTxt: null
+                rightTxt: null,
+                isIconRight: true
             }
         ],
         [
@@ -81,7 +89,8 @@ const Setting = () => {
                 title: 'Version',
                 icon: 'cog-outline',
                 iconColor: COLORS.warning,
-                rightTxt: null
+                rightTxt: '2.5.7 (131)',
+                isIconRight: false
             }
         ],
         [
@@ -89,7 +98,8 @@ const Setting = () => {
                 title: 'Log Out',
                 icon: 'logout-variant',
                 iconColor: COLORS.danger,
-                rightTxt: null
+                rightTxt: null,
+                isIconRight: false
             }
         ]
     ]
