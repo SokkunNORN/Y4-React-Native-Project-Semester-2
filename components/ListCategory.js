@@ -15,7 +15,11 @@ const ListCategory = ({
 }) => {
     return (
         <>
-            <ScrollView horizontal style={ styles.scroll }>
+            <ScrollView
+                horizontal
+                showsHorizontalScrollIndicator={ false }
+                style={ styles.scroll }
+            >
                 {
                     categories.map((item, i) => (
                         <Button

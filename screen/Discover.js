@@ -20,7 +20,7 @@ const Discover = () => {
                 isJoined
                 icon="check-circle"
             />
-            <View>
+            <View style={ styles.category }>
                 <ListCategory
                     selected={ selected }
                     categories={ categories }
@@ -38,6 +38,9 @@ const Discover = () => {
 export default Discover
 
 const styles = StyleSheet.create({
+    category: {
+        paddingTop: SIZES.base()
+    },
     slide_show: {
         marginTop: SIZES.base(),
         marginStart: SIZES.base(),
