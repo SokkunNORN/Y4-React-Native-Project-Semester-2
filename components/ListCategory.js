@@ -4,7 +4,7 @@ import {
     StyleSheet
 } from 'react-native'
 import {
-    List
+    Button
 } from 'react-native-paper'
 import { COLORS, SIZES } from '../constant'
 
@@ -17,16 +17,21 @@ const ListCategory = ({
         <>
             <ScrollView horizontal style={ styles.scroll }>
                 {
-                    categories.map(item => (
-                        <List.Item
-                            onPress={ () => setSelectCategory(item) }
-                            title={ item.title }
-                            titleStyle={ styles.title }
+                    categories.map((item, i) => (
+                        <Button
+                            key={ i }
+                            color={ COLORS.white }
                             style={[
                                 styles.list,
-                                selected.title == item.title ? styles.seleted : styles.unselected
+                                selected.title == item.title ? styles.seleted : styles.unselected,
+                                i == (categories.length - 1) ? styles.marginEnd : {}
                             ]}
-                        />
+                            labelStyle={ styles.labelStyle }
+                            uppercase={ false }
+                            mode='outlined'
+                            onPress={ () => setSelectCategory(item) }>
+                            { item.title }
+                        </Button>
                     ))
                 }
             </ScrollView>
@@ -41,10 +46,9 @@ const styles = StyleSheet.create({
         paddingLeft: SIZES.base()
     },
     list: {
-        paddingStart: SIZES.base(),
-        paddingEnd: SIZES.base(3),
+        width: SIZES.base(12),
         marginEnd: SIZES.base(1),
-        height: SIZES.defaultHieghtTextField + SIZES.base() - 10,
+        height: SIZES.defaultHieghtTextField - 7,
         borderRadius: SIZES.radius(4)
     },
     seleted: {
@@ -53,7 +57,11 @@ const styles = StyleSheet.create({
     unselected: {
         backgroundColor: COLORS.primary
     },
-    title: {
-        color: COLORS.white
+    marginEnd: {
+        marginEnd: SIZES.base(4)
+    },
+    labelStyle: {
+        fontSize: SIZES.font(),
+        fontWeight: 'normal'
     }
 })
