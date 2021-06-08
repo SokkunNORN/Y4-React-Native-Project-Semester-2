@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
         borderRadius: SIZES.base(1.5)
     },
     imgFeature: {
-        height: SIZES.width - (4 * SIZES.base()),
+        height: SIZES.width - (8 * SIZES.base()),
         width: 100 + '%',
         borderTopStartRadius: SIZES.base(1.5),
         borderTopRightRadius: SIZES.base(1.5),
