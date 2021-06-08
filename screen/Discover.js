@@ -12,6 +12,17 @@ const Discover = () => {
         { title: 'Lifestyle' },
         { title: 'Health' },
     ]
+    const slideShows = [
+        {
+            category: categories[1],
+            title: 'A component to show a list of actions inside a Card.',
+            profile: {
+                name: 'Reak Smey New Day'
+            },
+            joineder: 938,
+            isJoined: true
+        }
+    ]
     const [selected, setSelect] = useState(categories[0])
     return (
         <>
@@ -29,7 +40,7 @@ const Discover = () => {
             </View>
 
             <ScrollView style={ styles.slide_show } >
-                <SlideShow />
+                <SlideShow elements={ slideShows } />
             </ScrollView>
         </>
     )

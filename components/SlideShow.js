@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
-import { COLORS, SIZES } from '../constant'
+import { COLORS, SIZES, HexToRGB } from '../constant'
 import {
     View,
     Text
@@ -12,38 +12,51 @@ import {
     Button
 } from 'react-native-paper'
 
-const SlideShow = () => {
+const SlideShow = ({
+    elements = []
+}) => {
     return (
         <>
-            <Card style={ styles.card }>
-                <View style={ styles.viewFeature } >
-                    <Text style={ styles.labelFeature }>FEATURED</Text>
-                </View>
-                <Card.Cover
-                    style={ styles.imgFeature }
-                    source={ require('../asset/feature.jpeg') }
-                />
-                <View>
-                    <Card.Cover
-                        style={ styles.logoSlide }
-                        source={ require('../asset/news.png') }
-                    />
-                    <View style={ styles.title }>
-                        <Title style={ styles.name }>Reak Smey New Day</Title>
-                        <Paragraph style={ styles.joineder }>11628 Members</Paragraph>
-                    </View>
-                    <Button
-                        icon='check-circle'
-                        color={ COLORS.warning }
-                        style={ styles.joinedBtn }
-                        labelStyle={ styles.labelStyle }
-                        uppercase={ false }
-                        mode='outlined'
-                        onPress={() => {}}>
-                        Joined
-                    </Button>
-                </View>
-            </Card>
+            {
+                elements.map(item => (
+                    <Card style={ styles.card }>
+                        <View style={ styles.viewFeature } >
+                            <Text style={ styles.labelFeature }>FEATURED</Text>
+                        </View>
+                        <Card.Cover
+                            style={ styles.imgFeature }
+                            source={ require('../asset/feature.jpeg') }
+                        />
+                        <View>
+                            <Card.Cover
+                                style={ styles.logoSlide }
+                                source={ require('../asset/news.png') }
+                            />
+                            <View style={ styles.title }>
+                                <Title style={ styles.name }>{ item.profile.name }</Title>
+                                <Paragraph style={ styles.joineder }>{ item.joineder } Members</Paragraph>
+                            </View>
+
+                            <Button
+                                disabled={ item.isJoined }
+                                icon={ item.isJoined ? 'check-circle' : null }
+                                style={[
+                                    styles.joinedBtn,
+                                    item.isJoined ? {} : styles.joinBtn
+                                ]}
+                                labelStyle={[
+                                    styles.labelStyle,
+                                    item.isJoined ? {} : styles.labelJoinBtn
+                                ]}
+                                uppercase={ false }
+                                mode='outlined'
+                                onPress={() => {}}>
+                                Joined
+                            </Button>
+                        </View>
+                    </Card>
+                ))
+            }
         </>
     )
 }
@@ -62,7 +75,7 @@ const styles = StyleSheet.create({
     },
     viewFeature: {
         position: 'absolute', 
-        backgroundColor: 'rgba(57, 61, 58, 0.5)',
+        backgroundColor: HexToRGB(COLORS.secondary1, .5),
         borderRadius: SIZES.radius(100),
         zIndex: 1000,
         marginStart: SIZES.base(),
@@ -110,5 +123,11 @@ const styles = StyleSheet.create({
         fontSize: SIZES.font(),
         fontWeight: 'normal',
         color: COLORS.secondary1
+    },
+    joinBtn: {
+       backgroundColor: COLORS.warning 
+    },
+    labelJoinBtn: {
+        color: COLORS.white
     }
 })
