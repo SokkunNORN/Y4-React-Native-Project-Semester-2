@@ -34,8 +34,8 @@ const SlideShow = ({
                                     HexToRGB(COLORS.black, .1),
                                     HexToRGB(COLORS.black, .1),
                                     HexToRGB(COLORS.black, .1),
-                                    HexToRGB(COLORS.dark, .5),
-                                    HexToRGB(COLORS.dark, .8),
+                                    HexToRGB(COLORS.dark, .6),
+                                    HexToRGB(COLORS.dark, .9),
                                     HexToRGB(COLORS.dark)
                                 ]}
                                 style={ styles.linear_radient }
