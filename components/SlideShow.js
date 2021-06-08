@@ -33,8 +33,8 @@ const SlideShow = ({
                                     HexToRGB(COLORS.black, .1),
                                     HexToRGB(COLORS.black, .1),
                                     HexToRGB(COLORS.black, .1),
-                                    HexToRGB(COLORS.black, .1),
-                                    HexToRGB(COLORS.dark, .6),
+                                    HexToRGB(COLORS.black, .2),
+                                    HexToRGB(COLORS.dark, .5),
                                     HexToRGB(COLORS.dark, .9),
                                     HexToRGB(COLORS.dark)
                                 ]}
@@ -126,6 +126,7 @@ const styles = StyleSheet.create({
     },
     feature_contain: {
         marginStart: SIZES.base(),
+        marginEnd: SIZES.base(),
         marginBottom: SIZES.base()
     },
     logoSlide: {
