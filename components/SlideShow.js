@@ -3,7 +3,8 @@ import { StyleSheet } from 'react-native'
 import { COLORS, SIZES, HexToRGB } from '../constant'
 import {
     View,
-    Text
+    Text,
+    ImageBackground
 } from 'react-native'
 import {
     Title,
@@ -20,13 +21,17 @@ const SlideShow = ({
             {
                 elements.map(item => (
                     <Card style={ styles.card }>
-                        <View style={ styles.viewFeature } >
-                            <Text style={ styles.labelFeature }>FEATURED</Text>
-                        </View>
-                        <Card.Cover
-                            style={ styles.imgFeature }
+
+                        <ImageBackground
                             source={ require('../asset/feature.jpeg') }
-                        />
+                            imageStyle={ styles.imgFeature }
+                            style={ styles.imgFeature }
+                        >
+                            <View style={ styles.viewFeature } >
+                                <Text style={ styles.labelFeature }>FEATURED</Text>
+                            </View>
+                        </ImageBackground>
+
                         <View>
                             <Card.Cover
                                 style={ styles.logoSlide }
@@ -70,6 +75,7 @@ const styles = StyleSheet.create({
     },
     imgFeature: {
         height: SIZES.width - (4 * SIZES.base()),
+        width: 100 + '%',
         borderTopStartRadius: SIZES.base(1.5),
         borderTopRightRadius: SIZES.base(1.5)
     },
