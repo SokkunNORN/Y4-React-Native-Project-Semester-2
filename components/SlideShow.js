@@ -27,8 +27,17 @@ const SlideShow = ({
                             imageStyle={ styles.imgFeature }
                             style={ styles.imgFeature }
                         >
-                            <View style={ styles.viewFeature } >
-                                <Text style={ styles.labelFeature }>FEATURED</Text>
+                            <View>
+                                <View style={ styles.viewFeature } >
+                                    <Text style={ styles.labelFeature }>FEATURED</Text>
+                                </View>
+                            </View>
+                            <View>
+                                <View style={ styles.feature_contain }>
+                                    <Text style={{ color: COLORS.secondary1 }}>{ item.category.title }</Text>
+                                    <Title style={{ color: COLORS.secondary }}>{ item.profile.name }</Title>
+                                    <Text style={{ color: COLORS.secondary1 }}>{ item.title }</Text>
+                                </View>
                             </View>
                         </ImageBackground>
 
@@ -77,11 +86,13 @@ const styles = StyleSheet.create({
         height: SIZES.width - (4 * SIZES.base()),
         width: 100 + '%',
         borderTopStartRadius: SIZES.base(1.5),
-        borderTopRightRadius: SIZES.base(1.5)
+        borderTopRightRadius: SIZES.base(1.5),
+        flexDirection: 'column',
+        justifyContent: 'space-between',
     },
     viewFeature: {
         position: 'absolute', 
-        backgroundColor: HexToRGB(COLORS.secondary1, .5),
+        backgroundColor: HexToRGB(COLORS.dark, .3),
         borderRadius: SIZES.radius(100),
         zIndex: 1000,
         marginStart: SIZES.base(),
@@ -96,6 +107,10 @@ const styles = StyleSheet.create({
         paddingEnd: SIZES.base(),
         paddingTop: SIZES.base(1),
         paddingBottom: SIZES.base(1)
+    },
+    feature_contain: {
+        marginStart: SIZES.base(),
+        marginBottom: SIZES.base()
     },
     logoSlide: {
         width: SIZES.base(7),
