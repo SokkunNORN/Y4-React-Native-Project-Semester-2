@@ -21,6 +21,24 @@ const Discover = () => {
             },
             joineder: 938,
             isJoined: true
+        },
+        {
+            category: categories[2],
+            title: 'A component to show a list of actions inside a Card.',
+            profile: {
+                name: 'Reak Smey New Day'
+            },
+            joineder: 98,
+            isJoined: false
+        },
+        {
+            category: categories[3],
+            title: 'A component to show a list of actions inside a Card.',
+            profile: {
+                name: 'Reak Smey New Day'
+            },
+            joineder: 98,
+            isJoined: false
         }
     ]
     const [selected, setSelect] = useState(categories[0])
@@ -39,8 +57,15 @@ const Discover = () => {
                 />
             </View>
 
-            <ScrollView style={ styles.slide_show } >
-                <SlideShow elements={ slideShows } />
+            <ScrollView style={ styles.contain } >
+                <ScrollView
+                    horizontal
+                    pagingEnabled
+                    showsHorizontalScrollIndicator={ false }
+                    style={ styles.slide_show }
+                >
+                    <SlideShow elements={ slideShows } />
+                </ScrollView>
             </ScrollView>
         </>
     )
@@ -52,9 +77,10 @@ const styles = StyleSheet.create({
     category: {
         paddingTop: SIZES.base()
     },
+    contain: {
+        marginTop: SIZES.base()
+    },
     slide_show: {
-        marginTop: SIZES.base(),
-        marginStart: SIZES.base(),
-        marginEnd: SIZES.base()
+        // paddingLeft: SIZES.base()
     }
 })

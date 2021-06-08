@@ -20,8 +20,10 @@ const SlideShow = ({
     return (
         <>
             {
-                elements.map(item => (
-                    <Card style={ styles.card }>
+                elements.map((item, i) => (
+                    <Card style={[
+                        styles.card
+                    ]}>
 
                         <ImageBackground
                             source={ require('../asset/feature.jpeg') }
@@ -94,7 +96,10 @@ export default SlideShow
 const styles = StyleSheet.create({
     card: {
         backgroundColor: COLORS.primary,
-        borderRadius: SIZES.base(1.5)
+        borderRadius: SIZES.base(1.5),
+        marginEnd: SIZES.base(),
+        marginStart: SIZES.base(),
+        width: SIZES.width - SIZES.base(4)
     },
     imgFeature: {
         height: SIZES.width - (8 * SIZES.base()),
