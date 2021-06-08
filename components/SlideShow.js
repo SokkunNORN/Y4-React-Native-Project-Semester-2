@@ -1,5 +1,6 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
+import LinearGradient from 'react-native-linear-gradient'
 import { COLORS, SIZES, HexToRGB } from '../constant'
 import {
     View,
@@ -27,18 +28,31 @@ const SlideShow = ({
                             imageStyle={ styles.imgFeature }
                             style={ styles.imgFeature }
                         >
-                            <View>
-                                <View style={ styles.viewFeature } >
-                                    <Text style={ styles.labelFeature }>FEATURED</Text>
+                            <LinearGradient
+                                colors={[
+                                    HexToRGB(COLORS.black, .1),
+                                    HexToRGB(COLORS.black, .1),
+                                    HexToRGB(COLORS.black, .1),
+                                    HexToRGB(COLORS.black, .1),
+                                    HexToRGB(COLORS.dark, .5),
+                                    HexToRGB(COLORS.dark, .8),
+                                    HexToRGB(COLORS.dark)
+                                ]}
+                                style={ styles.linear_radient }
+                            >
+                                <View>
+                                    <View style={ styles.viewFeature } >
+                                        <Text style={ styles.labelFeature }>FEATURED</Text>
+                                    </View>
                                 </View>
-                            </View>
-                            <View>
-                                <View style={ styles.feature_contain }>
-                                    <Text style={{ color: COLORS.secondary1 }}>{ item.category.title }</Text>
-                                    <Title style={{ color: COLORS.secondary }}>{ item.profile.name }</Title>
-                                    <Text style={{ color: COLORS.secondary1 }}>{ item.title }</Text>
+                                <View>
+                                    <View style={ styles.feature_contain }>
+                                        <Text style={{ color: COLORS.secondary1 }}>{ item.category.title }</Text>
+                                        <Title style={{ color: COLORS.secondary }}>{ item.profile.name }</Title>
+                                        <Text style={{ color: COLORS.secondary1 }}>{ item.title }</Text>
+                                    </View>
                                 </View>
-                            </View>
+                            </LinearGradient>
                         </ImageBackground>
 
                         <View>
@@ -84,9 +98,11 @@ const styles = StyleSheet.create({
     },
     imgFeature: {
         height: SIZES.width - (8 * SIZES.base()),
-        width: 100 + '%',
         borderTopStartRadius: SIZES.base(1.5),
-        borderTopRightRadius: SIZES.base(1.5),
+        borderTopRightRadius: SIZES.base(1.5)
+    },
+    linear_radient: {
+        height: 100 + '%',
         flexDirection: 'column',
         justifyContent: 'space-between',
     },

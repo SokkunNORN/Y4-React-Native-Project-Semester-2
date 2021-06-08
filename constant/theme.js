@@ -16,8 +16,8 @@ export const COLORS = {
     ping: '#C5346C',
     ligthPing: '#803065',
 
-    white: '#FFF',
-    black: '#000'
+    white: '#FFFFFF',
+    black: '#000000'
 }
 
 export const SIZES = {
