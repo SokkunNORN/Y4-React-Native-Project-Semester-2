@@ -1,9 +1,11 @@
-import React,{ useState } from 'react'
+import React,{ useState, useRef } from 'react'
 import { ScrollView, StyleSheet, View } from 'react-native'
 import Header from '../components/header/Header'
 import ListCategory from '../components/ListCategory'
 import SlideShow from '../components/SlideShow'
 import { SIZES } from '../constant'
+
+var xPosition = 0
 
 const Discover = () => {
     const categories = [
@@ -42,6 +44,31 @@ const Discover = () => {
         }
     ]
     const [selected, setSelect] = useState(categories[0])
+
+    const scrollViewRef = useRef()
+
+    const handleScroll = function(event) {
+        xPosition = event.nativeEvent.contentOffset.x
+    }
+
+    const onContentSizeChange = (contentWidth, _) => {
+
+        setInterval(() => {
+            if (contentWidth > SIZES.width) {
+                xPosition += SIZES.width
+                if (xPosition === contentWidth) {
+                    xPosition = 0
+                }
+            }
+    
+            scrollViewRef.current.scrollTo({
+                x: xPosition,
+                y: 0,
+                animated: true
+            })
+        }, 5000);
+    }
+
     return (
         <>
             <Header
@@ -63,6 +90,9 @@ const Discover = () => {
                     pagingEnabled
                     showsHorizontalScrollIndicator={ false }
                     style={ styles.slide_show }
+                    ref={ scrollViewRef }
+                    onScroll={ handleScroll }
+                    onContentSizeChange={ onContentSizeChange }
                 >
                     <SlideShow elements={ slideShows } />
                 </ScrollView>
