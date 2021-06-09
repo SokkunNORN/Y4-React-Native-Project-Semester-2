@@ -40,5 +40,12 @@ export const HexToRGB = (hex, alpha = 1) => {
 }
 
 export const FONTS = {
+    h1: SIZES.base(4),
+    h2: SIZES.base(3),
+    h3: 18.72,
+    h4: SIZES.base(),
+    h5: 13.28,
+    h6: 12,
 
+    p: SIZES.base()
 }
