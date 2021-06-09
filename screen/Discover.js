@@ -5,7 +5,7 @@ import ListCategory from '../components/ListCategory'
 import SlideShow from '../components/SlideShow'
 import { SIZES } from '../constant'
 
-var xPosition = 0
+let xPosition = 0
 
 const Discover = () => {
     const categories = [
