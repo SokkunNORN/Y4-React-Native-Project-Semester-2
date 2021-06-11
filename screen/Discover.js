@@ -3,6 +3,7 @@ import { ScrollView, StyleSheet, View } from 'react-native'
 import Header from '../components/header/Header'
 import ListCategory from '../components/ListCategory'
 import SlideShow from '../components/SlideShow'
+import ListDiscover from '../components/ListDiscover'
 import { SIZES } from '../constant'
 
 let xPosition = 0
@@ -44,6 +45,48 @@ const Discover = () => {
         }
     ]
     const [selected, setSelect] = useState(categories[0])
+    const listDiscovers = [
+        {
+            title: 'A component to show a list of actions inside a Card.',
+            content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s',
+            category: categories[1],
+            isJoined: false,
+            joineder: 98,
+            profile: {
+                name: 'Reak Smey New Day'
+            }
+        },
+        {
+            title: 'A component to show a list of actions inside a Card.',
+            content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s',
+            category: categories[1],
+            isJoined: true,
+            joineder: 18,
+            profile: {
+                name: 'Reak Smey New Day'
+            }
+        },
+        {
+            title: 'A component to show a list of actions inside a Card.',
+            content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s',
+            category: categories[1],
+            isJoined: false,
+            joineder: 90,
+            profile: {
+                name: 'Reak Smey New Day'
+            }
+        },
+        {
+            title: 'A component to show a list of actions inside a Card.',
+            content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s',
+            category: categories[1],
+            isJoined: false,
+            joineder: 90,
+            profile: {
+                name: 'Reak Smey New Day'
+            }
+        }
+    ]
 
     const scrollViewRef = useRef()
 
@@ -96,6 +139,13 @@ const Discover = () => {
                 >
                     <SlideShow elements={ slideShows } />
                 </ScrollView>
+
+
+                {
+                    listDiscovers.map(item => (
+                        <ListDiscover item={ item }/>
+                    ))
+                }
             </ScrollView>
         </>
     )

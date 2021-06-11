@@ -50,8 +50,16 @@ const SlideShow = ({
                                 <View>
                                     <View style={ styles.feature_contain }>
                                         <Text style={{ color: COLORS.secondary1 }}>{ item.category.title }</Text>
-                                        <Title style={{ color: COLORS.secondary }}>{ item.profile.name }</Title>
-                                        <Text style={{ color: COLORS.secondary1 }}>{ item.title }</Text>
+                                        <Title 
+                                            style={{ color: COLORS.secondary }}
+                                            numberOfLines={ 1 }>
+                                            { item.profile.name }
+                                        </Title>
+                                        <Text
+                                            style={{ color: COLORS.secondary1 }} 
+                                            numberOfLines={ 2 }>
+                                            { item.title }
+                                        </Text>
                                     </View>
                                 </View>
                             </LinearGradient>
@@ -63,7 +71,11 @@ const SlideShow = ({
                                 source={ require('../asset/news.png') }
                             />
                             <View style={ styles.title }>
-                                <Title style={ styles.name }>{ item.profile.name }</Title>
+                                <Title
+                                    style={ styles.name }
+                                    numberOfLines={ 1 }>
+                                    { item.profile.name }
+                                </Title>
                                 <Paragraph style={ styles.joineder }>{ item.joineder } Members</Paragraph>
                             </View>
 
