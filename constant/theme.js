@@ -39,6 +39,14 @@ export const HexToRGB = (hex, alpha = 1) => {
     return `rgba(${r},${g},${b},${alpha})`;
 }
 
+export const Rounder = (size = SIZES.base()) => {
+    return {
+        width: size,
+        height: size,
+        borderRadius: 2 * size
+    }
+}
+
 export const FONTS = {
     h1: SIZES.base(4),
     h2: SIZES.base(3),
