@@ -119,6 +119,8 @@ const Discover = () => {
 
     const handleScroll = function(event) {
         xPosition = event.nativeEvent.contentOffset.x
+        const i = Math.trunc(xPosition / SIZES.width)
+        setSelect(categories[i])
     }
 
     const onScrollMainContain = () => {
