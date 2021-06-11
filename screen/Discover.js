@@ -47,7 +47,7 @@ const Discover = () => {
             isJoined: false
         }
     ]
-    const [selected, setSelect] = useState(categories[0])
+    const [selectedCategory, setSelectCategory] = useState(categories[0])
     const listDiscovers = [
         {
             title: 'A component to show a list of actions inside a Card.',
@@ -111,7 +111,7 @@ const Discover = () => {
     ]
 
     const onSelectCategory = value => {
-        setSelect(value)
+        setSelectCategory(value)
         const i = categories.indexOf(value)
         xPosition = SIZES.width * i
         onScrollMainContain()
@@ -120,7 +120,7 @@ const Discover = () => {
     const handleScroll = function(event) {
         xPosition = event.nativeEvent.contentOffset.x
         const i = Math.trunc(xPosition / SIZES.width)
-        setSelect(categories[i])
+        setSelectCategory(categories[i])
     }
 
     const onScrollMainContain = () => {
@@ -141,7 +141,7 @@ const Discover = () => {
 
             <View style={ styles.category }>
                 <ListCategory
-                    selected={ selected }
+                    selected={ selectedCategory }
                     categories={ categories }
                     setSelectCategory={ category => onSelectCategory(category) }
                 />
