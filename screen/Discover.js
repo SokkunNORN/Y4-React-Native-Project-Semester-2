@@ -6,7 +6,12 @@ import SlideShow from '../components/SlideShow'
 import ListDiscover from '../components/ListDiscover'
 import { SIZES } from '../constant'
 
+let xPosition = 0
+
 const Discover = () => {
+
+    const mainScrollRef = useRef()
+
     const categories = [
         { title: 'All' },
         { title: 'New' },
@@ -105,6 +110,25 @@ const Discover = () => {
         }
     ]
 
+    const onSelectCategory = value => {
+        setSelect(value)
+        const i = categories.indexOf(value)
+        xPosition = SIZES.width * i
+        onScrollMainContain()
+    }
+
+    const handleScroll = function(event) {
+        xPosition = event.nativeEvent.contentOffset.x
+    }
+
+    const onScrollMainContain = () => {
+        mainScrollRef.current.scrollTo({
+            x: xPosition,
+            y: 0,
+            animated: true
+        })
+    }
+
     return (
         <>
             <Header
@@ -112,11 +136,12 @@ const Discover = () => {
                 isJoined
                 icon="check-circle"
             />
+
             <View style={ styles.category }>
                 <ListCategory
                     selected={ selected }
                     categories={ categories }
-                    setSelectCategory={ category => setSelect(category) }
+                    setSelectCategory={ category => onSelectCategory(category) }
                 />
             </View>
 
@@ -124,6 +149,8 @@ const Discover = () => {
                 horizontal
                 pagingEnabled
                 showsHorizontalScrollIndicator={ false }
+                ref={ mainScrollRef }
+                onScroll={ handleScroll }
             >
                 {
                     data.map((element, index) => {

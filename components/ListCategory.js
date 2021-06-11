@@ -33,7 +33,9 @@ const ListCategory = ({
                             labelStyle={ styles.labelStyle }
                             uppercase={ false }
                             mode='outlined'
-                            onPress={ () => setSelectCategory(item) }>
+                            onPress={ 
+                                () => selected.title != item.title ? setSelectCategory(item) : {} 
+                            }>
                             { item.title }
                         </Button>
                     ))
