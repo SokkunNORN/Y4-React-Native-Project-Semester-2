@@ -28,7 +28,6 @@ const SlideShow = ({
     }
 
     const onContentSizeChange = (contentWidth, _) => {
-
         setInterval(() => {
             if (contentWidth > SIZES.width) {
                 xPosition += SIZES.width
