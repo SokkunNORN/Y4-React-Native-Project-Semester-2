@@ -117,18 +117,18 @@ const Discover = () => {
         onScrollMainContain()
     }
 
-    const handleScroll = function(event) {
-        xPosition = event.nativeEvent.contentOffset.x
-        const i = Math.trunc(xPosition / SIZES.width)
-        setSelectCategory(categories[i])
-    }
-
     const onScrollMainContain = () => {
         mainScrollRef.current.scrollTo({
             x: xPosition,
             y: 0,
             animated: true
         })
+    }
+
+    const onScollEnd = (event) => {
+        xPosition = event.nativeEvent.contentOffset.x
+        const i = Math.trunc(xPosition / SIZES.width)
+        setSelectCategory(categories[i])
     }
 
     return (
@@ -152,7 +152,7 @@ const Discover = () => {
                 pagingEnabled
                 showsHorizontalScrollIndicator={ false }
                 ref={ mainScrollRef }
-                onScroll={ handleScroll }
+                onScrollEndDrag={ onScollEnd }
             >
                 {
                     data.map((element, index) => {
