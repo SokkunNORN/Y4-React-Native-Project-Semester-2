@@ -140,7 +140,6 @@ const Discover = () => {
                     <SlideShow elements={ slideShows } />
                 </ScrollView>
 
-
                 {
                     listDiscovers.map(item => (
                         <ListDiscover item={ item }/>
