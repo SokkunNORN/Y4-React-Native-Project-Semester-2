@@ -88,6 +88,25 @@ const Discover = () => {
         }
     ]
 
+    const data = [
+        {
+            cagetory: categories[0],
+            listDiscovers: listDiscovers
+        },
+        {
+            cagetory: categories[1],
+            listDiscovers: listDiscovers
+        },
+        {
+            cagetory: categories[2],
+            listDiscovers: listDiscovers
+        },
+        {
+            cagetory: categories[3],
+            listDiscovers: listDiscovers
+        }
+    ]
+
     const scrollViewRef = useRef()
 
     const handleScroll = function(event) {
@@ -127,23 +146,52 @@ const Discover = () => {
                 />
             </View>
 
-            <ScrollView style={ styles.contain } >
-                <ScrollView
-                    horizontal
-                    pagingEnabled
-                    showsHorizontalScrollIndicator={ false }
-                    style={ styles.slide_show }
-                    ref={ scrollViewRef }
-                    onScroll={ handleScroll }
-                    onContentSizeChange={ onContentSizeChange }
-                >
-                    <SlideShow elements={ slideShows } />
-                </ScrollView>
-
+            <ScrollView
+                horizontal
+                pagingEnabled
+                showsHorizontalScrollIndicator={ false }
+            >
                 {
-                    listDiscovers.map(item => (
-                        <ListDiscover item={ item }/>
-                    ))
+                    data.map((element, index) => {
+                        if (index === 0) {
+                            return (
+                                <ScrollView
+                                    style={ styles.contain }
+                                    showsHorizontalScrollIndicator={ false }
+                                >
+                                    <ScrollView
+                                        horizontal
+                                        pagingEnabled
+                                        showsHorizontalScrollIndicator={ false }
+                                        style={ styles.slide_show }
+                                        ref={ scrollViewRef }
+                                        onScroll={ handleScroll }
+                                        onContentSizeChange={ onContentSizeChange }
+                                    >
+                                        <SlideShow elements={ slideShows } />
+                                    </ScrollView>
+
+                                    {
+                                        element.listDiscovers.map(item => (
+                                            <ListDiscover item={ item }/>
+                                        ))
+                                    }
+                                </ScrollView>
+                            )
+                        }
+                        return (
+                            <ScrollView
+                                style={ styles.contain }
+                                showsHorizontalScrollIndicator={ false }
+                            >
+                                {
+                                    element.listDiscovers.map(item => (
+                                        <ListDiscover item={ item }/>
+                                    ))
+                                }
+                            </ScrollView>
+                        )
+                    })
                 }
             </ScrollView>
         </>
@@ -160,6 +208,6 @@ const styles = StyleSheet.create({
         marginTop: SIZES.base()
     },
     slide_show: {
-        // paddingLeft: SIZES.base()
+        width: SIZES.width
     }
 })

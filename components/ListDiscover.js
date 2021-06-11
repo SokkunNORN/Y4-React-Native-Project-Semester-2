@@ -78,7 +78,8 @@ const styles = StyleSheet.create({
         marginEnd: SIZES.base(),
         borderRadius: SIZES.base(),
         backgroundColor: COLORS.primary,
-        padding: SIZES.base(1.2)
+        padding: SIZES.base(1.2),
+        width: SIZES.width - SIZES.base(4)
     },
     image_news: {
         marginStart: SIZES.base(.5),
