@@ -6,8 +6,6 @@ import SlideShow from '../components/SlideShow'
 import ListDiscover from '../components/ListDiscover'
 import { SIZES } from '../constant'
 
-let xPosition = 0
-
 const Discover = () => {
     const categories = [
         { title: 'All' },
@@ -107,30 +105,6 @@ const Discover = () => {
         }
     ]
 
-    const scrollViewRef = useRef()
-
-    const handleScroll = function(event) {
-        xPosition = event.nativeEvent.contentOffset.x
-    }
-
-    const onContentSizeChange = (contentWidth, _) => {
-
-        setInterval(() => {
-            if (contentWidth > SIZES.width) {
-                xPosition += SIZES.width
-                if (xPosition === contentWidth) {
-                    xPosition = 0
-                }
-            }
-    
-            scrollViewRef.current.scrollTo({
-                x: xPosition,
-                y: 0,
-                animated: true
-            })
-        }, 5000);
-    }
-
     return (
         <>
             <Header
@@ -159,17 +133,7 @@ const Discover = () => {
                                     style={ styles.contain }
                                     showsHorizontalScrollIndicator={ false }
                                 >
-                                    <ScrollView
-                                        horizontal
-                                        pagingEnabled
-                                        showsHorizontalScrollIndicator={ false }
-                                        style={ styles.slide_show }
-                                        ref={ scrollViewRef }
-                                        onScroll={ handleScroll }
-                                        onContentSizeChange={ onContentSizeChange }
-                                    >
-                                        <SlideShow elements={ slideShows } />
-                                    </ScrollView>
+                                    <SlideShow elements={ slideShows } />
 
                                     {
                                         element.listDiscovers.map(item => (
