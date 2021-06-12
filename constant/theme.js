@@ -56,5 +56,6 @@ export const FONTS = {
     h5: 13.28,
     h6: 12,
 
-    p: SIZES.base()
+    p: SIZES.base(),
+    small: SIZES.base(1.5)
 }

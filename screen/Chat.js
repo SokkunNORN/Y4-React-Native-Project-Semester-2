@@ -16,7 +16,7 @@ const Chat = () => {
     return (
         <>
             <Header
-                title="ChatPlus"
+                title="Chat Plus"
                 isSearch
                 icon="plus"
             />
