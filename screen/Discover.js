@@ -158,7 +158,6 @@ const Discover = () => {
                         if (index === 0) {
                             return (
                                 <ScrollView
-                                    style={ styles.contain }
                                     showsHorizontalScrollIndicator={ false }
                                 >
                                     <SlideShow elements={ slideShows } />
@@ -173,7 +172,6 @@ const Discover = () => {
                         }
                         return (
                             <ScrollView
-                                style={ styles.contain }
                                 showsHorizontalScrollIndicator={ false }
                             >
                                 {
@@ -194,10 +192,8 @@ export default Discover
 
 const styles = StyleSheet.create({
     category: {
-        paddingTop: SIZES.base()
-    },
-    contain: {
-        marginTop: SIZES.base()
+        paddingTop: SIZES.base(),
+        paddingBottom: SIZES.base()
     },
     slide_show: {
         width: SIZES.width

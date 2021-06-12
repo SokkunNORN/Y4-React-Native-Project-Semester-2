@@ -73,7 +73,7 @@ export default ListDiscover
 
 const styles = StyleSheet.create({
     contain: {
-        marginTop: SIZES.base(),
+        marginBottom: SIZES.base(),
         marginStart: SIZES.base(),
         marginEnd: SIZES.base(),
         borderRadius: SIZES.base(),

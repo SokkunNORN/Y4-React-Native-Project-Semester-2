@@ -144,7 +144,8 @@ export default SlideShow
 
 const styles = StyleSheet.create({
     slide_show: {
-        width: SIZES.width
+        width: SIZES.width,
+        paddingBottom: SIZES.base()
     },
     card: {
         backgroundColor: COLORS.primary,
