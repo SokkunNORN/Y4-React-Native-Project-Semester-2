@@ -111,7 +111,6 @@ const Discover = () => {
     ]
 
     const onSelectCategory = value => {
-        setSelectCategory(value)
         const i = categories.indexOf(value)
         xPosition = SIZES.width * i
         onScrollMainContain()
@@ -152,7 +151,7 @@ const Discover = () => {
                 pagingEnabled
                 showsHorizontalScrollIndicator={ false }
                 ref={ mainScrollRef }
-                onScrollEndDrag={ onScollEnd }
+                onMomentumScrollEnd={ onScollEnd }
             >
                 {
                     data.map((element, index) => {
