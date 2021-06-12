@@ -144,10 +144,13 @@ export default Setting
 const styles = StyleSheet.create({
     card: {
         margin: SIZES.base(),
-        backgroundColor: COLORS.primary
+        backgroundColor: COLORS.primary,
+        borderRadius: SIZES.base(1.5)
     },
     profileImg: {
-        height: SIZES.width - (4 * SIZES.base())
+        height: SIZES.width - (6 * SIZES.base()),
+        borderTopStartRadius: SIZES.base(1.5),
+        borderTopRightRadius: SIZES.base(1.5)
     },
     name: {
         color: COLORS.warning,
