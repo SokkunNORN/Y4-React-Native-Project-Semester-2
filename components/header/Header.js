@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import {
     SafeAreaView,
     StyleSheet,
-    StatusBar
+    StatusBar,
+    Keyboard
 } from 'react-native'
 import {
     Appbar,
@@ -16,6 +17,11 @@ console.disableYellowBox = true
 const Header = props => {
 
     const [isShowSearchField, setIsShowSearchField] = useState(false)
+
+    const onCancelSearch = () => {
+        Keyboard.dismiss()
+        setIsShowSearchField(false)
+    }
 
     const SearchIcon = () => {
         return (
@@ -84,7 +90,7 @@ const Header = props => {
                         uppercase={ false }
                         labelStyle={ styles.labelStyle }
                         mode='text'
-                        onPress={ () => setIsShowSearchField(false) }>
+                        onPress={ () => onCancelSearch() }>
                         Cancel
                     </Button> : <></>
                 }
