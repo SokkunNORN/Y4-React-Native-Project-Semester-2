@@ -35,7 +35,7 @@ const DetailHeader = props => {
                     source={ require('../../asset/profile.jpeg') }
                 />
                 <View style={ styles.profile_view }>
-                    <Title style={ styles.profile_name }>HEHE</Title>
+                    <Title style={ styles.profile_name }>{ props.name }</Title>
                     <Paragraph style={ styles.time_seen } numberOfLines={ 1 }>Last seen at 2:14 AM</Paragraph>
                 </View>
                 <Appbar.Content />

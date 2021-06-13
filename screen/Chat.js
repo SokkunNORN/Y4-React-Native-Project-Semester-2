@@ -27,7 +27,7 @@ const Chat = () => {
                             key={ i }
                             item={ item }
                             selectedItem={ selectedItem }
-                            setSelectItem={ value => navigation.push(Routes.CHAT_DETAIL) }
+                            setSelectItem={ value => navigation.push(Routes.CHAT_DETAIL, value) }
                         />
                     ))
                 }   
