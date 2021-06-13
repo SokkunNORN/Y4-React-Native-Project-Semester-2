@@ -8,12 +8,12 @@
 
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
-import BottomNav from './nav/BottomNav'
+import Navigate from './nav'
 
 const App = () => {
   return (
     <NavigationContainer>
-      <BottomNav />
+      <Navigate />
     </NavigationContainer>
   );
 };
