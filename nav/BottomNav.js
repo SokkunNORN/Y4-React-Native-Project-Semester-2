@@ -29,7 +29,7 @@ const BottomNav = () => {
         options={{
           title: "Chats",
           tabBarIcon: ({ color, focused }) => (
-            <Icon name={ focused ? "comment-text-multiple" : "comment-text-multiple-outline"} color={color} size={26} />
+            <Icon name={ focused ? "comment-text-multiple" : "comment-text-multiple-outline" } color={color} size={26} />
           )
         }}
       />
@@ -39,7 +39,7 @@ const BottomNav = () => {
         options={{
           title: "Discover",
           tabBarIcon: ({ color, focused }) => (
-            <Icon name={ focused ? "compass" : "compass-outline"} color={color} size={26} />
+            <Icon name={ focused ? "compass" : "compass-outline" } color={color} size={26} />
           )
         }}
       />
@@ -49,7 +49,7 @@ const BottomNav = () => {
         options={{
           title: "Settings",
           tabBarIcon: ({ color, focused }) => (
-            <Icon name={focused ? "cog" : "cog-outline"} color={color} size={26} />
+            <Icon name={focused ? "cog" : "cog-outline" } color={color} size={26} />
           )
         }}
       />
