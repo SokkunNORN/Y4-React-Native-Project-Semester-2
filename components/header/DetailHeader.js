@@ -46,7 +46,7 @@ const DetailHeader = props => {
                         color={ COLORS.warning }
                         style={[
                             styles.action_btn,
-                            (props.iconRight1 && !props.iconRight2 && !props.iconRight3)
+                            (!props.iconRight2 && !props.iconRight3)
                             ? styles.action_btn_mr : {}
                         ]}
                         onPress={ () => {} }
@@ -60,8 +60,7 @@ const DetailHeader = props => {
                         color={ COLORS.warning } 
                         style={[
                             styles.action_btn,
-                            (props.iconRight2 && !props.iconRight1 && !props.iconRight3) 
-                            || (!props.iconRight3 && props.iconRight1 && props.iconRight2)
+                            !props.iconRight3
                             ? styles.action_btn_mr : {}
                         ]}
                         onPress={ () => {} }
@@ -75,11 +74,7 @@ const DetailHeader = props => {
                         color={ COLORS.warning } 
                         style={[
                             styles.action_btn,
-                            (props.iconRight3 && !props.iconRight1 && !props.iconRight2) 
-                            || (props.iconRight3 && props.iconRight1 && !props.iconRight2)
-                            || (props.iconRight3 && !props.iconRight1 && props.iconRight2)
-                            || (props.iconRight3 && props.iconRight1 && props.iconRight2)
-                            ? styles.action_btn_mr : {}
+                            styles.action_btn_mr
                         ]}
                         onPress={ () => {} }
                     /> : 
