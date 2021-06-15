@@ -3,7 +3,10 @@ import {
     StyleSheet,
     View,
     Text,
-    TextInput
+    TextInput,
+    SafeAreaView,
+    KeyboardAvoidingView,
+    Platform
 } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import DetailHeader from '../components/header/DetailHeader'
@@ -15,7 +18,7 @@ const ChatDetail = ({ route }) => {
     const [message, setMessage] = useState('')
 
     return (
-        <>
+        <SafeAreaView style={ styles.safe_area_view }>
             <DetailHeader
                 iconRight1='phone'
                 iconRight2='video'
@@ -24,37 +27,45 @@ const ChatDetail = ({ route }) => {
             />
             <View style={ styles.container }>
                 <View style={ styles.header }></View>
-                <View style={ styles.footer }>
-                    <Icon
-                        name={ 'sticker-emoji' } 
-                        style={ styles.icon_left_text }
-                        color={ COLORS.secondary1 } size={ SIZES.base(3.5) } />
-                    <Icon
-                        name={ 'paperclip' } 
-                        style={ styles.icon_left_text }
-                        color={ COLORS.secondary1 } size={ SIZES.base(3.5) } />
-                    <TextInput
-                        placeholder='Write your message'
-                        placeholderTextColor={ COLORS.secondary1 }
-                        style={ styles.message_text_field }
-                        value={ message }
-                        onChangeText={ value => setMessage(value) }
-                    />
-                    <View style={ styles.view_right_text }>
+                <KeyboardAvoidingView
+                    behavior={ Platform.OS === 'ios' ? 'padding' : null }
+                >
+                    <View style={ styles.footer }>
                         <Icon
-                            name={ message.trim() ? 'send' : 'microphone' } 
-                            style={ styles.icon_right_text }
-                            color={ COLORS.dark } size={ SIZES.base(3.5) } />
-                    </View>
-                </View>
+                            name={ 'sticker-emoji' } 
+                            style={ styles.icon_left_text }
+                            color={ COLORS.secondary1 } size={ SIZES.base(3.5) } />
+                        <Icon
+                            name={ 'paperclip' } 
+                            style={ styles.icon_left_text }
+                            color={ COLORS.secondary1 } size={ SIZES.base(3.5) } />
+                        <TextInput
+                            placeholder='Write your message'
+                            placeholderTextColor={ COLORS.secondary1 }
+                            style={ styles.message_text_field }
+                            value={ message }
+                            onChangeText={ value => setMessage(value) }
+                        />
+                        <View style={ styles.view_right_text }>
+                            <Icon
+                                name={ message.trim() ? 'send' : 'microphone' } 
+                                style={ styles.icon_right_text }
+                                color={ COLORS.dark } size={ SIZES.base(3.5) } />
+                        </View>
+                    </View>  
+                </KeyboardAvoidingView>
             </View>
-        </>
+        </SafeAreaView>
     )
 }
 
 export default ChatDetail
 
 const styles = StyleSheet.create({
+    safe_area_view: {
+        flex: 1,
+        backgroundColor: COLORS.dark
+    },
     container: {
         flex: 1
     },
