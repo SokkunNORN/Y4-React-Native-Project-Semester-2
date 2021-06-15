@@ -1,20 +1,22 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import {
     StyleSheet,
     View,
-    Text,
     TextInput,
     SafeAreaView,
     KeyboardAvoidingView,
-    Platform
+    Platform,
+    ScrollView
 } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import DetailHeader from '../components/header/DetailHeader'
 import { COLORS, FONTS, SIZES } from '../constant'
 const keyboardVerticalOffset = Platform.OS === 'ios' ? SIZES.base(12.5) : 0
+import MessageBubble from '../components/MessageBubble'
 
 const ChatDetail = ({ route }) => {
 
+    const scrollViewRef = useRef()
     const name = route.params
     const [message, setMessage] = useState('')
 
@@ -27,7 +29,21 @@ const ChatDetail = ({ route }) => {
                 name={ name }
             />
             <View style={ styles.container }>
-                <View style={ styles.header }></View>
+                <View style={ styles.header }>
+                    <ScrollView
+                        keyboardDismissMode='interactive'
+                        showsHorizontalScrollIndicator={ false }
+                        ref={ scrollViewRef }
+                    >
+                        <MessageBubble
+                            owner
+                            text='Hello world!!!'
+                        />
+                        <MessageBubble
+                            text='Hallow'
+                        />
+                    </ScrollView>
+                </View>
                 <KeyboardAvoidingView
                     behavior={ Platform.OS === 'ios' ? 'padding' : null }
                     keyboardVerticalOffset={ keyboardVerticalOffset }
