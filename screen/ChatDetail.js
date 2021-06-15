@@ -11,6 +11,7 @@ import {
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import DetailHeader from '../components/header/DetailHeader'
 import { COLORS, FONTS, SIZES } from '../constant'
+const keyboardVerticalOffset = Platform.OS === 'ios' ? SIZES.base(12.5) : 0
 
 const ChatDetail = ({ route }) => {
 
@@ -29,6 +30,7 @@ const ChatDetail = ({ route }) => {
                 <View style={ styles.header }></View>
                 <KeyboardAvoidingView
                     behavior={ Platform.OS === 'ios' ? 'padding' : null }
+                    keyboardVerticalOffset={ keyboardVerticalOffset }
                 >
                     <View style={ styles.footer }>
                         <Icon
@@ -91,7 +93,7 @@ const styles = StyleSheet.create({
         fontSize: FONTS.h4,
         color: COLORS.white,
         borderRadius: SIZES.radius(),
-        width: SIZES.width - (SIZES.base(20)),
+        width: SIZES.width - (SIZES.base(18.5)),
         marginStart: SIZES.base(.5),
         borderWidth: .5,
         borderColor: COLORS.secondary1
@@ -100,7 +102,7 @@ const styles = StyleSheet.create({
         padding: SIZES.base(.5),
         backgroundColor: COLORS.warning,
         borderRadius: SIZES.radius(1.5),
-        marginStart: SIZES.base(1)
+        marginStart: SIZES.base(.5)
     },
     icon_right_text: {
         padding: SIZES.base(.5),
