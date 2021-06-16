@@ -43,6 +43,7 @@ const ChatDetail = ({ route }) => {
         if (contentHeight < (SIZES.height - SIZES.base(14))) {
             setIsBtnScrollDown(false)
         }
+        scrollViewRef.current.scrollToEnd({ animated: true })
     }
 
     return (
@@ -203,6 +204,6 @@ const styles = StyleSheet.create({
         borderRadius: SIZES.radius(4),
         borderWidth: .5,
         borderColor: COLORS.secondary1,
-        bottom: SIZES.base(7)
+        bottom: SIZES.base(8)
     }
 })
