@@ -6,7 +6,8 @@ import {
     SafeAreaView,
     KeyboardAvoidingView,
     Platform,
-    ScrollView
+    ScrollView,
+    TouchableOpacity
 } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import DetailHeader from '../components/header/DetailHeader'
@@ -14,11 +15,35 @@ import { COLORS, FONTS, SIZES } from '../constant'
 const keyboardVerticalOffset = Platform.OS === 'ios' ? SIZES.base(12.5) : 0
 import MessageBubble from '../components/MessageBubble'
 
+let yPosition = 0
+
 const ChatDetail = ({ route }) => {
 
     const scrollViewRef = useRef()
     const name = route.params
     const [message, setMessage] = useState('')
+    const [isBtnScrollDown, setIsBtnScrollDown] = useState(true)
+
+    const onScrollDown = () => {
+        scrollViewRef.current.scrollToEnd({ animated: true })
+    }
+
+    const onScroll = (event) => {
+        yPosition = event.nativeEvent.contentOffset.y
+        const contentHeight = event.nativeEvent.contentSize.height
+
+        if (contentHeight < (SIZES.height - SIZES.base(14))) {
+            setIsBtnScrollDown(false)
+        } else {
+            setIsBtnScrollDown(!(yPosition + (SIZES.height - SIZES.base(24)) >= contentHeight))
+        }
+    }
+
+    const onContentSizeChange = (_, contentHeight) => {
+        if (contentHeight < (SIZES.height - SIZES.base(14))) {
+            setIsBtnScrollDown(false)
+        }
+    }
 
     return (
         <SafeAreaView style={ styles.safe_area_view }>
@@ -34,10 +59,45 @@ const ChatDetail = ({ route }) => {
                         keyboardDismissMode='interactive'
                         showsHorizontalScrollIndicator={ false }
                         ref={ scrollViewRef }
+                        onScroll={ onScroll }
+                        onContentSizeChange={ onContentSizeChange }
                     >
                         <MessageBubble
                             owner
                             text='Hello world!!!'
+                        />
+                        <MessageBubble
+                            text='Hallow'
+                        />
+                        <MessageBubble
+                            text='Hallow'
+                        />
+                        <MessageBubble
+                            text='Hallow'
+                        />
+                        <MessageBubble
+                            text='Hallow'
+                        />
+                        <MessageBubble
+                            text='Hallow'
+                        />
+                        <MessageBubble
+                            text='Hallow'
+                        />
+                        <MessageBubble
+                            text='Hallow'
+                        />
+                        <MessageBubble
+                            text='Hallow'
+                        />
+                        <MessageBubble
+                            text='Hallow'
+                        />
+                        <MessageBubble
+                            text='Hallow'
+                        />
+                        <MessageBubble
+                            text='Hallow'
                         />
                         <MessageBubble
                             text='Hallow'
@@ -70,6 +130,19 @@ const ChatDetail = ({ route }) => {
                                 style={ styles.icon_right_text }
                                 color={ COLORS.dark } size={ SIZES.base(3.5) } />
                         </View>
+                        {
+                            isBtnScrollDown ?
+                                <TouchableOpacity
+                                    style={ styles.view_icon_down }
+                                    onPress={ () => onScrollDown() }
+                                >
+                                    <Icon
+                                        name={ 'chevron-down' } 
+                                        style={ styles.icon_down }
+                                        color={ COLORS.secondary1 } size={ SIZES.base(4.5) } />
+                                </TouchableOpacity>
+                            : null
+                        }
                     </View>  
                 </KeyboardAvoidingView>
             </View>
@@ -121,7 +194,15 @@ const styles = StyleSheet.create({
         marginStart: SIZES.base(.5)
     },
     icon_right_text: {
+        padding: SIZES.base(.5)
+    },
+    view_icon_down: {
+        position: 'absolute',
+        right: SIZES.base(1),
         padding: SIZES.base(.5),
-        borderRadius: SIZES.radius()
+        borderRadius: SIZES.radius(4),
+        borderWidth: .5,
+        borderColor: COLORS.secondary1,
+        bottom: SIZES.base(7)
     }
 })
