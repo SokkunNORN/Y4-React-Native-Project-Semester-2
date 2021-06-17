@@ -2,7 +2,6 @@ import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import {
   Chat,
-  ChatDetail,
   Discover,
   Setting
 } from '../screen'
@@ -21,13 +20,6 @@ export const ChatStackScreen = () => {
         <Stack.Screen
           name={ Routes.CHAT }
           component={ Chat }
-          options={{
-            headerShown: false
-          }}
-        />
-        <Stack.Screen
-          name={ Routes.CHAT_DETAIL}
-          component={ ChatDetail }
           options={{
             headerShown: false
           }}

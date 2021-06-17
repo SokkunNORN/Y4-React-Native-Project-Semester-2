@@ -3,13 +3,17 @@ import { useNavigation } from '@react-navigation/native'
 import {
     SafeAreaView,
     StyleSheet,
-    StatusBar
+    StatusBar,
+    View
 } from 'react-native'
 import {
-    Appbar
+    Appbar,
+    Avatar,
+    Paragraph,
+    Title
 } from 'react-native-paper'
 
-import { COLORS, SIZES } from '../../constant'
+import { COLORS, FONTS, SIZES } from '../../constant'
 
 console.disableYellowBox = true
 
@@ -26,17 +30,56 @@ const DetailHeader = props => {
                     color={ COLORS.warning } 
                     onPress={ () => navigation.pop() }
                 />
-                <Appbar.Content
-                    title={ props.title || '' }
-                    titleStyle={[
-                        styles.headerTitle
-                    ]}
+                <Avatar.Image
+                    size={ SIZES.base(5) }
+                    source={ require('../../asset/profile.jpeg') }
                 />
-                <Appbar.Action
-                    icon={ props.iconRight || '' }
-                    color={ COLORS.warning } 
-                    onPress={ () => {} }
-                />
+                <View style={ styles.profile_view }>
+                    <Title style={ styles.profile_name }>{ props.name }</Title>
+                    <Paragraph style={ styles.time_seen } numberOfLines={ 1 }>Last seen at 2:14 AM</Paragraph>
+                </View>
+                <Appbar.Content />
+                {
+                    props.iconRight1 ?
+                    <Appbar.Action
+                        icon={ props.iconRight1 }
+                        color={ COLORS.warning }
+                        style={[
+                            styles.action_btn,
+                            (!props.iconRight2 && !props.iconRight3)
+                            ? styles.action_btn_mr : {}
+                        ]}
+                        onPress={ () => {} }
+                    /> : 
+                    <></>
+                }
+                {
+                    props.iconRight2 ?
+                    <Appbar.Action
+                        icon={ props.iconRight2 }
+                        color={ COLORS.warning } 
+                        style={[
+                            styles.action_btn,
+                            !props.iconRight3
+                            ? styles.action_btn_mr : {}
+                        ]}
+                        onPress={ () => {} }
+                    /> : 
+                    <></>
+                }
+                {
+                    props.iconRight3 ?
+                    <Appbar.Action
+                        icon={ props.iconRight3 }
+                        color={ COLORS.warning } 
+                        style={[
+                            styles.action_btn,
+                            styles.action_btn_mr
+                        ]}
+                        onPress={ () => {} }
+                    /> : 
+                    <></>
+                }
             </Appbar.Header>
         </SafeAreaView>
     )
@@ -48,10 +91,23 @@ const styles = StyleSheet.create({
     header: {
         backgroundColor: COLORS.dark
     },
-    headerTitle: {
-        color: COLORS.warning,
-        fontWeight: 'normal',
-        fontSize: SIZES.font(18)
+    profile_view: {
+        marginStart: SIZES.base(1),
+    },
+    profile_name: {
+        color: COLORS.secondary,
+        fontSize: FONTS.h4
+    },
+    time_seen: {
+        color: COLORS.secondary1,
+        fontSize: FONTS.small,
+        marginTop: -SIZES.base(1)
+    },
+    action_btn: {
+        margin: 0
+    },
+    action_btn_mr: {
+        marginRight: SIZES.base(1)
     },
     safearea: {
         backgroundColor: COLORS.dark

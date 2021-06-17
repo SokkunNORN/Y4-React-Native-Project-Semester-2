@@ -28,14 +28,14 @@ const Setting = () => {
         [
             {
                 title: 'Language',
-                icon: 'virus-outline',
+                icon: 'web',
                 iconColor: COLORS.warning,
                 rightTxt: 'English',
                 isIconRight: true
             },
             {
-                title: 'Language',
-                icon: 'web',
+                title: 'Storage and Data',
+                icon: 'playlist-check',
                 iconColor: COLORS.green,
                 rightTxt: null,
                 isIconRight: true
@@ -60,7 +60,7 @@ const Setting = () => {
         [
             {
                 title: 'Invite Frinds to Chat Plus',
-                icon: 'account-alert-outline',
+                icon: 'account-arrow-right-outline',
                 iconColor: COLORS.ligthPing,
                 rightTxt: null,
                 isIconRight: true
