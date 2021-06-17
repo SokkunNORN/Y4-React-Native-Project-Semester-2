@@ -7,8 +7,9 @@ import {
     KeyboardAvoidingView,
     Platform,
     ScrollView,
-    TouchableOpacity
+    TouchableWithoutFeedback
 } from 'react-native'
+import { Badge } from 'react-native-paper'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import DetailHeader from '../components/header/DetailHeader'
 import { COLORS, FONTS, SIZES } from '../constant'
@@ -133,15 +134,24 @@ const ChatDetail = ({ route }) => {
                         </View>
                         {
                             isBtnScrollDown ?
-                                <TouchableOpacity
-                                    style={ styles.view_icon_down }
+                                <TouchableWithoutFeedback
                                     onPress={ () => onScrollDown() }
                                 >
-                                    <Icon
-                                        name={ 'chevron-down' } 
-                                        style={ styles.icon_down }
-                                        color={ COLORS.secondary1 } size={ SIZES.base(4.5) } />
-                                </TouchableOpacity>
+                                    <View
+                                        style={ styles.view_icon_down }
+                                    >
+                                        <Badge
+                                            style={ styles.badge }
+                                            visible={ false }
+                                        >
+                                            3.5K
+                                        </Badge>
+                                        <Icon
+                                            name={ 'chevron-down' } 
+                                            style={ styles.icon_down }
+                                            color={ COLORS.secondary1 } size={ SIZES.base(4.5) } />
+                                    </View>
+                                </TouchableWithoutFeedback>
                             : null
                         }
                     </View>  
@@ -205,5 +215,11 @@ const styles = StyleSheet.create({
         borderWidth: .5,
         borderColor: COLORS.secondary1,
         bottom: SIZES.base(8)
+    },
+    badge: {
+        position: 'absolute',
+        left: SIZES.base(1),
+        top: -SIZES.base(1),
+        backgroundColor: COLORS.warning
     }
 })
