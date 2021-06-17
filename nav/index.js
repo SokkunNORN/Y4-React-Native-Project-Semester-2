@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import BottomNav from './BottomNav'
 import Routes from '../routes'
 import {
+    PhoneNumber,
     ChatDetail
 } from '../screen'
 import {
@@ -15,6 +16,16 @@ const Navigate = () => {
     return (
         <>
             <Stack.Navigator>
+                <Stack.Screen
+                    name={ Routes.PHONE_NUMBER }
+                    component={ PhoneNumber }
+                    options={{
+                        headerShown: false,
+                        cardStyle: {
+                            backgroundColor: COLORS.primary
+                        }
+                    }}
+                />
                 <Stack.Screen
                     name={ Routes.DASHBOARD } 
                     component={ BottomNav }
