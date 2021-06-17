@@ -17,8 +17,6 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome5'
 import { COLORS, FONTS, SIZES, HexToRGB } from '../../constant'
 
-const keyboardVerticalOffset = Platform.OS === 'ios' ? SIZES.base(7) : 0
-
 const PhoneNumber = () => {
 
     const [phoneNumber, setPhoneNumber] = useState('')
@@ -78,8 +76,7 @@ const PhoneNumber = () => {
                 </View>
 
                 <KeyboardAvoidingView
-                    behavior={ Platform.OS === 'ios' ? 'padding' : null }
-                    keyboardVerticalOffset={ keyboardVerticalOffset }
+                    behavior={ Platform.OS === 'ios' ? 'position' : null }
                 >
                     <View>
                         <Text
