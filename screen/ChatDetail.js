@@ -25,6 +25,24 @@ const ChatDetail = ({ route }) => {
     const [message, setMessage] = useState('')
     const [isBtnScrollDown, setIsBtnScrollDown] = useState(true)
 
+    const messages = [
+        {
+            owner: true,
+            messages: 'Hello World!!!',
+            time: '7:14 AM'
+        },
+        {
+            owner: false,
+            messages: 'Jaa, Hello Sky!!!',
+            time: '7:15 AM'
+        },
+        {
+            owner: true,
+            messages: 'Jaa, Good Bye!!',
+            time: '7:19 AM'
+        }
+    ]
+
     const onScrollDown = () => {
         scrollViewRef.current.scrollToEnd({ animated: true })
     }
@@ -64,46 +82,15 @@ const ChatDetail = ({ route }) => {
                         onScroll={ onScroll }
                         onContentSizeChange={ onContentSizeChange }
                     >
-                        <MessageBubble
-                            owner
-                            text='Hello world!!!'
-                        />
-                        <MessageBubble
-                            text='Hallow'
-                        />
-                        <MessageBubble
-                            text='Hallow'
-                        />
-                        <MessageBubble
-                            text='Hallow'
-                        />
-                        <MessageBubble
-                            text='Hallow'
-                        />
-                        <MessageBubble
-                            text='Hallow'
-                        />
-                        <MessageBubble
-                            text='Hallow'
-                        />
-                        <MessageBubble
-                            text='Hallow'
-                        />
-                        <MessageBubble
-                            text='Hallow'
-                        />
-                        <MessageBubble
-                            text='Hallow'
-                        />
-                        <MessageBubble
-                            text='Hallow'
-                        />
-                        <MessageBubble
-                            text='Hallow'
-                        />
-                        <MessageBubble
-                            text='Hallow'
-                        />
+                        {
+                            messages.map(item => (
+                                <MessageBubble
+                                    owner={ item.owner }
+                                    text={ item.messages }
+                                    time={ item.time }
+                                />
+                            ))
+                        }
                     </ScrollView>
                 </View>
                 <KeyboardAvoidingView
