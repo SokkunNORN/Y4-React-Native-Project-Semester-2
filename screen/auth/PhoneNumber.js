@@ -14,11 +14,14 @@ import {
     Paragraph,
     Title
 } from 'react-native-paper'
+import { useNavigation } from '@react-navigation/native'
+import Routes from '../../routes'
 import Icon from 'react-native-vector-icons/FontAwesome5'
 import { COLORS, FONTS, SIZES, HexToRGB } from '../../constant'
 
 const PhoneNumber = () => {
 
+    const navigation = useNavigation()
     const [phoneNumber, setPhoneNumber] = useState('')
     const [keyboardStatus, setKeyboardStatus] = useState(false)
 
@@ -36,6 +39,10 @@ const PhoneNumber = () => {
             }
         }
         setPhoneNumber(value)
+    }
+
+    const onContinue = () => {
+        navigation.push(Routes.VERIFICATION, phoneNumber)
     }
 
     return (
@@ -98,7 +105,7 @@ const PhoneNumber = () => {
                             labelStyle={ styles.label_btn_continue }
                             color={ COLORS.secondary }
                             uppercase={ false }
-                            onPress={() => console.log('Pressed')}
+                            onPress={() => onContinue() }
                         >
                             Continue
                         </Button>
