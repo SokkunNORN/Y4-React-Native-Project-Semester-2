@@ -25,7 +25,6 @@ const PhoneNumber = () => {
     const [keyboardStatus, setKeyboardStatus] = useState(false)
 
     const onTextChange = value => {
-        console.log(Keyboard)
         const cleaned = ('' + value).replace(/\D/g, '')
         const match = cleaned.match(/^(1|)?(\d{2})(\d{3})(\d{4})$/)
         if (match) {
