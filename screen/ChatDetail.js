@@ -72,6 +72,7 @@ const ChatDetail = ({ route }) => {
                 iconRight2='video'
                 iconRight3='dots-vertical'
                 name={ name }
+                isProfile
             />
             <View style={ styles.container }>
                 <View style={ styles.header }>

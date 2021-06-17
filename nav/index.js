@@ -4,7 +4,8 @@ import BottomNav from './BottomNav'
 import Routes from '../routes'
 import {
     PhoneNumber,
-    ChatDetail
+    ChatDetail,
+    Verification
 } from '../screen'
 import {
     COLORS
@@ -19,6 +20,16 @@ const Navigate = () => {
                 <Stack.Screen
                     name={ Routes.PHONE_NUMBER }
                     component={ PhoneNumber }
+                    options={{
+                        headerShown: false,
+                        cardStyle: {
+                            backgroundColor: COLORS.primary1
+                        }
+                    }}
+                />
+                <Stack.Screen
+                    name={ Routes.VERIFICATION }
+                    component={ Verification }
                     options={{
                         headerShown: false,
                         cardStyle: {
