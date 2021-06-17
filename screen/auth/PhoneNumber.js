@@ -1,8 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
     StyleSheet,
     View,
-    Text
+    Text,
+    TextInput,
+    TouchableWithoutFeedback,
+    Keyboard,
+    KeyboardAvoidingView,
+    Platform
 } from 'react-native'
 import {
     Button,
@@ -12,9 +17,32 @@ import {
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { COLORS, FONTS, SIZES, HexToRGB } from '../../constant'
 
+const keyboardVerticalOffset = Platform.OS === 'ios' ? SIZES.base(7) : 0
+
 const PhoneNumber = () => {
+
+    const [phoneNumber, setPhoneNumber] = useState(null)
+    const [keyboardStatus, setKeyboardStatus] = useState(false)
+
+    const onTextChange = value => {
+        console.log(Keyboard)
+        const cleaned = ('' + value).replace(/\D/g, '')
+        const match = cleaned.match(/^(1|)?(\d{2})(\d{3})(\d{4})$/)
+        if (match) {
+            const intlCode = (match[1] ? '+1 ' : ''),
+                number = [intlCode, '+855 ', match[2], ' ', match[3], ' ', match[4]].join('');
+
+            setPhoneNumber(number)
+
+            return
+        }
+        setPhoneNumber(value)
+    }
+
     return (
-        <>
+        <TouchableWithoutFeedback
+            onPress={ () => Keyboard.dismiss() }
+        >
             <View
                 style={ styles.constainer }
             >
@@ -31,32 +59,55 @@ const PhoneNumber = () => {
                     </View>
                     <Title style={ styles.greeting_text }>Welcome to Chat Plus!</Title>
                     <Paragraph style={ styles.introduction }>
-                        Provide your phone number to receive your conformation code.
+                        Provide your phone number to receive your conformation code. {keyboardStatus}
                     </Paragraph>
+                    <View style={ styles.contain_phone_number_text_input } >
+                        <TextInput
+                            keyboardType='number-pad'
+                            placeholder='Enter phone number'
+                            placeholderTextColor={ COLORS.secondary1 }
+                            style={ styles.phone_number_text_input }
+                            onChangeText={ value => onTextChange(value) }
+                            value={ phoneNumber }
+                            maxLength={ 12 }
+                            onFocus={ () => setKeyboardStatus(true) }
+                            onBlur={ () => setKeyboardStatus(false) }
+                        />
+                    </View>
                 </View>
 
-                <View>
-                    <Text
-                        style={ styles.condition_text }
-                    >
-                        By continuing, you are agreeing to the 
-                        <Text style={ styles.privacy_text }> Privacy Plicy</Text> and 
-                        <Text style={ styles.privacy_text }> Terms and Conditions</Text>
-                    </Text>
-                    <Button
-                        style={[
-                            styles.btn_continue
-                        ]}
-                        labelStyle={ styles.label_btn_continue }
-                        color={ COLORS.secondary }
-                        uppercase={ false }
-                        onPress={() => console.log('Pressed')}
-                    >
-                        Continue
-                    </Button>
-                </View>
+                <KeyboardAvoidingView
+                    behavior={ Platform.OS === 'ios' ? 'padding' : null }
+                    keyboardVerticalOffset={ keyboardVerticalOffset }
+                >
+                    <View>
+                        <Text
+                            style={ styles.condition_text }
+                        >
+                            By continuing, you are agreeing to the 
+                            <Text style={ styles.privacy_text }> Privacy Plicy</Text> and 
+                            <Text style={ styles.privacy_text }> Terms and Conditions</Text>
+                        </Text>
+                        <Button
+                            style={[
+                                styles.btn_continue,
+                                keyboardStatus ? styles.btn_continue_with_active_keyboard : {},
+                                {
+                                    backgroundColor: phoneNumber ? COLORS.warning : COLORS.secondary1
+                                }
+                            ]}
+                            disabled={ phoneNumber ? false : true }
+                            labelStyle={ styles.label_btn_continue }
+                            color={ COLORS.secondary }
+                            uppercase={ false }
+                            onPress={() => console.log('Pressed')}
+                        >
+                            Continue
+                        </Button>
+                    </View>
+                </KeyboardAvoidingView>
             </View>
-        </>
+        </TouchableWithoutFeedback>
     )
 }
 
@@ -66,12 +117,12 @@ const styles = StyleSheet.create({
     constainer: {
         flex: 1,
         flexDirection: 'column',
-        justifyContent: 'space-around',
-        marginHorizontal: SIZES.base(5)
+        justifyContent: 'space-around'
     },
     top_contain: {
         flexDirection: 'column',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        marginHorizontal: SIZES.base(5)
     },
     border_view_phone_icon: {
         borderWidth: 1,
@@ -99,11 +150,26 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         fontSize: FONTS.h4
     },
+    contain_phone_number_text_input: {
+        marginTop: SIZES.base(3)
+    },
+    phone_number_text_input: {
+        backgroundColor: COLORS.primary,
+        color: COLORS.white,
+        borderRadius: SIZES.radius(),
+        padding: SIZES.base(),
+        fontSize: FONTS.h4
+    },
 
     btn_continue: {
         marginTop: SIZES.base(5),
         borderRadius: SIZES.radius(4),
-        backgroundColor: COLORS.secondary1
+        backgroundColor: COLORS.secondary1,
+        marginHorizontal: SIZES.base(5)
+    },
+    btn_continue_with_active_keyboard: {
+        borderRadius: 0,
+        marginHorizontal: 0
     },
     label_btn_continue: {
         fontSize: FONTS.h3,
@@ -113,7 +179,8 @@ const styles = StyleSheet.create({
         color: COLORS.white,
         fontSize: FONTS.p,
         textAlign: 'center',
-        lineHeight: SIZES.base(3)
+        lineHeight: SIZES.base(3),
+        marginHorizontal: SIZES.base(5)
     },
     privacy_text: {
         color: COLORS.warning
