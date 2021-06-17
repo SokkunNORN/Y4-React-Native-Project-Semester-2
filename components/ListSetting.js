@@ -27,7 +27,17 @@ const ListSetting = ({
                             style={ styles.list }
                             titleStyle={ styles.title }
                             title={ item.title } 
-                            left={() => <List.Icon color={ item.iconColor } icon={ item.icon } />}
+                            left={() =>
+                                <List.Icon
+                                    style={[
+                                        styles.icon_left,
+                                        {
+                                            borderColor: item.iconColor
+                                        }
+                                    ]} 
+                                    color={ item.iconColor } 
+                                    icon={ item.icon } />
+                            }
                             right={() => 
                                 <>
                                     <Paragraph style={[
@@ -74,5 +84,9 @@ const styles = StyleSheet.create({
     },
     rightTxtPadding: {
         marginRight: SIZES.base()
+    },
+    icon_left: {
+        borderWidth: 1,
+        borderRadius: SIZES.radius(1.4)
     }
 })
