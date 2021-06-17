@@ -22,7 +22,7 @@ const Navigate = () => {
                     options={{
                         headerShown: false,
                         cardStyle: {
-                            backgroundColor: COLORS.primary
+                            backgroundColor: COLORS.primary1
                         }
                     }}
                 />
