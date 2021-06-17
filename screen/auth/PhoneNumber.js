@@ -21,19 +21,21 @@ const keyboardVerticalOffset = Platform.OS === 'ios' ? SIZES.base(7) : 0
 
 const PhoneNumber = () => {
 
-    const [phoneNumber, setPhoneNumber] = useState(null)
+    const [phoneNumber, setPhoneNumber] = useState('')
     const [keyboardStatus, setKeyboardStatus] = useState(false)
 
     const onTextChange = value => {
         const cleaned = ('' + value).replace(/\D/g, '')
         const match = cleaned.match(/^(1|)?(\d{2})(\d{3})(\d{4})$/)
-        if (match) {
-            const intlCode = (match[1] ? '+1 ' : ''),
-                number = [intlCode, '+855 ', match[2], ' ', match[3], ' ', match[4]].join('');
-
-            setPhoneNumber(number)
-
-            return
+        if (phoneNumber.length < value.length) {
+            if (match) {
+                const intlCode = (match[1] ? '+1 ' : ''),
+                    number = [intlCode, '+855 ', match[2], ' ', match[3], ' ', match[4]].join('');
+    
+                setPhoneNumber(number)
+    
+                return
+            }
         }
         setPhoneNumber(value)
     }
