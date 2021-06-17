@@ -14,7 +14,7 @@ import {
     Paragraph,
     Title
 } from 'react-native-paper'
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import Icon from 'react-native-vector-icons/FontAwesome5'
 import { COLORS, FONTS, SIZES, HexToRGB } from '../../constant'
 
 const keyboardVerticalOffset = Platform.OS === 'ios' ? SIZES.base(7) : 0
@@ -52,9 +52,9 @@ const PhoneNumber = () => {
                     <View style={ styles.border_view_phone_icon }>
                         <View style={ styles.view_phone_icon }>
                             <Icon
-                                name='cellphone'
+                                name='mobile-alt'
                                 style={ styles.phone_icon }
-                                color={ COLORS.warning } size={ SIZES.base(6.5) } />
+                                color={ COLORS.warning } size={ SIZES.base(5.5) } />
                         </View>
                     </View>
                     <Title style={ styles.greeting_text }>Welcome to Chat Plus!</Title>
@@ -136,7 +136,8 @@ const styles = StyleSheet.create({
         margin: SIZES.base(.8)
     },
     phone_icon: {
-        padding: SIZES.base(1.5)
+        padding: SIZES.base(1.5),
+        paddingHorizontal: SIZES.base(2.5)
     },
     greeting_text: {
         alignSelf: 'center',
