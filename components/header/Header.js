@@ -103,7 +103,10 @@ export default Header
 
 const styles = StyleSheet.create({
     header: {
-        backgroundColor: COLORS.dark
+        backgroundColor: COLORS.dark,
+        elevation: 0,
+        shadowOpacity: 0,
+        borderBottomWidth: 0
     },
     headerTitle: {
         color: COLORS.warning,
