@@ -6,7 +6,7 @@ import {
 import Routes from '../../routes'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { SIZES, COLORS, HexToRGB } from '../../constant'
-import { useNavigation, StackActions } from '@react-navigation/native'
+import { useNavigation } from '@react-navigation/native'
 
 const Greeting = () => {
 
