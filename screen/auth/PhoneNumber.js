@@ -50,7 +50,7 @@ const PhoneNumber = () => {
             onPress={ () => Keyboard.dismiss() }
         >
             <View
-                style={ styles.constainer }
+                style={ styles.container }
             >
                 <View
                     style={ styles.top_contain }
@@ -119,7 +119,7 @@ const PhoneNumber = () => {
 export default PhoneNumber
 
 const styles = StyleSheet.create({
-    constainer: {
+    container: {
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'space-around'

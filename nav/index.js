@@ -17,7 +17,7 @@ const Navigate = () => {
     return (
         <>
             <Stack.Navigator>
-                <Stack.Screen
+                {/* <Stack.Screen
                     name={ Routes.PHONE_NUMBER }
                     component={ PhoneNumber }
                     options={{
@@ -26,14 +26,14 @@ const Navigate = () => {
                             backgroundColor: COLORS.primary1
                         }
                     }}
-                />
+                /> */}
                 <Stack.Screen
                     name={ Routes.VERIFICATION }
                     component={ Verification }
                     options={{
                         headerShown: false,
                         cardStyle: {
-                            backgroundColor: COLORS.primary1
+                            backgroundColor: COLORS.dark
                         }
                     }}
                 />
