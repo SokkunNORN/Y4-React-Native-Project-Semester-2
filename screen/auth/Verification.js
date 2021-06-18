@@ -5,6 +5,8 @@ import {
     View,
     StyleSheet
 } from 'react-native'
+import Routes from '../../routes'
+import { useNavigation } from '@react-navigation/native'
 import { Paragraph, TextInput, Title } from 'react-native-paper'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import DetailHeader from '../../components/header/DetailHeader'
@@ -12,6 +14,7 @@ import { COLORS, SIZES, HexToRGB, FONTS } from '../../constant'
 
 const Verification = ({ route }) => {
 
+    const navigation = useNavigation()
     let textInput = useRef(null)
     const phoneNumber = route.params
     const lenghtInput = 4
@@ -25,6 +28,11 @@ const Verification = ({ route }) => {
 
     const onChangeText = value => {
         setInternalVal(value)
+        if (internalVar.length >= 3) {
+            setTimeout(() => {
+                navigation.push(Routes.DASHBOARD)
+            }, 500)
+        }
     }
 
     return (
