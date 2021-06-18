@@ -28,7 +28,10 @@ const Verification = ({ route }) => {
 
     const onChangeText = value => {
         setInternalVal(value)
-        if (internalVar.length >= 3) {
+        if (
+            value.length > internalVar.length &&
+            internalVar.length >= 3
+        ) {
             setTimeout(() => {
                 navigation.push(Routes.DASHBOARD)
             }, 500)
