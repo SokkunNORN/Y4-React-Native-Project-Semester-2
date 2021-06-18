@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import BottomNav from './BottomNav'
 import Routes from '../routes'
 import {
+    Greeting,
     PhoneNumber,
     ChatDetail,
     Verification
@@ -17,6 +18,16 @@ const Navigate = () => {
     return (
         <>
             <Stack.Navigator>
+                <Stack.Screen
+                    name={ Routes.GREETING }
+                    component={ Greeting }
+                    options={{
+                        headerShown: false,
+                        cardStyle: {
+                            backgroundColor: COLORS.primary
+                        }
+                    }}
+                />
                 <Stack.Screen
                     name={ Routes.PHONE_NUMBER }
                     component={ PhoneNumber }
