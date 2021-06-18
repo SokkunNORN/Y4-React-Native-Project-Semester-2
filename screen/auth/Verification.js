@@ -37,7 +37,7 @@ const Verification = ({ route }) => {
 
     return (
         <>
-            <DetailHeader backgroundColor={ COLORS.dark }/>
+            <DetailHeader backgroundColor={ COLORS.primary1 }/>
 
             <TouchableWithoutFeedback
                 onPress={ () => Keyboard.dismiss() }
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
         margin: SIZES.base(1),
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: COLORS.primary,
+        backgroundColor: HexToRGB(COLORS.warning, .2),
         borderRadius: SIZES.radius(1)
     },
     cell_text: {

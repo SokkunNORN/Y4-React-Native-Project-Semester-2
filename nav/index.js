@@ -33,7 +33,7 @@ const Navigate = () => {
                     options={{
                         headerShown: false,
                         cardStyle: {
-                            backgroundColor: COLORS.dark
+                            backgroundColor: COLORS.primary1
                         }
                     }}
                 />
