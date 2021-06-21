@@ -1,5 +1,4 @@
 export default Routes = {
-    GREETING: 'GREETING',
     PHONE_NUMBER: 'PHONE_NUMBER',
     VERIFICATION: 'VERIFICATION',
     CHAT: 'CHAT_DASHBOARD',

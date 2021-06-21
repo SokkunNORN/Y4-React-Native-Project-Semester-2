@@ -19,16 +19,6 @@ const Navigate = () => {
         <>
             <Stack.Navigator>
                 <Stack.Screen
-                    name={ Routes.GREETING }
-                    component={ Greeting }
-                    options={{
-                        headerShown: false,
-                        cardStyle: {
-                            backgroundColor: COLORS.primary
-                        }
-                    }}
-                />
-                <Stack.Screen
                     name={ Routes.PHONE_NUMBER }
                     component={ PhoneNumber }
                     options={{
