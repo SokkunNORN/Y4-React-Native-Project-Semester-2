@@ -14,6 +14,7 @@ export const COLORS = {
     danger: '#881E28',
     astronaut_blue: '#033666',
     tuna: '#323443',
+    cerulean: '#068AD5',
 
     green: '#229F36',
     ping: '#C5346C',

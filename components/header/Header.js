@@ -8,9 +8,10 @@ import {
 import {
     Appbar,
     Searchbar,
-    Button
+    Button,
+    Paragraph
 } from 'react-native-paper'
-import { COLORS, SIZES } from '../../constant'
+import { COLORS, FONTS, SIZES } from '../../constant'
 
 console.disableYellowBox = true
 
@@ -27,8 +28,7 @@ const Header = props => {
         return (
             <Appbar.Action
                 style={[
-                    styles.appbar_icon,
-                    !isShowSearchField ? styles.showElement : styles.blockElement
+                    styles.appbar_icon
                 ]}
                 icon='magnify'
                 color={ COLORS.warning }
@@ -41,58 +41,60 @@ const Header = props => {
         <SafeAreaView style={ styles.safearea }>
             <StatusBar barStyle='light-content' />
             <Appbar.Header style={ styles.header }>
-                <Appbar.Content
-                    title={ props.title }
-                    titleStyle={[
-                        styles.headerTitle,
-                        !isShowSearchField ? styles.showElement : styles.blockElement
-                    ]}/>
-                { props.isSearch ? <SearchIcon navigation={ props.navigation } /> : <Appbar.Action /> }
-                { 
-                    props.isJoined ?
-                        <Button
-                            icon={ props.icon }
-                            color={ COLORS.warning }
-                            style={ styles.joinBtn }
-                            labelStyle={ styles.labelStyle }
-                            uppercase={ false }
-                            mode='outlined'
-                            onPress={() => {}}>
-                            Joined
-                        </Button>
-                    : <Appbar.Action
-                        style={[
-                            styles.appbar_icon,
-                            !isShowSearchField ? styles.showElement : styles.blockElement
-                        ]}
-                        icon={ props.icon } 
-                        color={ COLORS.warning } 
-                        onPress={() => {}}
-                    /> 
-                }
-                <Searchbar
-                    placeholder="Search"
-                    onChangeText={ () => {} }
-                    value={ null }
-                    style={[
-                        styles.searchField,
-                        isShowSearchField ? styles.showElement : styles.blockElement
-                    ]}
-                    color={ COLORS.white }
-                    fontSize={ SIZES.font() }
-                    placeholderTextColor={ COLORS.secondary1 }
-                    iconColor={ COLORS.secondary1 }
-                />
                 {
                     isShowSearchField ?
-                    <Button 
-                        color={ COLORS.warning }
-                        uppercase={ false }
-                        labelStyle={ styles.labelStyle }
-                        mode='text'
-                        onPress={ () => onCancelSearch() }>
-                        Cancel
-                    </Button> : <></>
+                    <>
+                        <Searchbar
+                            placeholder="Search"
+                            onChangeText={ () => {} }
+                            value={ null }
+                            style={[
+                                styles.searchField,
+                                isShowSearchField ? styles.showElement : styles.blockElement
+                            ]}
+                            color={ COLORS.white }
+                            fontSize={ SIZES.font() }
+                            placeholderTextColor={ COLORS.secondary1 }
+                            iconColor={ COLORS.secondary1 }
+                            autoFocus
+                        />
+                        <Appbar.Content />
+                        <Paragraph
+                            style={ styles.cancelBtn }
+                            onPress={ () => onCancelSearch() }
+                        >
+                            Cancel
+                        </Paragraph>
+                    </> :
+                    <>
+                        <Appbar.Content
+                            title={ props.title }
+                            titleStyle={[
+                                styles.headerTitle
+                            ]}/>
+                        { props.isSearch ? <SearchIcon navigation={ props.navigation } /> : null }
+                        { 
+                            props.isJoined ?
+                                <Button
+                                    icon={ props.icon }
+                                    color={ COLORS.warning }
+                                    style={ styles.joinBtn }
+                                    labelStyle={ styles.labelStyle }
+                                    uppercase={ false }
+                                    mode='outlined'
+                                    onPress={() => {}}>
+                                    Joined
+                                </Button>
+                            : <Appbar.Action
+                                style={[
+                                    styles.appbar_icon
+                                ]}
+                                icon={ props.icon } 
+                                color={ COLORS.warning } 
+                                onPress={() => {}}
+                            /> 
+                        }
+                    </>
                 }
             </Appbar.Header>
         </SafeAreaView>
@@ -103,7 +105,10 @@ export default Header
 
 const styles = StyleSheet.create({
     header: {
-        backgroundColor: COLORS.dark
+        backgroundColor: COLORS.dark,
+        elevation: 0,
+        shadowOpacity: 0,
+        borderBottomWidth: 0
     },
     headerTitle: {
         color: COLORS.warning,
@@ -130,12 +135,6 @@ const styles = StyleSheet.create({
       width: SIZES.width - SIZES.base(14),
       position: 'absolute'
     },
-    showElement: {
-        opacity: 1
-    },
-    blockElement: {
-        opacity: 0
-    },
     joinBtn: {
         marginRight: SIZES.base(),
         borderColor: COLORS.warning,
@@ -145,5 +144,10 @@ const styles = StyleSheet.create({
     labelStyle: {
         fontSize: SIZES.font(),
         fontWeight: 'normal'
+    },
+    cancelBtn: {
+        color: COLORS.warning,
+        fontSize: FONTS.p,
+        marginRight: SIZES.base()
     }
 })

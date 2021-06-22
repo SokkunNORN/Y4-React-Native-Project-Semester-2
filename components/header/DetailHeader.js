@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useNavigation } from '@react-navigation/native'
 import {
     SafeAreaView,
@@ -22,22 +22,31 @@ const DetailHeader = props => {
     const navigation = useNavigation()
 
     return (
-        <SafeAreaView style={ styles.safearea }>
+        <SafeAreaView style={{ backgroundColor: props.backgroundColor || COLORS.dark }}>
             <StatusBar barStyle='light-content' />
-            <Appbar.Header style={ styles.header }>
+            <Appbar.Header style={[
+                styles.header,
+                { backgroundColor: props.backgroundColor || COLORS.dark }
+            ]}>
                 <Appbar.Action
                     icon='chevron-left' 
                     color={ COLORS.warning } 
                     onPress={ () => navigation.pop() }
                 />
-                <Avatar.Image
-                    size={ SIZES.base(5) }
-                    source={ require('../../asset/profile.jpeg') }
-                />
-                <View style={ styles.profile_view }>
-                    <Title style={ styles.profile_name }>{ props.name }</Title>
-                    <Paragraph style={ styles.time_seen } numberOfLines={ 1 }>Last seen at 2:14 AM</Paragraph>
-                </View>
+                {
+                    props.isProfile ?
+                        <>
+                            <Avatar.Image
+                                size={ SIZES.base(5) }
+                                source={ require('../../asset/profile.jpeg') }
+                            />
+                            <View style={ styles.profile_view }>
+                                <Title style={ styles.profile_name }>{ props.name }</Title>
+                                <Paragraph style={ styles.time_seen } numberOfLines={ 1 }>Last seen at 2:14 AM</Paragraph>
+                            </View>
+                        </>
+                    : null
+                }
                 <Appbar.Content />
                 {
                     props.iconRight1 ?
@@ -89,7 +98,9 @@ export default DetailHeader
 
 const styles = StyleSheet.create({
     header: {
-        backgroundColor: COLORS.dark
+        elevation: 0,
+        shadowOpacity: 0,
+        borderBottomWidth: 0
     },
     profile_view: {
         marginStart: SIZES.base(1),
@@ -108,9 +119,6 @@ const styles = StyleSheet.create({
     },
     action_btn_mr: {
         marginRight: SIZES.base(1)
-    },
-    safearea: {
-        backgroundColor: COLORS.dark
     },
     appbar_icon: {
         backgroundColor: COLORS.primary

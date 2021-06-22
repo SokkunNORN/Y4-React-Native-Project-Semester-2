@@ -10,8 +10,9 @@ import {
     ScrollView,
     View
 } from 'react-native'
-import { SIZES, COLORS } from '../constant'
+import { SIZES, COLORS, FONTS } from '../constant'
 import ListSetting from '../components/ListSetting'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 const Setting = () => {
 
@@ -31,6 +32,20 @@ const Setting = () => {
                 icon: 'web',
                 iconColor: COLORS.warning,
                 rightTxt: 'English',
+                isIconRight: true
+            },
+            {
+                title: 'Strarred Message',
+                icon: 'star',
+                iconColor: COLORS.cerulean,
+                rightTxt: null,
+                isIconRight: true
+            },
+            {
+                title: 'Notification',
+                icon: 'bell-outline',
+                iconColor: COLORS.danger,
+                rightTxt: null,
                 isIconRight: true
             },
             {
@@ -124,6 +139,22 @@ const Setting = () => {
                     </Card.Content>
                     <View style={ styles.border }></View>
                     <Card.Content>
+                        <View style={ styles.bd_contain }>
+                            <View>
+                                <Paragraph style={ styles.label }>Date of Birth</Paragraph>
+                                <Title style={ styles.whileColor }>N/A</Title>
+                            </View>
+                            <View style={ styles.bd_view_right }>
+                                <Icon
+                                    name='check-circle'
+                                    style={ styles.logo_icon }
+                                    color={ COLORS.warning } size={ SIZES.base() } />
+                                <Paragraph style={ styles.bd_label }>Public (Hide year)</Paragraph>
+                            </View>
+                        </View>
+                    </Card.Content>
+                    <View style={ styles.border }></View>
+                    <Card.Content>
                         <Paragraph style={ styles.label }>About</Paragraph>
                         <Title style={ styles.whileColor }>About</Title>
                     </Card.Content>
@@ -158,13 +189,34 @@ const styles = StyleSheet.create({
         paddingTop: SIZES.base()
     },
     whileColor: {
-        color: COLORS.white
+        color: COLORS.white,
+        marginTop: -SIZES.base(.5),
+        marginBottom: SIZES.base(1)
     },
     label: {
-        color: COLORS.secondary1
+        color: COLORS.secondary1,
+        marginTop: SIZES.base(1)
     },
     border: {
         height: 2,
         backgroundColor: COLORS.dark
+    },
+    bd_contain: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+    bd_view_right: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingHorizontal: SIZES.base(1),
+        backgroundColor: COLORS.dark,
+        marginVertical: SIZES.base(1.5),
+        borderRadius: SIZES.radius(.7)
+    },
+    bd_label: {
+        color: COLORS.white,
+        fontSize: FONTS.h5,
+        marginLeft: SIZES.base(1)
     }
 })
