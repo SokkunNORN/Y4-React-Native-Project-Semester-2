@@ -8,13 +8,18 @@ import {
 import {
     StyleSheet,
     ScrollView,
-    View
+    View,
+    ActionSheetIOS
 } from 'react-native'
 import { SIZES, COLORS, FONTS } from '../constant'
 import ListSetting from '../components/ListSetting'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import { useNavigation } from '@react-navigation/native'
+import Routes from '../routes'
 
 const Setting = () => {
+
+    const navigation = useNavigation()
 
     const lists = [
         [
@@ -119,6 +124,28 @@ const Setting = () => {
         ]
     ]
 
+    const onSelectList = value => {
+        if (value.title === 'Log Out') {
+            ActionSheetIOS.showActionSheetWithOptions(
+                {
+                    options: [
+                        "Cancel",
+                        "Log Out"
+                    ],
+                    title: 'Are you sure you want to log out?',
+                    destructiveButtonIndex: 1,
+                    cancelButtonIndex: 0,
+                    userInterfaceStyle: 'dark'
+                },
+                buttonIndex => {
+                    if (buttonIndex === 1) {
+                        navigation.push(Routes.PHONE_NUMBER)
+                    }
+                }
+            )
+        }
+    }
+
     return (
         <>
             <Header
@@ -162,7 +189,10 @@ const Setting = () => {
 
                 {
                     lists.map(items => (
-                        <ListSetting items={ items } />
+                        <ListSetting 
+                            items={ items }
+                            setSelectItem={ value => onSelectList(value) }
+                        />
                     ))
                 }
             </ScrollView>
