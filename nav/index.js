@@ -3,10 +3,10 @@ import { createStackNavigator } from '@react-navigation/stack'
 import BottomNav from './BottomNav'
 import Routes from '../routes'
 import {
-    Greeting,
     PhoneNumber,
     ChatDetail,
-    Verification
+    Verification,
+    SettingDetail
 } from '../screen'
 import {
     COLORS
@@ -52,6 +52,16 @@ const Navigate = () => {
                         headerShown: false,
                         cardStyle: {
                             backgroundColor: COLORS.primary
+                        }
+                    }}
+                />
+                <Stack.Screen
+                    name={ Routes.SETTING_DETAIL }
+                    component={ SettingDetail }
+                    options={{
+                        headerShown: false,
+                        cardStyle: {
+                            backgroundColor: COLORS.dark
                         }
                     }}
                 />

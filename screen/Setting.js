@@ -143,6 +143,8 @@ const Setting = () => {
                     }
                 }
             )
+        } else {
+            navigation.push(Routes.SETTING_DETAIL, value)
         }
     }
 
