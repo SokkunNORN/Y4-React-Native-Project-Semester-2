@@ -22,6 +22,7 @@ const ListSetting = ({
             <List.Section>
                 {
                     items.map(item => (
+                        item.title !== 'Version' ?
                         <List.Item
                             onPress={ () => setSelectItem(item) }
                             style={ styles.list }
@@ -54,6 +55,28 @@ const ListSetting = ({
                                         /> : <></>
                                     }
                                 </>
+                            }
+                        /> :
+                        <List.Item
+                            style={ styles.list }
+                            titleStyle={ styles.title }
+                            title={ item.title } 
+                            left={() =>
+                                <List.Icon
+                                    style={[
+                                        styles.icon_left,
+                                        {
+                                            borderColor: item.iconColor
+                                        }
+                                    ]} 
+                                    color={ item.iconColor } 
+                                    icon={ item.icon } />
+                            }
+                            right={() => 
+                                <Paragraph style={[
+                                    styles.rightTxt,
+                                    !item.isIconRight && styles.rightTxtPadding
+                                ]}>{ item.rightTxt }</Paragraph>
                             }
                         />
                     ))
