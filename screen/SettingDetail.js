@@ -3,12 +3,12 @@ import DetailHeader from '../components/header/DetailHeader'
 
 const SettingDetail = ({ route }) => {
 
-    const name = route.params.title
+    const title = route.params.title
 
     return (
         <>
             <DetailHeader
-                name={ name }
+                title={ title }
             />
         </>
     )

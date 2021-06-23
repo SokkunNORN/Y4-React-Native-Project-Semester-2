@@ -47,7 +47,7 @@ const DetailHeader = props => {
                         </>
                     : null
                 }
-                <Appbar.Content />
+                <Appbar.Content title={ props.title } />
                 {
                     props.iconRight1 ?
                     <Appbar.Action
