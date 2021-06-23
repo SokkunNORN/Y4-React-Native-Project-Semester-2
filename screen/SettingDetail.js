@@ -1,5 +1,6 @@
 import React from 'react'
 import DetailHeader from '../components/header/DetailHeader'
+import DarkMode from '../components/settingDetail/DarkMode'
 
 const SettingDetail = ({ route }) => {
 
@@ -10,6 +11,11 @@ const SettingDetail = ({ route }) => {
             <DetailHeader
                 title={ title }
             />
+            {
+                title === 'Dark Mode' ?
+                <DarkMode /> :
+                <></>
+            }
         </>
     )
 }
