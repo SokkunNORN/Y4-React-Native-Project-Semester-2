@@ -61,6 +61,7 @@ const Verification = ({ route }) => {
                     </Paragraph>
 
                     <TextInput
+                        keyboardAppearance='dark'
                         ref={ input => textInput = input }
                         style={{ width: 0, height: 0 }}
                         maxLength={ lenghtInput }

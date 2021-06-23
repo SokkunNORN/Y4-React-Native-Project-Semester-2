@@ -45,6 +45,7 @@ const Header = props => {
                     isShowSearchField ?
                     <>
                         <Searchbar
+                            keyboardAppearance='dark'
                             placeholder="Search"
                             onChangeText={ () => {} }
                             value={ null }

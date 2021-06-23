@@ -81,6 +81,7 @@ const PhoneNumber = () => {
                         </Paragraph>
                         <View style={ styles.contain_phone_number_text_input } >
                             <TextInput
+                                keyboardAppearance='dark'
                                 keyboardType='number-pad'
                                 placeholder='Enter phone number'
                                 placeholderTextColor={ COLORS.secondary1 }

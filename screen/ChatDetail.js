@@ -108,6 +108,7 @@ const ChatDetail = ({ route }) => {
                             style={ styles.icon_left_text }
                             color={ COLORS.secondary1 } size={ SIZES.base(3.5) } />
                         <TextInput
+                            keyboardAppearance='dark'
                             placeholder='Write your message'
                             placeholderTextColor={ COLORS.secondary1 }
                             style={ styles.message_text_field }
