@@ -19,9 +19,11 @@ import Routes from '../../routes'
 import Icon from 'react-native-vector-icons/FontAwesome5'
 import { COLORS, FONTS, SIZES, HexToRGB } from '../../constant'
 import { Greeting } from '..'
+import AppContext from '../../context'
 
 const PhoneNumber = () => {
 
+    let ChatPlusContext = AppContext
     const navigation = useNavigation()
     const [phoneNumber, setPhoneNumber] = useState('')
     const [isGreeting, setIsGreeting] = useState(true)
@@ -54,8 +56,10 @@ const PhoneNumber = () => {
     })
 
     return (
-        <>
+        <ChatPlusContext.Consumer>
         {
+            ({ theme }) =>
+
             isGreeting ?
             <Greeting/> :
             <TouchableWithoutFeedback
@@ -75,17 +79,33 @@ const PhoneNumber = () => {
                                     color={ COLORS.warning } size={ SIZES.base(5.5) } />
                             </View>
                         </View>
-                        <Title style={ styles.greeting_text }>Welcome to Chat Plus!</Title>
-                        <Paragraph style={ styles.introduction }>
+                        <Title style={[
+                            styles.greeting_text,
+                            {
+                                color: theme === 'light' ? COLORS.black : COLORS.white
+                            }
+                        ]}>Welcome to Chat Plus!</Title>
+                        <Paragraph style={[
+                            styles.introduction,
+                            {
+                                color: theme === 'light' ? COLORS.black : COLORS.white
+                            }
+                        ]}>
                             Provide your phone number to receive your conformation code. {keyboardStatus}
                         </Paragraph>
                         <View style={ styles.contain_phone_number_text_input } >
                             <TextInput
-                                keyboardAppearance='dark'
+                                keyboardAppearance={ theme === 'light' ? 'light' : 'dark'}
                                 keyboardType='number-pad'
                                 placeholder='Enter phone number'
-                                placeholderTextColor={ COLORS.secondary1 }
-                                style={ styles.phone_number_text_input }
+                                placeholderTextColor={ theme === 'light' ? COLORS.primary : COLORS.secondary1 }
+                                style={[
+                                    styles.phone_number_text_input,
+                                    {
+                                        color: theme === 'light' ? COLORS.dark : COLORS.white,
+                                        backgroundColor: theme === 'light' ? COLORS.secondary : COLORS.primary
+                                    }
+                                ]}
                                 onChangeText={ value => onTextChange(value) }
                                 value={ phoneNumber }
                                 maxLength={ 12 }
@@ -100,7 +120,12 @@ const PhoneNumber = () => {
                     >
                         <View>
                             <Text
-                                style={ styles.condition_text }
+                                style={[
+                                    styles.condition_text,
+                                    {
+                                        color: theme === 'light' ? COLORS.black : COLORS.white
+                                    }
+                                ]}
                             >
                                 By continuing, you are agreeing to the 
                                 <Text style={ styles.privacy_text }> Privacy Plicy</Text> and 
@@ -111,7 +136,8 @@ const PhoneNumber = () => {
                                     styles.btn_continue,
                                     keyboardStatus ? styles.btn_continue_with_active_keyboard : {},
                                     {
-                                        backgroundColor: phoneNumber ? COLORS.warning : COLORS.secondary1
+                                        backgroundColor: phoneNumber ? COLORS.warning : 
+                                        theme === 'light' ? COLORS.secondary : COLORS.secondary1
                                     }
                                 ]}
                                 disabled={ phoneNumber ? false : true }
@@ -127,7 +153,7 @@ const PhoneNumber = () => {
                 </View>
             </TouchableWithoutFeedback>
         }
-        </>
+        </ChatPlusContext.Consumer>
     )
 }
 
