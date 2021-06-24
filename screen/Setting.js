@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Header from '../components/header/Header'
 import {
     Card,
@@ -16,9 +16,11 @@ import ListSetting from '../components/ListSetting'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { useNavigation } from '@react-navigation/native'
 import Routes from '../routes'
+import AppContext from '../context'
 
 const Setting = () => {
 
+    const ChatPlusContext = AppContext
     const navigation = useNavigation()
 
     const lists = [
@@ -28,7 +30,8 @@ const Setting = () => {
                 icon: 'virus-outline',
                 iconColor: COLORS.danger,
                 rightTxt: null,
-                isIconRight: true
+                isIconRight: true,
+                isSwitchBtn: false
             }
         ],
         [
@@ -37,35 +40,40 @@ const Setting = () => {
                 icon: 'web',
                 iconColor: COLORS.warning,
                 rightTxt: 'English',
-                isIconRight: true
+                isIconRight: true,
+                isSwitchBtn: false
             },
             {
                 title: 'Strarred Message',
                 icon: 'star',
                 iconColor: COLORS.cerulean,
                 rightTxt: null,
-                isIconRight: true
+                isIconRight: true,
+                isSwitchBtn: false
             },
             {
                 title: 'Notification',
                 icon: 'bell-outline',
                 iconColor: COLORS.danger,
                 rightTxt: null,
-                isIconRight: true
+                isIconRight: true,
+                isSwitchBtn: false
             },
             {
                 title: 'Storage and Data',
                 icon: 'playlist-check',
                 iconColor: COLORS.green,
                 rightTxt: null,
-                isIconRight: true
+                isIconRight: true,
+                isSwitchBtn: false
             },
             {
                 title: 'Dark Mode',
                 icon: 'brightness-6',
                 iconColor: COLORS.secondary1,
-                rightTxt: 'System',
-                isIconRight: true
+                rightTxt: null,
+                isIconRight: false,
+                isSwitchBtn: true
             }
         ],
         [
@@ -74,7 +82,8 @@ const Setting = () => {
                 icon: 'sticker-circle-outline',
                 iconColor: COLORS.ping,
                 rightTxt: null,
-                isIconRight: true
+                isIconRight: true,
+                isSwitchBtn: false
             }
         ],
         [
@@ -83,7 +92,8 @@ const Setting = () => {
                 icon: 'account-arrow-right-outline',
                 iconColor: COLORS.ligthPing,
                 rightTxt: null,
-                isIconRight: true
+                isIconRight: true,
+                isSwitchBtn: false
             }
         ],
         [
@@ -92,7 +102,8 @@ const Setting = () => {
                 icon: 'help-circle-outline',
                 iconColor: COLORS.info,
                 rightTxt: null,
-                isIconRight: true
+                isIconRight: true,
+                isSwitchBtn: false
             }
         ],
         [
@@ -101,7 +112,8 @@ const Setting = () => {
                 icon: 'block-helper',
                 iconColor: COLORS.danger,
                 rightTxt: null,
-                isIconRight: true
+                isIconRight: true,
+                isSwitchBtn: false
             }
         ],
         [
@@ -110,7 +122,8 @@ const Setting = () => {
                 icon: 'cog-outline',
                 iconColor: COLORS.warning,
                 rightTxt: '2.5.7 (131)',
-                isIconRight: false
+                isIconRight: false,
+                isSwitchBtn: false
             }
         ],
         [
@@ -119,10 +132,13 @@ const Setting = () => {
                 icon: 'logout-variant',
                 iconColor: COLORS.danger,
                 rightTxt: null,
-                isIconRight: false
+                isIconRight: false,
+                isSwitchBtn: false
             }
         ]
     ]
+
+    const [isDarkMode, setIsDarkMode] = useState(true)
 
     const onSelectList = value => {
         if (value.title === 'Log Out') {
@@ -149,56 +165,63 @@ const Setting = () => {
     }
 
     return (
-        <>
-            <Header
-                title="Settings"
-                icon="pencil-box-outline"
-            />
+        <ChatPlusContext.Consumer>
+            {
+            ({ theme }) =>
+            <>
+                <Header
+                    title="Settings"
+                    icon="pencil-box-outline"
+                />
 
-            <ScrollView>
-                <Card style={ styles.card }>
-                    <Card.Cover style={ styles.profileImg } source={ require('../asset/cover.jpeg') } />
-                    <Card.Content>
-                        <Title style={ styles.name }>Kun Kun</Title>
-                    </Card.Content>
-                    <View style={ styles.border }></View>
-                    <Card.Content>
-                        <Paragraph style={ styles.label }>Mobile</Paragraph>
-                        <Title style={ styles.whileColor }>+855 17 500 859</Title>
-                    </Card.Content>
-                    <View style={ styles.border }></View>
-                    <Card.Content>
-                        <View style={ styles.bd_contain }>
-                            <View>
-                                <Paragraph style={ styles.label }>Date of Birth</Paragraph>
-                                <Title style={ styles.whileColor }>N/A</Title>
+                <ScrollView>
+                    <Card style={ styles.card }>
+                        <Card.Cover style={ styles.profileImg } source={ require('../asset/cover.jpeg') } />
+                        <Card.Content>
+                            <Title style={ styles.name }>Kun Kun</Title>
+                        </Card.Content>
+                        <View style={ styles.border }></View>
+                        <Card.Content>
+                            <Paragraph style={ styles.label }>Mobile</Paragraph>
+                            <Title style={ styles.whileColor }>+855 17 500 859</Title>
+                        </Card.Content>
+                        <View style={ styles.border }></View>
+                        <Card.Content>
+                            <View style={ styles.bd_contain }>
+                                <View>
+                                    <Paragraph style={ styles.label }>Date of Birth</Paragraph>
+                                    <Title style={ styles.whileColor }>N/A</Title>
+                                </View>
+                                <View style={ styles.bd_view_right }>
+                                    <Icon
+                                        name='check-circle'
+                                        style={ styles.logo_icon }
+                                        color={ COLORS.warning } size={ SIZES.base() } />
+                                    <Paragraph style={ styles.bd_label }>Public (Hide year)</Paragraph>
+                                </View>
                             </View>
-                            <View style={ styles.bd_view_right }>
-                                <Icon
-                                    name='check-circle'
-                                    style={ styles.logo_icon }
-                                    color={ COLORS.warning } size={ SIZES.base() } />
-                                <Paragraph style={ styles.bd_label }>Public (Hide year)</Paragraph>
-                            </View>
-                        </View>
-                    </Card.Content>
-                    <View style={ styles.border }></View>
-                    <Card.Content>
-                        <Paragraph style={ styles.label }>About</Paragraph>
-                        <Title style={ styles.whileColor }>About</Title>
-                    </Card.Content>
-                </Card>
+                        </Card.Content>
+                        <View style={ styles.border }></View>
+                        <Card.Content>
+                            <Paragraph style={ styles.label }>About</Paragraph>
+                            <Title style={ styles.whileColor }>About</Title>
+                        </Card.Content>
+                    </Card>
 
-                {
-                    lists.map(items => (
-                        <ListSetting 
-                            items={ items }
-                            setSelectItem={ value => onSelectList(value) }
-                        />
-                    ))
-                }
-            </ScrollView>
-        </>
+                    {
+                        lists.map(items => (
+                            <ListSetting 
+                                items={ items }
+                                setSelectItem={ value => onSelectList(value) }
+                                isDarkMode={ isDarkMode }
+                                setDarkMode={ value => setIsDarkMode(value) }
+                            />
+                        ))
+                    }
+                </ScrollView>
+            </>
+            } 
+        </ChatPlusContext.Consumer>
     )
 }
 

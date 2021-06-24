@@ -6,7 +6,8 @@ import {
 
 import {
     List,
-    Paragraph
+    Paragraph,
+    Switch
 } from 'react-native-paper'
 
 import {
@@ -15,14 +16,16 @@ import {
 
 const ListSetting = ({
   items = null,
-  setSelectItem = () => {}
+  setSelectItem = () => {},
+  isDarkMode = false,
+  setDarkMode = () => {}
 }) => {
     return (
         <>
             <List.Section>
                 {
                     items.map(item => (
-                        item.title !== 'Version' ?
+                        item.title !== 'Version' && item.title !== 'Dark Mode' ?
                         <List.Item
                             onPress={ () => setSelectItem(item) }
                             style={ styles.list }
@@ -57,6 +60,7 @@ const ListSetting = ({
                                 </>
                             }
                         /> :
+                        item.title === 'Version' ?
                         <List.Item
                             style={ styles.list }
                             titleStyle={ styles.title }
@@ -77,6 +81,35 @@ const ListSetting = ({
                                     styles.rightTxt,
                                     !item.isIconRight && styles.rightTxtPadding
                                 ]}>{ item.rightTxt }</Paragraph>
+                            }
+                        /> :
+                        <List.Item
+                            style={ styles.list }
+                            titleStyle={ styles.title }
+                            title={ item.title } 
+                            left={() =>
+                                <List.Icon
+                                    style={[
+                                        styles.icon_left,
+                                        {
+                                            borderColor: item.iconColor
+                                        }
+                                    ]} 
+                                    color={ item.iconColor } 
+                                    icon={ item.icon } />
+                            }
+                            right={() => 
+                                <Switch 
+                                    style={[
+                                        styles.rightTxtPadding,
+                                        {
+                                            marginTop: SIZES.base(1.5)
+                                        }
+                                    ]}
+                                    color={ COLORS.dark }
+                                    value={ isDarkMode } 
+                                    onValueChange={ () => setDarkMode(!isDarkMode) }
+                                />
                             }
                         />
                     ))

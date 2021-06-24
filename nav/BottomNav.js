@@ -12,48 +12,57 @@ import {
 } from 'react-native'
 
 import { COLORS } from '../constant'
+import AppContext from '../context'
 
 const Tab = createMaterialBottomTabNavigator()
+const ChatPlusContext = AppContext
 
 const BottomNav = () => {
   return (
-    <Tab.Navigator
-      initialRouteName="Chat"
-      activeColor={COLORS.warning}
-      inactiveColor={COLORS.secondary1}
-      barStyle={styles.bottomTabBar}
-    >
-      <Tab.Screen
-        name="Chat"
-        component={ ChatStackScreen }
-        options={{
-          title: "Chats",
-          tabBarIcon: ({ color, focused }) => (
-            <Icon name={ focused ? "comment-text-multiple" : "comment-text-multiple-outline" } color={color} size={26} />
-          )
-        }}
-      />
-      <Tab.Screen
-        name="Discover"
-        component={ DiscoverStackScreen }
-        options={{
-          title: "Discover",
-          tabBarIcon: ({ color, focused }) => (
-            <Icon name={ focused ? "compass" : "compass-outline" } color={color} size={26} />
-          )
-        }}
-      />
-      <Tab.Screen
-        name="Setting"
-        component={ SettingStackScreen }
-        options={{
-          title: "Settings",
-          tabBarIcon: ({ color, focused }) => (
-            <Icon name={focused ? "cog" : "cog-outline" } color={color} size={26} />
-          )
-        }}
-      />
-    </Tab.Navigator>
+    <ChatPlusContext.Consumer>
+      {
+        ({ isDark }) => 
+        <Tab.Navigator
+          initialRouteName="Chat"
+          activeColor={COLORS.warning}
+          inactiveColor={COLORS.secondary1}
+          barStyle={{
+            backgroundColor:  isDark ? COLORS.dark : COLORS.white
+          }}
+        >
+          <Tab.Screen
+            name="Chat"
+            component={ ChatStackScreen }
+            options={{
+              title: "Chats",
+              tabBarIcon: ({ color, focused }) => (
+                <Icon name={ focused ? "comment-text-multiple" : "comment-text-multiple-outline" } color={color} size={26} />
+              )
+            }}
+          />
+          <Tab.Screen
+            name="Discover"
+            component={ DiscoverStackScreen }
+            options={{
+              title: "Discover",
+              tabBarIcon: ({ color, focused }) => (
+                <Icon name={ focused ? "compass" : "compass-outline" } color={color} size={26} />
+              )
+            }}
+          />
+          <Tab.Screen
+            name="Setting"
+            component={ SettingStackScreen }
+            options={{
+              title: "Settings",
+              tabBarIcon: ({ color, focused }) => (
+                <Icon name={focused ? "cog" : "cog-outline" } color={color} size={26} />
+              )
+            }}
+          />
+        </Tab.Navigator>
+      }
+    </ChatPlusContext.Consumer>
   );
 }
 
