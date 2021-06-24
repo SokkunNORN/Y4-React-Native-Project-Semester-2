@@ -17,12 +17,12 @@ const Stack = createStackNavigator();
 
 const Navigate = () => {
 
-    let ChatPlusContext = AppContext
+    const ChatPlusContext = AppContext
 
     return (
         <ChatPlusContext.Consumer>
             {
-            ({ theme }) =>
+            ({ isDark }) =>
             <Stack.Navigator>
                 <Stack.Screen
                     name={ Routes.PHONE_NUMBER }
@@ -30,7 +30,7 @@ const Navigate = () => {
                     options={{
                         headerShown: false,
                         cardStyle: {
-                            backgroundColor: theme === 'dark' ? COLORS.primary1 : COLORS.white
+                            backgroundColor: isDark ? COLORS.primary1 : COLORS.white
                         }
                     }}
                 />
@@ -40,7 +40,7 @@ const Navigate = () => {
                     options={{
                         headerShown: false,
                         cardStyle: {
-                            backgroundColor: theme === 'dark' ? COLORS.primary1 : COLORS.white
+                            backgroundColor: isDark ? COLORS.primary1 : COLORS.white
                         }
                     }}
                 />
