@@ -11,9 +11,11 @@ import { Paragraph, TextInput, Title } from 'react-native-paper'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import DetailHeader from '../../components/header/DetailHeader'
 import { COLORS, SIZES, HexToRGB, FONTS } from '../../constant'
+import AppContext from '../../context'
 
 const Verification = ({ route }) => {
 
+    const ChatPlusContext = AppContext
     const navigation = useNavigation()
     let textInput = useRef(null)
     const phoneNumber = route.params
@@ -39,73 +41,101 @@ const Verification = ({ route }) => {
     }
 
     return (
-        <>
-            <DetailHeader backgroundColor={ COLORS.primary1 }/>
+        <ChatPlusContext.Consumer>
+            {
+            ({ isDark }) =>
+            <>
+                <DetailHeader 
+                    backgroundColor={ isDark ? COLORS.primary1 : COLORS.white }
+                />
 
-            <TouchableWithoutFeedback
-                onPress={ () => Keyboard.dismiss() }
-            >
-                <View style={ styles.container }>
-                    <View style={ styles.border_view_lock_icon }>
-                        <View style={ styles.view_lock_icon }>
-                            <Icon
-                                name='lock-outline'
-                                style={ styles.lock_icon }
-                                color={ COLORS.warning } size={ SIZES.base(5.5) } />
+                <TouchableWithoutFeedback
+                    onPress={ () => Keyboard.dismiss() }
+                >
+                    <View style={ styles.container }>
+                        <View style={ styles.border_view_lock_icon }>
+                            <View style={ styles.view_lock_icon }>
+                                <Icon
+                                    name='lock-outline'
+                                    style={ styles.lock_icon }
+                                    color={ COLORS.warning } size={ SIZES.base(5.5) } />
+                            </View>
                         </View>
-                    </View>
-                    <Title style={ styles.title }>Verification</Title>
-                    <Paragraph style={ styles.decription }>
-                        We've sent you an SMS with a code to you number.
-                        { phoneNumber }
-                    </Paragraph>
+                        <Title style={[ 
+                            styles.title,
+                            {
+                                color: isDark ? COLORS.white : COLORS.black 
+                            }
+                        ]}>Verification</Title>
+                        <Paragraph style={[
+                            styles.decription,
+                            {
+                                color: isDark ? COLORS.white : COLORS.black 
+                            } 
+                        ]}>
+                            We've sent you an SMS with a code to you number.
+                            { phoneNumber }
+                        </Paragraph>
 
-                    <TextInput
-                        keyboardAppearance='dark'
-                        ref={ input => textInput = input }
-                        style={{ width: 0, height: 0 }}
-                        maxLength={ lenghtInput }
-                        keyboardType='number-pad'
-                        value={ internalVar }
-                        onChangeText={onChangeText}
-                        autoFocus
-                    />
+                        <TextInput
+                            keyboardAppearance={ isDark ? 'dark' : 'light' }
+                            ref={ input => textInput = input }
+                            style={{ width: 0, height: 0 }}
+                            maxLength={ lenghtInput }
+                            keyboardType='number-pad'
+                            value={ internalVar }
+                            onChangeText={onChangeText}
+                            autoFocus
+                        />
 
-                    <View style={ styles.container_input }>
-                        {
-                            Array(lenghtInput).fill().map((_, index) => (
-                                <TouchableWithoutFeedback 
-                                    onPress={ () => textInput.focus() }
-                                >
-                                    <View 
-                                        key={ index }
-                                        style={ styles.cell_view } 
+                        <View style={ styles.container_input }>
+                            {
+                                Array(lenghtInput).fill().map((_, index) => (
+                                    <TouchableWithoutFeedback 
+                                        onPress={ () => textInput.focus() }
                                     >
-                                        <Paragraph
-                                            style={ styles.cell_text }
+                                        <View 
+                                            key={ index }
+                                            style={[
+                                                styles.cell_view,
+                                                {
+                                                    backgroundColor: isDark ? HexToRGB(COLORS.warning, .2) :
+                                                    HexToRGB(COLORS.secondary)
+                                                }
+                                            ]} 
                                         >
-                                            {
-                                                internalVar[index] || ''
-                                            }
-                                        </Paragraph>
-                                    </View>
-                                </TouchableWithoutFeedback>
-                            ))
+                                            <Paragraph
+                                                style={[
+                                                    styles.cell_text,
+                                                    {
+                                                        color: isDark ? COLORS.white : COLORS.black 
+                                                    }
+                                            ]}
+                                            >
+                                                {
+                                                    internalVar[index] || ''
+                                                }
+                                            </Paragraph>
+                                        </View>
+                                    </TouchableWithoutFeedback>
+                                ))
+                            }
+                        </View>
+
+                        {
+                            isSendingCode ? 
+                            <Paragraph style={ styles.send_code } >00:{ sendingCode }</Paragraph> 
+                            : 
+                            <Paragraph style={ styles.send_code }>
+                                Didn't receive a code?
+                                <Paragraph style={ styles.btn_resend_code }> Resend Code</Paragraph>
+                            </Paragraph>
                         }
                     </View>
-
-                    {
-                        isSendingCode ? 
-                        <Paragraph style={ styles.send_code } >00:{ sendingCode }</Paragraph> 
-                        : 
-                        <Paragraph style={ styles.send_code }>
-                            Didn't receive a code?
-                            <Paragraph style={ styles.btn_resend_code }> Resend Code</Paragraph>
-                        </Paragraph>
-                    }
-                </View>
-            </TouchableWithoutFeedback>
-        </>
+                </TouchableWithoutFeedback>
+            </>
+            }
+        </ChatPlusContext.Consumer>
     )
 }
 
