@@ -123,9 +123,6 @@ const styles = StyleSheet.create({
     appbar_icon: {
         backgroundColor: COLORS.primary
     },
-    cancelBtn: {
-        position: 'absolute'
-    },
     showElement: {
         opacity: 1
     },
