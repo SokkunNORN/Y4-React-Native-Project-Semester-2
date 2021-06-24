@@ -26,9 +26,12 @@ const BottomNav = () => {
           initialRouteName="Chat"
           activeColor={COLORS.warning}
           inactiveColor={COLORS.secondary1}
-          barStyle={{
-            backgroundColor:  isDark ? COLORS.dark : COLORS.white
-          }}
+          barStyle={[
+            styles.bottomTabBar,
+            {
+              backgroundColor: isDark ? COLORS.dark : COLORS.white
+            }
+          ]}
         >
           <Tab.Screen
             name="Chat"
@@ -70,6 +73,7 @@ export default BottomNav
 
 const styles = StyleSheet.create({
   bottomTabBar: {
-    backgroundColor: COLORS.dark
+    borderTopWidth: .2,
+    borderTopColor: COLORS.secondary1
   }
 })
