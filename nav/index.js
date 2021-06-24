@@ -11,12 +11,18 @@ import {
 import {
     COLORS
 } from '../constant'
+import AppContext from '../context'
 
 const Stack = createStackNavigator();
 
 const Navigate = () => {
+
+    let ChatPlusContext = AppContext
+
     return (
-        <>
+        <ChatPlusContext.Consumer>
+            {
+            ({ theme }) =>
             <Stack.Navigator>
                 <Stack.Screen
                     name={ Routes.PHONE_NUMBER }
@@ -24,7 +30,7 @@ const Navigate = () => {
                     options={{
                         headerShown: false,
                         cardStyle: {
-                            backgroundColor: COLORS.primary1
+                            backgroundColor: theme === 'dark' ? COLORS.primary1 : COLORS.white
                         }
                     }}
                 />
@@ -34,7 +40,7 @@ const Navigate = () => {
                     options={{
                         headerShown: false,
                         cardStyle: {
-                            backgroundColor: COLORS.primary1
+                            backgroundColor: theme === 'dark' ? COLORS.primary1 : COLORS.white
                         }
                     }}
                 />
@@ -66,7 +72,8 @@ const Navigate = () => {
                     }}
                 />
             </Stack.Navigator>
-        </>
+            }
+        </ChatPlusContext.Consumer>
     )
 }
 

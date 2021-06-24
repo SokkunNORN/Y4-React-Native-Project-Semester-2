@@ -1,5 +1,9 @@
-import { createContext } from 'react';
+import { createContext } from 'react'
 
-const ListItemContext = createContext();
+const AppContext = createContext({
+    language: 'Englist',
+    theme: 'light',
+    auth: null
+})
 
-export default ListItemContext;
+export default AppContext
