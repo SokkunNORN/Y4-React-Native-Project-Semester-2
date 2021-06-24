@@ -6,6 +6,7 @@ import Chat from './Chat'
 import ChatDetail from './ChatDetail'
 import Discover from './Discover'
 import Setting from './Setting'
+import SettingDetail from './SettingDetail'
 
 export {
     Greeting,
@@ -14,5 +15,6 @@ export {
     Chat,
     ChatDetail,
     Discover,
-    Setting
+    Setting,
+    SettingDetail
 }
