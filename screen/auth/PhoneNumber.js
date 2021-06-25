@@ -18,14 +18,12 @@ import { useNavigation } from '@react-navigation/native'
 import Routes from '../../routes'
 import Icon from 'react-native-vector-icons/FontAwesome5'
 import { COLORS, FONTS, SIZES, HexToRGB } from '../../constant'
-import { Greeting } from '..'
 import AppContext from '../../context'
 
 const PhoneNumber = () => {
 
     const navigation = useNavigation()
     const [phoneNumber, setPhoneNumber] = useState('')
-    const [isGreeting, setIsGreeting] = useState(true)
     const [keyboardStatus, setKeyboardStatus] = useState(false)
 
     const onTextChange = value => {
@@ -48,19 +46,10 @@ const PhoneNumber = () => {
         navigation.push(Routes.VERIFICATION, phoneNumber)
     }
 
-    useEffect(() => {
-        setTimeout(() => {
-            setIsGreeting(false)
-        }, 1000)
-    })
-
     return (
         <AppContext.Consumer>
         {
             ({ isDark }) =>
-
-            isGreeting ?
-            <Greeting/> :
             <TouchableWithoutFeedback
                 onPress={ () => Keyboard.dismiss() }
             >

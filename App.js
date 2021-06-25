@@ -6,16 +6,32 @@
  * @flow strict-local
  */
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import Navigate from './nav'
+import { Greeting } from './screen'
 
 const App = () => {
+
+  const [isGreeting, setGreeting] = useState(true)
+
+  useEffect(() => {
+    setTimeout(() => {
+      setGreeting(false)
+    }, 1000)
+  }, [])
+
   return (
-    <NavigationContainer>
-      <Navigate />
-    </NavigationContainer>
-  );
-};
+    <>
+      {
+        isGreeting ? 
+        <Greeting /> :
+        <NavigationContainer>
+          <Navigate />
+        </NavigationContainer>
+      }
+    </>
+  )
+}
 
 export default App;
