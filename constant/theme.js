@@ -16,7 +16,9 @@ export const COLORS = {
     tuna: '#323443',
     cerulean: '#068AD5',
 
+    red: '#d61545',
     green: '#229F36',
+    light_gray: '#FAFAFA',
     ping: '#C5346C',
     ligthPing: '#803065',
 

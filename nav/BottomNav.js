@@ -28,7 +28,7 @@ const BottomNav = () => {
           barStyle={[
             styles.bottomTabBar,
             {
-              backgroundColor: isDark ? COLORS.dark : COLORS.secondary
+              backgroundColor: isDark ? COLORS.dark : COLORS.white
             }
           ]}
         >

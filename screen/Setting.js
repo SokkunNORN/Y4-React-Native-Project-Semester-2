@@ -129,7 +129,7 @@ const Setting = () => {
             {
                 title: 'Log Out',
                 icon: 'logout-variant',
-                iconColor: COLORS.danger,
+                iconColor: COLORS.red,
                 rightTxt: null,
                 isIconRight: false,
                 isSwitchBtn: false
