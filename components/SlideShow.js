@@ -14,6 +14,7 @@ import {
     Card,
     Button
 } from 'react-native-paper'
+import AppContext from '../context'
 
 let xPosition = 0
 
@@ -45,98 +46,115 @@ const SlideShow = ({
     }
 
     return (
-        <>
-            <ScrollView
-                horizontal
-                pagingEnabled
-                showsHorizontalScrollIndicator={ false }
-                style={ styles.slide_show }
-                ref={ scrollViewRef }
-                onScroll={ handleScroll }
-                onContentSizeChange={ onContentSizeChange }
-            >
-                {
-                    elements.map((item, i) => (
-                        <Card style={[
-                            styles.card
-                        ]}>
+        <AppContext.Consumer>
+            {
+                ({ isDark }) =>
+                <ScrollView
+                    horizontal
+                    pagingEnabled
+                    showsHorizontalScrollIndicator={ false }
+                    style={ styles.slide_show }
+                    ref={ scrollViewRef }
+                    onScroll={ handleScroll }
+                    onContentSizeChange={ onContentSizeChange }
+                >
+                    {
+                        elements.map((item, i) => (
+                            <Card style={[
+                                styles.card,
+                                {
+                                    backgroundColor: isDark ? COLORS.primary : COLORS.secondary
+                                }
+                            ]}>
 
-                            <ImageBackground
-                                source={ require('../asset/feature.jpeg') }
-                                imageStyle={ styles.imgFeature }
-                                style={ styles.imgFeature }
-                            >
-                                <LinearGradient
-                                    colors={[
-                                        HexToRGB(COLORS.black, .1),
-                                        HexToRGB(COLORS.black, .1),
-                                        HexToRGB(COLORS.black, .1),
-                                        HexToRGB(COLORS.black, .2),
-                                        HexToRGB(COLORS.dark, .5),
-                                        HexToRGB(COLORS.dark, .9),
-                                        HexToRGB(COLORS.dark)
-                                    ]}
-                                    style={ styles.linear_radient }
+                                <ImageBackground
+                                    source={ require('../asset/feature.jpeg') }
+                                    imageStyle={ styles.imgFeature }
+                                    style={ styles.imgFeature }
                                 >
-                                    <View>
-                                        <View style={ styles.viewFeature } >
-                                            <Text style={ styles.labelFeature }>FEATURED</Text>
+                                    <LinearGradient
+                                        colors={[
+                                            HexToRGB(isDark ? COLORS.black : COLORS.secondary, .1),
+                                            HexToRGB(isDark ? COLORS.black : COLORS.secondary, .1),
+                                            HexToRGB(isDark ? COLORS.black : COLORS.secondary, .1),
+                                            HexToRGB(isDark ? COLORS.black : COLORS.secondary, .2),
+                                            HexToRGB(isDark ? COLORS.dark : COLORS.white, .5),
+                                            HexToRGB(isDark ? COLORS.dark : COLORS.white, .9),
+                                            HexToRGB(isDark ? COLORS.dark : COLORS.white)
+                                        ]}
+                                        style={ styles.linear_radient }
+                                    >
+                                        <View>
+                                            <View style={ styles.viewFeature } >
+                                                <Text style={ styles.labelFeature }>FEATURED</Text>
+                                            </View>
                                         </View>
-                                    </View>
-                                    <View>
-                                        <View style={ styles.feature_contain }>
-                                            <Text style={{ color: COLORS.secondary1 }}>{ item.category.title }</Text>
-                                            <Title 
-                                                style={{ color: COLORS.secondary }}
-                                                numberOfLines={ 1 }>
-                                                { item.profile.name }
-                                            </Title>
-                                            <Text
-                                                style={{ color: COLORS.secondary1 }} 
-                                                numberOfLines={ 2 }>
-                                                { item.title }
-                                            </Text>
+                                        <View>
+                                            <View style={ styles.feature_contain }>
+                                                <Text style={{ 
+                                                    color: isDark ? COLORS.secondary1 : HexToRGB(COLORS.black, .5)
+                                                 }}>{ item.category.title }</Text>
+                                                <Title 
+                                                    style={{
+                                                        color: isDark ? COLORS.white : COLORS.black
+                                                    }}
+                                                    numberOfLines={ 1 }>
+                                                    { item.profile.name }
+                                                </Title>
+                                                <Text
+                                                    style={{
+                                                        color: isDark ? COLORS.secondary1 : HexToRGB(COLORS.black, .7)
+                                                    }} 
+                                                    numberOfLines={ 2 }>
+                                                    { item.title }
+                                                </Text>
+                                            </View>
                                         </View>
-                                    </View>
-                                </LinearGradient>
-                            </ImageBackground>
+                                    </LinearGradient>
+                                </ImageBackground>
 
-                            <View>
-                                <Card.Cover
-                                    style={ styles.logoSlide }
-                                    source={ require('../asset/news.png') }
-                                />
-                                <View style={ styles.title }>
-                                    <Title
-                                        style={ styles.name }
-                                        numberOfLines={ 1 }>
-                                        { item.profile.name }
-                                    </Title>
-                                    <Paragraph style={ styles.joineder }>{ item.joineder } Members</Paragraph>
+                                <View>
+                                    <Card.Cover
+                                        style={ styles.logoSlide }
+                                        source={ require('../asset/news.png') }
+                                    />
+                                    <View style={ styles.title }>
+                                        <Title
+                                            style={[
+                                                styles.name
+                                            ]}
+                                            numberOfLines={ 1 }>
+                                            { item.profile.name }
+                                        </Title>
+                                        <Paragraph style={ styles.joineder }>{ item.joineder } Members</Paragraph>
+                                    </View>
+
+                                    <Button
+                                        disabled={ item.isJoined }
+                                        icon={ item.isJoined ? 'check-circle' : null }
+                                        style={[
+                                            styles.joinedBtn,
+                                            !item.isJoined ? styles.joinBtn : isDark ? {} :
+                                            {
+                                                backgroundColor: COLORS.light_gray
+                                            }
+                                        ]}
+                                        labelStyle={[
+                                            styles.labelStyle,
+                                            item.isJoined ? {} : styles.labelJoinBtn
+                                        ]}
+                                        uppercase={ false }
+                                        mode='outlined'
+                                        onPress={() => {}}>
+                                        Joined
+                                    </Button>
                                 </View>
-
-                                <Button
-                                    disabled={ item.isJoined }
-                                    icon={ item.isJoined ? 'check-circle' : null }
-                                    style={[
-                                        styles.joinedBtn,
-                                        item.isJoined ? {} : styles.joinBtn
-                                    ]}
-                                    labelStyle={[
-                                        styles.labelStyle,
-                                        item.isJoined ? {} : styles.labelJoinBtn
-                                    ]}
-                                    uppercase={ false }
-                                    mode='outlined'
-                                    onPress={() => {}}>
-                                    Joined
-                                </Button>
-                            </View>
-                        </Card>
-                    ))
-                }
-            </ScrollView>
-        </>
+                            </Card>
+                        ))
+                    }
+                </ScrollView>
+            }
+        </AppContext.Consumer>
     )
 }
 
@@ -197,7 +215,8 @@ const styles = StyleSheet.create({
         position: 'absolute',
         marginStart: SIZES.base(8),
         width: SIZES.width - (SIZES.base(28)),
-        height: SIZES.base(4)
+        height: SIZES.base(4),
+        marginTop: SIZES.base(.3)
     },
     name: {
         color: COLORS.secondary1,
@@ -209,7 +228,7 @@ const styles = StyleSheet.create({
     },
     joinedBtn: {
         position: 'absolute',
-        marginTop: SIZES.base(1),
+        marginTop: SIZES.base(1.3),
         borderRadius: SIZES.radius(4),
         backgroundColor: COLORS.dark,
         width: SIZES.base(13),
