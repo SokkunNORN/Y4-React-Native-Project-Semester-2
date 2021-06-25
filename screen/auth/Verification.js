@@ -15,7 +15,6 @@ import AppContext from '../../context'
 
 const Verification = ({ route }) => {
 
-    const ChatPlusContext = AppContext
     const navigation = useNavigation()
     let textInput = useRef(null)
     const phoneNumber = route.params
@@ -41,7 +40,7 @@ const Verification = ({ route }) => {
     }
 
     return (
-        <ChatPlusContext.Consumer>
+        <AppContext.Consumer>
             {
             ({ isDark }) =>
             <>
@@ -135,7 +134,7 @@ const Verification = ({ route }) => {
                 </TouchableWithoutFeedback>
             </>
             }
-        </ChatPlusContext.Consumer>
+        </AppContext.Consumer>
     )
 }
 

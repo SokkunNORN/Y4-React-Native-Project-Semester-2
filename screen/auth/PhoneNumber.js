@@ -23,7 +23,6 @@ import AppContext from '../../context'
 
 const PhoneNumber = () => {
 
-    const ChatPlusContext = AppContext
     const navigation = useNavigation()
     const [phoneNumber, setPhoneNumber] = useState('')
     const [isGreeting, setIsGreeting] = useState(true)
@@ -56,7 +55,7 @@ const PhoneNumber = () => {
     })
 
     return (
-        <ChatPlusContext.Consumer>
+        <AppContext.Consumer>
         {
             ({ isDark }) =>
 
@@ -153,7 +152,7 @@ const PhoneNumber = () => {
                 </View>
             </TouchableWithoutFeedback>
         }
-        </ChatPlusContext.Consumer>
+        </AppContext.Consumer>
     )
 }
 

@@ -2,7 +2,7 @@ import { createContext } from 'react'
 
 const AppContext = createContext({
     language: 'Englist',
-    isDark: true,
+    isDark: false,
     auth: null
 })
 

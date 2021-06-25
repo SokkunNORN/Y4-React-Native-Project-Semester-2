@@ -20,7 +20,6 @@ import AppContext from '../context'
 
 const Setting = () => {
 
-    const ChatPlusContext = AppContext
     const navigation = useNavigation()
 
     const lists = [
@@ -165,46 +164,96 @@ const Setting = () => {
     }
 
     return (
-        <ChatPlusContext.Consumer>
+        <AppContext.Consumer>
             {
-            ({ theme }) =>
+            ({ isDark }) =>
             <>
                 <Header
                     title="Settings"
                     icon="pencil-box-outline"
+                    backgroundColor={ isDark ? COLORS.white : COLORS.white }
                 />
 
-                <ScrollView>
-                    <Card style={ styles.card }>
+                <ScrollView
+                    showsHorizontalScrollIndicator={ false }
+                >
+                    <Card style={[
+                        styles.card,
+                        {
+                            backgroundColor: isDark ? COLORS.dark : COLORS.white
+                        }
+                    ]}>
                         <Card.Cover style={ styles.profileImg } source={ require('../asset/cover.jpeg') } />
-                        <Card.Content>
-                            <Title style={ styles.name }>Kun Kun</Title>
+                        <Card.Content style={ styles.border }>
+                            <Title style={[
+                                styles.name,
+                                {
+                                    color: isDark ? COLORS.white : COLORS.black
+                                }
+                            ]}>Kun Kun</Title>
                         </Card.Content>
-                        <View style={ styles.border }></View>
-                        <Card.Content>
-                            <Paragraph style={ styles.label }>Mobile</Paragraph>
-                            <Title style={ styles.whileColor }>+855 17 500 859</Title>
+                        <Card.Content style={ styles.border }>
+                            <Paragraph style={[
+                                styles.label,
+                                {
+                                    color: isDark ? COLORS.white : COLORS.black
+                                }
+                            ]}>Mobile</Paragraph>
+                            <Title style={[
+                                styles.whileColor,
+                                {
+                                    color: isDark ? COLORS.white : COLORS.black
+                                }
+                            ]}>+855 17 500 859</Title>
                         </Card.Content>
-                        <View style={ styles.border }></View>
-                        <Card.Content>
+                        <Card.Content style={ styles.border }>
                             <View style={ styles.bd_contain }>
                                 <View>
-                                    <Paragraph style={ styles.label }>Date of Birth</Paragraph>
-                                    <Title style={ styles.whileColor }>N/A</Title>
+                                    <Paragraph style={[
+                                        styles.label,
+                                        {
+                                            color: isDark ? COLORS.white : COLORS.black
+                                        }
+                                    ]}>Date of Birth</Paragraph>
+                                    <Title style={[
+                                        styles.whileColor,
+                                        {
+                                            color: isDark ? COLORS.white : COLORS.black
+                                        }
+                                    ]}>N/A</Title>
                                 </View>
-                                <View style={ styles.bd_view_right }>
+                                <View style={[
+                                    styles.bd_view_right,
+                                    {
+                                        backgroundColor: isDark ? COLORS.dark : COLORS.secondary
+                                    }
+                                ]}>
                                     <Icon
                                         name='check-circle'
                                         style={ styles.logo_icon }
                                         color={ COLORS.warning } size={ SIZES.base() } />
-                                    <Paragraph style={ styles.bd_label }>Public (Hide year)</Paragraph>
+                                    <Paragraph style={[
+                                        styles.bd_label,
+                                        {
+                                            color: isDark ? COLORS.white : COLORS.black
+                                        }
+                                    ]}>Public (Hide year)</Paragraph>
                                 </View>
                             </View>
                         </Card.Content>
-                        <View style={ styles.border }></View>
                         <Card.Content>
-                            <Paragraph style={ styles.label }>About</Paragraph>
-                            <Title style={ styles.whileColor }>About</Title>
+                            <Paragraph style={[
+                                styles.label,
+                                {
+                                    color: isDark ? COLORS.white : COLORS.black
+                                }
+                            ]}>About</Paragraph>
+                            <Title style={[
+                                styles.whileColor,
+                                {
+                                    color: isDark ? COLORS.white : COLORS.black
+                                }
+                            ]}>About</Title>
                         </Card.Content>
                     </Card>
 
@@ -221,7 +270,7 @@ const Setting = () => {
                 </ScrollView>
             </>
             } 
-        </ChatPlusContext.Consumer>
+        </AppContext.Consumer>
     )
 }
 
@@ -253,8 +302,8 @@ const styles = StyleSheet.create({
         marginTop: SIZES.base(1)
     },
     border: {
-        height: 2,
-        backgroundColor: COLORS.dark
+        borderBottomWidth: .2,
+        borderBottomColor: COLORS.secondary1
     },
     bd_contain: {
         flex: 1,

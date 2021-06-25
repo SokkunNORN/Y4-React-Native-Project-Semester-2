@@ -15,11 +15,10 @@ import { COLORS } from '../constant'
 import AppContext from '../context'
 
 const Tab = createMaterialBottomTabNavigator()
-const ChatPlusContext = AppContext
 
 const BottomNav = () => {
   return (
-    <ChatPlusContext.Consumer>
+    <AppContext.Consumer>
       {
         ({ isDark }) => 
         <Tab.Navigator
@@ -65,7 +64,7 @@ const BottomNav = () => {
           />
         </Tab.Navigator>
       }
-    </ChatPlusContext.Consumer>
+    </AppContext.Consumer>
   );
 }
 
