@@ -20,7 +20,7 @@ export const COLORS = {
     green: '#229F36',
     light_gray: '#FAFAFA',
     ping: '#C5346C',
-    ligthPing: '#803065',
+    ligth_ping: '#803065',
 
     white: '#FFFFFF',
     black: '#000000'

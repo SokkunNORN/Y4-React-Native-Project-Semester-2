@@ -78,7 +78,7 @@ const ChatDetail = ({ route }) => {
                 <View style={ styles.header }>
                     <ScrollView
                         keyboardDismissMode='interactive'
-                        showsHorizontalScrollIndicator={ false }
+                        showsVerticalScrollIndicator={ false }
                         ref={ scrollViewRef }
                         onScroll={ onScroll }
                         onContentSizeChange={ onContentSizeChange }

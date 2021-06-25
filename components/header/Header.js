@@ -50,14 +50,14 @@ const Header = props => {
                 <SafeAreaView style={[
                     styles.safearea,
                     {
-                        backgroundColor: isDark ? COLORS.dark : COLORS.white
+                        backgroundColor: isDark ? COLORS.dark : COLORS.light_gray
                     }
                 ]}>
                     <StatusBar barStyle={ isDark ? 'light-content' : 'dark-content' } />
                     <Appbar.Header style={[
                         styles.header,
                         {
-                            backgroundColor: isDark ? COLORS.dark : COLORS.white
+                            backgroundColor: isDark ? COLORS.dark : COLORS.light_gray
                         }
                     ]}>
                         {

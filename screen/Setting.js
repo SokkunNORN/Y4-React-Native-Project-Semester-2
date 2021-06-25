@@ -89,7 +89,7 @@ const Setting = () => {
             {
                 title: 'Invite Frinds to Chat Plus',
                 icon: 'account-arrow-right-outline',
-                iconColor: COLORS.ligthPing,
+                iconColor: COLORS.ligth_ping,
                 rightTxt: null,
                 isIconRight: true,
                 isSwitchBtn: false

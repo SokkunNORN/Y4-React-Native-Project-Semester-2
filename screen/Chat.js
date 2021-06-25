@@ -20,7 +20,9 @@ const Chat = () => {
                 isSearch
                 icon="plus"
             />
-            <ScrollView>
+            <ScrollView
+                showsVerticalScrollIndicator={ false }
+            >
                 {
                     items.map((item, i) => (
                         <ListChat

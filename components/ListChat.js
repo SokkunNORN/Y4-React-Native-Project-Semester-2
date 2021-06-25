@@ -13,8 +13,9 @@ import {
 } from 'react-native-paper'
 
 import {
-    COLORS, SIZES
+    COLORS, HexToRGB, SIZES
 } from '../constant'
+import AppContext from '../context'
 
 const ListChat = ({
   item = null,
@@ -22,28 +23,51 @@ const ListChat = ({
   setSelectItem = () => {}
 }) => {
     return (
-        <>
-            <List.Item
-                onPress={ () => setSelectItem(item) }
-                style={ styles.list }
-                titleStyle={ styles.title }
-                descriptionStyle={ selectedItem == item ? styles.selected : styles.unselect }
-                title={ item }
-                description='Item description'
-                left={ props => (
-                    <View style={ styles.profile }>
-                        <Avatar.Image size={60} source={require('../asset/profile.jpeg')} />
-                    </View>
-                )}
-                right={ () => (
-                    <View>
-                        <Text style={ styles.timing }>6:47AM</Text>
-                        <Text></Text>
-                        <Badge style={{ backgroundColor: COLORS.white }}>2</Badge>
-                    </View>
-                )}
-            />
-        </>
+        <AppContext.Consumer>
+            {
+                ({ isDark }) =>
+                <>
+                    <List.Item
+                        onPress={ () => setSelectItem(item) }
+                        style={[
+                            styles.list,
+                            {
+                                backgroundColor: isDark ? COLORS.primary : COLORS.white
+                            }
+                        ]}
+                        titleStyle={[
+                            styles.title,
+                            {
+                                color: isDark ? COLORS.white : COLORS.black
+                            }
+                        ]}
+                        descriptionStyle={[
+                            styles.selected
+                        ]}
+                        title={ item }
+                        description='Item description'
+                        left={ props => (
+                            <View style={ styles.profile }>
+                                <Avatar.Image size={60} source={require('../asset/profile.jpeg')} />
+                            </View>
+                        )}
+                        right={ () => (
+                            <View>
+                                <Text style={ styles.timing }>6:47AM</Text>
+                                <Text></Text>
+                                <Badge
+                                    style={{
+                                        backgroundColor: isDark ? COLORS.white : COLORS.warning
+                                    }}
+                                >
+                                    2
+                                </Badge>
+                            </View>
+                        )}
+                    />
+                </>
+            }
+        </AppContext.Consumer>
     )
 }
 
@@ -53,14 +77,11 @@ const styles = StyleSheet.create({
     selected: {
         color: COLORS.secondary1
     },
-    unselect: {
-        color: COLORS.white
-    },
     list: {
         backgroundColor: COLORS.primary,
         paddingLeft: SIZES.base(),
         paddingRight: SIZES.base(),
-        borderBottomColor: COLORS.secondary1,
+        borderBottomColor: HexToRGB(COLORS.secondary1, .3),
         borderBottomWidth: .167
     },
     title: {

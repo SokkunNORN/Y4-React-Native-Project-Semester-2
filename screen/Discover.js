@@ -158,7 +158,7 @@ const Discover = () => {
                         if (index === 0) {
                             return (
                                 <ScrollView
-                                    showsHorizontalScrollIndicator={ false }
+                                    showsVerticalScrollIndicator={ false }
                                 >
                                     <SlideShow elements={ slideShows } />
 
@@ -172,7 +172,7 @@ const Discover = () => {
                         }
                         return (
                             <ScrollView
-                                showsHorizontalScrollIndicator={ false }
+                                showsVerticalScrollIndicator={ false }
                             >
                                 {
                                     element.listDiscovers.map(item => (
