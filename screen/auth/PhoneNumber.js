@@ -86,7 +86,7 @@ const PhoneNumber = () => {
                                 keyboardAppearance={ !isDark ? 'light' : 'dark'}
                                 keyboardType='number-pad'
                                 placeholder='Enter phone number'
-                                placeholderTextColor={ isDark ? COLORS.primary : COLORS.secondary1 }
+                                placeholderTextColor={ COLORS.secondary1 }
                                 style={[
                                     styles.phone_number_text_input,
                                     {

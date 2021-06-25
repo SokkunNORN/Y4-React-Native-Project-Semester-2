@@ -5,19 +5,28 @@ import {
 } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { SIZES, COLORS, HexToRGB } from '../../constant'
+import AppContext from '../../context'
 
 const Greeting = () => {
     return (
-        <>
-            <View style={ styles.container }>
-                <View style={ styles.view_logo_icon }>
-                    <Icon
-                        name='snapchat'
-                        style={ styles.logo_icon }
-                        color={ COLORS.warning } size={ SIZES.base(12) } />
+        <AppContext.Consumer>
+            {
+                ({ isDark }) =>
+                <View style={[
+                    styles.container,
+                    {
+                        backgroundColor: isDark ? COLORS.primary : COLORS.white
+                    }
+                ]}>
+                    <View style={ styles.view_logo_icon }>
+                        <Icon
+                            name='snapchat'
+                            style={ styles.logo_icon }
+                            color={ COLORS.warning } size={ SIZES.base(12) } />
+                    </View>
                 </View>
-            </View>
-        </>
+            }
+        </AppContext.Consumer>
     )
 }
 

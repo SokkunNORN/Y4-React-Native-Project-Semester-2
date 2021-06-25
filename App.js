@@ -23,13 +23,11 @@ const App = () => {
 
   return (
     <>
-      {
-        isGreeting ? 
-        <Greeting /> :
-        <NavigationContainer>
-          <Navigate />
-        </NavigationContainer>
-      }
+      <NavigationContainer>
+        {
+          isGreeting ? <Greeting /> : <Navigate />
+        }
+      </NavigationContainer>
     </>
   )
 }
