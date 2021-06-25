@@ -175,7 +175,7 @@ const Setting = () => {
                 />
 
                 <ScrollView
-                    showsHorizontalScrollIndicator={ false }
+                    showsVerticalScrollIndicator={ false }
                 >
                     <Card style={[
                         styles.card,
