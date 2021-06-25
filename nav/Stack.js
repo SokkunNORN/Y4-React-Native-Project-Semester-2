@@ -19,7 +19,7 @@ export const ChatStackScreen = () => {
           ({ isDark }) => 
           <Stack.Navigator screenOptions={{
             cardStyle: {
-              backgroundColor: isDark ? COLORS.primary1 : COLORS.white
+              backgroundColor: isDark ? COLORS.primary1 : COLORS.secondary
             }
           }}>
             <Stack.Screen
@@ -42,7 +42,7 @@ export const DiscoverStackScreen = () => {
           ({ isDark }) => 
           <Stack.Navigator screenOptions={{
             cardStyle: {
-              backgroundColor: isDark ? COLORS.primary1 : COLORS.white
+              backgroundColor: isDark ? COLORS.primary1 : COLORS.secondary
             }
           }}>
             <Stack.Screen
@@ -65,7 +65,7 @@ export const SettingStackScreen = () => {
           ({ isDark }) => 
           <Stack.Navigator screenOptions={{
             cardStyle: {
-              backgroundColor: isDark ? COLORS.primary1 : COLORS.white
+              backgroundColor: isDark ? COLORS.primary1 : COLORS.secondary
             }
           }}>
             <Stack.Screen

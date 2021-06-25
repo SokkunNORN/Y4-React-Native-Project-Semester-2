@@ -11,7 +11,7 @@ import {
   StyleSheet
 } from 'react-native'
 
-import { COLORS } from '../constant'
+import { COLORS, HexToRGB } from '../constant'
 import AppContext from '../context'
 
 const Tab = createMaterialBottomTabNavigator()
@@ -28,7 +28,7 @@ const BottomNav = () => {
           barStyle={[
             styles.bottomTabBar,
             {
-              backgroundColor: isDark ? COLORS.dark : COLORS.white
+              backgroundColor: isDark ? COLORS.dark : COLORS.secondary
             }
           ]}
         >
@@ -73,6 +73,6 @@ export default BottomNav
 const styles = StyleSheet.create({
   bottomTabBar: {
     borderTopWidth: .2,
-    borderTopColor: COLORS.secondary1
+    borderTopColor: HexToRGB(COLORS.secondary1, .2)
   }
 })

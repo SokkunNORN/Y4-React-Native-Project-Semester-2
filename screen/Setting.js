@@ -11,7 +11,7 @@ import {
     View,
     ActionSheetIOS
 } from 'react-native'
-import { SIZES, COLORS, FONTS } from '../constant'
+import { SIZES, COLORS, FONTS, HexToRGB } from '../constant'
 import ListSetting from '../components/ListSetting'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { useNavigation } from '@react-navigation/native'
@@ -139,7 +139,7 @@ const Setting = () => {
 
     const [isDarkMode, setIsDarkMode] = useState(true)
 
-    const onSelectList = value => {
+    const onSelectList = (value, isDark) => {
         if (value.title === 'Log Out') {
             ActionSheetIOS.showActionSheetWithOptions(
                 {
@@ -150,7 +150,7 @@ const Setting = () => {
                     title: 'Are you sure you want to log out?',
                     destructiveButtonIndex: 1,
                     cancelButtonIndex: 0,
-                    userInterfaceStyle: 'dark'
+                    userInterfaceStyle: isDark ? 'dark' : 'light'
                 },
                 buttonIndex => {
                     if (buttonIndex === 1) {
@@ -261,7 +261,7 @@ const Setting = () => {
                         lists.map(items => (
                             <ListSetting 
                                 items={ items }
-                                setSelectItem={ value => onSelectList(value) }
+                                setSelectItem={ value => onSelectList(value, isDark) }
                                 isDarkMode={ isDarkMode }
                                 setDarkMode={ value => setIsDarkMode(value) }
                             />
@@ -303,7 +303,7 @@ const styles = StyleSheet.create({
     },
     border: {
         borderBottomWidth: .2,
-        borderBottomColor: COLORS.secondary1
+        borderBottomColor: HexToRGB(COLORS.secondary1, .5)
     },
     bd_contain: {
         flex: 1,
