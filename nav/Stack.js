@@ -42,7 +42,7 @@ export const DiscoverStackScreen = () => {
           ({ isDark }) => 
           <Stack.Navigator screenOptions={{
             cardStyle: {
-              backgroundColor: isDark ? COLORS.primary1 : COLORS.light_gray
+              backgroundColor: isDark ? COLORS.dark : COLORS.light_gray
             }
           }}>
             <Stack.Screen

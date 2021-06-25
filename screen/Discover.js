@@ -138,7 +138,7 @@ const Discover = () => {
                 icon="check-circle"
             />
 
-            <View style={ styles.category }>
+            <View>
                 <ListCategory
                     selected={ selectedCategory }
                     categories={ categories }
@@ -191,10 +191,6 @@ const Discover = () => {
 export default Discover
 
 const styles = StyleSheet.create({
-    category: {
-        paddingTop: SIZES.base(),
-        paddingBottom: SIZES.base()
-    },
     slide_show: {
         width: SIZES.width
     }
