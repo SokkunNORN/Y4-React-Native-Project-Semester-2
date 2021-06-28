@@ -18,17 +18,14 @@ import {
 
 const ListSetting = ({
   items = null,
-  setSelectItem = () => {},
-  isDarkMode = false,
-  setDarkMode = () => {}
+  setSelectItem = () => {}
 }) => {
     return (
 
         <AppContext.Consumer>
             {
                 ({ 
-                    isDark,
-                    onChangeTheme
+                    isDark
                 }) =>
                 <List.Section>
                     {
@@ -143,7 +140,7 @@ const ListSetting = ({
                                         ]}
                                         color={ COLORS.dark }
                                         value={ isDark } 
-                                        onValueChange={ onChangeTheme }
+                                        onValueChange={ () => {} }
                                     />
                                 }
                             />
