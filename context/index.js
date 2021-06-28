@@ -1,8 +1,10 @@
 import { createContext } from 'react'
 
+let isDark = true
+
 const AppContext = createContext({
     language: 'Englist',
-    isDark: false,
+    isDark: !isDark,
     auth: null
 })
 

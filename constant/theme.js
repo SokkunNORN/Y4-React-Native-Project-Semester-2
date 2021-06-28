@@ -21,6 +21,7 @@ export const COLORS = {
     light_gray: '#FAFAFA',
     ping: '#C5346C',
     ligth_ping: '#803065',
+    navajo_white: '#FDE0B6',
 
     white: '#FFFFFF',
     black: '#000000'
