@@ -137,8 +137,6 @@ const Setting = () => {
         ]
     ]
 
-    const [isDarkMode, setIsDarkMode] = useState(true)
-
     const onSelectList = (value, isDark) => {
         if (value.title === 'Log Out') {
             ActionSheetIOS.showActionSheetWithOptions(
@@ -262,8 +260,6 @@ const Setting = () => {
                             <ListSetting 
                                 items={ items }
                                 setSelectItem={ value => onSelectList(value, isDark) }
-                                isDarkMode={ isDarkMode }
-                                setDarkMode={ value => setIsDarkMode(value) }
                             />
                         ))
                     }

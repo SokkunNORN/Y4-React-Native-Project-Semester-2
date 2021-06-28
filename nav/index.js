@@ -55,7 +55,7 @@ const Navigate = () => {
                     options={{
                         headerShown: false,
                         cardStyle: {
-                            backgroundColor: COLORS.primary
+                            backgroundColor: isDark ? COLORS.primary1 : COLORS.light_gray
                         }
                     }}
                 />
@@ -65,7 +65,7 @@ const Navigate = () => {
                     options={{
                         headerShown: false,
                         cardStyle: {
-                            backgroundColor: COLORS.dark
+                            backgroundColor: isDark ? COLORS.primary1 : COLORS.light_gray
                         }
                     }}
                 />
