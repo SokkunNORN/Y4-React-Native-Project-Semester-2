@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Header from '../components/header/Header'
 import {
     Card,
@@ -169,7 +169,6 @@ const Setting = () => {
                 <Header
                     title="Settings"
                     icon="pencil-box-outline"
-                    backgroundColor={ isDark ? COLORS.white : COLORS.white }
                 />
 
                 <ScrollView
@@ -178,7 +177,7 @@ const Setting = () => {
                     <Card style={[
                         styles.card,
                         {
-                            backgroundColor: isDark ? COLORS.dark : COLORS.white
+                            backgroundColor: isDark ? COLORS.primary : COLORS.white
                         }
                     ]}>
                         <Card.Cover style={ styles.profileImg } source={ require('../asset/cover.jpeg') } />
