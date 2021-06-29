@@ -17,7 +17,10 @@ const ChatBackground = () => {
         require('../../asset/chat_background/background2.jpeg'),
         require('../../asset/chat_background/background3.jpeg'),
         require('../../asset/chat_background/background4.jpeg'),
-        require('../../asset/chat_background/background5.jpeg')
+        require('../../asset/chat_background/background5.jpeg'),
+        require('../../asset/chat_background/background6.jpeg'),
+        require('../../asset/chat_background/background7.jpeg'),
+        require('../../asset/chat_background/background8.jpeg')
     ]
     const [active, setActive] = useState(0)
 

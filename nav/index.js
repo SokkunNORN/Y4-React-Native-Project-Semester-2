@@ -22,7 +22,7 @@ const Navigate = () => {
             {
             ({ isDark }) =>
             <Stack.Navigator>
-                <Stack.Screen
+                {/* <Stack.Screen
                     name={ Routes.PHONE_NUMBER }
                     component={ PhoneNumber }
                     options={{
@@ -41,7 +41,7 @@ const Navigate = () => {
                             backgroundColor: isDark ? COLORS.primary1 : COLORS.white
                         }
                     }}
-                />
+                /> */}
                 <Stack.Screen
                     name={ Routes.DASHBOARD } 
                     component={ BottomNav }

@@ -29,14 +29,15 @@ const ListSetting = ({
                 }) =>
                 <List.Section>
                     {
-                        items.map(item => (
+                        items.map((item, index) => (
                             item.title !== 'Version' && item.title !== 'Dark Mode' ?
                             <List.Item
                                 onPress={ () => setSelectItem(item) }
                                 style={[
                                     styles.list,
                                     {
-                                        backgroundColor: isDark ? COLORS.primary : COLORS.white
+                                        backgroundColor: isDark ? COLORS.primary : COLORS.white,
+                                        marginBottom: index === (items.length - 1) && -SIZES.base(1)
                                     }
                                 ]}
                                 titleStyle={[
@@ -79,7 +80,8 @@ const ListSetting = ({
                                 style={[
                                     styles.list,
                                     {
-                                        backgroundColor: isDark ? COLORS.primary : COLORS.white
+                                        backgroundColor: isDark ? COLORS.primary : COLORS.white,
+                                        marginBottom: index === (items.length - 1) && -SIZES.base(1)
                                     }
                                 ]}
                                 titleStyle={[
@@ -110,7 +112,8 @@ const ListSetting = ({
                                 style={[
                                     styles.list,
                                     {
-                                        backgroundColor: isDark ? COLORS.primary : COLORS.white
+                                        backgroundColor: isDark ? COLORS.primary : COLORS.white,
+                                        marginBottom: index === (items.length - 1) && -SIZES.base(1)
                                     }
                                 ]}
                                 titleStyle={[
