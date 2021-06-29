@@ -71,7 +71,7 @@ const Header = props => {
                                     style={[
                                         styles.searchField,
                                         {
-                                            backgroundColor: isDark ? COLORS.primary : COLORS.secondary
+                                            backgroundColor: isDark ? COLORS.primary : COLORS.white
                                         }
                                     ]}
                                     color={ isDark ? COLORS.white : COLORS.black }
