@@ -1,6 +1,6 @@
 import React from 'react'
 import DetailHeader from '../components/header/DetailHeader'
-import DarkMode from '../components/settingDetail/DarkMode'
+import ChatBackground from '../components/settingDetail/ChatBackground'
 
 const SettingDetail = ({ route }) => {
 
@@ -12,8 +12,8 @@ const SettingDetail = ({ route }) => {
                 title={ title }
             />
             {
-                title === 'Dark Mode' ?
-                <DarkMode /> :
+                title === 'Chat Background' ?
+                <ChatBackground /> :
                 <></>
             }
         </>
