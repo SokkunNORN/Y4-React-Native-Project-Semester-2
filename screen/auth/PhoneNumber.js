@@ -7,7 +7,8 @@ import {
     TouchableWithoutFeedback,
     Keyboard,
     KeyboardAvoidingView,
-    Platform
+    Platform,
+    StatusBar
 } from 'react-native'
 import {
     Button,
@@ -53,92 +54,95 @@ const PhoneNumber = () => {
             <TouchableWithoutFeedback
                 onPress={ () => Keyboard.dismiss() }
             >
-                <View
-                    style={ styles.container }
-                >
+                <>
+                    <StatusBar barStyle={ isDark ? 'light-content' : 'dark-content' } />
                     <View
-                        style={ styles.top_contain }
+                        style={ styles.container }
                     >
-                        <View style={ styles.border_view_phone_icon }>
-                            <View style={ styles.view_phone_icon }>
-                                <Icon
-                                    name='mobile-alt'
-                                    style={ styles.phone_icon }
-                                    color={ COLORS.warning } size={ SIZES.base(5.5) } />
+                        <View
+                            style={ styles.top_contain }
+                        >
+                            <View style={ styles.border_view_phone_icon }>
+                                <View style={ styles.view_phone_icon }>
+                                    <Icon
+                                        name='mobile-alt'
+                                        style={ styles.phone_icon }
+                                        color={ COLORS.warning } size={ SIZES.base(5.5) } />
+                                </View>
+                            </View>
+                            <Title style={[
+                                styles.greeting_text,
+                                {
+                                    color: !isDark ? COLORS.black : COLORS.white
+                                }
+                            ]}>Welcome to Chat Plus!</Title>
+                            <Paragraph style={[
+                                styles.introduction,
+                                {
+                                    color: !isDark ? COLORS.black : COLORS.white
+                                }
+                            ]}>
+                                Provide your phone number to receive your conformation code. {keyboardStatus}
+                            </Paragraph>
+                            <View style={ styles.contain_phone_number_text_input } >
+                                <TextInput
+                                    keyboardAppearance={ !isDark ? 'light' : 'dark'}
+                                    keyboardType='number-pad'
+                                    placeholder='Enter phone number'
+                                    placeholderTextColor={ COLORS.secondary1 }
+                                    style={[
+                                        styles.phone_number_text_input,
+                                        {
+                                            color: !isDark ? COLORS.dark : COLORS.white,
+                                            backgroundColor: !isDark ? COLORS.secondary : COLORS.primary
+                                        }
+                                    ]}
+                                    onChangeText={ value => onTextChange(value) }
+                                    value={ phoneNumber }
+                                    maxLength={ 12 }
+                                    onFocus={ () => setKeyboardStatus(true) }
+                                    onBlur={ () => setKeyboardStatus(false) }
+                                />
                             </View>
                         </View>
-                        <Title style={[
-                            styles.greeting_text,
-                            {
-                                color: !isDark ? COLORS.black : COLORS.white
-                            }
-                        ]}>Welcome to Chat Plus!</Title>
-                        <Paragraph style={[
-                            styles.introduction,
-                            {
-                                color: !isDark ? COLORS.black : COLORS.white
-                            }
-                        ]}>
-                            Provide your phone number to receive your conformation code. {keyboardStatus}
-                        </Paragraph>
-                        <View style={ styles.contain_phone_number_text_input } >
-                            <TextInput
-                                keyboardAppearance={ !isDark ? 'light' : 'dark'}
-                                keyboardType='number-pad'
-                                placeholder='Enter phone number'
-                                placeholderTextColor={ COLORS.secondary1 }
-                                style={[
-                                    styles.phone_number_text_input,
-                                    {
-                                        color: !isDark ? COLORS.dark : COLORS.white,
-                                        backgroundColor: !isDark ? COLORS.secondary : COLORS.primary
-                                    }
-                                ]}
-                                onChangeText={ value => onTextChange(value) }
-                                value={ phoneNumber }
-                                maxLength={ 12 }
-                                onFocus={ () => setKeyboardStatus(true) }
-                                onBlur={ () => setKeyboardStatus(false) }
-                            />
-                        </View>
+        
+                        <KeyboardAvoidingView
+                            behavior={ Platform.OS === 'ios' ? 'position' : null }
+                        >
+                            <View>
+                                <Text
+                                    style={[
+                                        styles.condition_text,
+                                        {
+                                            color: !isDark ? COLORS.black : COLORS.white
+                                        }
+                                    ]}
+                                >
+                                    By continuing, you are agreeing to the 
+                                    <Text style={ styles.privacy_text }> Privacy Plicy</Text> and 
+                                    <Text style={ styles.privacy_text }> Terms and Conditions</Text>
+                                </Text>
+                                <Button
+                                    style={[
+                                        styles.btn_continue,
+                                        keyboardStatus ? styles.btn_continue_with_active_keyboard : {},
+                                        {
+                                            backgroundColor: phoneNumber ? COLORS.warning : 
+                                            !isDark ? COLORS.secondary : COLORS.secondary1
+                                        }
+                                    ]}
+                                    disabled={ phoneNumber ? false : true }
+                                    labelStyle={ styles.label_btn_continue }
+                                    color={ COLORS.secondary }
+                                    uppercase={ false }
+                                    onPress={() => onContinue() }
+                                >
+                                    Continue
+                                </Button>
+                            </View>
+                        </KeyboardAvoidingView>
                     </View>
-    
-                    <KeyboardAvoidingView
-                        behavior={ Platform.OS === 'ios' ? 'position' : null }
-                    >
-                        <View>
-                            <Text
-                                style={[
-                                    styles.condition_text,
-                                    {
-                                        color: !isDark ? COLORS.black : COLORS.white
-                                    }
-                                ]}
-                            >
-                                By continuing, you are agreeing to the 
-                                <Text style={ styles.privacy_text }> Privacy Plicy</Text> and 
-                                <Text style={ styles.privacy_text }> Terms and Conditions</Text>
-                            </Text>
-                            <Button
-                                style={[
-                                    styles.btn_continue,
-                                    keyboardStatus ? styles.btn_continue_with_active_keyboard : {},
-                                    {
-                                        backgroundColor: phoneNumber ? COLORS.warning : 
-                                        !isDark ? COLORS.secondary : COLORS.secondary1
-                                    }
-                                ]}
-                                disabled={ phoneNumber ? false : true }
-                                labelStyle={ styles.label_btn_continue }
-                                color={ COLORS.secondary }
-                                uppercase={ false }
-                                onPress={() => onContinue() }
-                            >
-                                Continue
-                            </Button>
-                        </View>
-                    </KeyboardAvoidingView>
-                </View>
+                </>
             </TouchableWithoutFeedback>
         }
         </AppContext.Consumer>

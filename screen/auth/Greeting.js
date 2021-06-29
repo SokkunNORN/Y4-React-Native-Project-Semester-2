@@ -1,6 +1,7 @@
 import React from 'react'
 import {
     StyleSheet,
+    StatusBar,
     View
 } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
@@ -12,19 +13,22 @@ const Greeting = () => {
         <AppContext.Consumer>
             {
                 ({ isDark }) =>
-                <View style={[
-                    styles.container,
-                    {
-                        backgroundColor: isDark ? COLORS.primary : COLORS.white
-                    }
-                ]}>
-                    <View style={ styles.view_logo_icon }>
-                        <Icon
-                            name='snapchat'
-                            style={ styles.logo_icon }
-                            color={ COLORS.warning } size={ SIZES.base(12) } />
+                <>
+                    <StatusBar barStyle={ isDark ? 'light-content' : 'dark-content' } />
+                    <View style={[
+                        styles.container,
+                        {
+                            backgroundColor: isDark ? COLORS.primary : COLORS.white
+                        }
+                    ]}>
+                        <View style={ styles.view_logo_icon }>
+                            <Icon
+                                name='snapchat'
+                                style={ styles.logo_icon }
+                                color={ COLORS.warning } size={ SIZES.base(12) } />
+                        </View>
                     </View>
-                </View>
+                </>
             }
         </AppContext.Consumer>
     )
