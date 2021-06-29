@@ -12,7 +12,7 @@ import {
 import { Badge } from 'react-native-paper'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import DetailHeader from '../components/header/DetailHeader'
-import { COLORS, FONTS, SIZES } from '../constant'
+import { COLORS, FONTS, SIZES, HexToRGB } from '../constant'
 const keyboardVerticalOffset = Platform.OS === 'ios' ? SIZES.base(12.5) : 0
 import MessageBubble from '../components/MessageBubble'
 import AppContext from '../context'
@@ -191,6 +191,8 @@ const styles = StyleSheet.create({
         flex: 1
     },
     footer: {
+        borderTopWidth: .2,
+        borderTopColor: HexToRGB(COLORS.secondary1, .2),
         padding: SIZES.base(1),
         backgroundColor: COLORS.dark,
         flexDirection: 'row'

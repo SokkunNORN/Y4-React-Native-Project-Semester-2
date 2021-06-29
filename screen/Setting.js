@@ -73,6 +73,14 @@ const Setting = () => {
                 rightTxt: null,
                 isIconRight: false,
                 isSwitchBtn: true
+            },
+            {
+                title: 'Chat Background',
+                icon: 'image',
+                iconColor: COLORS.info,
+                rightTxt: null,
+                isIconRight: true,
+                isSwitchBtn: true
             }
         ],
         [
