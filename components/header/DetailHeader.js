@@ -26,12 +26,16 @@ const DetailHeader = props => {
         <AppContext.Consumer>
             {
                 ({ isDark }) =>
-                <SafeAreaView style={{ backgroundColor: isDark ? COLORS.dark : COLORS. light_gray }}>
+                <SafeAreaView style={{ 
+                    backgroundColor: props.backgroundColor ? props.backgroundColor : 
+                    isDark ? COLORS.dark : COLORS. light_gray 
+                }}>
                     <StatusBar barStyle={ isDark ? 'light-content' : 'dark-content' } />
                     <Appbar.Header style={[
                         styles.header,
                         {
-                            backgroundColor: isDark ? COLORS.dark : COLORS.light_gray
+                            backgroundColor: props.backgroundColor ? props.backgroundColor : 
+                            isDark ? COLORS.dark : COLORS. light_gray 
                         }
                     ]}>
                         <Appbar.Action
