@@ -7,7 +7,8 @@ import {
     KeyboardAvoidingView,
     Platform,
     ScrollView,
-    TouchableWithoutFeedback
+    TouchableWithoutFeedback,
+    ImageBackground
 } from 'react-native'
 import { Badge } from 'react-native-paper'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
@@ -76,6 +77,11 @@ const ChatDetail = ({ route }) => {
                         backgroundColor: isDark ? COLORS.dark : COLORS. light_gray
                     }
                 ]}>
+                    <ImageBackground
+                        source={ require('../asset/chat_background/default.jpeg') }
+                        imageStyle={ styles.chat_image_background }
+                        style={ styles.chat_image_background }
+                    >
                     <DetailHeader
                         iconRight1='phone'
                         iconRight2='video'
@@ -171,6 +177,7 @@ const ChatDetail = ({ route }) => {
                             </View>  
                         </KeyboardAvoidingView>
                     </View>
+                </ImageBackground>
                 </SafeAreaView>
             }
         </AppContext.Consumer>
@@ -186,6 +193,10 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1
+    },
+    chat_image_background: {
+        width: 100 + '%',
+        height: 100 + '%'
     },
     header: {
         flex: 1
