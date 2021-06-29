@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.primary
     },
     searchField: {
-      borderWidth: .167,
+      borderWidth: .17,
       borderColor: COLORS.secondary1,
       borderRadius: SIZES.radius(1),
       marginLeft: SIZES.base(),
@@ -160,7 +160,9 @@ const styles = StyleSheet.create({
       color: COLORS.white,
       height: SIZES.customHiegthTextField(8),
       width: SIZES.width - SIZES.base(14),
-      position: 'absolute'
+      position: 'absolute',
+      elevation: 0,
+      shadowOpacity: 0,
     },
     joinBtn: {
         marginRight: SIZES.base(),
