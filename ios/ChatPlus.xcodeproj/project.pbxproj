@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00E356F31AD99517003FC87E /* CamHotelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* CamHotelTests.m */; };
+		00E356F31AD99517003FC87E /* ChatPlusTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* ChatPlusTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		6136A5ED521AAB347A3B67FF /* libPods-ChatPlus.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E504C90DBC2F5DE09C96932E /* libPods-ChatPlus.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		B94054967BDB5725C875F6D2 /* libPods-CamHotel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 675DA66613572EC779BF2440 /* libPods-CamHotel.a */; };
-		BEAEDE67D7CB7CDA87D243DA /* libPods-CamHotel-CamHotelTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A5F4BFB048DC2CE6DEA5765E /* libPods-CamHotel-CamHotelTests.a */; };
+		C9E32B748C9F96B22EAA0AEA /* libPods-ChatPlus-ChatPlusTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B62681CD4188D413F824D58 /* libPods-ChatPlus-ChatPlusTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -22,27 +22,27 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = CamHotel;
+			remoteInfo = ChatPlus;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00E356EE1AD99517003FC87E /* CamHotelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CamHotelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* ChatPlusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChatPlusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* CamHotelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CamHotelTests.m; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* CamHotel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CamHotel.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = CamHotel/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = CamHotel/AppDelegate.m; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = CamHotel/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = CamHotel/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = CamHotel/main.m; sourceTree = "<group>"; };
-		1F994A2AB8C76251DE33559C /* Pods-CamHotel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CamHotel.debug.xcconfig"; path = "Target Support Files/Pods-CamHotel/Pods-CamHotel.debug.xcconfig"; sourceTree = "<group>"; };
-		23A4177CE5A8D454E5E11656 /* Pods-CamHotel-CamHotelTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CamHotel-CamHotelTests.release.xcconfig"; path = "Target Support Files/Pods-CamHotel-CamHotelTests/Pods-CamHotel-CamHotelTests.release.xcconfig"; sourceTree = "<group>"; };
-		675DA66613572EC779BF2440 /* libPods-CamHotel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CamHotel.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = CamHotel/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		9443BD9F03D43F92AC192567 /* Pods-CamHotel-CamHotelTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CamHotel-CamHotelTests.debug.xcconfig"; path = "Target Support Files/Pods-CamHotel-CamHotelTests/Pods-CamHotel-CamHotelTests.debug.xcconfig"; sourceTree = "<group>"; };
-		9FADC026CF2E0F58184FDA21 /* Pods-CamHotel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CamHotel.release.xcconfig"; path = "Target Support Files/Pods-CamHotel/Pods-CamHotel.release.xcconfig"; sourceTree = "<group>"; };
-		A5F4BFB048DC2CE6DEA5765E /* libPods-CamHotel-CamHotelTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CamHotel-CamHotelTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356F21AD99517003FC87E /* ChatPlusTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatPlusTests.m; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* ChatPlus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatPlus.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ChatPlus/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ChatPlus/AppDelegate.m; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ChatPlus/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ChatPlus/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ChatPlus/main.m; sourceTree = "<group>"; };
+		1DF91D75A03BB01930483123 /* Pods-ChatPlus-ChatPlusTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatPlus-ChatPlusTests.release.xcconfig"; path = "Target Support Files/Pods-ChatPlus-ChatPlusTests/Pods-ChatPlus-ChatPlusTests.release.xcconfig"; sourceTree = "<group>"; };
+		266C7262EDF9D1734BA1CA0B /* Pods-ChatPlus-ChatPlusTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatPlus-ChatPlusTests.debug.xcconfig"; path = "Target Support Files/Pods-ChatPlus-ChatPlusTests/Pods-ChatPlus-ChatPlusTests.debug.xcconfig"; sourceTree = "<group>"; };
+		4B62681CD4188D413F824D58 /* libPods-ChatPlus-ChatPlusTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ChatPlus-ChatPlusTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = ChatPlus/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A402F429659E5EA29124BC4C /* Pods-ChatPlus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatPlus.release.xcconfig"; path = "Target Support Files/Pods-ChatPlus/Pods-ChatPlus.release.xcconfig"; sourceTree = "<group>"; };
+		C51C27246E09B0D4619573AA /* Pods-ChatPlus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatPlus.debug.xcconfig"; path = "Target Support Files/Pods-ChatPlus/Pods-ChatPlus.debug.xcconfig"; sourceTree = "<group>"; };
+		E504C90DBC2F5DE09C96932E /* libPods-ChatPlus.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ChatPlus.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -51,7 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BEAEDE67D7CB7CDA87D243DA /* libPods-CamHotel-CamHotelTests.a in Frameworks */,
+				C9E32B748C9F96B22EAA0AEA /* libPods-ChatPlus-ChatPlusTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,20 +59,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B94054967BDB5725C875F6D2 /* libPods-CamHotel.a in Frameworks */,
+				6136A5ED521AAB347A3B67FF /* libPods-ChatPlus.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* CamHotelTests */ = {
+		00E356EF1AD99517003FC87E /* ChatPlusTests */ = {
 			isa = PBXGroup;
 			children = (
-				00E356F21AD99517003FC87E /* CamHotelTests.m */,
+				00E356F21AD99517003FC87E /* ChatPlusTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = CamHotelTests;
+			path = ChatPlusTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -83,7 +83,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* CamHotel */ = {
+		13B07FAE1A68108700A75B9A /* ChatPlus */ = {
 			isa = PBXGroup;
 			children = (
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -93,15 +93,15 @@
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
-			name = CamHotel;
+			name = ChatPlus;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				675DA66613572EC779BF2440 /* libPods-CamHotel.a */,
-				A5F4BFB048DC2CE6DEA5765E /* libPods-CamHotel-CamHotelTests.a */,
+				E504C90DBC2F5DE09C96932E /* libPods-ChatPlus.a */,
+				4B62681CD4188D413F824D58 /* libPods-ChatPlus-ChatPlusTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -116,12 +116,12 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				13B07FAE1A68108700A75B9A /* CamHotel */,
+				13B07FAE1A68108700A75B9A /* ChatPlus */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* CamHotelTests */,
+				00E356EF1AD99517003FC87E /* ChatPlusTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				C4F6EABF63A8200E80BF7399 /* Pods */,
+				8EFA2F029F1335F37D992612 /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -131,19 +131,19 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* CamHotel.app */,
-				00E356EE1AD99517003FC87E /* CamHotelTests.xctest */,
+				13B07F961A680F5B00A75B9A /* ChatPlus.app */,
+				00E356EE1AD99517003FC87E /* ChatPlusTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C4F6EABF63A8200E80BF7399 /* Pods */ = {
+		8EFA2F029F1335F37D992612 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				1F994A2AB8C76251DE33559C /* Pods-CamHotel.debug.xcconfig */,
-				9FADC026CF2E0F58184FDA21 /* Pods-CamHotel.release.xcconfig */,
-				9443BD9F03D43F92AC192567 /* Pods-CamHotel-CamHotelTests.debug.xcconfig */,
-				23A4177CE5A8D454E5E11656 /* Pods-CamHotel-CamHotelTests.release.xcconfig */,
+				C51C27246E09B0D4619573AA /* Pods-ChatPlus.debug.xcconfig */,
+				A402F429659E5EA29124BC4C /* Pods-ChatPlus.release.xcconfig */,
+				266C7262EDF9D1734BA1CA0B /* Pods-ChatPlus-ChatPlusTests.debug.xcconfig */,
+				1DF91D75A03BB01930483123 /* Pods-ChatPlus-ChatPlusTests.release.xcconfig */,
 			);
 			name = Pods;
 			path = Pods;
@@ -152,47 +152,47 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* CamHotelTests */ = {
+		00E356ED1AD99517003FC87E /* ChatPlusTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "CamHotelTests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "ChatPlusTests" */;
 			buildPhases = (
-				F2ACEF9425DB4C07F0A7C0B8 /* [CP] Check Pods Manifest.lock */,
+				8A0A3B4E499A8AFFEECB5194 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				C9B9D0112CB9C670B4BF9835 /* [CP] Embed Pods Frameworks */,
-				EFDC45E4FB71238208072BB8 /* [CP] Copy Pods Resources */,
+				690591E43F95A08BE3C2EAF0 /* [CP] Embed Pods Frameworks */,
+				95B86963720458A245C8CD1A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = CamHotelTests;
-			productName = CamHotelTests;
-			productReference = 00E356EE1AD99517003FC87E /* CamHotelTests.xctest */;
+			name = ChatPlusTests;
+			productName = ChatPlusTests;
+			productReference = 00E356EE1AD99517003FC87E /* ChatPlusTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* CamHotel */ = {
+		13B07F861A680F5B00A75B9A /* ChatPlus */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "CamHotel" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "ChatPlus" */;
 			buildPhases = (
-				61FE6BDE6F0EEBD9DC787CFF /* [CP] Check Pods Manifest.lock */,
+				B3952B7285BC60F032E39477 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				FF1A5BD40FD3BCE5A32D5D74 /* [CP] Embed Pods Frameworks */,
-				AB692BDF239AFB1B793D8814 /* [CP] Copy Pods Resources */,
+				2041DDA8E0B932CA271E6392 /* [CP] Embed Pods Frameworks */,
+				34EF5CDB707559C628F7723A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = CamHotel;
-			productName = CamHotel;
-			productReference = 13B07F961A680F5B00A75B9A /* CamHotel.app */;
+			name = ChatPlus;
+			productName = ChatPlus;
+			productReference = 13B07F961A680F5B00A75B9A /* ChatPlus.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -212,7 +212,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "CamHotel" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "ChatPlus" */;
 			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -225,8 +225,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* CamHotel */,
-				00E356ED1AD99517003FC87E /* CamHotelTests */,
+				13B07F861A680F5B00A75B9A /* ChatPlus */,
+				00E356ED1AD99517003FC87E /* ChatPlusTests */,
 			);
 		};
 /* End PBXProject section */
@@ -265,7 +265,58 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nexport NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
-		61FE6BDE6F0EEBD9DC787CFF /* [CP] Check Pods Manifest.lock */ = {
+		2041DDA8E0B932CA271E6392 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ChatPlus/Pods-ChatPlus-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ChatPlus/Pods-ChatPlus-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ChatPlus/Pods-ChatPlus-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		34EF5CDB707559C628F7723A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ChatPlus/Pods-ChatPlus-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ChatPlus/Pods-ChatPlus-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ChatPlus/Pods-ChatPlus-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		690591E43F95A08BE3C2EAF0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ChatPlus-ChatPlusTests/Pods-ChatPlus-ChatPlusTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ChatPlus-ChatPlusTests/Pods-ChatPlus-ChatPlusTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ChatPlus-ChatPlusTests/Pods-ChatPlus-ChatPlusTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8A0A3B4E499A8AFFEECB5194 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -280,65 +331,31 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-CamHotel-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-ChatPlus-ChatPlusTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AB692BDF239AFB1B793D8814 /* [CP] Copy Pods Resources */ = {
+		95B86963720458A245C8CD1A /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CamHotel/Pods-CamHotel-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-ChatPlus-ChatPlusTests/Pods-ChatPlus-ChatPlusTests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CamHotel/Pods-CamHotel-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-ChatPlus-ChatPlusTests/Pods-ChatPlus-ChatPlusTests-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CamHotel/Pods-CamHotel-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ChatPlus-ChatPlusTests/Pods-ChatPlus-ChatPlusTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C9B9D0112CB9C670B4BF9835 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CamHotel-CamHotelTests/Pods-CamHotel-CamHotelTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CamHotel-CamHotelTests/Pods-CamHotel-CamHotelTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CamHotel-CamHotelTests/Pods-CamHotel-CamHotelTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EFDC45E4FB71238208072BB8 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CamHotel-CamHotelTests/Pods-CamHotel-CamHotelTests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CamHotel-CamHotelTests/Pods-CamHotel-CamHotelTests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CamHotel-CamHotelTests/Pods-CamHotel-CamHotelTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F2ACEF9425DB4C07F0A7C0B8 /* [CP] Check Pods Manifest.lock */ = {
+		B3952B7285BC60F032E39477 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -353,7 +370,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-CamHotel-CamHotelTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-ChatPlus-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -379,23 +396,6 @@
 			shellScript = "export RCT_METRO_PORT=\"${RCT_METRO_PORT:=8081}\"\necho \"export RCT_METRO_PORT=${RCT_METRO_PORT}\" > \"${SRCROOT}/../node_modules/react-native/scripts/.packager.env\"\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\n  if nc -w 5 -z localhost ${RCT_METRO_PORT} ; then\n    if ! curl -s \"http://localhost:${RCT_METRO_PORT}/status\" | grep -q \"packager-status:running\" ; then\n      echo \"Port ${RCT_METRO_PORT} already in use, packager is either not running or not running correctly\"\n      exit 2\n    fi\n  else\n    open \"$SRCROOT/../node_modules/react-native/scripts/launchPackager.command\" || echo \"Can't start packager automatically\"\n  fi\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		FF1A5BD40FD3BCE5A32D5D74 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CamHotel/Pods-CamHotel-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CamHotel/Pods-CamHotel-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CamHotel/Pods-CamHotel-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -403,7 +403,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00E356F31AD99517003FC87E /* CamHotelTests.m in Sources */,
+				00E356F31AD99517003FC87E /* ChatPlusTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,7 +421,7 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* CamHotel */;
+			target = 13B07F861A680F5B00A75B9A /* ChatPlus */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -429,14 +429,14 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9443BD9F03D43F92AC192567 /* Pods-CamHotel-CamHotelTests.debug.xcconfig */;
+			baseConfigurationReference = 266C7262EDF9D1734BA1CA0B /* Pods-ChatPlus-ChatPlusTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = CamHotelTests/Info.plist;
+				INFOPLIST_FILE = ChatPlusTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -450,17 +450,17 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CamHotel.app/CamHotel";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ChatPlus.app/ChatPlus";
 			};
 			name = Debug;
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 23A4177CE5A8D454E5E11656 /* Pods-CamHotel-CamHotelTests.release.xcconfig */;
+			baseConfigurationReference = 1DF91D75A03BB01930483123 /* Pods-ChatPlus-ChatPlusTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				INFOPLIST_FILE = CamHotelTests/Info.plist;
+				INFOPLIST_FILE = ChatPlusTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -474,19 +474,19 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CamHotel.app/CamHotel";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ChatPlus.app/ChatPlus";
 			};
 			name = Release;
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1F994A2AB8C76251DE33559C /* Pods-CamHotel.debug.xcconfig */;
+			baseConfigurationReference = C51C27246E09B0D4619573AA /* Pods-ChatPlus.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = CamHotel/Info.plist;
+				INFOPLIST_FILE = ChatPlus/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -497,7 +497,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = CamHotel;
+				PRODUCT_NAME = ChatPlus;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -506,12 +506,12 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9FADC026CF2E0F58184FDA21 /* Pods-CamHotel.release.xcconfig */;
+			baseConfigurationReference = A402F429659E5EA29124BC4C /* Pods-ChatPlus.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				INFOPLIST_FILE = CamHotel/Info.plist;
+				INFOPLIST_FILE = ChatPlus/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -522,7 +522,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = CamHotel;
+				PRODUCT_NAME = ChatPlus;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -654,7 +654,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "CamHotelTests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "ChatPlusTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -663,7 +663,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "CamHotel" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "ChatPlus" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -672,7 +672,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "CamHotel" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "ChatPlus" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,
