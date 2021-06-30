@@ -16,7 +16,13 @@ import AppContext from '../../context'
 
 console.disableYellowBox = true
 
-const Header = props => {
+const Header = ({
+    title = '',
+    isSearch = false,
+    isJoined = false,
+    icon = '',
+    onClickBtnOne = () => {}
+}) => {
 
     const [isShowSearchField, setIsShowSearchField] = useState(false)
 
@@ -90,15 +96,15 @@ const Header = props => {
                             </> :
                             <>
                                 <Appbar.Content
-                                    title={ props.title }
+                                    title={ title }
                                     titleStyle={[
                                         styles.headerTitle
                                     ]}/>
-                                { props.isSearch ? <SearchIcon navigation={ props.navigation } isDark={ isDark }/> : null }
+                                { isSearch ? <SearchIcon isDark={ isDark }/> : null }
                                 { 
-                                    props.isJoined ?
+                                    isJoined ?
                                         <Button
-                                            icon={ props.icon }
+                                            icon={ icon }
                                             color={ COLORS.warning }
                                             style={ styles.joinBtn }
                                             labelStyle={ styles.labelStyle }
@@ -114,9 +120,9 @@ const Header = props => {
                                                 backgroundColor: isDark ? COLORS.primary : COLORS.secondary
                                             }
                                         ]}
-                                        icon={ props.icon } 
+                                        icon={ icon } 
                                         color={ COLORS.warning } 
-                                        onPress={ () => props.onClickBtnOne() }
+                                        onPress={ () => onClickBtnOne() }
                                     /> 
                                 }
                             </>
