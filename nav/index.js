@@ -1,5 +1,5 @@
 import React from 'react'
-import { createStackNavigator } from '@react-navigation/stack'
+import { CardStyleInterpolators, createStackNavigator } from '@react-navigation/stack'
 import BottomNav from './BottomNav'
 import Routes from '../routes'
 import {
@@ -7,7 +7,8 @@ import {
     ChatDetail,
     Verification,
     SettingDetail,
-    Information
+    Information,
+    EditAccount
 } from '../screen'
 import {
     COLORS
@@ -57,7 +58,8 @@ const Navigate = () => {
                     name={ Routes.DASHBOARD } 
                     component={ BottomNav }
                     options={{
-                        headerShown: false
+                        headerShown: false,
+                        cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS
                     }}
                 />
                 <Stack.Screen
@@ -78,6 +80,17 @@ const Navigate = () => {
                         cardStyle: {
                             backgroundColor: isDark ? COLORS.primary1 : COLORS.light_gray
                         }
+                    }}
+                />
+                <Stack.Screen
+                    name={ Routes.EDIT_PROFIILE }
+                    component={ EditAccount }
+                    options={{
+                        headerShown: false,
+                        cardStyle: {
+                            backgroundColor: isDark ? COLORS.primary1 : COLORS.light_gray
+                        },
+                        cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS
                     }}
                 />
             </Stack.Navigator>
