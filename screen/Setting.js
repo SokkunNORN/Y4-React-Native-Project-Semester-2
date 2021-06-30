@@ -11,7 +11,7 @@ import {
     View,
     ActionSheetIOS
 } from 'react-native'
-import { SIZES, COLORS, FONTS, HexToRGB } from '../constant'
+import { SIZES, COLORS, FONTS, HexToRGB, Rounder } from '../constant'
 import ListSetting from '../components/ListSetting'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { useNavigation } from '@react-navigation/native'
@@ -169,6 +169,10 @@ const Setting = () => {
         }
     }
 
+    const pushToEditScreen = () => {
+        navigation.push(Routes.EDIT_PROFIILE)
+    }
+
     return (
         <AppContext.Consumer>
             {
@@ -177,6 +181,7 @@ const Setting = () => {
                 <Header
                     title="Settings"
                     icon="pencil-box-outline"
+                    onClickBtnOne={ () => pushToEditScreen() }
                 />
 
                 <ScrollView

@@ -116,7 +116,7 @@ const Header = props => {
                                         ]}
                                         icon={ props.icon } 
                                         color={ COLORS.warning } 
-                                        onPress={() => {}}
+                                        onPress={ () => props.onClickBtnOne() }
                                     /> 
                                 }
                             </>
@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
       shadowOpacity: 0,
     },
     joinBtn: {
-        marginRight: SIZES.base(),
+        marginRight: SIZES.base(1),
         borderColor: COLORS.warning,
         borderWidth: .9,
         borderRadius: SIZES.radius(4),

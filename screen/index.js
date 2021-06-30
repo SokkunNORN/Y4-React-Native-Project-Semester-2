@@ -8,6 +8,7 @@ import ChatDetail from './ChatDetail'
 import Discover from './Discover'
 import Setting from './Setting'
 import SettingDetail from './SettingDetail'
+import EditAccount from './EditProfile'
 
 export {
     Greeting,
@@ -18,5 +19,6 @@ export {
     ChatDetail,
     Discover,
     Setting,
-    SettingDetail
+    SettingDetail,
+    EditAccount
 }

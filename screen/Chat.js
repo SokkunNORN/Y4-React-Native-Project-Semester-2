@@ -19,6 +19,7 @@ const Chat = () => {
                 title="Chat Plus"
                 isSearch
                 icon="plus"
+                onClickBtnOne={ () => {} }
             />
             <ScrollView
                 showsVerticalScrollIndicator={ false }
