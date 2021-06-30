@@ -6,7 +6,8 @@ import {
     PhoneNumber,
     ChatDetail,
     Verification,
-    SettingDetail
+    SettingDetail,
+    Information
 } from '../screen'
 import {
     COLORS
@@ -35,6 +36,16 @@ const Navigate = () => {
                 <Stack.Screen
                     name={ Routes.VERIFICATION }
                     component={ Verification }
+                    options={{
+                        headerShown: false,
+                        cardStyle: {
+                            backgroundColor: isDark ? COLORS.primary1 : COLORS.white
+                        }
+                    }}
+                />
+                <Stack.Screen
+                    name={ Routes.INFORMATION }
+                    component={ Information }
                     options={{
                         headerShown: false,
                         cardStyle: {

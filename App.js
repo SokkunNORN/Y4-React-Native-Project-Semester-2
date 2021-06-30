@@ -15,7 +15,7 @@ import AppContext from './context'
 const App = () => {
 
   const [isGreeting, setGreeting] = useState(true)
-  const [isDarkTheme, setIsDarkTheme] = useState(true)
+  const [isDarkTheme, setIsDarkTheme] = useState(false)
   const [chatBackgroundIndex, setChatBackgroundIndex] = useState(0)
 
   const onChangeTheme = () => {
