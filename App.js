@@ -36,7 +36,7 @@ const App = () => {
     <AppContext.Provider
       value={{
         language: 'Englist',
-        isDark: !isDarkTheme,
+        isDark: isDarkTheme,
         chatBackgroundIndex: chatBackgroundIndex,
         auth: null,
         onChangeTheme: () => onChangeTheme(),
