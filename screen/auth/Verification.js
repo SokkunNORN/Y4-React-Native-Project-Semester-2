@@ -34,7 +34,7 @@ const Verification = ({ route }) => {
             internalVar.length >= 3
         ) {
             setTimeout(() => {
-                navigation.push(Routes.DASHBOARD)
+                navigation.push(Routes.INFORMATION)
             }, 500)
         }
     }

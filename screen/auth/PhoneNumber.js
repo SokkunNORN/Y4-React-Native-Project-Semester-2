@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import {
     StyleSheet,
     View,
@@ -54,7 +54,7 @@ const PhoneNumber = () => {
             <TouchableWithoutFeedback
                 onPress={ () => Keyboard.dismiss() }
             >
-                <>
+                <View style={{ flex: 1 }}>
                     <StatusBar barStyle={ isDark ? 'light-content' : 'dark-content' } />
                     <View
                         style={ styles.container }
@@ -142,7 +142,7 @@ const PhoneNumber = () => {
                             </View>
                         </KeyboardAvoidingView>
                     </View>
-                </>
+                </View>
             </TouchableWithoutFeedback>
         }
         </AppContext.Consumer>
