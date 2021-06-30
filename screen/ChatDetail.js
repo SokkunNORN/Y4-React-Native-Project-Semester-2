@@ -77,7 +77,7 @@ const ChatDetail = ({ route }) => {
                 <SafeAreaView style={[
                     styles.safe_area_view,
                     {
-                        backgroundColor: isDark ? COLORS.dark : COLORS. light_gray
+                        backgroundColor: isDark ? COLORS.dark : COLORS.light_gray
                     }
                 ]}>
                     <ImageBackground
