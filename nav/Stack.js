@@ -7,59 +7,76 @@ import {
 } from '../screen'
 import Routes from '../routes'
 import { COLORS } from '../constant'
+import AppContext from '../context'
 
 const Stack = createStackNavigator()
+const ChatPlusContext = AppContext
 
 export const ChatStackScreen = () => {
     return (
-      <Stack.Navigator screenOptions={{
-        cardStyle: {
-          backgroundColor: COLORS.primary
+      <ChatPlusContext.Consumer>
+        {
+          ({ isDark }) => 
+          <Stack.Navigator screenOptions={{
+            cardStyle: {
+              backgroundColor: isDark ? COLORS.primary : COLORS.light_gray
+            }
+          }}>
+            <Stack.Screen
+              name={ Routes.CHAT }
+              component={ Chat }
+              options={{
+                headerShown: false
+              }}
+            />
+          </Stack.Navigator>
         }
-      }}>
-        <Stack.Screen
-          name={ Routes.CHAT }
-          component={ Chat }
-          options={{
-            headerShown: false
-          }}
-        />
-      </Stack.Navigator>
+      </ChatPlusContext.Consumer>
     )
 }
 
 export const DiscoverStackScreen = () => {
     return (
-      <Stack.Navigator screenOptions={{
-        cardStyle: {
-          backgroundColor: COLORS.dark
+      <ChatPlusContext.Consumer>
+        {
+          ({ isDark }) => 
+          <Stack.Navigator screenOptions={{
+            cardStyle: {
+              backgroundColor: isDark ? COLORS.dark : COLORS.light_gray
+            }
+          }}>
+            <Stack.Screen
+              name={ Routes.DISCOVER }
+              component={ Discover }
+              options={{
+                headerShown: false
+              }}
+            />
+          </Stack.Navigator>
         }
-      }}>
-        <Stack.Screen
-          name={ Routes.DISCOVER }
-          component={ Discover }
-          options={{
-            headerShown: false
-          }}
-        />
-      </Stack.Navigator>
+      </ChatPlusContext.Consumer>
     )
 }
 
 export const SettingStackScreen = () => {
     return (
-      <Stack.Navigator screenOptions={{
-          cardStyle: {
-            backgroundColor: COLORS.dark
-          }
-      }}>
-        <Stack.Screen
-          name={ Routes.SETTINGS }
-          component={ Setting }
-          options={{
-            headerShown: false
-          }}
-        />
-      </Stack.Navigator>
+      <ChatPlusContext.Consumer>
+        {
+          ({ isDark }) => 
+          <Stack.Navigator screenOptions={{
+            cardStyle: {
+              backgroundColor: isDark ? COLORS.dark : COLORS.light_gray
+            }
+          }}>
+            <Stack.Screen
+              name={ Routes.SETTINGS }
+              component={ Setting }
+              options={{
+                headerShown: false
+              }}
+            />
+          </Stack.Navigator>
+        }
+      </ChatPlusContext.Consumer>
     )
 }

@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "CamHotel.app"
-               BlueprintName = "CamHotel"
-               ReferencedContainer = "container:CamHotel.xcodeproj">
+               BuildableName = "ChatPlus.app"
+               BlueprintName = "ChatPlus"
+               ReferencedContainer = "container:ChatPlus.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "CamHotelTests.xctest"
-               BlueprintName = "CamHotelTests"
-               ReferencedContainer = "container:CamHotel.xcodeproj">
+               BuildableName = "ChatPlusTests.xctest"
+               BlueprintName = "ChatPlusTests"
+               ReferencedContainer = "container:ChatPlus.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "CamHotel.app"
-            BlueprintName = "CamHotel"
-            ReferencedContainer = "container:CamHotel.xcodeproj">
+            BuildableName = "ChatPlus.app"
+            BlueprintName = "ChatPlus"
+            ReferencedContainer = "container:ChatPlus.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "CamHotel.app"
-            BlueprintName = "CamHotel"
-            ReferencedContainer = "container:CamHotel.xcodeproj">
+            BuildableName = "ChatPlus.app"
+            BlueprintName = "ChatPlus"
+            ReferencedContainer = "container:ChatPlus.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

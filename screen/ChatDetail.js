@@ -7,14 +7,16 @@ import {
     KeyboardAvoidingView,
     Platform,
     ScrollView,
-    TouchableWithoutFeedback
+    TouchableWithoutFeedback,
+    ImageBackground
 } from 'react-native'
 import { Badge } from 'react-native-paper'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import DetailHeader from '../components/header/DetailHeader'
-import { COLORS, FONTS, SIZES } from '../constant'
+import { COLORS, FONTS, SIZES, HexToRGB, CHAT_BACKGROUND } from '../constant'
 const keyboardVerticalOffset = Platform.OS === 'ios' ? SIZES.base(12.5) : 0
 import MessageBubble from '../components/MessageBubble'
+import AppContext from '../context'
 
 let yPosition = 0
 
@@ -66,87 +68,122 @@ const ChatDetail = ({ route }) => {
     }
 
     return (
-        <SafeAreaView style={ styles.safe_area_view }>
-            <DetailHeader
-                iconRight1='phone'
-                iconRight2='video'
-                iconRight3='dots-vertical'
-                name={ name }
-                isProfile
-            />
-            <View style={ styles.container }>
-                <View style={ styles.header }>
-                    <ScrollView
-                        keyboardDismissMode='interactive'
-                        showsHorizontalScrollIndicator={ false }
-                        ref={ scrollViewRef }
-                        onScroll={ onScroll }
-                        onContentSizeChange={ onContentSizeChange }
+        <AppContext.Consumer>
+            {
+                ({ 
+                    isDark,
+                    chatBackgroundIndex
+                }) =>
+                <SafeAreaView style={[
+                    styles.safe_area_view,
+                    {
+                        backgroundColor: isDark ? COLORS.dark : COLORS.light_gray
+                    }
+                ]}>
+                    <ImageBackground
+                        source={ CHAT_BACKGROUND[chatBackgroundIndex] }
+                        imageStyle={ styles.chat_image_background }
+                        style={ styles.chat_image_background }
                     >
-                        {
-                            messages.map(item => (
-                                <MessageBubble
-                                    owner={ item.owner }
-                                    text={ item.messages }
-                                    time={ item.time }
-                                />
-                            ))
-                        }
-                    </ScrollView>
-                </View>
-                <KeyboardAvoidingView
-                    behavior={ Platform.OS === 'ios' ? 'padding' : null }
-                    keyboardVerticalOffset={ keyboardVerticalOffset }
-                >
-                    <View style={ styles.footer }>
-                        <Icon
-                            name={ 'sticker-emoji' } 
-                            style={ styles.icon_left_text }
-                            color={ COLORS.secondary1 } size={ SIZES.base(3.5) } />
-                        <Icon
-                            name={ 'paperclip' } 
-                            style={ styles.icon_left_text }
-                            color={ COLORS.secondary1 } size={ SIZES.base(3.5) } />
-                        <TextInput
-                            keyboardAppearance='dark'
-                            placeholder='Write your message'
-                            placeholderTextColor={ COLORS.secondary1 }
-                            style={ styles.message_text_field }
-                            value={ message }
-                            onChangeText={ value => setMessage(value) }
-                        />
-                        <View style={ styles.view_right_text }>
-                            <Icon
-                                name={ message.trim() ? 'send' : 'microphone' } 
-                                style={ styles.icon_right_text }
-                                color={ COLORS.dark } size={ SIZES.base(3.5) } />
+                    <DetailHeader
+                        iconRight1='phone'
+                        iconRight2='video'
+                        iconRight3='dots-vertical'
+                        name={ name }
+                        isProfile
+                    />
+                    <View style={ styles.container }>
+                        <View style={ styles.header }>
+                            <ScrollView
+                                keyboardDismissMode='interactive'
+                                showsVerticalScrollIndicator={ false }
+                                ref={ scrollViewRef }
+                                onScroll={ onScroll }
+                                onContentSizeChange={ onContentSizeChange }
+                            >
+                                {
+                                    messages.map(item => (
+                                        <MessageBubble
+                                            owner={ item.owner }
+                                            text={ item.messages }
+                                            time={ item.time }
+                                        />
+                                    ))
+                                }
+                            </ScrollView>
                         </View>
-                        {
-                            isBtnScrollDown ?
-                                <TouchableWithoutFeedback
-                                    onPress={ () => onScrollDown() }
-                                >
-                                    <View
-                                        style={ styles.view_icon_down }
-                                    >
-                                        <Badge
-                                            style={ styles.badge }
-                                            visible={ false }
+                        <KeyboardAvoidingView
+                            behavior={ Platform.OS === 'ios' ? 'padding' : null }
+                            keyboardVerticalOffset={ keyboardVerticalOffset }
+                        >
+                            <View style={[
+                                styles.footer,
+                                {
+                                    backgroundColor: isDark ? COLORS.dark : COLORS. light_gray
+                                }
+                            ]}>
+                                <Icon
+                                    name={ 'sticker-emoji' } 
+                                    style={ styles.icon_left_text }
+                                    color={ COLORS.secondary1 } size={ SIZES.base(3.5) } />
+                                <Icon
+                                    name={ 'paperclip' } 
+                                    style={ styles.icon_left_text }
+                                    color={ COLORS.secondary1 } size={ SIZES.base(3.5) } />
+                                <TextInput
+                                    keyboardAppearance={ isDark ? 'dark' : 'light' }
+                                    placeholder='Write your message'
+                                    placeholderTextColor={ COLORS.secondary1 }
+                                    style={[
+                                        styles.message_text_field,
+                                        {
+                                            backgroundColor: isDark ? COLORS.dark : COLORS.white,
+                                            color: isDark ? COLORS.white : COLORS.black
+                                        }
+                                    ]}
+                                    value={ message }
+                                    onChangeText={ value => setMessage(value) }
+                                />
+                                <View style={ styles.view_right_text }>
+                                    <Icon
+                                        name={ message.trim() ? 'send' : 'microphone' } 
+                                        style={ styles.icon_right_text }
+                                        color={ COLORS.dark } size={ SIZES.base(3.5) } />
+                                </View>
+                                {
+                                    isBtnScrollDown ?
+                                        <TouchableWithoutFeedback
+                                            onPress={ () => onScrollDown() }
                                         >
-                                            3.5K
-                                        </Badge>
-                                        <Icon
-                                            name={ 'chevron-down' } 
-                                            style={ styles.icon_down }
-                                            color={ COLORS.secondary1 } size={ SIZES.base(4.5) } />
-                                    </View>
-                                </TouchableWithoutFeedback>
-                            : null
-                        }
-                    </View>  
-                </KeyboardAvoidingView>
-            </View>
-        </SafeAreaView>
+                                            <View
+                                                style={[
+                                                    styles.view_icon_down,
+                                                    {
+                                                        backgroundColor: isDark ? COLORS.dark : COLORS.white
+                                                    }
+                                                ]}
+                                            >
+                                                <Badge
+                                                    style={ styles.badge }
+                                                    visible={ false }
+                                                >
+                                                    3.5K
+                                                </Badge>
+                                                <Icon
+                                                    name={ 'chevron-down' } 
+                                                    style={ styles.icon_down }
+                                                    color={ COLORS.warning } size={ SIZES.base(4.5) } />
+                                            </View>
+                                        </TouchableWithoutFeedback>
+                                    : null
+                                }
+                            </View>  
+                        </KeyboardAvoidingView>
+                    </View>
+                </ImageBackground>
+                </SafeAreaView>
+            }
+        </AppContext.Consumer>
     )
 }
 
@@ -160,10 +197,16 @@ const styles = StyleSheet.create({
     container: {
         flex: 1
     },
+    chat_image_background: {
+        width: 100 + '%',
+        height: 100 + '%'
+    },
     header: {
         flex: 1
     },
     footer: {
+        borderTopWidth: .2,
+        borderTopColor: HexToRGB(COLORS.secondary1, .2),
         padding: SIZES.base(1),
         backgroundColor: COLORS.dark,
         flexDirection: 'row'
@@ -184,7 +227,7 @@ const styles = StyleSheet.create({
         borderRadius: SIZES.radius(),
         width: SIZES.width - (SIZES.base(18.5)),
         marginStart: SIZES.base(.5),
-        borderWidth: .5,
+        borderWidth: .3,
         borderColor: COLORS.secondary1
     },
     view_right_text: {
@@ -201,8 +244,8 @@ const styles = StyleSheet.create({
         right: SIZES.base(1),
         padding: SIZES.base(.5),
         borderRadius: SIZES.radius(4),
-        borderWidth: .5,
-        borderColor: COLORS.secondary1,
+        borderWidth: .3,
+        borderColor: COLORS.warning,
         bottom: SIZES.base(8)
     },
     badge: {

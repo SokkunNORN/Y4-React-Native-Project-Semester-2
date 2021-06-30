@@ -11,12 +11,16 @@ import {
 import {
     COLORS
 } from '../constant'
+import AppContext from '../context'
 
 const Stack = createStackNavigator();
 
 const Navigate = () => {
+
     return (
-        <>
+        <AppContext.Consumer>
+            {
+            ({ isDark }) =>
             <Stack.Navigator>
                 <Stack.Screen
                     name={ Routes.PHONE_NUMBER }
@@ -24,7 +28,7 @@ const Navigate = () => {
                     options={{
                         headerShown: false,
                         cardStyle: {
-                            backgroundColor: COLORS.primary1
+                            backgroundColor: isDark ? COLORS.primary1 : COLORS.white
                         }
                     }}
                 />
@@ -34,7 +38,7 @@ const Navigate = () => {
                     options={{
                         headerShown: false,
                         cardStyle: {
-                            backgroundColor: COLORS.primary1
+                            backgroundColor: isDark ? COLORS.primary1 : COLORS.white
                         }
                     }}
                 />
@@ -51,7 +55,7 @@ const Navigate = () => {
                     options={{
                         headerShown: false,
                         cardStyle: {
-                            backgroundColor: COLORS.primary
+                            backgroundColor: isDark ? COLORS.primary1 : COLORS.light_gray
                         }
                     }}
                 />
@@ -61,12 +65,13 @@ const Navigate = () => {
                     options={{
                         headerShown: false,
                         cardStyle: {
-                            backgroundColor: COLORS.dark
+                            backgroundColor: isDark ? COLORS.primary1 : COLORS.light_gray
                         }
                     }}
                 />
             </Stack.Navigator>
-        </>
+            }
+        </AppContext.Consumer>
     )
 }
 

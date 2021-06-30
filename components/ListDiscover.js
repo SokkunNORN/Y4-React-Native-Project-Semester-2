@@ -15,57 +15,79 @@ import {
     Rounder, 
     COLORS
 } from '../constant'
+import AppContext from '../context'
 
 const ListDiscover = ({
     item = {}
 }) => {
     return (
-        <>
-            <Card
-                style={ styles.contain }
-            >
-                <Card.Cover
-                    source={ require('../asset/feature.jpeg') }
+        <AppContext.Consumer>
+            {
+                ({ isDark }) =>
+                <Card
                     style={[
-                        styles.image_news,
-                        Rounder(SIZES.base(5))
+                        styles.contain,
+                        {
+                            backgroundColor: isDark ? COLORS.primary : COLORS.white
+                        }
                     ]}
-                />
-                <View style={ styles.view_news }>
-                    <Text style={ styles.para }>{ item.category.title }</Text>
-                    <Title style={ styles.title } numberOfLines={ 1 }>{ item.title }</Title>
-                    <Text style={ styles.para } numberOfLines={ 2 }>{ item.content }</Text>
-                </View>
-
-                <View style={ styles.view_profile }>
+                >
                     <Card.Cover
-                        style={ styles.logo_slide }
-                        source={ require('../asset/news.png') }
-                    />
-                    <View style={ styles.title_profile }>
-                        <Title style={ styles.name_profile }>{ item.profile.name }</Title>
-                        <Paragraph style={ styles.joineder }>{ item.joineder } Members</Paragraph>
-                    </View>
-
-                    <Button
-                        disabled={ item.isJoined }
-                        icon={ item.isJoined ? 'check-circle' : null }
+                        source={ require('../asset/feature.jpeg') }
                         style={[
-                            styles.joined_btn,
-                            item.isJoined ? {} : styles.join_btn
+                            styles.image_news,
+                            Rounder(SIZES.base(5))
                         ]}
-                        labelStyle={[
-                            styles.label_style,
-                            item.isJoined ? {} : styles.label_join_btn
-                        ]}
-                        uppercase={ false }
-                        mode='outlined'
-                        onPress={() => {}}>
-                        Joined
-                    </Button>
-                </View>
-            </Card>
-        </>
+                    />
+                    <View style={ styles.view_news }>
+                        <Text style={ styles.para }>{ item.category.title }</Text>
+                        <Title style={[
+                            styles.title,
+                            {
+                                color: isDark ? COLORS.secondary : COLORS.black
+                            }
+                        ]} numberOfLines={ 1 }>{ item.title }</Title>
+                        <Text style={ styles.para } numberOfLines={ 2 }>{ item.content }</Text>
+                    </View>
+    
+                    <View style={[
+                        styles.view_profile,
+                        {
+                            backgroundColor: isDark ? COLORS.primary1 : COLORS.secondary
+                        }
+                    ]}>
+                        <Card.Cover
+                            style={ styles.logo_slide }
+                            source={ require('../asset/news.png') }
+                        />
+                        <View style={ styles.title_profile }>
+                            <Title style={ styles.name_profile }>{ item.profile.name }</Title>
+                            <Paragraph style={ styles.joineder }>{ item.joineder } Members</Paragraph>
+                        </View>
+    
+                        <Button
+                            disabled={ item.isJoined }
+                            icon={ item.isJoined ? 'check-circle' : null }
+                            style={[
+                                styles.joined_btn,
+                                !item.isJoined ? styles.join_btn : isDark ? {} :
+                                {
+                                    backgroundColor: COLORS.light_gray
+                                }
+                            ]}
+                            labelStyle={[
+                                styles.label_style,
+                                item.isJoined ? {} : styles.label_join_btn
+                            ]}
+                            uppercase={ false }
+                            mode='outlined'
+                            onPress={() => {}}>
+                            Joined
+                        </Button>
+                    </View>
+                </Card>
+            }
+        </AppContext.Consumer>
     )
 }
 
@@ -117,7 +139,8 @@ const styles = StyleSheet.create({
         position: 'absolute',
         marginStart: SIZES.base(8),
         width: SIZES.width - (SIZES.base(28)),
-        height: SIZES.base(4)
+        height: SIZES.base(4),
+        marginTop: SIZES.base(.3)
     },
     name_profile: {
         color: COLORS.secondary1,
@@ -129,7 +152,7 @@ const styles = StyleSheet.create({
     },
     joined_btn: {
         position: 'absolute',
-        marginTop: SIZES.base(1),
+        marginTop: SIZES.base(1.2),
         borderRadius: SIZES.radius(4),
         backgroundColor: COLORS.dark,
         width: SIZES.base(13),

@@ -12,6 +12,7 @@ import {
     Paragraph
 } from 'react-native-paper'
 import { COLORS, FONTS, SIZES } from '../../constant'
+import AppContext from '../../context'
 
 console.disableYellowBox = true
 
@@ -24,11 +25,16 @@ const Header = props => {
         setIsShowSearchField(false)
     }
 
-    const SearchIcon = () => {
+    const SearchIcon = ({
+        isDark
+    }) => {
         return (
             <Appbar.Action
                 style={[
-                    styles.appbar_icon
+                    styles.appbar_icon,
+                    {
+                        backgroundColor: isDark ? COLORS.primary : COLORS.secondary
+                    }
                 ]}
                 icon='magnify'
                 color={ COLORS.warning }
@@ -38,67 +44,87 @@ const Header = props => {
     }
 
     return (
-        <SafeAreaView style={ styles.safearea }>
-            <StatusBar barStyle='light-content' />
-            <Appbar.Header style={ styles.header }>
-                {
-                    isShowSearchField ?
-                    <>
-                        <Searchbar
-                            keyboardAppearance='dark'
-                            placeholder="Search"
-                            onChangeText={ () => {} }
-                            value={ null }
-                            style={[
-                                styles.searchField,
-                                isShowSearchField ? styles.showElement : styles.blockElement
-                            ]}
-                            color={ COLORS.white }
-                            fontSize={ SIZES.font() }
-                            placeholderTextColor={ COLORS.secondary1 }
-                            iconColor={ COLORS.secondary1 }
-                            autoFocus
-                        />
-                        <Appbar.Content />
-                        <Paragraph
-                            style={ styles.cancelBtn }
-                            onPress={ () => onCancelSearch() }
-                        >
-                            Cancel
-                        </Paragraph>
-                    </> :
-                    <>
-                        <Appbar.Content
-                            title={ props.title }
-                            titleStyle={[
-                                styles.headerTitle
-                            ]}/>
-                        { props.isSearch ? <SearchIcon navigation={ props.navigation } /> : null }
-                        { 
-                            props.isJoined ?
-                                <Button
-                                    icon={ props.icon }
-                                    color={ COLORS.warning }
-                                    style={ styles.joinBtn }
-                                    labelStyle={ styles.labelStyle }
-                                    uppercase={ false }
-                                    mode='outlined'
-                                    onPress={() => {}}>
-                                    Joined
-                                </Button>
-                            : <Appbar.Action
-                                style={[
-                                    styles.appbar_icon
-                                ]}
-                                icon={ props.icon } 
-                                color={ COLORS.warning } 
-                                onPress={() => {}}
-                            /> 
+        <AppContext.Consumer>
+            {
+                ({ isDark }) =>
+                <SafeAreaView style={[
+                    styles.safearea,
+                    {
+                        backgroundColor: isDark ? COLORS.dark : COLORS.light_gray
+                    }
+                ]}>
+                    <StatusBar barStyle={ isDark ? 'light-content' : 'dark-content' } />
+                    <Appbar.Header style={[
+                        styles.header,
+                        {
+                            backgroundColor: isDark ? COLORS.dark : COLORS.light_gray
                         }
-                    </>
-                }
-            </Appbar.Header>
-        </SafeAreaView>
+                    ]}>
+                        {
+                            isShowSearchField ?
+                            <>
+                                <Searchbar
+                                    keyboardAppearance={ isDark ? 'dark' : 'light' }
+                                    placeholder="Search"
+                                    onChangeText={ () => {} }
+                                    value={ null }
+                                    style={[
+                                        styles.searchField,
+                                        {
+                                            backgroundColor: isDark ? COLORS.primary : COLORS.white
+                                        }
+                                    ]}
+                                    color={ isDark ? COLORS.white : COLORS.black }
+                                    fontSize={ SIZES.font() }
+                                    placeholderTextColor={ COLORS.secondary1 }
+                                    iconColor={ COLORS.secondary1 }
+                                    autoFocus
+                                />
+                                <Appbar.Content />
+                                <Paragraph
+                                    style={ styles.cancelBtn }
+                                    onPress={ () => onCancelSearch() }
+                                >
+                                    Cancel
+                                </Paragraph>
+                            </> :
+                            <>
+                                <Appbar.Content
+                                    title={ props.title }
+                                    titleStyle={[
+                                        styles.headerTitle
+                                    ]}/>
+                                { props.isSearch ? <SearchIcon navigation={ props.navigation } isDark={ isDark }/> : null }
+                                { 
+                                    props.isJoined ?
+                                        <Button
+                                            icon={ props.icon }
+                                            color={ COLORS.warning }
+                                            style={ styles.joinBtn }
+                                            labelStyle={ styles.labelStyle }
+                                            uppercase={ false }
+                                            mode='outlined'
+                                            onPress={() => {}}>
+                                            Joined
+                                        </Button>
+                                    : <Appbar.Action
+                                        style={[
+                                            styles.appbar_icon,
+                                            {
+                                                backgroundColor: isDark ? COLORS.primary : COLORS.secondary
+                                            }
+                                        ]}
+                                        icon={ props.icon } 
+                                        color={ COLORS.warning } 
+                                        onPress={() => {}}
+                                    /> 
+                                }
+                            </>
+                        }
+                    </Appbar.Header>
+                </SafeAreaView>
+            }
+        </AppContext.Consumer>
     )
 }
 
@@ -123,7 +149,7 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.primary
     },
     searchField: {
-      borderWidth: .167,
+      borderWidth: .17,
       borderColor: COLORS.secondary1,
       borderRadius: SIZES.radius(1),
       marginLeft: SIZES.base(),
@@ -134,7 +160,9 @@ const styles = StyleSheet.create({
       color: COLORS.white,
       height: SIZES.customHiegthTextField(8),
       width: SIZES.width - SIZES.base(14),
-      position: 'absolute'
+      position: 'absolute',
+      elevation: 0,
+      shadowOpacity: 0,
     },
     joinBtn: {
         marginRight: SIZES.base(),

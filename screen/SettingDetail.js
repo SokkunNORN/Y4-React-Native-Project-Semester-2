@@ -1,22 +1,30 @@
 import React from 'react'
 import DetailHeader from '../components/header/DetailHeader'
-import DarkMode from '../components/settingDetail/DarkMode'
+import ChatBackground from '../components/settingDetail/ChatBackground'
+import { COLORS } from '../constant'
+import AppContext from '../context'
 
 const SettingDetail = ({ route }) => {
 
     const title = route.params.title
 
     return (
-        <>
-            <DetailHeader
-                title={ title }
-            />
+        <AppContext.Consumer>
             {
-                title === 'Dark Mode' ?
-                <DarkMode /> :
-                <></>
+                ({ isDark }) =>
+                <>
+                    <DetailHeader
+                        title={ title }
+                        backgroundColor={  isDark ? COLORS.primary1 : COLORS.light_gray }
+                    />
+                    {
+                        title === 'Chat Background' ?
+                        <ChatBackground /> :
+                        <></>
+                    }
+                </>
             }
-        </>
+        </AppContext.Consumer>
     )
 }
 

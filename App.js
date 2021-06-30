@@ -6,16 +6,50 @@
  * @flow strict-local
  */
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import Navigate from './nav'
+import { Greeting } from './screen'
+import AppContext from './context'
 
 const App = () => {
+
+  const [isGreeting, setGreeting] = useState(true)
+  const [isDarkTheme, setIsDarkTheme] = useState(true)
+  const [chatBackgroundIndex, setChatBackgroundIndex] = useState(0)
+
+  const onChangeTheme = () => {
+    setIsDarkTheme(!isDarkTheme)
+  }
+
+  const onChangeChatBackground = index => {
+    setChatBackgroundIndex(index)
+  }
+
+  useEffect(() => {
+    setTimeout(() => {
+      setGreeting(false)
+    }, 1000)
+  }, [])
+
   return (
-    <NavigationContainer>
-      <Navigate />
-    </NavigationContainer>
-  );
-};
+    <AppContext.Provider
+      value={{
+        language: 'Englist',
+        isDark: isDarkTheme,
+        chatBackgroundIndex: chatBackgroundIndex,
+        auth: null,
+        onChangeTheme: () => onChangeTheme(),
+        onChangeChatBackground: index => onChangeChatBackground(index)
+      }}
+    >
+      <NavigationContainer>
+        {
+          isGreeting ? <Greeting /> : <Navigate />
+        }
+      </NavigationContainer>
+    </AppContext.Provider>
+  )
+}
 
 export default App;

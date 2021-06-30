@@ -4,13 +4,16 @@ import {
     StyleSheet
 } from 'react-native'
 
+import AppContext from '../context'
+
 import {
     List,
-    Paragraph
+    Paragraph,
+    Switch
 } from 'react-native-paper'
 
 import {
-    COLORS, SIZES
+    COLORS, HexToRGB, SIZES
 } from '../constant'
 
 const ListSetting = ({
@@ -18,71 +21,138 @@ const ListSetting = ({
   setSelectItem = () => {}
 }) => {
     return (
-        <>
-            <List.Section>
-                {
-                    items.map(item => (
-                        item.title !== 'Version' ?
-                        <List.Item
-                            onPress={ () => setSelectItem(item) }
-                            style={ styles.list }
-                            titleStyle={ styles.title }
-                            title={ item.title } 
-                            left={() =>
-                                <List.Icon
-                                    style={[
-                                        styles.icon_left,
+
+        <AppContext.Consumer>
+            {
+                ({ 
+                    isDark,
+                    onChangeTheme
+                }) =>
+                <List.Section>
+                    {
+                        items.map((item, index) => (
+                            item.title !== 'Version' && item.title !== 'Dark Mode' ?
+                            <List.Item
+                                onPress={ () => setSelectItem(item) }
+                                style={[
+                                    styles.list,
+                                    {
+                                        backgroundColor: isDark ? COLORS.primary : COLORS.white,
+                                        marginBottom: index === (items.length - 1) && -SIZES.base(1)
+                                    }
+                                ]}
+                                titleStyle={[
+                                    {
+                                        color: isDark ? COLORS.white : COLORS.black
+                                    }
+                                ]}
+                                title={ item.title } 
+                                left={() =>
+                                    <List.Icon
+                                        style={[
+                                            styles.icon_left,
+                                            {
+                                                borderColor: item.iconColor
+                                            }
+                                        ]} 
+                                        color={ item.iconColor } 
+                                        icon={ item.icon } />
+                                }
+                                right={() => 
+                                    <>
+                                        <Paragraph style={[
+                                            styles.rightTxt,
+                                            !item.isIconRight && styles.rightTxtPadding
+                                        ]}>{ item.rightTxt }</Paragraph>
                                         {
-                                            borderColor: item.iconColor
+
+                                            item.isIconRight ? 
+                                            <List.Icon
+                                                style={ styles.iconRight }
+                                                color={ COLORS.secondary1 }
+                                                icon="chevron-right"
+                                            /> : <></>
                                         }
-                                    ]} 
-                                    color={ item.iconColor } 
-                                    icon={ item.icon } />
-                            }
-                            right={() => 
-                                <>
+                                    </>
+                                }
+                            /> :
+                            item.title === 'Version' ?
+                            <List.Item
+                                style={[
+                                    styles.list,
+                                    {
+                                        backgroundColor: isDark ? COLORS.primary : COLORS.white,
+                                        marginBottom: index === (items.length - 1) && -SIZES.base(1)
+                                    }
+                                ]}
+                                titleStyle={[
+                                    {
+                                        color: isDark ? COLORS.white : COLORS.black
+                                    }
+                                ]}
+                                title={ item.title } 
+                                left={() =>
+                                    <List.Icon
+                                        style={[
+                                            styles.icon_left,
+                                            {
+                                                borderColor: item.iconColor
+                                            }
+                                        ]} 
+                                        color={ item.iconColor } 
+                                        icon={ item.icon } />
+                                }
+                                right={() => 
                                     <Paragraph style={[
                                         styles.rightTxt,
                                         !item.isIconRight && styles.rightTxtPadding
                                     ]}>{ item.rightTxt }</Paragraph>
+                                }
+                            /> :
+                            <List.Item
+                                style={[
+                                    styles.list,
                                     {
-
-                                        item.isIconRight ? 
-                                        <List.Icon
-                                            style={ styles.iconRight }
-                                            color={ COLORS.secondary1 }
-                                            icon="chevron-right"
-                                        /> : <></>
+                                        backgroundColor: isDark ? COLORS.primary : COLORS.white,
+                                        marginBottom: index === (items.length - 1) && -SIZES.base(1)
                                     }
-                                </>
-                            }
-                        /> :
-                        <List.Item
-                            style={ styles.list }
-                            titleStyle={ styles.title }
-                            title={ item.title } 
-                            left={() =>
-                                <List.Icon
-                                    style={[
-                                        styles.icon_left,
-                                        {
-                                            borderColor: item.iconColor
-                                        }
-                                    ]} 
-                                    color={ item.iconColor } 
-                                    icon={ item.icon } />
-                            }
-                            right={() => 
-                                <Paragraph style={[
-                                    styles.rightTxt,
-                                    !item.isIconRight && styles.rightTxtPadding
-                                ]}>{ item.rightTxt }</Paragraph>
-                            }
-                        />
-                    ))
-                }
-            </List.Section>
-        </>
+                                ]}
+                                titleStyle={[
+                                    {
+                                        color: isDark ? COLORS.white : COLORS.black
+                                    }
+                                ]}
+                                title={ item.title } 
+                                left={() =>
+                                    <List.Icon
+                                        style={[
+                                            styles.icon_left,
+                                            {
+                                                borderColor: item.iconColor
+                                            }
+                                        ]} 
+                                        color={ item.iconColor } 
+                                        icon={ item.icon } />
+                                }
+                                right={() => 
+                                    <Switch 
+                                        style={[
+                                            styles.rightTxtPadding,
+                                            {
+                                                marginTop: SIZES.base(1.5)
+                                            }
+                                        ]}
+                                        color={ COLORS.dark }
+                                        value={ isDark } 
+                                        onValueChange={ () => onChangeTheme() }
+                                    />
+                                }
+                            />
+                        ))
+                    }
+                </List.Section>
+            }
+        </AppContext.Consumer>
     )
 }
 
@@ -93,10 +163,8 @@ const styles = StyleSheet.create({
         paddingTop: 0,
         paddingBottom: 0,
         backgroundColor: COLORS.primary,
-        marginTop: SIZES.base(.3)
-    },
-    title: {
-        color: COLORS.white
+        borderColor: HexToRGB(COLORS.secondary1, .2),
+        borderWidth: .2
     },
     iconRight: {
         marginRight: 0
