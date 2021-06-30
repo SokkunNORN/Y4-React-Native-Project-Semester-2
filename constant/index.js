@@ -6,10 +6,13 @@ import {
     FONTS
 } from './theme'
 
+import { CHAT_BACKGROUND } from './image'
+
 export {
     COLORS,
     SIZES,
     HexToRGB,
     Rounder,
-    FONTS
+    FONTS,
+    CHAT_BACKGROUND
 }

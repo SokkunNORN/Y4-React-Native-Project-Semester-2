@@ -16,9 +16,14 @@ const App = () => {
 
   const [isGreeting, setGreeting] = useState(true)
   const [isDarkTheme, setIsDarkTheme] = useState(true)
+  const [chatBackgroundIndex, setChatBackgroundIndex] = useState(0)
 
   const onChangeTheme = () => {
     setIsDarkTheme(!isDarkTheme)
+  }
+
+  const onChangeChatBackground = index => {
+    setChatBackgroundIndex(index)
   }
 
   useEffect(() => {
@@ -32,8 +37,10 @@ const App = () => {
       value={{
         language: 'Englist',
         isDark: !isDarkTheme,
+        chatBackgroundIndex: chatBackgroundIndex,
         auth: null,
-        onChangeTheme: () => onChangeTheme()
+        onChangeTheme: () => onChangeTheme(),
+        onChangeChatBackground: index => onChangeChatBackground(index)
       }}
     >
       <NavigationContainer>

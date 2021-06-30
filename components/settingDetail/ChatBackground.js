@@ -6,63 +6,59 @@ import {
     ImageBackground,
     TouchableWithoutFeedback
 } from 'react-native'
-import { COLORS, SIZES } from '../../constant'
+import { COLORS, SIZES, CHAT_BACKGROUND } from '../../constant'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import AppContext from '../../context'
 
 const ChatBackground = () => {
 
-    const images = [
-        require('../../asset/chat_background/default.jpeg'),
-        require('../../asset/chat_background/background1.jpeg'),
-        require('../../asset/chat_background/background2.jpeg'),
-        require('../../asset/chat_background/background3.jpeg'),
-        require('../../asset/chat_background/background4.jpeg'),
-        require('../../asset/chat_background/background5.jpeg'),
-        require('../../asset/chat_background/background6.jpeg'),
-        require('../../asset/chat_background/background7.jpeg'),
-        require('../../asset/chat_background/background8.jpeg')
-    ]
-    const [active, setActive] = useState(0)
-
     return (
-        <ScrollView
-            showsVerticalScrollIndicator={ false }
-        >
-            <View style={ styles.container }>
-                {
-                    images.map((img, index) => (
-                        <TouchableWithoutFeedback
-                            onPress={ () => setActive(index) }
-                        >
-                            <View style={[
-                                styles.box,
-                                {
-                                    marginBottom: index === (images.length - 1) ? 
-                                    SIZES.base(4) : SIZES.base(1)
-                                }
-                            ]}>
-                                <ImageBackground
-                                    style={ styles.inner }
-                                    imageStyle={ styles.inner }
-                                    source={ img }
+        <AppContext.Consumer>
+            {
+                ({ 
+                    chatBackgroundIndex, 
+                    onChangeChatBackground 
+                }) =>
+                <ScrollView
+                    showsVerticalScrollIndicator={ false }
+                >
+                    <View style={ styles.container }>
+                        {
+                            CHAT_BACKGROUND.map((img, index) => (
+                                <TouchableWithoutFeedback
+                                    onPress={ () => onChangeChatBackground(index) }
                                 >
-                                    {
-                                        active === index ?
-                                        <Icon 
-                                            name='check-circle-outline'
-                                            size={ SIZES.base(4) }
-                                            color={ COLORS.warning }
-                                            style={ styles.check_icon }
-                                        /> :
-                                        <></>
-                                    }
-                                </ImageBackground>
-                            </View>
-                        </TouchableWithoutFeedback>
-                    ))
-                }
-            </View>
-        </ScrollView>
+                                    <View style={[
+                                        styles.box,
+                                        {
+                                            marginBottom: index === (CHAT_BACKGROUND.length - 1) ? 
+                                            SIZES.base(4) : SIZES.base(1)
+                                        }
+                                    ]}>
+                                        <ImageBackground
+                                            style={ styles.inner }
+                                            imageStyle={ styles.inner }
+                                            source={ img }
+                                        >
+                                            {
+                                                chatBackgroundIndex === index ?
+                                                <Icon 
+                                                    name='check-circle-outline'
+                                                    size={ SIZES.base(4) }
+                                                    color={ COLORS.warning }
+                                                    style={ styles.check_icon }
+                                                /> :
+                                                <></>
+                                            }
+                                        </ImageBackground>
+                                    </View>
+                                </TouchableWithoutFeedback>
+                            ))
+                        }
+                    </View>
+                </ScrollView>
+            }
+        </AppContext.Consumer>
     )
 }
 

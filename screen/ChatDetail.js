@@ -13,7 +13,7 @@ import {
 import { Badge } from 'react-native-paper'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import DetailHeader from '../components/header/DetailHeader'
-import { COLORS, FONTS, SIZES, HexToRGB } from '../constant'
+import { COLORS, FONTS, SIZES, HexToRGB, CHAT_BACKGROUND } from '../constant'
 const keyboardVerticalOffset = Platform.OS === 'ios' ? SIZES.base(12.5) : 0
 import MessageBubble from '../components/MessageBubble'
 import AppContext from '../context'
@@ -70,7 +70,10 @@ const ChatDetail = ({ route }) => {
     return (
         <AppContext.Consumer>
             {
-                ({ isDark }) =>
+                ({ 
+                    isDark,
+                    chatBackgroundIndex
+                }) =>
                 <SafeAreaView style={[
                     styles.safe_area_view,
                     {
@@ -78,7 +81,7 @@ const ChatDetail = ({ route }) => {
                     }
                 ]}>
                     <ImageBackground
-                        source={ require('../asset/chat_background/default.jpeg') }
+                        source={ CHAT_BACKGROUND[chatBackgroundIndex] }
                         imageStyle={ styles.chat_image_background }
                         style={ styles.chat_image_background }
                     >
