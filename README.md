@@ -1,7 +1,7 @@
 # Y4-React-Native-Project-Semester-2
 Midterm + Final
 
-### Initualize project
+### Initialize project
 yarn install
 
 ### Install pod iOS
