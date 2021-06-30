@@ -1,11 +1,5 @@
 import { createContext } from 'react'
 
-let isDarkTheme = false
-
-const AppContext = createContext({
-    language: 'Englist',
-    isDark: isDarkTheme,
-    auth: null
-})
+const AppContext = createContext()
 
 export default AppContext

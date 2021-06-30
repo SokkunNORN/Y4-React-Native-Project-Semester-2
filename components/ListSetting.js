@@ -25,7 +25,8 @@ const ListSetting = ({
         <AppContext.Consumer>
             {
                 ({ 
-                    isDark
+                    isDark,
+                    onChangeTheme
                 }) =>
                 <List.Section>
                     {
@@ -143,7 +144,7 @@ const ListSetting = ({
                                         ]}
                                         color={ COLORS.dark }
                                         value={ isDark } 
-                                        onValueChange={ () => {} }
+                                        onValueChange={ () => onChangeTheme() }
                                     />
                                 }
                             />
