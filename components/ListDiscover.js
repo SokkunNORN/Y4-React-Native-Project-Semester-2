@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.primary1,
         marginStart: -SIZES.base(1.2),
         marginTop: SIZES.base(),
-        marginEnd: -SIZES.base(1.3),
+        marginEnd: -SIZES.base(1.2),
         marginBottom: -SIZES.base(1.5),
         borderBottomLeftRadius: SIZES.base(),
         borderBottomRightRadius: SIZES.base()
