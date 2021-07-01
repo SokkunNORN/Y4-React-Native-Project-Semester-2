@@ -7,9 +7,11 @@ import {
     TextInput,
     ScrollView,
     KeyboardAvoidingView,
-    Platform
+    Platform,
+    ImageBackground
 } from 'react-native'
 import Header from '../components/header/Header'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import AppContext from '../context'
 import { useNavigation } from '@react-navigation/native'
 import { COLORS, SIZES, FONTS } from '../constant'
@@ -58,7 +60,18 @@ const EditProfile = () => {
                                         backgroundColor: isDark ? COLORS.primary1 : COLORS.light_gray
                                     }
                                 ]}>
-                                    <Card.Cover style={ styles.card_profile } source={ require('../asset/cover.jpeg') } />
+                                    <ImageBackground
+                                        style={ styles.card_profile }
+                                        imageStyle={ styles.card_profile }
+                                        source={ require('../asset/cover.jpeg') }
+                                    >
+                                        <View style={ styles.view_camera_icon }>
+                                            <Icon
+                                                name='camera-outline'
+                                                style={ styles.camera_icon }
+                                                color={ COLORS.warning } size={ SIZES.base(3) } />
+                                        </View>
+                                    </ImageBackground>
 
                                     <TextInput
                                         keyboardAppearance={ !isDark ? 'light' : 'dark'}
@@ -184,6 +197,17 @@ const styles = StyleSheet.create({
         borderRadius: SIZES.base(1.5),
         borderTopStartRadius: SIZES.base(1.5),
         borderTopRightRadius: SIZES.base(1.5)
+    }, 
+    view_camera_icon: {
+        position: 'absolute',
+        backgroundColor: COLORS.white,
+        borderRadius: SIZES.radius(6),
+        margin: SIZES.base(.8),
+        bottom: SIZES.base(1),
+        right: SIZES.base(1)
+    },
+    camera_icon: {
+        padding: SIZES.base(1)
     },
     text_input: {
         backgroundColor: COLORS.primary,
