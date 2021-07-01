@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
     text_input: {
         backgroundColor: COLORS.primary,
         color: COLORS.white,
-        borderRadius: SIZES.radius(),
+        borderRadius: SIZES.radius(1),
         padding: SIZES.base(),
         fontSize: FONTS.h4,
         marginBottom: SIZES.base()

@@ -240,7 +240,6 @@ const Setting = () => {
                                 ]}>
                                     <Icon
                                         name='check-circle'
-                                        style={ styles.logo_icon }
                                         color={ COLORS.warning } size={ SIZES.base() } />
                                     <Paragraph style={[
                                         styles.bd_label,

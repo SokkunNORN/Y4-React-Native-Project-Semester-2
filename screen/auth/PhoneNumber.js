@@ -195,7 +195,7 @@ const styles = StyleSheet.create({
     phone_number_text_input: {
         backgroundColor: COLORS.primary,
         color: COLORS.white,
-        borderRadius: SIZES.radius(),
+        borderRadius: SIZES.radius(1),
         padding: SIZES.base(),
         fontSize: FONTS.h4
     },
