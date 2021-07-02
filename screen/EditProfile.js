@@ -1,25 +1,28 @@
 import React, { useState } from 'react'
 import {
-    TouchableWithoutFeedback,
-    Keyboard,
-    View,
     StyleSheet,
+    View,
     TextInput,
-    ScrollView,
+    SafeAreaView,
     KeyboardAvoidingView,
     Platform,
+    ScrollView,
+    TouchableWithoutFeedback,
     ImageBackground,
-    DatePickerIOS,
-    Text
+    Text,
+    Keyboard,
+    DatePickerIOS
 } from 'react-native'
-import Header from '../components/header/Header'
+import { Card, Paragraph, Button } from 'react-native-paper'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import Header from '../components/header/Header'
+import { COLORS, FONTS, SIZES, HexToRGB } from '../constant'
+const keyboardVerticalOffset = Platform.OS === 'ios' ? SIZES.base(12.5) : 0
 import AppContext from '../context'
 import { useNavigation } from '@react-navigation/native'
-import { COLORS, SIZES, FONTS, HexToRGB } from '../constant'
-import { Card, Button, Paragraph } from 'react-native-paper'
 
 const EditProfile = () => {
+
 
     const navigation = useNavigation()
     const [firstName, setFirstName] = useState('')
@@ -31,6 +34,7 @@ const EditProfile = () => {
     const [isSelectStatusDate, setIsSelectStatusDate] = useState(false)
     const [statusDate, setStatusDate] = useState(false)
 
+    
     const onBack = () => {
         navigation.goBack()
     }
@@ -44,35 +48,44 @@ const EditProfile = () => {
         setIsSelectDate(true)
     }
 
+    const onCloseSelectDate = () => {
+        setIsSelectDate(false)
+    }
+
     return (
         <AppContext.Consumer>
             {
-                ({ isDark }) => 
-                <TouchableWithoutFeedback
-                    onPress={ () => Keyboard.dismiss() }
-                >
-                    <View>
-                        <Header
-                            title='Edit Profile'
-                            icon='close'
-                            onClickBtnOne={ () => onBack() }
-                            backgroundColor={ isDark ? COLORS.primary1 : COLORS.light_gray }
-                        />
-                        <KeyboardAvoidingView
-                            behavior={ Platform.OS === 'ios' ? 'height' : null }
-                        >
+                ({ 
+                    isDark
+                }) =>
+                <SafeAreaView style={[
+                    styles.safe_area_view,
+                    {
+                        backgroundColor: isDark ? COLORS.dark : COLORS.light_gray
+                    }
+                ]}>
+                    <Header
+                        title='Edit Profile'
+                        icon='close'
+                        onClickBtnOne={ () => onBack() }
+                    />
+                    <View style={ styles.container }>
+                        <View style={ styles.header }>
                             <ScrollView
+                                keyboardDismissMode='interactive'
                                 showsVerticalScrollIndicator={ false }
                             >
-                                <Card style={[
-                                    styles.card_container,
-                                    {
-                                        backgroundColor: isDark ? COLORS.primary1 : COLORS.light_gray
-                                    }
-                                ]}>
+                                <Card
+                                    style={[
+                                        styles.card_contain,
+                                        {
+                                            backgroundColor: isDark ? COLORS.dark : COLORS.light_gray
+                                        }
+                                    ]}
+                                >
                                     <ImageBackground
-                                        style={ styles.card_profile }
-                                        imageStyle={ styles.card_profile }
+                                        style={ styles.profile_img }
+                                        imageStyle={ styles.profile_img }
                                         source={ require('../asset/cover.jpeg') }
                                     >
                                         <View style={ styles.view_camera_icon }>
@@ -97,6 +110,7 @@ const EditProfile = () => {
                                         onChangeText={ value => setFirstName(value) }
                                         value={ firstName }
                                         maxLength={ 12 }
+                                        onFocus={ () => onCloseSelectDate() }
                                     />
 
                                     <TextInput
@@ -113,6 +127,7 @@ const EditProfile = () => {
                                         onChangeText={ value => setLastName(value) }
                                         value={ lastName }
                                         maxLength={ 12 }
+                                        onFocus={ () => onCloseSelectDate() }
                                     />
 
                                     <TextInput
@@ -129,6 +144,7 @@ const EditProfile = () => {
                                         onChangeText={ value => setPhone(value) }
                                         value={ phone }
                                         maxLength={ 12 }
+                                        onFocus={ () => onCloseSelectDate() }
                                     />
 
                                     <TouchableWithoutFeedback
@@ -183,6 +199,7 @@ const EditProfile = () => {
                                         onChangeText={ value => setAbout(value) }
                                         value={ about }
                                         maxLength={ 12 }
+                                        onFocus={ () => onCloseSelectDate() }
                                     />
 
                                     <Button
@@ -201,37 +218,45 @@ const EditProfile = () => {
                                     >
                                         Done
                                     </Button>
-                                
+
                                 </Card>
                             </ScrollView>
-                        </KeyboardAvoidingView>
+                        </View>
 
-                        {
-                            isSelectDate ? 
-                            <>
-                                <View 
-                                    style={[
-                                        styles.view_button_on_date_picker
-                                    ]}
-                                >
-                                    <Text 
-                                        style={ styles.btn_on_date_picker }
-                                        onPress={ () => setIsSelectDate(false) }
-                                    >Cancel</Text>
-                                    <Text
-                                        style={ styles.btn_on_date_picker }
-                                        onPress={ () => setIsSelectDate(false) }
-                                    >Done</Text>
-                                </View>
-                                <DatePickerIOS
-                                    date={date}
-                                    onDateChange={ value => setDate(value) }
-                                    mode='date'
-                                />
-                            </> : <></>
-                        }
+                        <KeyboardAvoidingView
+                            behavior={ Platform.OS === 'ios' ? 'padding' : null }
+                            keyboardVerticalOffset={ keyboardVerticalOffset }
+                        >
+                            {           
+                                isSelectDate ? 
+                                <>
+                                    <View 
+                                        style={[
+                                            styles.view_button_on_date_picker,
+                                            {
+                                                backgroundColor: isDark ?  HexToRGB(COLORS.dark, .4) : COLORS.light_gray
+                                            }
+                                        ]}
+                                    >
+                                        <Text 
+                                            style={ styles.btn_on_date_picker }
+                                            onPress={ () => setIsSelectDate(false) }
+                                        >Cancel</Text>
+                                        <Text
+                                            style={ styles.btn_on_date_picker }
+                                            onPress={ () => setIsSelectDate(false) }
+                                        >Done</Text>
+                                    </View>
+                                    <DatePickerIOS
+                                        date={ date }
+                                        onDateChange={ value => setDate(value) }
+                                        mode='date'
+                                    />
+                                </> : null
+                            }
+                        </KeyboardAvoidingView>
                     </View>
-                </TouchableWithoutFeedback>
+                </SafeAreaView>
             }
         </AppContext.Consumer>
     )
@@ -240,22 +265,27 @@ const EditProfile = () => {
 export default EditProfile
 
 const styles = StyleSheet.create({
-    container: {
+    safe_area_view: {
         flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'space-around'
+        backgroundColor: COLORS.dark
     },
-    card_container: {
-        marginHorizontal: SIZES.base(),
-        borderWidth: 0,
-        elevation: 0
+    container: {
+        flex: 1
     },
-    card_profile: {
+    header: {
+        flex: 1
+    },
+    card_contain: {
+        elevation: 0,
+        borderRadius: SIZES.base(1.5),
+        marginHorizontal: SIZES.base()
+    },
+    profile_img: {
         height: SIZES.width - (6 * SIZES.base()),
         borderRadius: SIZES.base(1.5),
         borderTopStartRadius: SIZES.base(1.5),
         borderTopRightRadius: SIZES.base(1.5)
-    }, 
+    },
     view_camera_icon: {
         position: 'absolute',
         backgroundColor: COLORS.white,
@@ -288,7 +318,7 @@ const styles = StyleSheet.create({
         color: COLORS.secondary1,
         fontSize: FONTS.h4,
         marginStart: SIZES.base(),
-        marginTop: SIZES.base(1.7)
+        marginTop: SIZES.base(1.85)
     },
     bd_view_right: {
         flexDirection: 'row',
@@ -314,8 +344,19 @@ const styles = StyleSheet.create({
         fontSize: FONTS.h3,
         paddingVertical: SIZES.base(1)
     },
+
+    footer: {
+        borderTopWidth: .2,
+        borderTopColor: HexToRGB(COLORS.secondary1, .2),
+        padding: SIZES.base(1),
+        backgroundColor: COLORS.dark,
+        flexDirection: 'row'
+    },
+    label_btn_done: {
+        fontSize: FONTS.h3,
+        paddingVertical: SIZES.base(1)
+    },
     view_button_on_date_picker: {
-        flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
         backgroundColor: COLORS.light_gray,
@@ -327,6 +368,7 @@ const styles = StyleSheet.create({
     },
     btn_on_date_picker: { 
         color: COLORS.warning,
-        fontSize: FONTS.p
+        fontSize: FONTS.p,
+        marginHorizontal: SIZES.base()
     }
 })
