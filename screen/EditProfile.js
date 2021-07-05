@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import {
     StyleSheet,
     View,
@@ -11,7 +11,8 @@ import {
     ImageBackground,
     Text,
     Keyboard,
-    DatePickerIOS
+    DatePickerIOS,
+    ActionSheetIOS
 } from 'react-native'
 import { Card, Paragraph, Button } from 'react-native-paper'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
@@ -23,16 +24,21 @@ import { useNavigation } from '@react-navigation/native'
 
 const EditProfile = () => {
 
-
+    const scrollViewRef = useRef()
     const navigation = useNavigation()
+    const birthDateStatusLists = [
+        "Only Me",
+        "Public",
+        "Public (Hide year)"
+    ]
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [phone, setPhone] = useState('')
     const [date, setDate] = useState(new Date())
+    const [birthDate, setBirthDate] = useState(null)
     const [about, setAbout] = useState('')
     const [isSelectDate, setIsSelectDate] = useState(false)
-    const [isSelectStatusDate, setIsSelectStatusDate] = useState(false)
-    const [statusDate, setStatusDate] = useState(false)
+    const [statusBirthDate, setStatusBirthDate] = useState(birthDateStatusLists[0])
 
     
     const onBack = () => {
@@ -45,10 +51,35 @@ const EditProfile = () => {
 
     const onShowDatePicker = () => {
         Keyboard.dismiss()
+        scrollViewRef.current.scrollToEnd({ animated: true })
         setIsSelectDate(true)
     }
 
     const onCloseSelectDate = () => {
+        setIsSelectDate(false)
+    }
+
+    const onSelectDateStatus = (isDark) => {
+        Keyboard.dismiss()
+        onCloseSelectDate()
+        ActionSheetIOS.showActionSheetWithOptions(
+            {
+                options: [
+                    "Cancel",
+                    ...birthDateStatusLists
+                ],
+                cancelButtonIndex: 0,
+                userInterfaceStyle: isDark ? 'dark' : 'light'
+            },
+            buttonIndex => {
+                if (buttonIndex !== 0) {
+                    setStatusBirthDate(birthDateStatusLists[buttonIndex - 1])
+                }
+            }
+        )
+    }
+
+    const onDoneSelectBirthDate = () => {
         setIsSelectDate(false)
     }
 
@@ -74,6 +105,7 @@ const EditProfile = () => {
                             <ScrollView
                                 keyboardDismissMode='interactive'
                                 showsVerticalScrollIndicator={ false }
+                                ref={ scrollViewRef }
                             >
                                 <Card
                                     style={[
@@ -162,26 +194,34 @@ const EditProfile = () => {
                                                 style={[
                                                     styles.date_label
                                                 ]}
-                                            >Date of Birth</Text>
-                                            <View style={[
-                                                styles.bd_view_right,
-                                                {
-                                                    backgroundColor: isDark ? COLORS.dark : COLORS.white
-                                                }
-                                            ]}>
-                                                <Icon
-                                                    name='check-circle'
-                                                    color={ COLORS.warning } size={ SIZES.base() } />
-                                                <Paragraph style={[
-                                                    styles.bd_label,
-                                                    {
-                                                        color: isDark ? COLORS.white : COLORS.black
-                                                    }
-                                                ]}>Public (Hide year)</Paragraph>
-                                                <Icon
-                                                    name='chevron-down'
-                                                    color={ COLORS.warning } size={ SIZES.base(3) } />
-                                            </View>
+                                            >
+                                                { birthDate || 'Date of Birth' }
+                                            </Text>
+                                            <TouchableWithoutFeedback
+                                                onPress={ () => onSelectDateStatus(isDark) }
+                                            >
+                                                <View
+                                                    style={[
+                                                        styles.bd_view_right,
+                                                        {
+                                                            backgroundColor: isDark ? COLORS.dark : COLORS.white
+                                                        }
+                                                    ]}
+                                                >
+                                                    <Icon
+                                                        name='check-circle'
+                                                        color={ COLORS.warning } size={ SIZES.base() } />
+                                                    <Paragraph style={[
+                                                        styles.bd_label,
+                                                        {
+                                                            color: isDark ? COLORS.white : COLORS.black
+                                                        }
+                                                    ]}>{ statusBirthDate }</Paragraph>
+                                                    <Icon
+                                                        name='chevron-down'
+                                                        color={ COLORS.warning } size={ SIZES.base(3) } />
+                                                </View>
+                                            </TouchableWithoutFeedback>
                                         </View>
                                     </TouchableWithoutFeedback>
 
@@ -244,7 +284,7 @@ const EditProfile = () => {
                                         >Cancel</Text>
                                         <Text
                                             style={ styles.btn_on_date_picker }
-                                            onPress={ () => setIsSelectDate(false) }
+                                            onPress={ () => onDoneSelectBirthDate() }
                                         >Done</Text>
                                     </View>
                                     <DatePickerIOS
