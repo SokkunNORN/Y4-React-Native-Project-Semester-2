@@ -21,6 +21,7 @@ import { COLORS, FONTS, SIZES, HexToRGB } from '../constant'
 const keyboardVerticalOffset = Platform.OS === 'ios' ? SIZES.base(12.5) : 0
 import AppContext from '../context'
 import { useNavigation } from '@react-navigation/native'
+import { format } from 'date-fns'
 
 const EditProfile = () => {
 
@@ -80,6 +81,9 @@ const EditProfile = () => {
     }
 
     const onDoneSelectBirthDate = () => {
+        const dateFormat = format(date, 'MMMM do, yyyy')
+
+        setBirthDate(dateFormat)
         setIsSelectDate(false)
     }
 
@@ -165,6 +169,7 @@ const EditProfile = () => {
                                     <TextInput
                                         keyboardAppearance={ !isDark ? 'light' : 'dark'}
                                         placeholder='Mobile'
+                                        keyboardType='number-pad'
                                         placeholderTextColor={ COLORS.secondary1 }
                                         style={[
                                             styles.text_input,
@@ -192,7 +197,10 @@ const EditProfile = () => {
                                         >
                                             <Text
                                                 style={[
-                                                    styles.date_label
+                                                    styles.date_label,
+                                                    {
+                                                        color: !birthDate ? COLORS.secondary1 : isDark ? COLORS.white : COLORS.dark 
+                                                    }
                                                 ]}
                                             >
                                                 { birthDate || 'Date of Birth' }
