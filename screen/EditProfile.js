@@ -11,7 +11,6 @@ import {
     ImageBackground,
     Text,
     Keyboard,
-    DatePickerIOS,
     ActionSheetIOS
 } from 'react-native'
 import { Card, Paragraph, Button } from 'react-native-paper'
@@ -22,6 +21,7 @@ const keyboardVerticalOffset = Platform.OS === 'ios' ? SIZES.base(12.5) : 0
 import AppContext from '../context'
 import { useNavigation } from '@react-navigation/native'
 import { format } from 'date-fns'
+import DateTimePicker from '@react-native-community/datetimepicker'
 
 const EditProfile = () => {
 
@@ -52,8 +52,8 @@ const EditProfile = () => {
 
     const onShowDatePicker = () => {
         Keyboard.dismiss()
-        scrollViewRef.current.scrollToEnd({ animated: true })
         setIsSelectDate(true)
+        scrollViewRef.current.scrollToEnd({ animated: true })
     }
 
     const onCloseSelectDate = () => {
@@ -81,7 +81,7 @@ const EditProfile = () => {
     }
 
     const onDoneSelectBirthDate = () => {
-        const dateFormat = format(date, 'MMMM do, yyyy')
+        const dateFormat = format(date, 'dd MMM yyyy')
 
         setBirthDate(dateFormat)
         setIsSelectDate(false)
@@ -295,10 +295,12 @@ const EditProfile = () => {
                                             onPress={ () => onDoneSelectBirthDate() }
                                         >Done</Text>
                                     </View>
-                                    <DatePickerIOS
-                                        date={ date }
-                                        onDateChange={ value => setDate(value) }
+                                    <DateTimePicker
+                                        themeVariant={ isDark ? 'dark' : 'light' }
                                         mode='date'
+                                        value={ date }
+                                        onDateChange={ value => setDate(value) }
+                                        display='spinner'
                                     />
                                 </> : null
                             }
