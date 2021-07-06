@@ -9,6 +9,7 @@ import Discover from './Discover'
 import Setting from './Setting'
 import SettingDetail from './SettingDetail'
 import EditAccount from './EditProfile'
+import ImageProfile from './ImageProfile'
 
 export {
     Greeting,
@@ -20,5 +21,6 @@ export {
     Discover,
     Setting,
     SettingDetail,
-    EditAccount
+    EditAccount,
+    ImageProfile
 }

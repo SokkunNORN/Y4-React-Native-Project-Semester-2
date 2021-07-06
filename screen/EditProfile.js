@@ -22,6 +22,7 @@ import AppContext from '../context'
 import { useNavigation } from '@react-navigation/native'
 import { format } from 'date-fns'
 import DateTimePicker from '@react-native-community/datetimepicker'
+import Routes from '../routes'
 
 const EditProfile = () => {
 
@@ -119,18 +120,22 @@ const EditProfile = () => {
                                         }
                                     ]}
                                 >
-                                    <ImageBackground
-                                        style={ styles.profile_img }
-                                        imageStyle={ styles.profile_img }
-                                        source={ require('../asset/cover.jpeg') }
+                                    <TouchableWithoutFeedback
+                                        onPress={ () => navigation.push(Routes.IMAGE_PROFILE) }
                                     >
-                                        <View style={ styles.view_camera_icon }>
-                                            <Icon
-                                                name='camera-outline'
-                                                style={ styles.camera_icon }
-                                                color={ COLORS.warning } size={ SIZES.base(3) } />
-                                        </View>
-                                    </ImageBackground>
+                                        <ImageBackground
+                                            style={ styles.profile_img }
+                                            imageStyle={ styles.profile_img }
+                                            source={ require('../asset/cover.jpeg') }
+                                        >
+                                            <View style={ styles.view_camera_icon }>
+                                                <Icon
+                                                    name='camera-outline'
+                                                    style={ styles.camera_icon }
+                                                    color={ COLORS.warning } size={ SIZES.base(3) } />
+                                            </View>
+                                        </ImageBackground>  
+                                    </TouchableWithoutFeedback>
 
                                     <TextInput
                                         keyboardAppearance={ !isDark ? 'light' : 'dark'}

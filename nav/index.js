@@ -8,7 +8,8 @@ import {
     Verification,
     SettingDetail,
     Information,
-    EditAccount
+    EditAccount,
+    ImageProfile
 } from '../screen'
 import {
     COLORS
@@ -92,6 +93,33 @@ const Navigate = () => {
                         },
                         cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS
                     }}
+                />
+                <Stack.Screen
+                    name={ Routes.IMAGE_PROFILE }
+                    component={ ImageProfile }
+                    options={{
+                        headerShown: false,
+                        cardStyle: {
+                            backgroundColor: isDark ? COLORS.primary1 : COLORS.light_gray
+                        },
+                        cardOverlayEnabled: true,
+                        cardStyleInterpolator: ({ current: { progress } }) => ({
+                            cardStyle: {
+                                opacity: progress.interpolate({
+                                inputRange: [0, 0.5, 0.9, 1],
+                                outputRange: [0, 0.25, 0.7, 1],
+                                }),
+                            },
+                            overlayStyle: {
+                                opacity: progress.interpolate({
+                                inputRange: [0, 1],
+                                outputRange: [0, 0.5],
+                                extrapolate: 'clamp',
+                                }),
+                            },
+                        })
+                    }}
+                    mode="modal"
                 />
             </Stack.Navigator>
             }
