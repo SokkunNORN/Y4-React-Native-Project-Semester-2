@@ -41,7 +41,8 @@ const ImageProfile = () => {
                     </View>
                     <Appbar.Header
                         style={{
-                            backgroundColor: isDark ? COLORS.primary1 : COLORS.light_gray
+                            backgroundColor: isDark ? COLORS.primary1 : COLORS.light_gray,
+                            elevation: 0
                         }}
                     />
                 </>

@@ -42,7 +42,6 @@ const EditProfile = () => {
     const [isSelectDate, setIsSelectDate] = useState(false)
     const [statusBirthDate, setStatusBirthDate] = useState(birthDateStatusLists[0])
 
-    
     const onBack = () => {
         navigation.goBack()
     }
@@ -88,6 +87,10 @@ const EditProfile = () => {
         setIsSelectDate(false)
     }
 
+    const onChooseImageOption = () => {
+        console.log('working...');
+    }
+
     return (
         <AppContext.Consumer>
             {
@@ -128,12 +131,16 @@ const EditProfile = () => {
                                             imageStyle={ styles.profile_img }
                                             source={ require('../asset/cover.jpeg') }
                                         >
-                                            <View style={ styles.view_camera_icon }>
-                                                <Icon
-                                                    name='camera-outline'
-                                                    style={ styles.camera_icon }
-                                                    color={ COLORS.warning } size={ SIZES.base(3) } />
-                                            </View>
+                                            <TouchableWithoutFeedback
+                                                onPress={ () => onChooseImageOption() }
+                                            >
+                                                <View style={ styles.view_camera_icon }>
+                                                    <Icon
+                                                        name='camera-outline'
+                                                        style={ styles.camera_icon }
+                                                        color={ COLORS.warning } size={ SIZES.base(3) } />
+                                                </View>
+                                            </TouchableWithoutFeedback>
                                         </ImageBackground>  
                                     </TouchableWithoutFeedback>
 
