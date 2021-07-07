@@ -49,50 +49,85 @@ const EditProfile = () => {
     const [about, setAbout] = useState('')
     const [isSelectDate, setIsSelectDate] = useState(false)
     const [statusBirthDate, setStatusBirthDate] = useState(birthDateStatusLists[0])
+    const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false)
 
-    fall = new Animated.Value(0)
+    fall = new Animated.Value(1)
 
     const renderHeader = () => {
         return (
-            <View style={[
-                styles.bottom_header
-            ]}>
-                <View style={ styles.bottom_panel_header }>
-                    <View style={ styles.bottom_panel_handle }/>
-                    <Title style={{ marginTop: SIZES.base(4) }}>Select Profile Photo</Title>
-                    <Paragraph>Choose your profile picture</Paragraph>
-                    <View style={ styles.bottom_content }>
-                        <Button
-                            style={ styles.bottom_button }
-                            labelStyle={ styles.bottom_label_button }
-                            color={ COLORS.black }
-                            uppercase={ false }
-                            onPress={ () => {} }
-                        >
-                            Open Gallery
-                        </Button>
-                        <Button
-                            style={ styles.bottom_button }
-                            labelStyle={ styles.bottom_label_button }
-                            color={ COLORS.black }
-                            uppercase={ false }
-                            onPress={ () => {} }
-                        >
-                            Take Photo
-                        </Button>
-                        <Button
-                            style={ styles.bottom_button }
-                            labelStyle={ styles.bottom_label_button }
-                            color={ COLORS.red }
-                            uppercase={ false }
-                            onPress={ () => {} }
-                        >
-                            Remove Photo
-                        </Button>
+            <AppContext.Consumer>
+                {
+                    ({ 
+                        isDark
+                    }) =>
+
+                    <View style={[
+                        styles.bottom_header,
+                        {
+                            backgroundColor: isDark ? COLORS.primary : COLORS.secondary
+                        }
+                    ]}>
+                        <View style={[
+                            styles.bottom_panel_header,
+                            {
+                                backgroundColor: isDark ? COLORS.primary : COLORS.secondary
+                            }
+                        ]}>
+                            <View style={[
+                                styles.bottom_panel_handle,
+                                {
+                                    backgroundColor: isDark ? HexToRGB(COLORS.secondary, .5) : HexToRGB(COLORS.secondary1, .5)
+                                }
+                            ]}/>
+                            <Title style={{
+                                marginTop: SIZES.base(4),
+                                color: isDark ? COLORS.white : COLORS.black
+                            }}>Select Profile Photo</Title>
+                            <Paragraph style={{
+                                color: isDark ? COLORS.white : COLORS.black
+                            }}>Choose your profile picture</Paragraph>
+                            <View style={ styles.bottom_content }>
+                                <Button
+                                    style={ styles.bottom_button }
+                                    labelStyle={ styles.bottom_label_button }
+                                    color={ COLORS.black }
+                                    uppercase={ false }
+                                    onPress={ () => {} }
+                                >
+                                    Open Gallery
+                                </Button>
+                                <Button
+                                    style={ styles.bottom_button }
+                                    labelStyle={ styles.bottom_label_button }
+                                    color={ COLORS.black }
+                                    uppercase={ false }
+                                    onPress={ () => {} }
+                                >
+                                    Take Photo
+                                </Button>
+                                <Button
+                                    style={ styles.bottom_button }
+                                    labelStyle={ styles.bottom_label_button }
+                                    color={ COLORS.red }
+                                    uppercase={ false }
+                                    onPress={ () => {} }
+                                >
+                                    Remove Photo
+                                </Button>
+                            </View>
+                        </View>
                     </View>
-                </View>
-            </View>
+                }
+            </AppContext.Consumer>
         )
+    }
+
+    const onOpenStartSheet = () => {
+        setIsBottomSheetOpen(true)
+    }
+
+    const onCloseEndSheet = () => {
+        setIsBottomSheetOpen(false)
     }
 
     const onBack = () => {
@@ -141,7 +176,11 @@ const EditProfile = () => {
     }
 
     const onChooseImageOption = () => {
-        sheetRef.current.snapTo(0)
+        if (isBottomSheetOpen) {
+            sheetRef.current.snapTo(1)
+        } else {
+            sheetRef.current.snapTo(0)
+        }
     }
 
     return (
@@ -161,7 +200,14 @@ const EditProfile = () => {
                         icon='close'
                         onClickBtnOne={ () => onBack() }
                     />
-                    <View style={ styles.container }>
+                    <Animated.View
+                        style={[
+                            styles.container,
+                            {
+                                opacity: Animated.add(.3, Animated.multiply(this.fall, 1.0))
+                            }
+                        ]}
+                    >
                         <View style={ styles.header }>
                             <ScrollView
                                 keyboardDismissMode='interactive'
@@ -179,7 +225,7 @@ const EditProfile = () => {
                                     <TouchableWithoutFeedback
                                         onPress={ () => {
                                             sheetRef.current.snapTo(1)
-                                            navigation.push(Routes.IMAGE_PROFILE)
+                                            !isBottomSheetOpen && navigation.push(Routes.IMAGE_PROFILE)
                                         }}
                                     >
                                         <ImageBackground
@@ -373,13 +419,16 @@ const EditProfile = () => {
                                 </> : null
                             }
                         </KeyboardAvoidingView>
-                    </View>
+                    </Animated.View>
                         
                     <BottomSheet
                         ref={ sheetRef }
                         snapPoints={ [350, -100, -100] }
                         renderHeader={ renderHeader }
                         initialSnap={ 1 }
+                        callbackNode={ this.fall }
+                        onOpenStart={ () => onOpenStartSheet() }
+                        onCloseEnd={ () => onCloseEndSheet() }
                     />
 
                 </SafeAreaView>
@@ -499,7 +548,6 @@ const styles = StyleSheet.create({
     },
 
     bottom_header: {
-        backgroundColor: COLORS.secondary,
         shadowColor: COLORS.secondary1,
         shadowOffset: { width: -1, height: -1 },
         shadowRadius: 2,
