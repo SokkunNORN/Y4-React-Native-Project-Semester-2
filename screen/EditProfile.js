@@ -90,7 +90,7 @@ const EditProfile = () => {
                                 <Button
                                     style={ styles.bottom_button }
                                     labelStyle={ styles.bottom_label_button }
-                                    color={ COLORS.black }
+                                    color={ COLORS.primary }
                                     uppercase={ false }
                                     onPress={ () => {} }
                                 >
@@ -99,7 +99,7 @@ const EditProfile = () => {
                                 <Button
                                     style={ styles.bottom_button }
                                     labelStyle={ styles.bottom_label_button }
-                                    color={ COLORS.black }
+                                    color={ COLORS.primary }
                                     uppercase={ false }
                                     onPress={ () => {} }
                                 >
@@ -113,6 +113,15 @@ const EditProfile = () => {
                                     onPress={ () => {} }
                                 >
                                     Remove Photo
+                                </Button>
+                                <Button
+                                    style={ styles.bottom_button }
+                                    labelStyle={ styles.bottom_label_button }
+                                    color={ COLORS.primary }
+                                    uppercase={ false }
+                                    onPress={ () => sheetRef.current.snapTo(1) }
+                                >
+                                    Cancel
                                 </Button>
                             </View>
                         </View>
@@ -180,6 +189,7 @@ const EditProfile = () => {
             sheetRef.current.snapTo(1)
         } else {
             sheetRef.current.snapTo(0)
+            setIsSelectDate(false)
         }
     }
 
@@ -423,7 +433,7 @@ const EditProfile = () => {
                         
                     <BottomSheet
                         ref={ sheetRef }
-                        snapPoints={ [350, -100, -100] }
+                        snapPoints={ [400, -100, -100] }
                         renderHeader={ renderHeader }
                         initialSnap={ 1 }
                         callbackNode={ this.fall }
