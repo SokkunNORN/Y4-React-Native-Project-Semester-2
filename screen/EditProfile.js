@@ -13,20 +13,28 @@ import {
     Keyboard,
     ActionSheetIOS
 } from 'react-native'
-import { Card, Paragraph, Button } from 'react-native-paper'
+import {
+    Card,
+    Paragraph,
+    Button,
+    Title
+} from 'react-native-paper'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import Header from '../components/header/Header'
 import { COLORS, FONTS, SIZES, HexToRGB } from '../constant'
-const keyboardVerticalOffset = Platform.OS === 'ios' ? SIZES.base(12.5) : 0
 import AppContext from '../context'
 import { useNavigation } from '@react-navigation/native'
 import { format } from 'date-fns'
 import DateTimePicker from '@react-native-community/datetimepicker'
 import Routes from '../routes'
+import BottomSheet from 'reanimated-bottom-sheet'
+import Animated from 'react-native-reanimated'
+const keyboardVerticalOffset = Platform.OS === 'ios' ? SIZES.base(12.5) : 0
 
 const EditProfile = () => {
 
     const scrollViewRef = useRef()
+    const sheetRef = React.useRef(null)
     const navigation = useNavigation()
     const birthDateStatusLists = [
         "Only Me",
@@ -41,6 +49,51 @@ const EditProfile = () => {
     const [about, setAbout] = useState('')
     const [isSelectDate, setIsSelectDate] = useState(false)
     const [statusBirthDate, setStatusBirthDate] = useState(birthDateStatusLists[0])
+
+    fall = new Animated.Value(0)
+
+    const renderHeader = () => {
+        return (
+            <View style={[
+                styles.bottom_header
+            ]}>
+                <View style={ styles.bottom_panel_header }>
+                    <View style={ styles.bottom_panel_handle }/>
+                    <Title style={{ marginTop: SIZES.base(4) }}>Select Profile Photo</Title>
+                    <Paragraph>Choose your profile picture</Paragraph>
+                    <View style={ styles.bottom_content }>
+                        <Button
+                            style={ styles.bottom_button }
+                            labelStyle={ styles.bottom_label_button }
+                            color={ COLORS.black }
+                            uppercase={ false }
+                            onPress={ () => {} }
+                        >
+                            Open Gallery
+                        </Button>
+                        <Button
+                            style={ styles.bottom_button }
+                            labelStyle={ styles.bottom_label_button }
+                            color={ COLORS.black }
+                            uppercase={ false }
+                            onPress={ () => {} }
+                        >
+                            Take Photo
+                        </Button>
+                        <Button
+                            style={ styles.bottom_button }
+                            labelStyle={ styles.bottom_label_button }
+                            color={ COLORS.red }
+                            uppercase={ false }
+                            onPress={ () => {} }
+                        >
+                            Remove Photo
+                        </Button>
+                    </View>
+                </View>
+            </View>
+        )
+    }
 
     const onBack = () => {
         navigation.goBack()
@@ -88,7 +141,7 @@ const EditProfile = () => {
     }
 
     const onChooseImageOption = () => {
-        console.log('working...');
+        sheetRef.current.snapTo(0)
     }
 
     return (
@@ -124,7 +177,10 @@ const EditProfile = () => {
                                     ]}
                                 >
                                     <TouchableWithoutFeedback
-                                        onPress={ () => navigation.push(Routes.IMAGE_PROFILE) }
+                                        onPress={ () => {
+                                            sheetRef.current.snapTo(1)
+                                            navigation.push(Routes.IMAGE_PROFILE)
+                                        }}
                                     >
                                         <ImageBackground
                                             style={ styles.profile_img }
@@ -318,6 +374,14 @@ const EditProfile = () => {
                             }
                         </KeyboardAvoidingView>
                     </View>
+                        
+                    <BottomSheet
+                        ref={ sheetRef }
+                        snapPoints={ [350, -100, -100] }
+                        renderHeader={ renderHeader }
+                        initialSnap={ 1 }
+                    />
+
                 </SafeAreaView>
             }
         </AppContext.Consumer>
@@ -432,5 +496,42 @@ const styles = StyleSheet.create({
         color: COLORS.warning,
         fontSize: FONTS.p,
         marginHorizontal: SIZES.base()
+    },
+
+    bottom_header: {
+        backgroundColor: COLORS.secondary,
+        shadowColor: COLORS.secondary1,
+        shadowOffset: { width: -1, height: -1 },
+        shadowRadius: 2,
+        shadowOpacity: .4,
+        paddingTop: SIZES.base(),
+        borderTopLeftRadius: SIZES.base(),
+        borderTopRightRadius: SIZES.base()
+    },
+    bottom_panel_header: {
+        alignItems: 'center'
+    },
+    bottom_panel_handle: {
+        width: SIZES.base(5),
+        height: SIZES.base(1),
+        borderRadius: 4,
+        backgroundColor: HexToRGB(COLORS.secondary1, .5),
+        marginBottom: SIZES.base(1),
+    },
+    bottom_content: {
+        paddingHorizontal: SIZES.base(),
+        paddingTop: SIZES.base(5),
+        height: 600
+    },
+    bottom_button: {
+        marginTop: SIZES.base(1),
+        borderRadius: SIZES.radius(1),
+        backgroundColor: COLORS.white,
+        width: SIZES.width - SIZES.base(4)
+    },
+    bottom_label_button: {
+        fontSize: FONTS.h3,
+        fontWeight: 'normal',
+        paddingVertical: SIZES.base(1)
     }
 })
