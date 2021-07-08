@@ -235,7 +235,11 @@ const EditProfile = () => {
                                     <TouchableWithoutFeedback
                                         onPress={ () => {
                                             sheetRef.current.snapTo(1)
-                                            !isBottomSheetOpen && navigation.push(Routes.IMAGE_PROFILE)
+                                            if (isSelectDate) {
+                                                setIsSelectDate(false)
+                                            } else {
+                                                !isBottomSheetOpen && navigation.push(Routes.IMAGE_PROFILE)
+                                            }
                                         }}
                                     >
                                         <ImageBackground

@@ -17,6 +17,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { useNavigation } from '@react-navigation/native'
 import Routes from '../routes'
 import AppContext from '../context'
+import packageJson from '../package.json'
 
 const Setting = () => {
 
@@ -128,7 +129,7 @@ const Setting = () => {
                 title: 'Version',
                 icon: 'cog-outline',
                 iconColor: COLORS.warning,
-                rightTxt: '2.5.7 (131)',
+                rightTxt: packageJson.version,
                 isIconRight: false,
                 isSwitchBtn: false
             }
