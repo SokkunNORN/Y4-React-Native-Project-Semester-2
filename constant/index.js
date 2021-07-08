@@ -8,11 +8,14 @@ import {
 
 import { CHAT_BACKGROUND } from './image'
 
+import { BirthDateStatusLists } from './list'
+
 export {
     COLORS,
     SIZES,
     HexToRGB,
     Rounder,
     FONTS,
-    CHAT_BACKGROUND
+    CHAT_BACKGROUND,
+    BirthDateStatusLists
 }

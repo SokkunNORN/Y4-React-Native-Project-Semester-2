@@ -21,7 +21,7 @@ import {
 } from 'react-native-paper'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import Header from '../components/header/Header'
-import { COLORS, FONTS, SIZES, HexToRGB } from '../constant'
+import { COLORS, FONTS, SIZES, HexToRGB, BirthDateStatusLists } from '../constant'
 import AppContext from '../context'
 import { useNavigation } from '@react-navigation/native'
 import { format } from 'date-fns'
@@ -36,11 +36,6 @@ const EditProfile = () => {
     const scrollViewRef = useRef()
     const sheetRef = React.useRef(null)
     const navigation = useNavigation()
-    const birthDateStatusLists = [
-        "Only Me",
-        "Public",
-        "Public (Hide year)"
-    ]
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [phone, setPhone] = useState('')
@@ -48,7 +43,7 @@ const EditProfile = () => {
     const [birthDate, setBirthDate] = useState(null)
     const [about, setAbout] = useState('')
     const [isSelectDate, setIsSelectDate] = useState(false)
-    const [statusBirthDate, setStatusBirthDate] = useState(birthDateStatusLists[0])
+    const [statusBirthDate, setStatusBirthDate] = useState(BirthDateStatusLists[0])
     const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false)
 
     fall = new Animated.Value(1)
@@ -164,14 +159,14 @@ const EditProfile = () => {
             {
                 options: [
                     "Cancel",
-                    ...birthDateStatusLists
+                    ...BirthDateStatusLists
                 ],
                 cancelButtonIndex: 0,
                 userInterfaceStyle: isDark ? 'dark' : 'light'
             },
             buttonIndex => {
                 if (buttonIndex !== 0) {
-                    setStatusBirthDate(birthDateStatusLists[buttonIndex - 1])
+                    setStatusBirthDate(BirthDateStatusLists[buttonIndex - 1])
                 }
             }
         )
