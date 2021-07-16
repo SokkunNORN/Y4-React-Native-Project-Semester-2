@@ -26,7 +26,8 @@ const DetailHeader = ({
     name = '',
     iconRight1 = '',
     iconRight2 = '',
-    iconRight3 = ''
+    iconRight3 = '',
+    isTitleCenter = false
 }) => {
 
     const navigation = useNavigation()
@@ -74,7 +75,14 @@ const DetailHeader = ({
                                 </>
                             : null
                         }
-                        <Appbar.Content title={ title } />
+                        <Appbar.Content
+                            style={ isTitleCenter ? { alignItems: 'center' } : {} } 
+                            title={ title } />
+                        {
+                            isTitleCenter ? 
+                                <Appbar.Action /> :
+                                null
+                        }
                         {
                             iconRight1 ?
                             <Appbar.Action
