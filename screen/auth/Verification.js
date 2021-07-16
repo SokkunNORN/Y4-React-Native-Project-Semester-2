@@ -46,6 +46,8 @@ const Verification = ({ route }) => {
             <>
                 <DetailHeader 
                     backgroundColor={ isDark ? COLORS.primary1 : COLORS.white }
+                    title={ phoneNumber }
+                    isTitleCenter
                 />
 
                 <TouchableWithoutFeedback
