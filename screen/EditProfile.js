@@ -524,10 +524,6 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.secondary1,
         marginHorizontal: SIZES.base(5)
     },
-    label_btn_done: {
-        fontSize: FONTS.h3,
-        paddingVertical: SIZES.base(1)
-    },
 
     footer: {
         borderTopWidth: .2,
@@ -537,8 +533,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row'
     },
     label_btn_done: {
-        fontSize: FONTS.h3,
-        paddingVertical: SIZES.base(1)
+        fontSize: FONTS.h4,
+        paddingVertical: SIZES.base(.7)
     },
     view_button_on_date_picker: {
         flexDirection: 'row',
@@ -587,8 +583,8 @@ const styles = StyleSheet.create({
         width: SIZES.width - SIZES.base(4)
     },
     bottom_label_button: {
-        fontSize: FONTS.h3,
-        fontWeight: 'normal',
-        paddingVertical: SIZES.base(1)
+        fontSize: FONTS.h4,
+        paddingVertical: SIZES.base(.7),
+        fontWeight: 'normal'
     }
 })

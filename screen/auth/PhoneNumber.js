@@ -211,8 +211,8 @@ const styles = StyleSheet.create({
         marginHorizontal: 0
     },
     label_btn_continue: {
-        fontSize: FONTS.h3,
-        paddingVertical: SIZES.base(1)
+        fontSize: FONTS.h4,
+        paddingVertical: SIZES.base(.7)
     },
     condition_text: {
         color: COLORS.white,
