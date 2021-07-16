@@ -17,6 +17,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { useNavigation } from '@react-navigation/native'
 import Routes from '../routes'
 import AppContext from '../context'
+import packageJson from '../package.json'
 
 const Setting = () => {
 
@@ -128,7 +129,7 @@ const Setting = () => {
                 title: 'Version',
                 icon: 'cog-outline',
                 iconColor: COLORS.warning,
-                rightTxt: '2.5.7 (131)',
+                rightTxt: packageJson.version,
                 isIconRight: false,
                 isSwitchBtn: false
             }
@@ -169,6 +170,10 @@ const Setting = () => {
         }
     }
 
+    const pushToEditScreen = () => {
+        navigation.push(Routes.EDIT_PROFIILE)
+    }
+
     return (
         <AppContext.Consumer>
             {
@@ -177,6 +182,7 @@ const Setting = () => {
                 <Header
                     title="Settings"
                     icon="pencil-box-outline"
+                    onClickBtnOne={ () => pushToEditScreen() }
                 />
 
                 <ScrollView
@@ -235,7 +241,6 @@ const Setting = () => {
                                 ]}>
                                     <Icon
                                         name='check-circle'
-                                        style={ styles.logo_icon }
                                         color={ COLORS.warning } size={ SIZES.base() } />
                                     <Paragraph style={[
                                         styles.bd_label,

@@ -67,7 +67,7 @@ export default ListCategory
 const styles = StyleSheet.create({
     scroll: {
         paddingLeft: SIZES.base(),
-        paddingVertical: SIZES.base()
+        paddingBottom: SIZES.base(1.7)
     },
     list: {
         width: SIZES.base(12),

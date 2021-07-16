@@ -122,9 +122,9 @@ const styles = StyleSheet.create({
     },
     view_profile: {
         backgroundColor: COLORS.primary1,
-        marginStart: -SIZES.base(1),
+        marginStart: -SIZES.base(1.2),
         marginTop: SIZES.base(),
-        marginEnd: -SIZES.base(1),
+        marginEnd: -SIZES.base(1.2),
         marginBottom: -SIZES.base(1.5),
         borderBottomLeftRadius: SIZES.base(),
         borderBottomRightRadius: SIZES.base()

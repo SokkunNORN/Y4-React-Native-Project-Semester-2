@@ -16,7 +16,14 @@ import AppContext from '../../context'
 
 console.disableYellowBox = true
 
-const Header = props => {
+const Header = ({
+    title = '',
+    isSearch = false,
+    isJoined = false,
+    icon = '',
+    onClickBtnOne = () => {},
+    backgroundColor = ''
+}) => {
 
     const [isShowSearchField, setIsShowSearchField] = useState(false)
 
@@ -50,14 +57,16 @@ const Header = props => {
                 <SafeAreaView style={[
                     styles.safearea,
                     {
-                        backgroundColor: isDark ? COLORS.dark : COLORS.light_gray
+                        backgroundColor: backgroundColor ? backgroundColor : 
+                        isDark ? COLORS.dark : COLORS. light_gray 
                     }
                 ]}>
                     <StatusBar barStyle={ isDark ? 'light-content' : 'dark-content' } />
                     <Appbar.Header style={[
                         styles.header,
                         {
-                            backgroundColor: isDark ? COLORS.dark : COLORS.light_gray
+                            backgroundColor: backgroundColor ? backgroundColor : 
+                            isDark ? COLORS.dark : COLORS. light_gray 
                         }
                     ]}>
                         {
@@ -90,15 +99,15 @@ const Header = props => {
                             </> :
                             <>
                                 <Appbar.Content
-                                    title={ props.title }
+                                    title={ title }
                                     titleStyle={[
                                         styles.headerTitle
                                     ]}/>
-                                { props.isSearch ? <SearchIcon navigation={ props.navigation } isDark={ isDark }/> : null }
+                                { isSearch ? <SearchIcon isDark={ isDark }/> : null }
                                 { 
-                                    props.isJoined ?
+                                    isJoined ?
                                         <Button
-                                            icon={ props.icon }
+                                            icon={ icon }
                                             color={ COLORS.warning }
                                             style={ styles.joinBtn }
                                             labelStyle={ styles.labelStyle }
@@ -114,9 +123,9 @@ const Header = props => {
                                                 backgroundColor: isDark ? COLORS.primary : COLORS.secondary
                                             }
                                         ]}
-                                        icon={ props.icon } 
+                                        icon={ icon } 
                                         color={ COLORS.warning } 
-                                        onPress={() => {}}
+                                        onPress={ () => onClickBtnOne() }
                                     /> 
                                 }
                             </>
@@ -165,7 +174,7 @@ const styles = StyleSheet.create({
       shadowOpacity: 0,
     },
     joinBtn: {
-        marginRight: SIZES.base(),
+        marginRight: SIZES.base(1),
         borderColor: COLORS.warning,
         borderWidth: .9,
         borderRadius: SIZES.radius(4),

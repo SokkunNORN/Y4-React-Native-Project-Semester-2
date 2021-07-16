@@ -13,6 +13,7 @@ import {
 
 import { COLORS, HexToRGB } from '../constant'
 import AppContext from '../context'
+import Routes from '../routes'
 
 const Tab = createMaterialBottomTabNavigator()
 
@@ -22,7 +23,7 @@ const BottomNav = () => {
       {
         ({ isDark }) => 
         <Tab.Navigator
-          initialRouteName="Chat"
+          initialRouteName={ Routes.CHAT }
           activeColor={COLORS.warning}
           inactiveColor={COLORS.secondary1}
           barStyle={[
@@ -33,7 +34,7 @@ const BottomNav = () => {
           ]}
         >
           <Tab.Screen
-            name="Chat"
+            name={ Routes.CHAT }
             component={ ChatStackScreen }
             options={{
               title: "Chats",
@@ -43,7 +44,7 @@ const BottomNav = () => {
             }}
           />
           <Tab.Screen
-            name="Discover"
+            name={ Routes.DISCOVER }
             component={ DiscoverStackScreen }
             options={{
               title: "Discover",
@@ -53,7 +54,7 @@ const BottomNav = () => {
             }}
           />
           <Tab.Screen
-            name="Setting"
+            name={ Routes.SETTINGS }
             component={ SettingStackScreen }
             options={{
               title: "Settings",

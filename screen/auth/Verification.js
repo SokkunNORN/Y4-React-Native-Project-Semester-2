@@ -34,7 +34,7 @@ const Verification = ({ route }) => {
             internalVar.length >= 3
         ) {
             setTimeout(() => {
-                navigation.push(Routes.DASHBOARD)
+                navigation.push(Routes.INFORMATION, phoneNumber)
             }, 500)
         }
     }
@@ -46,6 +46,8 @@ const Verification = ({ route }) => {
             <>
                 <DetailHeader 
                     backgroundColor={ isDark ? COLORS.primary1 : COLORS.white }
+                    title={ phoneNumber }
+                    isTitleCenter
                 />
 
                 <TouchableWithoutFeedback

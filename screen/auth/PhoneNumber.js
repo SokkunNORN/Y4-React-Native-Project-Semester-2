@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import {
     StyleSheet,
     View,
@@ -54,7 +54,7 @@ const PhoneNumber = () => {
             <TouchableWithoutFeedback
                 onPress={ () => Keyboard.dismiss() }
             >
-                <>
+                <View style={{ flex: 1 }}>
                     <StatusBar barStyle={ isDark ? 'light-content' : 'dark-content' } />
                     <View
                         style={ styles.container }
@@ -142,7 +142,7 @@ const PhoneNumber = () => {
                             </View>
                         </KeyboardAvoidingView>
                     </View>
-                </>
+                </View>
             </TouchableWithoutFeedback>
         }
         </AppContext.Consumer>
@@ -195,7 +195,7 @@ const styles = StyleSheet.create({
     phone_number_text_input: {
         backgroundColor: COLORS.primary,
         color: COLORS.white,
-        borderRadius: SIZES.radius(),
+        borderRadius: SIZES.radius(1),
         padding: SIZES.base(),
         fontSize: FONTS.h4
     },
@@ -211,8 +211,8 @@ const styles = StyleSheet.create({
         marginHorizontal: 0
     },
     label_btn_continue: {
-        fontSize: FONTS.h3,
-        paddingVertical: SIZES.base(1)
+        fontSize: FONTS.h4,
+        paddingVertical: SIZES.base(.7)
     },
     condition_text: {
         color: COLORS.white,

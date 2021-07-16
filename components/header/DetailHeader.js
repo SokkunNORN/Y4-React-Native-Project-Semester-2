@@ -18,7 +18,17 @@ import { COLORS, FONTS, SIZES } from '../../constant'
 
 console.disableYellowBox = true
 
-const DetailHeader = props => {
+const DetailHeader = ({
+    title = '',
+    isBackIcon = true,
+    backgroundColor = '',
+    isProfile = false,
+    name = '',
+    iconRight1 = '',
+    iconRight2 = '',
+    iconRight3 = '',
+    isTitleCenter = false
+}) => {
 
     const navigation = useNavigation()
 
@@ -27,24 +37,27 @@ const DetailHeader = props => {
             {
                 ({ isDark }) =>
                 <SafeAreaView style={{ 
-                    backgroundColor: props.backgroundColor ? props.backgroundColor : 
+                    backgroundColor: backgroundColor ? backgroundColor : 
                     isDark ? COLORS.dark : COLORS. light_gray 
                 }}>
                     <StatusBar barStyle={ isDark ? 'light-content' : 'dark-content' } />
                     <Appbar.Header style={[
                         styles.header,
                         {
-                            backgroundColor: props.backgroundColor ? props.backgroundColor : 
+                            backgroundColor: backgroundColor ? backgroundColor : 
                             isDark ? COLORS.dark : COLORS. light_gray 
                         }
                     ]}>
-                        <Appbar.Action
-                            icon='chevron-left' 
-                            color={ COLORS.warning } 
-                            onPress={ () => navigation.pop() }
-                        />
                         {
-                            props.isProfile ?
+                            isBackIcon ?
+                            <Appbar.Action
+                                icon='chevron-left' 
+                                color={ COLORS.warning } 
+                                onPress={ () => navigation.pop() }
+                            /> : <></>
+                        }
+                        {
+                            isProfile ?
                                 <>
                                     <Avatar.Image
                                         size={ SIZES.base(5) }
@@ -56,21 +69,28 @@ const DetailHeader = props => {
                                             {
                                                 color: isDark ? COLORS.secondary : COLORS.black
                                             }
-                                        ]}>{ props.name }</Title>
+                                        ]}>{ name }</Title>
                                         <Paragraph style={ styles.time_seen } numberOfLines={ 1 }>Last seen at 2:14 AM</Paragraph>
                                     </View>
                                 </>
                             : null
                         }
-                        <Appbar.Content title={ props.title } />
+                        <Appbar.Content
+                            style={ isTitleCenter ? { alignItems: 'center' } : {} } 
+                            title={ title } />
                         {
-                            props.iconRight1 ?
+                            isTitleCenter ? 
+                                <Appbar.Action /> :
+                                null
+                        }
+                        {
+                            iconRight1 ?
                             <Appbar.Action
-                                icon={ props.iconRight1 }
+                                icon={ iconRight1 }
                                 color={ COLORS.warning }
                                 style={[
                                     styles.action_btn,
-                                    (!props.iconRight2 && !props.iconRight3)
+                                    (!iconRight2 && !iconRight3)
                                     ? styles.action_btn_mr : {}
                                 ]}
                                 onPress={ () => {} }
@@ -78,13 +98,13 @@ const DetailHeader = props => {
                             <></>
                         }
                         {
-                            props.iconRight2 ?
+                            iconRight2 ?
                             <Appbar.Action
-                                icon={ props.iconRight2 }
+                                icon={ iconRight2 }
                                 color={ COLORS.warning } 
                                 style={[
                                     styles.action_btn,
-                                    !props.iconRight3
+                                    !iconRight3
                                     ? styles.action_btn_mr : {}
                                 ]}
                                 onPress={ () => {} }
@@ -92,9 +112,9 @@ const DetailHeader = props => {
                             <></>
                         }
                         {
-                            props.iconRight3 ?
+                            iconRight3 ?
                             <Appbar.Action
-                                icon={ props.iconRight3 }
+                                icon={ iconRight3 }
                                 color={ COLORS.warning } 
                                 style={[
                                     styles.action_btn,
