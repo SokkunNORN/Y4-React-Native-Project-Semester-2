@@ -34,7 +34,7 @@ const Verification = ({ route }) => {
             internalVar.length >= 3
         ) {
             setTimeout(() => {
-                navigation.push(Routes.INFORMATION)
+                navigation.push(Routes.INFORMATION, phoneNumber)
             }, 500)
         }
     }
