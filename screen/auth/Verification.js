@@ -21,39 +21,38 @@ const Verification = ({ route }) => {
     const phoneNumber = route.params
     const lenghtInput = 6
     const [confirm, setConfirm] = useState(null)
-    const [otpCode, setOtpCode] = useState('')
-    const [isSendingCode, setIsSendingCode] = useState(false)
+    const [code, setCode] = useState('')
+    const [isSendingCode, setIsSendingCode] = useState(true)
     const [sendingCode, setSendingCode] = useState(30)
 
-    useEffect(() => {
-
-    }, [])
-
-    const signInWithPhoneNumber = async () => {
+    async function signInWithPhoneNumber () {
         try {
             const confirmation = await auth().signInWithPhoneNumber(phoneNumber)
-            alert(JSON.stringify(confirmation))
+            setConfirm(confirmation)
+            countTimeSendingOPT()
+            setIsSendingCode(true)
         } catch (error) {
             alert(error)
         }
+        countTimeSendingOPT()
     }
 
     const confirmCode = async () => {
         try {
-            await confirm.confirm(otpCode)
-            setTimeout(() => {
-                navigation.push(Routes.INFORMATION, phoneNumber)
-            }, 500)
-        } catch (_) {
-            alert('The confirmation code is invalid')
+            const confirmation = await confirm.confirm(code)
+            console.log('Confirmation OPT: ', confirmation)
+            navigation.push(Routes.INFORMATION, phoneNumber)
+        } catch (error) {
+            alert(error)
+            // alert('The confirmation code is invalid')
         }
     }
 
     const onChangeText = value => {
-        setOtpCode(value)
+        setCode(value)
         if (
-            value.length > otpCode.length &&
-            otpCode.length >= 5
+            value.length > code.length &&
+            code.length >= 5
         ) {
             confirmCode()
         }
@@ -62,6 +61,27 @@ const Verification = ({ route }) => {
     const onResend = () => {
         signInWithPhoneNumber()
     }
+
+    const countTimeSendingOPT = () => {
+        let time = 30
+        setSendingCode(time)
+        const timer = setInterval(() => {
+            time--
+            if (time < 10) {
+                setSendingCode(`0${time}`)
+            } else {
+                setSendingCode(time)
+            }
+            if (time < 1) {
+                setIsSendingCode(false)
+                clearInterval(timer)
+            }
+        }, 1000)
+    }
+
+    useEffect(() => {
+        signInWithPhoneNumber()
+    }, [])
 
     return (
         <AppContext.Consumer>
@@ -108,7 +128,7 @@ const Verification = ({ route }) => {
                             style={{ width: 0, height: 0 }}
                             maxLength={ lenghtInput }
                             keyboardType='number-pad'
-                            value={ otpCode }
+                            value={ code }
                             onChangeText={ onChangeText }
                             autoFocus
                         />
@@ -118,9 +138,9 @@ const Verification = ({ route }) => {
                                 Array(lenghtInput).fill().map((_, index) => (
                                     <TouchableWithoutFeedback 
                                         onPress={ () => textInput.focus() }
+                                        key={ index }
                                     >
                                         <View 
-                                            key={ index }
                                             style={[
                                                 styles.cell_view,
                                                 {
@@ -138,7 +158,7 @@ const Verification = ({ route }) => {
                                             ]}
                                             >
                                                 {
-                                                    otpCode[index] || ''
+                                                    code[index] || ''
                                                 }
                                             </Paragraph>
                                         </View>
