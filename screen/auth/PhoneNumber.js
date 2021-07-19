@@ -20,7 +20,6 @@ import Routes from '../../routes'
 import Icon from 'react-native-vector-icons/FontAwesome5'
 import { COLORS, FONTS, SIZES, HexToRGB } from '../../constant'
 import AppContext from '../../context'
-import auth from '@react-native-firebase/auth'
 
 const PhoneNumber = () => {
 
@@ -40,13 +39,8 @@ const PhoneNumber = () => {
         setPhoneNumber(newTxt)
     }
 
-    const onContinue = async () => {
-        try {
-            await auth().signInWithPhoneNumber(`+855 ${phoneNumber}`)
-            navigation.push(Routes.VERIFICATION, `+855 ${phoneNumber}`)
-        } catch (error) {
-            alert(error)
-        }
+    async function onContinue () {
+        navigation.push(Routes.VERIFICATION, `+855 ${phoneNumber}`)
     }
 
     return (
