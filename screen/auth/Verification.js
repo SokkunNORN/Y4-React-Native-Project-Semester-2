@@ -20,7 +20,8 @@ const Verification = ({ route }) => {
     let textInput = useRef(null)
     const phoneNumber = route.params
     const lenghtInput = 6
-    const [internalVar, setInternalVal] = useState('')
+    const [confirm, setConfirm] = useState(null)
+    const [otpCode, setOtpCode] = useState('')
     const [isSendingCode, setIsSendingCode] = useState(true)
     const [sendingCode, setSendingCode] = useState(0)
 
@@ -29,24 +30,33 @@ const Verification = ({ route }) => {
         signInWithPhoneNumber()
     }, [])
 
-    async function signInWithPhoneNumber () {
+    const signInWithPhoneNumber = async () => {
         try {
-            const confirmation = await auth().signInWithPhoneNumber('+855 16 500 854')
+            const confirmation = await auth().signInWithPhoneNumber(phoneNumber)
             alert(JSON.stringify(confirmation))
         } catch (error) {
-            alert('Invalid phone number.\n please try again.')
+            alert(error)
+        }
+    }
+
+    const confirmCode = async () => {
+        try {
+            await confirm.confirm(otpCode)
+            setTimeout(() => {
+                navigation.push(Routes.INFORMATION, phoneNumber)
+            }, 500)
+        } catch (_) {
+            alert('The confirmation code is invalid')
         }
     }
 
     const onChangeText = value => {
-        setInternalVal(value)
+        setOtpCode(value)
         if (
-            value.length > internalVar.length &&
-            internalVar.length >= 5
+            value.length > otpCode.length &&
+            otpCode.length >= 5
         ) {
-            setTimeout(() => {
-                navigation.push(Routes.INFORMATION, phoneNumber)
-            }, 500)
+            confirmCode()
         }
     }
 
@@ -95,7 +105,7 @@ const Verification = ({ route }) => {
                             style={{ width: 0, height: 0 }}
                             maxLength={ lenghtInput }
                             keyboardType='number-pad'
-                            value={ internalVar }
+                            value={ otpCode }
                             onChangeText={ onChangeText }
                             autoFocus
                         />
@@ -125,7 +135,7 @@ const Verification = ({ route }) => {
                                             ]}
                                             >
                                                 {
-                                                    internalVar[index] || ''
+                                                    otpCode[index] || ''
                                                 }
                                             </Paragraph>
                                         </View>
