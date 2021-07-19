@@ -22,12 +22,11 @@ const Verification = ({ route }) => {
     const lenghtInput = 6
     const [confirm, setConfirm] = useState(null)
     const [otpCode, setOtpCode] = useState('')
-    const [isSendingCode, setIsSendingCode] = useState(true)
-    const [sendingCode, setSendingCode] = useState(0)
+    const [isSendingCode, setIsSendingCode] = useState(false)
+    const [sendingCode, setSendingCode] = useState(30)
 
     useEffect(() => {
-        setSendingCode(30)
-        signInWithPhoneNumber()
+
     }, [])
 
     const signInWithPhoneNumber = async () => {
@@ -58,6 +57,10 @@ const Verification = ({ route }) => {
         ) {
             confirmCode()
         }
+    }
+
+    const onResend = () => {
+        signInWithPhoneNumber()
     }
 
     return (
@@ -150,7 +153,10 @@ const Verification = ({ route }) => {
                             : 
                             <Paragraph style={ styles.send_code }>
                                 Didn't receive a code?
-                                <Paragraph style={ styles.btn_resend_code }> Resend Code</Paragraph>
+                                <Paragraph
+                                    style={ styles.btn_resend_code }
+                                    onPress={ () => onResend() }
+                                > Resend Code</Paragraph>
                             </Paragraph>
                         }
                     </View>
