@@ -12,26 +12,37 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import DetailHeader from '../../components/header/DetailHeader'
 import { COLORS, SIZES, HexToRGB, FONTS } from '../../constant'
 import AppContext from '../../context'
+import auth from '@react-native-firebase/auth'
 
 const Verification = ({ route }) => {
 
     const navigation = useNavigation()
     let textInput = useRef(null)
     const phoneNumber = route.params
-    const lenghtInput = 4
+    const lenghtInput = 6
     const [internalVar, setInternalVal] = useState('')
     const [isSendingCode, setIsSendingCode] = useState(true)
     const [sendingCode, setSendingCode] = useState(0)
 
     useEffect(() => {
         setSendingCode(30)
+        signInWithPhoneNumber()
     }, [])
+
+    async function signInWithPhoneNumber () {
+        try {
+            const confirmation = await auth().signInWithPhoneNumber('+855 16 500 854')
+            alert(JSON.stringify(confirmation))
+        } catch (error) {
+            alert('Invalid phone number.\n please try again.')
+        }
+    }
 
     const onChangeText = value => {
         setInternalVal(value)
         if (
             value.length > internalVar.length &&
-            internalVar.length >= 3
+            internalVar.length >= 5
         ) {
             setTimeout(() => {
                 navigation.push(Routes.INFORMATION, phoneNumber)
@@ -85,7 +96,7 @@ const Verification = ({ route }) => {
                             maxLength={ lenghtInput }
                             keyboardType='number-pad'
                             value={ internalVar }
-                            onChangeText={onChangeText}
+                            onChangeText={ onChangeText }
                             autoFocus
                         />
 
@@ -185,7 +196,7 @@ const styles = StyleSheet.create({
         paddingVertical: SIZES.base(1.5),
         width: SIZES.base(6),
         height: SIZES.base(6),
-        margin: SIZES.base(1),
+        margin: SIZES.base(.5),
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: HexToRGB(COLORS.warning, .2),
