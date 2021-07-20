@@ -12,7 +12,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import DetailHeader from '../../components/header/DetailHeader'
 import { COLORS, SIZES, HexToRGB, FONTS } from '../../constant'
 import AppContext from '../../context'
-import auth from '@react-native-firebase/auth'
+import { signInWithPhoneNumber } from '../../api'
 
 const Verification = ({ route }) => {
 
@@ -25,9 +25,9 @@ const Verification = ({ route }) => {
     const [isSendingCode, setIsSendingCode] = useState(true)
     const [sendingCode, setSendingCode] = useState(30)
 
-    async function signInWithPhoneNumber () {
+    async function signIn () {
         try {
-            const confirmation = await auth().signInWithPhoneNumber(phoneNumber)
+            const confirmation = await signInWithPhoneNumber(phoneNumber)
             setConfirm(confirmation)
             countTimeSendingOPT()
             setIsSendingCode(true)
@@ -65,7 +65,7 @@ const Verification = ({ route }) => {
     }
 
     const onResend = () => {
-        signInWithPhoneNumber()
+        signIn()
     }
 
     const countTimeSendingOPT = () => {
@@ -86,7 +86,7 @@ const Verification = ({ route }) => {
     }
 
     useEffect(() => {
-        signInWithPhoneNumber()
+        signIn()
     }, [])
 
     return (
