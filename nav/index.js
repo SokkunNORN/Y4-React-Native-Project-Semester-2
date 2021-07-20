@@ -9,7 +9,8 @@ import {
     SettingDetail,
     Information,
     EditAccount,
-    ImageProfile
+    ImageProfile,
+    Greeting
 } from '../screen'
 import {
     COLORS, HexToRGB
@@ -26,14 +27,38 @@ const Navigate = () => {
             ({ isDark }) =>
             <Stack.Navigator>
                 <Stack.Screen
-                    name={ Routes.PHONE_NUMBER }
-                    component={ PhoneNumber }
+                    name={ Routes.GREETING }
+                    component={ Greeting }
                     options={{
                         headerShown: false,
                         cardStyle: {
                             backgroundColor: isDark ? COLORS.primary1 : COLORS.white
                         }
                     }}
+                />
+                <Stack.Screen
+                    name={ Routes.PHONE_NUMBER }
+                    component={ PhoneNumber }
+                    options={{
+                        headerShown: false,
+                        cardOverlayEnabled: true,
+                        cardStyleInterpolator: ({ current: { progress } }) => ({
+                            cardStyle: {
+                                opacity: progress.interpolate({
+                                    inputRange: [0, 0.5, 0.9, 1],
+                                    outputRange: [0, 0.25, 0.7, 1],
+                                }),
+                            },
+                            overlayStyle: {
+                                opacity: progress.interpolate({
+                                    inputRange: [0, 1],
+                                    outputRange: [0, 0.5],
+                                    extrapolate: 'clamp',
+                                }),
+                            },
+                        })
+                    }}
+                    mode="modal"
                 />
                 <Stack.Screen
                     name={ Routes.VERIFICATION }
@@ -59,7 +84,8 @@ const Navigate = () => {
                     name={ Routes.DASHBOARD } 
                     component={ BottomNav }
                     options={{
-                        headerShown: false,cardOverlayEnabled: true,
+                        headerShown: false,
+                        cardOverlayEnabled: true,
                         cardStyleInterpolator: ({ current: { progress } }) => ({
                             cardStyle: {
                                 opacity: progress.interpolate({
