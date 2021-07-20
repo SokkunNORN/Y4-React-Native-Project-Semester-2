@@ -29,13 +29,15 @@ import DateTimePicker from '@react-native-community/datetimepicker'
 import Routes from '../../routes'
 import BottomSheet from 'reanimated-bottom-sheet'
 import Animated from 'react-native-reanimated'
+import { phoneFormatter855 } from '../../utils'
+import { createUser } from '../../api'
 const keyboardVerticalOffset = Platform.OS === 'ios' ? SIZES.base(12.5) : 0
 
 const Information = ({ route }) => {
 
     const scrollViewRef = useRef()
     const sheetRef = React.useRef(null)
-    const phoneNumber = route.params || null
+    const phoneNumber = phoneFormatter855(route.params.phoneNumber) || null
     const navigation = useNavigation()
 
     const [firstName, setFirstName] = useState('')
@@ -133,8 +135,25 @@ const Information = ({ route }) => {
         setIsBottomSheetOpen(false)
     }
 
-    const onDone = () => {
-        navigation.push(Routes.DASHBOARD)
+    const onDone = async () => {
+        const data = {
+            about: null,
+            bd: birthDate,
+            fname: firstName,
+            image_profile: null,
+            lname: null,
+            phone: phoneNumber,
+            status_bd: statusBirthDate,
+            uid: route.params.uid
+        }
+
+        try {
+            await createUser(data)
+
+            navigation.push(Routes.DASHBOARD)
+        } catch (error) {
+            alert(error)
+        }
     }
 
     const onShowDatePicker = () => {

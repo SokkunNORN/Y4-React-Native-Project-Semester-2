@@ -1,6 +1,10 @@
 
-import { signInWithPhoneNumber } from './auth'
+import { 
+    signInWithPhoneNumber,
+    createUser
+} from './auth'
 
 export {
-    signInWithPhoneNumber
+    signInWithPhoneNumber,
+    createUser
 }
