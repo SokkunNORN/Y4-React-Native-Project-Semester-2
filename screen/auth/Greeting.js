@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
     StyleSheet,
     StatusBar,
@@ -7,8 +7,19 @@ import {
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { SIZES, COLORS, HexToRGB } from '../../constant'
 import AppContext from '../../context'
+import Routes from '../../routes'
+import { useNavigation } from '@react-navigation/native'
 
 const Greeting = () => {
+
+    const navigation = useNavigation()
+
+    useEffect(() => {
+        setTimeout(() => {
+            navigation.push(Routes.PHONE_NUMBER)
+        }, 1000)
+    }, [])
+
     return (
         <AppContext.Consumer>
             {

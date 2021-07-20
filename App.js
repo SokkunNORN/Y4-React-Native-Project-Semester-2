@@ -6,15 +6,13 @@
  * @flow strict-local
  */
 
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import Navigate from './nav'
-import { Greeting } from './screen'
 import AppContext from './context'
 
 const App = () => {
 
-  const [isGreeting, setGreeting] = useState(true)
   const [isDarkTheme, setIsDarkTheme] = useState(false)
   const [chatBackgroundIndex, setChatBackgroundIndex] = useState(0)
 
@@ -25,12 +23,6 @@ const App = () => {
   const onChangeChatBackground = index => {
     setChatBackgroundIndex(index)
   }
-
-  useEffect(() => {
-    setTimeout(() => {
-      setGreeting(false)
-    }, 1000)
-  }, [])
 
   return (
     <AppContext.Provider
@@ -44,9 +36,7 @@ const App = () => {
       }}
     >
       <NavigationContainer>
-        {
-          isGreeting ? <Greeting /> : <Navigate />
-        }
+        <Navigate />
       </NavigationContainer>
     </AppContext.Provider>
   )
