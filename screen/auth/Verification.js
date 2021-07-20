@@ -37,24 +37,30 @@ const Verification = ({ route }) => {
         countTimeSendingOPT()
     }
 
-    const confirmCode = async () => {
+    async function checkUser (confirmation) {
+        if (confirmation.additionalUserInfo.isNewUser) {
+            navigation.push(Routes.INFORMATION, confirmation.user)
+        } else {
+            navigation.push(Routes.DASHBOARD)
+        }
+    }
+
+    const confirmCode = async (otpCode) => {
         try {
-            const confirmation = await confirm.confirm(code)
-            console.log('Confirmation OPT: ', confirmation)
-            navigation.push(Routes.INFORMATION, phoneNumber)
+            const confirmation = await confirm.confirm(otpCode)
+
+            checkUser(confirmation)
         } catch (error) {
-            alert(error)
-            // alert('The confirmation code is invalid')
+            alert('The confirmation code is invalid')
         }
     }
 
     const onChangeText = value => {
         setCode(value)
         if (
-            value.length > code.length &&
-            code.length >= 5
+            value.length == lenghtInput
         ) {
-            confirmCode()
+            confirmCode(value)
         }
     }
 
