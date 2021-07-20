@@ -18,6 +18,7 @@ import { useNavigation } from '@react-navigation/native'
 import Routes from '../routes'
 import AppContext from '../context'
 import packageJson from '../package.json'
+import { signOut } from '../api'
 
 const Setting = () => {
 
@@ -161,6 +162,7 @@ const Setting = () => {
                 },
                 buttonIndex => {
                     if (buttonIndex === 1) {
+                        signOut()
                         navigation.push(Routes.PHONE_NUMBER)
                     }
                 }

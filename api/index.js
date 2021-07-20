@@ -2,11 +2,13 @@
 import { 
     signInWithPhoneNumber,
     createUser,
-    getAuthentication
+    getAuthentication,
+    signOut
 } from './auth'
 
 export {
     signInWithPhoneNumber,
     createUser,
-    getAuthentication
+    getAuthentication,
+    signOut
 }

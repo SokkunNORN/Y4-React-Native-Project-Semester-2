@@ -24,3 +24,11 @@ export const getAuthentication = async uid => {
         })
     })
 }
+
+export const signOut = async () => {
+    try {
+        await auth().signOut()
+    } catch (error) {
+       console.log(error); 
+    }
+}
