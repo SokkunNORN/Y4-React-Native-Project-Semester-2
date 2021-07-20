@@ -12,7 +12,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import DetailHeader from '../../components/header/DetailHeader'
 import { COLORS, SIZES, HexToRGB, FONTS } from '../../constant'
 import AppContext from '../../context'
-import { signInWithPhoneNumber } from '../../api'
+import { signInWithPhoneNumber, getAuthentication } from '../../api'
 
 const Verification = ({ route }) => {
 
@@ -41,7 +41,12 @@ const Verification = ({ route }) => {
         if (confirmation.additionalUserInfo.isNewUser) {
             navigation.push(Routes.INFORMATION, confirmation.user)
         } else {
-            navigation.push(Routes.DASHBOARD)
+            try {
+                await getAuthentication(confirmation.user.uid)
+                navigation.push(Routes.DASHBOARD)
+            } catch (error) {
+                alert(error)
+            }
         }
     }
 

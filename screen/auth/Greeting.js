@@ -9,14 +9,22 @@ import { SIZES, COLORS, HexToRGB } from '../../constant'
 import AppContext from '../../context'
 import Routes from '../../routes'
 import { useNavigation } from '@react-navigation/native'
+import { getCachedUser } from '../../utils'
 
 const Greeting = () => {
 
     const navigation = useNavigation()
 
-    useEffect(() => {
+    useEffect( async () => {
+
+        const authentication = await getCachedUser()
+
         setTimeout(() => {
-            navigation.push(Routes.PHONE_NUMBER)
+            if (authentication) {
+                navigation.push(Routes.DASHBOARD)
+            } else {
+                navigation.push(Routes.PHONE_NUMBER)
+            }
         }, 1000)
     }, [])
 

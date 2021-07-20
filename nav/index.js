@@ -41,6 +41,9 @@ const Navigate = () => {
                     component={ PhoneNumber }
                     options={{
                         headerShown: false,
+                        cardStyle: {
+                            backgroundColor: isDark ? COLORS.primary1 : COLORS.white
+                        },
                         cardOverlayEnabled: true,
                         cardStyleInterpolator: ({ current: { progress } }) => ({
                             cardStyle: {

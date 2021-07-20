@@ -29,7 +29,7 @@ import DateTimePicker from '@react-native-community/datetimepicker'
 import Routes from '../../routes'
 import BottomSheet from 'reanimated-bottom-sheet'
 import Animated from 'react-native-reanimated'
-import { phoneFormatter855 } from '../../utils'
+import { phoneFormatter855, setCachedUser } from '../../utils'
 import { createUser } from '../../api'
 const keyboardVerticalOffset = Platform.OS === 'ios' ? SIZES.base(12.5) : 0
 
@@ -154,6 +154,8 @@ const Information = ({ route }) => {
         } catch (error) {
             alert(error)
         }
+        
+        await setCachedUser(data)
     }
 
     const onShowDatePicker = () => {
