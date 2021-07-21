@@ -18,10 +18,8 @@ export const createUser = async payload => {
 }
 
 export const getAuthentication = async id => {
-    await docRef.where('uid', '==', id).get().then(doc => {
-        doc.forEach(async element => {
-            await setCachedUser(element.data())
-        })
+    await docRef.doc(id).get().then(document => {
+        await setCachedUser(document.data())
     })
 }
 
