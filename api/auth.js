@@ -12,13 +12,13 @@ export const signInWithPhoneNumber = async phoneNumber => {
 }
 
 export const createUser = async payload => {
-    const response = await docRef.add(payload)
+    const response = await docRef.doc(payload.id).set(payload)
 
     return response
 }
 
-export const getAuthentication = async uid => {
-    await docRef.where('uid', '==', uid).get().then(doc => {
+export const getAuthentication = async id => {
+    await docRef.where('uid', '==', id).get().then(doc => {
         doc.forEach(async element => {
             await setCachedUser(element.data())
         })

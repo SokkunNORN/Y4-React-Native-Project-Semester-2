@@ -144,7 +144,7 @@ const Information = ({ route }) => {
             lname: null,
             phone: phoneNumber,
             status_bd: statusBirthDate,
-            uid: route.params.uid
+            id: route.params.uid
         }
 
         try {
