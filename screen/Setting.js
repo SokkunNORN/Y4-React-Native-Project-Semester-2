@@ -9,7 +9,8 @@ import {
     StyleSheet,
     ScrollView,
     View,
-    ActionSheetIOS
+    ActionSheetIOS,
+    BackHandler
 } from 'react-native'
 import { SIZES, COLORS, FONTS, HexToRGB } from '../constant'
 import ListSetting from '../components/ListSetting'

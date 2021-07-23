@@ -23,6 +23,10 @@ export const getAuthentication = async id => {
     })
 }
 
+export const updateAuthentication = async payload => {
+    await docRef.doc(payload.id).set(payload)
+}
+
 export const signOut = async () => {
     try {
         await resetAuth()

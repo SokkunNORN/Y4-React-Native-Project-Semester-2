@@ -35,7 +35,8 @@ import DateTimePicker from '@react-native-community/datetimepicker'
 import Routes from '../routes'
 import BottomSheet from 'reanimated-bottom-sheet'
 import Animated from 'react-native-reanimated'
-import { getCachedUser } from '../utils'
+import { getCachedUser, setCachedUser } from '../utils'
+import { updateAuthentication } from '../api'
 
 const keyboardVerticalOffset = Platform.OS === 'ios' ? SIZES.base(12.5) : 0
 
@@ -44,6 +45,7 @@ const EditProfile = () => {
     const scrollViewRef = useRef()
     const sheetRef = React.useRef(null)
     const navigation = useNavigation()
+    const [userID, setUserID] = useState(null)
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [phone, setPhone] = useState('')
@@ -60,6 +62,7 @@ const EditProfile = () => {
         const response = await getCachedUser()
         const user = JSON.parse(response)
 
+        setUserID(user.id)
         setFirstName(user.fname)
         setLastName(user.lname)
         setPhone(user.phone)
@@ -162,8 +165,26 @@ const EditProfile = () => {
         navigation.goBack()
     }
 
-    const onDone = () => {
-        onBack()
+    const onDone = async () => {
+        const user = {
+            status_bd: statusBirthDate,
+            image_profile: null,
+            fname: firstName,
+            bd: birthDate,
+            about: about,
+            id: userID,
+            lname: lastName,
+            phone: phone
+        }
+
+        try {
+            await updateAuthentication(user)
+            await setCachedUser(user)
+
+            onBack()
+        } catch (error) {
+            alert(error)
+        }
     }
 
     const onShowDatePicker = () => {
