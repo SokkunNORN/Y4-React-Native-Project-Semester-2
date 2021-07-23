@@ -1,7 +1,7 @@
 
 import auth from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore'
-import { setCachedUser } from '../utils'
+import { setCachedUser, resetAuth } from '../utils'
 
 const docRef = firestore().collection("user")
 
@@ -18,15 +18,18 @@ export const createUser = async payload => {
 }
 
 export const getAuthentication = async id => {
-    await docRef.doc(id).get().then(document => {
+    await docRef.doc(id).get().then(async document => {
         await setCachedUser(document.data())
     })
 }
 
 export const signOut = async () => {
     try {
+        await resetAuth()
         await auth().signOut()
+
+        return true
     } catch (error) {
-       console.log(error); 
+        return false
     }
 }

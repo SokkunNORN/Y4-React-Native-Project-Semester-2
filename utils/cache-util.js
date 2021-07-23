@@ -10,3 +10,7 @@ export const getCachedUser = async () => {
 
     return user
 }
+
+export const resetAuth = async () => {
+    await AsyncStorage.removeItem('user')
+}

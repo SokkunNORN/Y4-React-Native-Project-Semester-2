@@ -160,10 +160,10 @@ const Setting = () => {
                     cancelButtonIndex: 0,
                     userInterfaceStyle: isDark ? 'dark' : 'light'
                 },
-                buttonIndex => {
+                async buttonIndex => {
                     if (buttonIndex === 1) {
-                        signOut()
-                        navigation.push(Routes.PHONE_NUMBER)
+                        const status = await signOut()
+                        status && navigation.push(Routes.PHONE_NUMBER)
                     }
                 }
             )
