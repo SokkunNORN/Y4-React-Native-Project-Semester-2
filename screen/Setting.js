@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from '../components/header/Header'
 import {
     Card,
@@ -19,10 +19,17 @@ import Routes from '../routes'
 import AppContext from '../context'
 import packageJson from '../package.json'
 import { signOut } from '../api'
+import { getCachedUser } from '../utils'
 
 const Setting = () => {
 
     const navigation = useNavigation()
+
+    const [name, setName] = useState('')
+    const [phoneNumber, setPhoneNumber] = useState('')
+    const [birthDate, setBirthDate] = useState('')
+    const [statusBD, setStatusBD] = useState('')
+    const [about, setAbout] = useState('')
 
     const lists = [
         [
@@ -176,6 +183,21 @@ const Setting = () => {
         navigation.push(Routes.EDIT_PROFIILE)
     }
 
+    const getProfile = async () => {
+        const response = await getCachedUser()
+        const user = JSON.parse(response)
+
+        setName(`${user.fname} ${user.lname || ''}`)
+        setPhoneNumber(user.phone)
+        setBirthDate(user.bd)
+        setStatusBD(user.status_bd)
+        setAbout(user.about)
+    }
+
+    useEffect(() => {
+        getProfile()
+    }, [])
+
     return (
         <AppContext.Consumer>
             {
@@ -203,7 +225,7 @@ const Setting = () => {
                                 {
                                     color: isDark ? COLORS.white : COLORS.black
                                 }
-                            ]}>Kun Kun</Title>
+                            ]}>{ name }</Title>
                         </Card.Content>
                         <Card.Content style={ styles.border }>
                             <Paragraph style={[
@@ -217,7 +239,7 @@ const Setting = () => {
                                 {
                                     color: isDark ? COLORS.white : COLORS.black
                                 }
-                            ]}>+855 17 500 859</Title>
+                            ]}>{ phoneNumber }</Title>
                         </Card.Content>
                         <Card.Content style={ styles.border }>
                             <View style={ styles.bd_contain }>
@@ -233,7 +255,7 @@ const Setting = () => {
                                         {
                                             color: isDark ? COLORS.white : COLORS.black
                                         }
-                                    ]}>N/A</Title>
+                                    ]}>{ birthDate || 'N/A' }</Title>
                                 </View>
                                 <View style={[
                                     styles.bd_view_right,
@@ -249,7 +271,7 @@ const Setting = () => {
                                         {
                                             color: isDark ? COLORS.white : COLORS.black
                                         }
-                                    ]}>Public (Hide year)</Paragraph>
+                                    ]}>{ statusBD }</Paragraph>
                                 </View>
                             </View>
                         </Card.Content>
@@ -265,13 +287,14 @@ const Setting = () => {
                                 {
                                     color: isDark ? COLORS.white : COLORS.black
                                 }
-                            ]}>About</Title>
+                            ]}>{ about || 'N/A' }</Title>
                         </Card.Content>
                     </Card>
 
                     {
-                        lists.map(items => (
+                        lists.map((items, index) => (
                             <ListSetting 
+                                key={ index }
                                 items={ items }
                                 setSelectItem={ value => onSelectList(value, isDark) }
                             />
