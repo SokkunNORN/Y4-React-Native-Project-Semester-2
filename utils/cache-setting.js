@@ -6,7 +6,7 @@ export const setTheme = async isDark => {
 }
 
 export const getTheme = async () => {
-    const theme = await AsyncStorage.getItem('isDark')
+    const theme = await AsyncStorage.getItem('isDark') || false
 
     return theme
 }
@@ -16,7 +16,7 @@ export const setChatBackgroundIndex = async index => {
 }
 
 export const getChatBackgroundIndex = async () => {
-    const index = await AsyncStorage.getItem('chatBackgroundIndex')
+    const index = await AsyncStorage.getItem('chatBackgroundIndex') || 0
 
     return index
 }
