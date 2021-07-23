@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import {
     StyleSheet,
     View,
@@ -19,9 +19,15 @@ import {
     Button,
     Title
 } from 'react-native-paper'
+import { 
+    COLORS,
+    FONTS,
+    SIZES,
+    HexToRGB,
+    BirthDateStatusLists
+} from '../constant'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import Header from '../components/header/Header'
-import { COLORS, FONTS, SIZES, HexToRGB, BirthDateStatusLists } from '../constant'
 import AppContext from '../context'
 import { useNavigation } from '@react-navigation/native'
 import { format } from 'date-fns'
@@ -29,6 +35,8 @@ import DateTimePicker from '@react-native-community/datetimepicker'
 import Routes from '../routes'
 import BottomSheet from 'reanimated-bottom-sheet'
 import Animated from 'react-native-reanimated'
+import { getCachedUser } from '../utils'
+
 const keyboardVerticalOffset = Platform.OS === 'ios' ? SIZES.base(12.5) : 0
 
 const EditProfile = () => {
@@ -40,13 +48,29 @@ const EditProfile = () => {
     const [lastName, setLastName] = useState('')
     const [phone, setPhone] = useState('')
     const [date, setDate] = useState(new Date())
-    const [birthDate, setBirthDate] = useState(null)
+    const [birthDate, setBirthDate] = useState('')
     const [about, setAbout] = useState('')
     const [isSelectDate, setIsSelectDate] = useState(false)
     const [statusBirthDate, setStatusBirthDate] = useState(BirthDateStatusLists[0])
     const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false)
 
     fall = new Animated.Value(1)
+
+    const getProfile = async () => {
+        const response = await getCachedUser()
+        const user = JSON.parse(response)
+
+        setFirstName(user.fname)
+        setLastName(user.lname)
+        setPhone(user.phone)
+        setBirthDate(user.bd)
+        setStatusBirthDate(user.status_bd)
+        setAbout(user.about)
+    }
+
+    useEffect(() => {
+        getProfile()
+    }, [])
 
     const renderHeader = () => {
         return (
@@ -293,6 +317,7 @@ const EditProfile = () => {
                                         keyboardAppearance={ !isDark ? 'light' : 'dark'}
                                         placeholder='Mobile'
                                         keyboardType='number-pad'
+                                        editable={ false }
                                         placeholderTextColor={ COLORS.secondary1 }
                                         style={[
                                             styles.text_input,
