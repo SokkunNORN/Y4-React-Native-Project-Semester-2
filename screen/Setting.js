@@ -185,8 +185,7 @@ const Setting = () => {
     }
 
     const getProfile = async () => {
-        const response = await getCachedUser()
-        const user = JSON.parse(response)
+        const user = await getCachedUser()
 
         setName(`${user.fname} ${user.lname || ''}`)
         setPhoneNumber(user.phone)

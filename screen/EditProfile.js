@@ -59,8 +59,7 @@ const EditProfile = () => {
     fall = new Animated.Value(1)
 
     const getProfile = async () => {
-        const response = await getCachedUser()
-        const user = JSON.parse(response)
+        const user = await getCachedUser()
 
         setUserID(user.id)
         setFirstName(user.fname)
