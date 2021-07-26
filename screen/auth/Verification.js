@@ -12,32 +12,87 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import DetailHeader from '../../components/header/DetailHeader'
 import { COLORS, SIZES, HexToRGB, FONTS } from '../../constant'
 import AppContext from '../../context'
+import { signInWithPhoneNumber, getAuthentication } from '../../api'
 
 const Verification = ({ route }) => {
 
     const navigation = useNavigation()
     let textInput = useRef(null)
     const phoneNumber = route.params
-    const lenghtInput = 4
-    const [internalVar, setInternalVal] = useState('')
+    const lenghtInput = 6
+    const [confirm, setConfirm] = useState(null)
+    const [code, setCode] = useState('')
     const [isSendingCode, setIsSendingCode] = useState(true)
-    const [sendingCode, setSendingCode] = useState(0)
+    const [sendingCode, setSendingCode] = useState(30)
 
-    useEffect(() => {
-        setSendingCode(30)
-    }, [])
+    async function signIn () {
+        try {
+            const confirmation = await signInWithPhoneNumber(phoneNumber)
+            setConfirm(confirmation)
+            countTimeSendingOPT()
+            setIsSendingCode(true)
+        } catch (error) {
+            alert(error)
+        }
+        countTimeSendingOPT()
+    }
 
-    const onChangeText = value => {
-        setInternalVal(value)
-        if (
-            value.length > internalVar.length &&
-            internalVar.length >= 3
-        ) {
-            setTimeout(() => {
-                navigation.push(Routes.INFORMATION, phoneNumber)
-            }, 500)
+    async function checkUser (confirmation) {
+        if (confirmation.additionalUserInfo.isNewUser) {
+            navigation.push(Routes.INFORMATION, confirmation.user)
+        } else {
+            try {
+                await getAuthentication(confirmation.user.uid)
+                navigation.push(Routes.DASHBOARD)
+            } catch (error) {
+                alert(error)
+            }
         }
     }
+
+    const confirmCode = async (otpCode) => {
+        try {
+            const confirmation = await confirm.confirm(otpCode)
+
+            checkUser(confirmation)
+        } catch (error) {
+            alert('The confirmation code is invalid')
+        }
+    }
+
+    const onChangeText = value => {
+        setCode(value)
+        if (
+            value.length == lenghtInput
+        ) {
+            confirmCode(value)
+        }
+    }
+
+    const onResend = () => {
+        signIn()
+    }
+
+    const countTimeSendingOPT = () => {
+        let time = 30
+        setSendingCode(time)
+        const timer = setInterval(() => {
+            time--
+            if (time < 10) {
+                setSendingCode(`0${time}`)
+            } else {
+                setSendingCode(time)
+            }
+            if (time < 1) {
+                setIsSendingCode(false)
+                clearInterval(timer)
+            }
+        }, 1000)
+    }
+
+    useEffect(() => {
+        signIn()
+    }, [])
 
     return (
         <AppContext.Consumer>
@@ -84,8 +139,8 @@ const Verification = ({ route }) => {
                             style={{ width: 0, height: 0 }}
                             maxLength={ lenghtInput }
                             keyboardType='number-pad'
-                            value={ internalVar }
-                            onChangeText={onChangeText}
+                            value={ code }
+                            onChangeText={ onChangeText }
                             autoFocus
                         />
 
@@ -94,9 +149,9 @@ const Verification = ({ route }) => {
                                 Array(lenghtInput).fill().map((_, index) => (
                                     <TouchableWithoutFeedback 
                                         onPress={ () => textInput.focus() }
+                                        key={ index }
                                     >
                                         <View 
-                                            key={ index }
                                             style={[
                                                 styles.cell_view,
                                                 {
@@ -114,7 +169,7 @@ const Verification = ({ route }) => {
                                             ]}
                                             >
                                                 {
-                                                    internalVar[index] || ''
+                                                    code[index] || ''
                                                 }
                                             </Paragraph>
                                         </View>
@@ -129,7 +184,10 @@ const Verification = ({ route }) => {
                             : 
                             <Paragraph style={ styles.send_code }>
                                 Didn't receive a code?
-                                <Paragraph style={ styles.btn_resend_code }> Resend Code</Paragraph>
+                                <Paragraph
+                                    style={ styles.btn_resend_code }
+                                    onPress={ () => onResend() }
+                                > Resend Code</Paragraph>
                             </Paragraph>
                         }
                     </View>
@@ -185,7 +243,7 @@ const styles = StyleSheet.create({
         paddingVertical: SIZES.base(1.5),
         width: SIZES.base(6),
         height: SIZES.base(6),
-        margin: SIZES.base(1),
+        margin: SIZES.base(.5),
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: HexToRGB(COLORS.warning, .2),

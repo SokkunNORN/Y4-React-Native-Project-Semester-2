@@ -28,23 +28,19 @@ const PhoneNumber = () => {
     const [keyboardStatus, setKeyboardStatus] = useState(false)
 
     const onTextChange = value => {
+        let newTxt = ''
         const cleaned = ('' + value).replace(/\D/g, '')
-        const match = cleaned.match(/^(1|)?(\d{2})(\d{3})(\d{4})$/)
-        if (phoneNumber.length < value.length) {
-            if (match) {
-                const intlCode = (match[1] ? '+1 ' : ''),
-                    number = [intlCode, '+855 ', match[2], ' ', match[3], ' ', match[4]].join('');
-    
-                setPhoneNumber(number)
-    
-                return
+        for (let i = 0; i < cleaned.length; i++) {
+            if (i == 2 || i == 5) {
+                newTxt += ' '
             }
+            newTxt += cleaned[i]
         }
-        setPhoneNumber(value)
+        setPhoneNumber(newTxt)
     }
 
-    const onContinue = () => {
-        navigation.push(Routes.VERIFICATION, phoneNumber)
+    async function onContinue () {
+        navigation.push(Routes.VERIFICATION, `+855 ${phoneNumber}`)
     }
 
     return (
@@ -85,6 +81,14 @@ const PhoneNumber = () => {
                                 Provide your phone number to receive your conformation code. {keyboardStatus}
                             </Paragraph>
                             <View style={ styles.contain_phone_number_text_input } >
+                                <Text
+                                    style={[
+                                        styles.label_phone_text_field,
+                                        {
+                                            color: !isDark ? COLORS.dark : COLORS.white
+                                        }
+                                    ]}
+                                >+855</Text>
                                 <TextInput
                                     keyboardAppearance={ !isDark ? 'light' : 'dark'}
                                     keyboardType='number-pad'
@@ -99,7 +103,7 @@ const PhoneNumber = () => {
                                     ]}
                                     onChangeText={ value => onTextChange(value) }
                                     value={ phoneNumber }
-                                    maxLength={ 12 }
+                                    maxLength={ 11 }
                                     onFocus={ () => setKeyboardStatus(true) }
                                     onBlur={ () => setKeyboardStatus(false) }
                                 />
@@ -127,11 +131,11 @@ const PhoneNumber = () => {
                                         styles.btn_continue,
                                         keyboardStatus ? styles.btn_continue_with_active_keyboard : {},
                                         {
-                                            backgroundColor: phoneNumber ? COLORS.warning : 
+                                            backgroundColor: phoneNumber.length >= 10 ? COLORS.warning : 
                                             !isDark ? COLORS.secondary : COLORS.secondary1
                                         }
                                     ]}
-                                    disabled={ phoneNumber ? false : true }
+                                    disabled={ phoneNumber.length >= 10 ? false : true }
                                     labelStyle={ styles.label_btn_continue }
                                     color={ COLORS.secondary }
                                     uppercase={ false }
@@ -192,12 +196,20 @@ const styles = StyleSheet.create({
     contain_phone_number_text_input: {
         marginTop: SIZES.base(3)
     },
+    label_phone_text_field: {
+        position: 'absolute',
+        zIndex: 1000,
+        top: SIZES.base(2.1),
+        fontSize: FONTS.h4,
+        left: SIZES.base()
+    },
     phone_number_text_input: {
         backgroundColor: COLORS.primary,
         color: COLORS.white,
         borderRadius: SIZES.radius(1),
         padding: SIZES.base(),
-        fontSize: FONTS.h4
+        fontSize: FONTS.h4,
+        paddingLeft: SIZES.base(8)
     },
 
     btn_continue: {
