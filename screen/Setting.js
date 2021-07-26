@@ -196,6 +196,11 @@ const Setting = () => {
 
     useEffect(() => {
         getProfile()
+
+        const unsubscribe = navigation.addListener('focus', () => {
+            getProfile()
+        })
+        return unsubscribe
     }, [])
 
     return (
