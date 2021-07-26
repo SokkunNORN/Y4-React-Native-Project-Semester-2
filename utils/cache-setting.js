@@ -8,7 +8,7 @@ export const setThemeApp = async isDark => {
 export const getThemeApp = async () => {
     const theme = await AsyncStorage.getItem('isDark') || false
 
-    return theme
+    return JSON.parse(theme)
 }
 
 export const setChatBackgroundAppIndex = async index => {
@@ -18,5 +18,5 @@ export const setChatBackgroundAppIndex = async index => {
 export const getChatBackgroundAppIndex = async () => {
     const index = await AsyncStorage.getItem('chatBGIndex') || 0
 
-    return index
+    return JSON.parse(index)
 }
