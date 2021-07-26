@@ -8,7 +8,7 @@ export const setCachedUser = async payload => {
 export const getCachedUser = async () => {
     const user = await AsyncStorage.getItem('user') || null
 
-    return user
+    return JSON.parse(user)
 }
 
 export const resetAuth = async () => {
