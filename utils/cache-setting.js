@@ -12,11 +12,11 @@ export const getThemeApp = async () => {
 }
 
 export const setChatBackgroundAppIndex = async index => {
-    await AsyncStorage.setItem('chatBackgroundIndex', JSON.stringify(index))
+    await AsyncStorage.setItem('chatBGIndex', JSON.stringify(index))
 }
 
 export const getChatBackgroundAppIndex = async () => {
-    const index = await AsyncStorage.getItem('chatBackgroundIndex') || 0
+    const index = await AsyncStorage.getItem('chatBGIndex') || 0
 
     return index
 }
