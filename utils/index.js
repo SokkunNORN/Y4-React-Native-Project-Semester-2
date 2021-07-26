@@ -4,10 +4,10 @@ import {
     resetAuth
 } from "./cache-authentication"
 import {
-    setChatBackgroundIndex,
-    getChatBackgroundIndex,
-    setTheme,
-    getTheme
+    setChatBackgroundAppIndex,
+    getChatBackgroundAppIndex,
+    setThemeApp,
+    getThemeApp
 } from "./cache-setting"
 import { phoneFormatter855 } from "./phone"
 
@@ -15,9 +15,9 @@ export {
     setCachedUser,
     getCachedUser,
     resetAuth,
-    setChatBackgroundIndex,
-    getChatBackgroundIndex,
-    setTheme,
-    getTheme,
+    setChatBackgroundAppIndex,
+    getChatBackgroundAppIndex,
+    setThemeApp,
+    getThemeApp,
     phoneFormatter855
 }

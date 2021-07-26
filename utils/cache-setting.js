@@ -1,21 +1,21 @@
 
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
-export const setTheme = async isDark => {
+export const setThemeApp = async isDark => {
     await AsyncStorage.setItem('isDark', JSON.stringify(isDark))
 }
 
-export const getTheme = async () => {
+export const getThemeApp = async () => {
     const theme = await AsyncStorage.getItem('isDark') || false
 
     return theme
 }
 
-export const setChatBackgroundIndex = async index => {
+export const setChatBackgroundAppIndex = async index => {
     await AsyncStorage.setItem('chatBackgroundIndex', JSON.stringify(index))
 }
 
-export const getChatBackgroundIndex = async () => {
+export const getChatBackgroundAppIndex = async () => {
     const index = await AsyncStorage.getItem('chatBackgroundIndex') || 0
 
     return index
