@@ -9,15 +9,21 @@ import {
     setThemeApp,
     getThemeApp
 } from "./cache-setting"
-import { phoneFormatter855 } from "./phone"
+import {
+    phoneFormatter855,
+    dateFormat
+} from "./formartter"
 
 export {
     setCachedUser,
     getCachedUser,
     resetAuth,
+
     setChatBackgroundAppIndex,
     getChatBackgroundAppIndex,
     setThemeApp,
     getThemeApp,
-    phoneFormatter855
+
+    phoneFormatter855,
+    dateFormat
 }

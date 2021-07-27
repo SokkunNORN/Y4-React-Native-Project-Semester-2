@@ -23,7 +23,7 @@ let yPosition = 0
 const ChatDetail = ({ route }) => {
 
     const scrollViewRef = useRef()
-    const name = route.params
+    const participant = route.params
     const [message, setMessage] = useState('')
     const [isBtnScrollDown, setIsBtnScrollDown] = useState(true)
 
@@ -89,7 +89,7 @@ const ChatDetail = ({ route }) => {
                         iconRight1='phone'
                         iconRight2='video'
                         iconRight3='dots-vertical'
-                        name={ name }
+                        name={ participant.contact.fname }
                         isProfile
                     />
                     <View style={ styles.container }>

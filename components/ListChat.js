@@ -18,9 +18,8 @@ import {
 import AppContext from '../context'
 
 const ListChat = ({
-  item = null,
-  selectedItem = null,
-  setSelectItem = () => {}
+  participant = null,
+  selectParticipant = () => {}
 }) => {
     return (
         <AppContext.Consumer>
@@ -28,7 +27,7 @@ const ListChat = ({
                 ({ isDark }) =>
                 <>
                     <List.Item
-                        onPress={ () => setSelectItem(item) }
+                        onPress={ () => selectParticipant(participant) }
                         style={[
                             styles.list,
                             {
@@ -44,8 +43,8 @@ const ListChat = ({
                         descriptionStyle={[
                             styles.selected
                         ]}
-                        title={ item }
-                        description='Item description'
+                        title={ participant.contact.fname }
+                        description={ participant.last_massage.message }
                         left={ props => (
                             <View style={ styles.profile }>
                                 <Avatar.Image size={60} source={require('../asset/profile.jpeg')} />
@@ -53,7 +52,7 @@ const ListChat = ({
                         )}
                         right={ () => (
                             <View>
-                                <Text style={ styles.timing }>6:47AM</Text>
+                                <Text style={ styles.timing }>{ participant.last_massage.created_at }</Text>
                                 <Text></Text>
                                 <Badge
                                     style={{
