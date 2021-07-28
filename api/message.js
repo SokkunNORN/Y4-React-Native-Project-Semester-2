@@ -9,7 +9,7 @@ export const getMessages = async (uid, participant_id) => {
     const connectionsId = [uid, participant_id]
 
     await docRef
-    .orderBy('created_at', 'desc')
+    .orderBy('created_at', 'asc')
     .get()
     .then(document => {
         document.forEach(element => {
@@ -31,4 +31,13 @@ export const getMessages = async (uid, participant_id) => {
     })
 
     return messages
+}
+
+export const createMessage = async payload => {
+    await docRef.add(payload)
+    .then(() => {
+        return true
+    })
+
+    return false
 }

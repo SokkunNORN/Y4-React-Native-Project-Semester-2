@@ -18,7 +18,7 @@ const keyboardVerticalOffset = Platform.OS === 'ios' ? SIZES.base(12.5) : 0
 import MessageBubble from '../components/MessageBubble'
 import AppContext from '../context'
 import { getCachedUser } from '../utils'
-import { getMessages } from '../api'
+import { createMessage, getMessages } from '../api'
 
 let yPosition = 0
 
@@ -61,6 +61,30 @@ const ChatDetail = ({ route }) => {
             setMessages(response)
         } catch (error) {
             alert(error)
+        }
+    }
+
+    const onSendMessage = async isSend => {
+        if (isSend) {
+            const user = await getCachedUser()
+
+            const msg = {
+                created_at: new Date(),
+                updated_at: new Date(),
+                message: message,
+                participant_id: participant.contact_profile.uid,
+                seen: false,
+                uid: user.id
+            }
+            
+            try {
+                await createMessage(msg)
+
+                getListMessages()
+                setMessage('')
+            } catch (error) {
+                alert(error)
+            }
         }
     }
 
@@ -145,12 +169,16 @@ const ChatDetail = ({ route }) => {
                                     value={ message }
                                     onChangeText={ value => setMessage(value) }
                                 />
-                                <View style={ styles.view_right_text }>
-                                    <Icon
-                                        name={ message.trim() ? 'send' : 'microphone' } 
-                                        style={ styles.icon_right_text }
-                                        color={ COLORS.dark } size={ SIZES.base(3.5) } />
-                                </View>
+                                <TouchableWithoutFeedback
+                                    onPress={ () => onSendMessage(message.trim() ? true : false) }
+                                >
+                                    <View style={ styles.view_right_text }>
+                                        <Icon
+                                            name={ message.trim() ? 'send' : 'microphone' } 
+                                            style={ styles.icon_right_text }
+                                            color={ COLORS.dark } size={ SIZES.base(3.5) } />
+                                    </View>
+                                </TouchableWithoutFeedback>
                                 {
                                     isBtnScrollDown ?
                                         <TouchableWithoutFeedback

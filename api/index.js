@@ -12,7 +12,8 @@ import {
 } from './participant'
 
 import {
-    getMessages
+    getMessages,
+    createMessage
 } from './message'
 
 export {
@@ -24,5 +25,6 @@ export {
 
     getParticipant,
 
-    getMessages
+    getMessages,
+    createMessage
 }
