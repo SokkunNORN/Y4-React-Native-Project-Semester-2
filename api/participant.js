@@ -13,6 +13,7 @@ export const getParticipant = async (uid) => {
             if (usersId.includes(uid)) {
                 const participant = doc.data()
 
+                participant.id = doc.id
                 participant.last_message.created_at = dateFormat(doc.data().last_message.created_at)
                 participant.last_message.updated_at = dateFormat(doc.data().last_message.updated_at)
 
@@ -30,4 +31,14 @@ export const getParticipant = async (uid) => {
     })
 
     return participants
+}
+
+export const updateParticipant = async (id, payload) => {
+    await docRef.doc(id)
+    .set(payload)
+    .then(() => {
+        return true
+    })
+
+    return false
 }

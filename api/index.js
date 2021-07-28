@@ -8,7 +8,8 @@ import {
 } from './auth'
 
 import {
-    getParticipant
+    getParticipant,
+    updateParticipant
 } from './participant'
 
 import {
@@ -24,6 +25,7 @@ export {
     signOut,
 
     getParticipant,
+    updateParticipant,
 
     getMessages,
     createMessage

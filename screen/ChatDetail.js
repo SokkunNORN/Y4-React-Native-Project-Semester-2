@@ -10,6 +10,7 @@ import {
     TouchableWithoutFeedback,
     ImageBackground
 } from 'react-native'
+import _ from 'lodash'
 import { Badge } from 'react-native-paper'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import DetailHeader from '../components/header/DetailHeader'
@@ -18,7 +19,7 @@ const keyboardVerticalOffset = Platform.OS === 'ios' ? SIZES.base(12.5) : 0
 import MessageBubble from '../components/MessageBubble'
 import AppContext from '../context'
 import { getCachedUser } from '../utils'
-import { createMessage, getMessages } from '../api'
+import { createMessage, getMessages, updateParticipant } from '../api'
 
 let yPosition = 0
 
@@ -65,6 +66,8 @@ const ChatDetail = ({ route }) => {
     }
 
     const onSendMessage = async isSend => {
+        const newParticipant = _.omit(participant, 'contact_profile')
+
         if (isSend) {
             const user = await getCachedUser()
 
@@ -82,6 +85,9 @@ const ChatDetail = ({ route }) => {
 
                 getListMessages()
                 setMessage('')
+                newParticipant.last_message = msg
+
+                updateParticipant(participant.id, newParticipant)
             } catch (error) {
                 alert(error)
             }
