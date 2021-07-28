@@ -56,7 +56,7 @@ const ChatDetail = ({ route }) => {
         const user = await getCachedUser()
 
         try {
-            const response = await getMessages(user.id, participant.contact.uid)
+            const response = await getMessages(user.id, participant.contact_profile.uid)
 
             setMessages(response)
         } catch (error) {
@@ -90,7 +90,7 @@ const ChatDetail = ({ route }) => {
                         iconRight1='phone'
                         iconRight2='video'
                         iconRight3='dots-vertical'
-                        name={ participant.contact.fname }
+                        name={ participant.contact_profile.fname }
                         isProfile
                     />
                     <View style={ styles.container }>

@@ -11,6 +11,10 @@ import {
     getParticipant
 } from './participant'
 
+import {
+    getMessages
+} from './message'
+
 export {
     signInWithPhoneNumber,
     createUser,
@@ -18,5 +22,7 @@ export {
     updateAuthentication,
     signOut,
 
-    getParticipant
+    getParticipant,
+
+    getMessages
 }
