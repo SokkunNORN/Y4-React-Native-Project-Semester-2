@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import {
     StyleSheet,
     View,
@@ -17,6 +17,8 @@ import { COLORS, FONTS, SIZES, HexToRGB, CHAT_BACKGROUND } from '../constant'
 const keyboardVerticalOffset = Platform.OS === 'ios' ? SIZES.base(12.5) : 0
 import MessageBubble from '../components/MessageBubble'
 import AppContext from '../context'
+import { getCachedUser } from '../utils'
+import { getMessages } from '../api'
 
 let yPosition = 0
 
@@ -25,25 +27,8 @@ const ChatDetail = ({ route }) => {
     const scrollViewRef = useRef()
     const participant = route.params
     const [message, setMessage] = useState('')
+    const [messages, setMessages] = useState([])
     const [isBtnScrollDown, setIsBtnScrollDown] = useState(true)
-
-    const messages = [
-        {
-            owner: true,
-            messages: 'Hello World!!!',
-            time: '7:14 AM'
-        },
-        {
-            owner: false,
-            messages: 'Jaa, Hello Sky!!!',
-            time: '7:15 AM'
-        },
-        {
-            owner: true,
-            messages: 'Jaa, Good Bye!!',
-            time: '7:19 AM'
-        }
-    ]
 
     const onScrollDown = () => {
         scrollViewRef.current.scrollToEnd({ animated: true })
@@ -66,6 +51,22 @@ const ChatDetail = ({ route }) => {
         }
         scrollViewRef.current.scrollToEnd({ animated: true })
     }
+
+    const getListMessages = async () => {
+        const user = await getCachedUser()
+
+        try {
+            const response = await getMessages(user.id, participant.contact.uid)
+
+            setMessages(response)
+        } catch (error) {
+            alert(error)
+        }
+    }
+
+    useEffect(() => {
+        getListMessages()
+    }, [])
 
     return (
         <AppContext.Consumer>
@@ -105,8 +106,8 @@ const ChatDetail = ({ route }) => {
                                     messages.map(item => (
                                         <MessageBubble
                                             owner={ item.owner }
-                                            text={ item.messages }
-                                            time={ item.time }
+                                            text={ item.message }
+                                            time={ item.created_at }
                                         />
                                     ))
                                 }

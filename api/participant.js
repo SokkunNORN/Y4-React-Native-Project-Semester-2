@@ -6,25 +6,26 @@ const docRef = firestore().collection("participant")
 
 export const getParticipant = async (uid) => {
     let participants = [] 
-    await docRef.where('uid', '==', uid).get().then(document => {
-        document.forEach(element => {
-            const participant = {
-                contact: {
-                    fname: element.data().contact.fname, 
-                    image: element.data().contact.image, 
-                    lname: element.data().contact.lname, 
-                    uid: element.data().contact.uid
-                },
-                last_massage: {
-                    created_at: dateFormat(element.data().last_massage.created_at), 
-                    id: element.data().last_massage.id, 
-                    message: element.data().last_massage.message, 
-                    updated_at: dateFormat(element.data().last_massage.updated_at)
-                }, 
-                uid: element.data().uid
-            }
+    await docRef.orderBy('last_message.created_at', 'desc').get().then(document => {
+        document.forEach(doc => {
+            const usersId = doc.data().participants.map(item => item.uid)
 
-            participants.push(participant)
+            if (usersId.includes(uid)) {
+                const participant = doc.data()
+
+                participant.last_message.created_at = dateFormat(doc.data().last_message.created_at)
+                participant.last_message.updated_at = dateFormat(doc.data().last_message.updated_at)
+
+                if (!doc.data().is_group) {
+                    doc.data().participants.map(item => {
+                        if (item.uid !== uid) {
+                            participant.contact_profile = item
+                        }
+                    })
+                }
+
+                participants.push(participant)
+            }
         })
     })
 

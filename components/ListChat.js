@@ -43,8 +43,8 @@ const ListChat = ({
                         descriptionStyle={[
                             styles.selected
                         ]}
-                        title={ participant.contact.fname }
-                        description={ participant.last_massage.message }
+                        title={ participant.contact_profile.fname }
+                        description={ participant.last_message.message }
                         left={ props => (
                             <View style={ styles.profile }>
                                 <Avatar.Image size={60} source={require('../asset/profile.jpeg')} />
@@ -52,15 +52,18 @@ const ListChat = ({
                         )}
                         right={ () => (
                             <View>
-                                <Text style={ styles.timing }>{ participant.last_massage.created_at }</Text>
+                                <Text style={ styles.timing }>{ participant.last_message.created_at }</Text>
                                 <Text></Text>
-                                <Badge
-                                    style={{
-                                        backgroundColor: isDark ? COLORS.white : COLORS.warning
-                                    }}
-                                >
-                                    2
-                                </Badge>
+                                {
+                                    participant.unseen_message > 0 ?
+                                    <Badge
+                                        style={{
+                                            backgroundColor: isDark ? COLORS.white : COLORS.warning
+                                        }}
+                                    >
+                                        { participant.unseen_message }
+                                    </Badge> : null
+                                }
                             </View>
                         )}
                     />
