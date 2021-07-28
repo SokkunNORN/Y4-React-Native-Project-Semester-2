@@ -32,6 +32,11 @@ const Chat = () => {
 
     useEffect(() => {
         getListParticipants()
+
+        const unsubscribe = navigation.addListener('focus', () => {
+            getListParticipants()
+        })
+        return unsubscribe
     }, [])
 
     return (
