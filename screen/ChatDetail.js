@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import {
     StyleSheet,
     View,
@@ -10,6 +10,7 @@ import {
     TouchableWithoutFeedback,
     ImageBackground
 } from 'react-native'
+import _ from 'lodash'
 import { Badge } from 'react-native-paper'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import DetailHeader from '../components/header/DetailHeader'
@@ -17,33 +18,18 @@ import { COLORS, FONTS, SIZES, HexToRGB, CHAT_BACKGROUND } from '../constant'
 const keyboardVerticalOffset = Platform.OS === 'ios' ? SIZES.base(12.5) : 0
 import MessageBubble from '../components/MessageBubble'
 import AppContext from '../context'
+import { getCachedUser } from '../utils'
+import { createMessage, getMessages, updateParticipant } from '../api'
 
 let yPosition = 0
 
 const ChatDetail = ({ route }) => {
 
     const scrollViewRef = useRef()
-    const name = route.params
+    const participant = route.params
     const [message, setMessage] = useState('')
+    const [messages, setMessages] = useState([])
     const [isBtnScrollDown, setIsBtnScrollDown] = useState(true)
-
-    const messages = [
-        {
-            owner: true,
-            messages: 'Hello World!!!',
-            time: '7:14 AM'
-        },
-        {
-            owner: false,
-            messages: 'Jaa, Hello Sky!!!',
-            time: '7:15 AM'
-        },
-        {
-            owner: true,
-            messages: 'Jaa, Good Bye!!',
-            time: '7:19 AM'
-        }
-    ]
 
     const onScrollDown = () => {
         scrollViewRef.current.scrollToEnd({ animated: true })
@@ -67,6 +53,52 @@ const ChatDetail = ({ route }) => {
         scrollViewRef.current.scrollToEnd({ animated: true })
     }
 
+    const getListMessages = async () => {
+        const user = await getCachedUser()
+
+        try {
+            const response = await getMessages(user.id, participant.id)
+
+            setMessages(response)
+        } catch (error) {
+            alert(error)
+        }
+    }
+
+    const onSendMessage = async isSend => {
+        const newParticipant = _.omit(participant, 'contact_profile')
+        delete newParticipant.id
+
+        if (isSend) {
+            const user = await getCachedUser()
+
+            const msg = {
+                created_at: new Date(),
+                updated_at: new Date(),
+                message: message,
+                participant_id: participant.id,
+                seen: false,
+                uid: user.id
+            }
+            
+            try {
+                await createMessage(msg)
+
+                getListMessages()
+                setMessage('')
+                newParticipant.last_message = msg
+
+                updateParticipant(participant.id, newParticipant)
+            } catch (error) {
+                alert(error)
+            }
+        }
+    }
+
+    useEffect(() => {
+        getListMessages()
+    }, [])
+
     return (
         <AppContext.Consumer>
             {
@@ -89,7 +121,7 @@ const ChatDetail = ({ route }) => {
                         iconRight1='phone'
                         iconRight2='video'
                         iconRight3='dots-vertical'
-                        name={ name }
+                        name={ participant.contact_profile.fname }
                         isProfile
                     />
                     <View style={ styles.container }>
@@ -105,8 +137,8 @@ const ChatDetail = ({ route }) => {
                                     messages.map(item => (
                                         <MessageBubble
                                             owner={ item.owner }
-                                            text={ item.messages }
-                                            time={ item.time }
+                                            text={ item.message }
+                                            time={ item.created_at }
                                         />
                                     ))
                                 }
@@ -144,12 +176,16 @@ const ChatDetail = ({ route }) => {
                                     value={ message }
                                     onChangeText={ value => setMessage(value) }
                                 />
-                                <View style={ styles.view_right_text }>
-                                    <Icon
-                                        name={ message.trim() ? 'send' : 'microphone' } 
-                                        style={ styles.icon_right_text }
-                                        color={ COLORS.dark } size={ SIZES.base(3.5) } />
-                                </View>
+                                <TouchableWithoutFeedback
+                                    onPress={ () => onSendMessage(message.trim() ? true : false) }
+                                >
+                                    <View style={ styles.view_right_text }>
+                                        <Icon
+                                            name={ message.trim() ? 'send' : 'microphone' } 
+                                            style={ styles.icon_right_text }
+                                            color={ COLORS.dark } size={ SIZES.base(3.5) } />
+                                    </View>
+                                </TouchableWithoutFeedback>
                                 {
                                     isBtnScrollDown ?
                                         <TouchableWithoutFeedback

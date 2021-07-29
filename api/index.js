@@ -7,10 +7,26 @@ import {
     signOut
 } from './auth'
 
+import {
+    getParticipant,
+    updateParticipant
+} from './participant'
+
+import {
+    getMessages,
+    createMessage
+} from './message'
+
 export {
     signInWithPhoneNumber,
     createUser,
     getAuthentication,
     updateAuthentication,
-    signOut
+    signOut,
+
+    getParticipant,
+    updateParticipant,
+
+    getMessages,
+    createMessage
 }

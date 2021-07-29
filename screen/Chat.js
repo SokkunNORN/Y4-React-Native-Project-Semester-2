@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import Routes from '../routes'
 import {
@@ -6,12 +6,38 @@ import {
 } from 'react-native'
 import Header from '../components/header/Header'
 import ListChat from '../components/ListChat'
+import { getParticipant } from '../api'
+import { getCachedUser } from '../utils'
 
 const Chat = () => {
 
   const navigation = useNavigation()
-  const items = ['Apple', 'Banana', 'Cat', 'Dog', 'Eat', 'Book', 'Computer', 'Phone', 'Duck', 'Song', 'Chicken', 'Banana', 'Cat', 'Dog', 'Eat', 'Book', 'Computer', 'Phone', 'Duck', 'Song', 'Chicken'];
-  const [selectedItem, setSelectedItem] = useState([items[0]]);
+  const [participants, setParticipants] = useState([])
+
+    const getListParticipants = async () => {
+        const user = await getCachedUser()
+
+        try {
+            const response = await getParticipant(user.id)
+
+            setParticipants(response)
+        } catch (error) {
+            alert(error)
+        }
+    }
+
+    const onSelectParticipant = participant => {
+        navigation.push(Routes.CHAT_DETAIL, participant)
+    }
+
+    useEffect(() => {
+        getListParticipants()
+
+        const unsubscribe = navigation.addListener('focus', () => {
+            getListParticipants()
+        })
+        return unsubscribe
+    }, [])
 
     return (
         <>
@@ -25,12 +51,11 @@ const Chat = () => {
                 showsVerticalScrollIndicator={ false }
             >
                 {
-                    items.map((item, i) => (
+                    participants.map((item, i) => (
                         <ListChat
                             key={ i }
-                            item={ item }
-                            selectedItem={ selectedItem }
-                            setSelectItem={ value => navigation.push(Routes.CHAT_DETAIL, value) }
+                            participant={ item }
+                            selectParticipant={ value => onSelectParticipant(value) }
                         />
                     ))
                 }   
