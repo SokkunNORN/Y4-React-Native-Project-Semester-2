@@ -6,9 +6,9 @@ import {
     SafeAreaView,
     KeyboardAvoidingView,
     Platform,
-    ScrollView,
     TouchableWithoutFeedback,
-    ImageBackground
+    ImageBackground,
+    FlatList
 } from 'react-native'
 import _ from 'lodash'
 import { Badge } from 'react-native-paper'
@@ -21,36 +21,26 @@ import AppContext from '../context'
 import { getCachedUser } from '../utils'
 import { createMessage, getMessages, updateParticipant } from '../api'
 
-let yPosition = 0
-
 const ChatDetail = ({ route }) => {
 
     const scrollViewRef = useRef()
     const participant = route.params
     const [message, setMessage] = useState('')
     const [messages, setMessages] = useState([])
-    const [isBtnScrollDown, setIsBtnScrollDown] = useState(true)
+    const [isBtnScrollDown, setIsBtnScrollDown] = useState(false)
 
     const onScrollDown = () => {
-        scrollViewRef.current.scrollToEnd({ animated: true })
+        scrollViewRef.current.scrollToOffset({ animated: true, offset: 0 })
     }
 
     const onScroll = (event) => {
-        yPosition = event.nativeEvent.contentOffset.y
-        const contentHeight = event.nativeEvent.contentSize.height
+        const yPosition = event.nativeEvent.contentOffset.y
 
-        if (contentHeight < (SIZES.height - SIZES.base(14))) {
+        if (yPosition < 50) {
             setIsBtnScrollDown(false)
         } else {
-            setIsBtnScrollDown(!(yPosition + (SIZES.height - SIZES.base(24)) >= contentHeight))
+            setIsBtnScrollDown(true)
         }
-    }
-
-    const onContentSizeChange = (_, contentHeight) => {
-        if (contentHeight < (SIZES.height - SIZES.base(14))) {
-            setIsBtnScrollDown(false)
-        }
-        scrollViewRef.current.scrollToEnd({ animated: true })
     }
 
     const getListMessages = async () => {
@@ -86,6 +76,7 @@ const ChatDetail = ({ route }) => {
 
                 getListMessages()
                 setMessage('')
+                onScrollDown()
                 newParticipant.last_message = msg
 
                 updateParticipant(participant.id, newParticipant)
@@ -126,23 +117,23 @@ const ChatDetail = ({ route }) => {
                     />
                     <View style={ styles.container }>
                         <View style={ styles.header }>
-                            <ScrollView
-                                keyboardDismissMode='interactive'
+                            <FlatList
+                                data={ messages }
                                 showsVerticalScrollIndicator={ false }
                                 ref={ scrollViewRef }
                                 onScroll={ onScroll }
-                                onContentSizeChange={ onContentSizeChange }
-                            >
-                                {
-                                    messages.map(item => (
+                                renderItem={ item => {
+                                    return (
                                         <MessageBubble
-                                            owner={ item.owner }
-                                            text={ item.message }
-                                            time={ item.created_at }
+                                            key={ item.index }
+                                            owner={ item.item.owner }
+                                            text={ item.item.message }
+                                            time={ item.item.created_at }
                                         />
-                                    ))
-                                }
-                            </ScrollView>
+                                    )
+                                }}
+                                inverted
+                            />
                         </View>
                         <KeyboardAvoidingView
                             behavior={ Platform.OS === 'ios' ? 'padding' : null }
@@ -261,7 +252,7 @@ const styles = StyleSheet.create({
         fontSize: FONTS.h4,
         color: COLORS.white,
         borderRadius: SIZES.radius(),
-        width: SIZES.width - (SIZES.base(18.5)),
+        width: SIZES.width - (SIZES.base(19)),
         marginStart: SIZES.base(.5),
         borderWidth: .3,
         borderColor: COLORS.secondary1
@@ -270,7 +261,7 @@ const styles = StyleSheet.create({
         padding: SIZES.base(.5),
         backgroundColor: COLORS.warning,
         borderRadius: SIZES.radius(1.5),
-        marginStart: SIZES.base(.5)
+        marginStart: SIZES.base(1)
     },
     icon_right_text: {
         padding: SIZES.base(.5)
@@ -282,7 +273,7 @@ const styles = StyleSheet.create({
         borderRadius: SIZES.radius(4),
         borderWidth: .3,
         borderColor: COLORS.warning,
-        bottom: SIZES.base(8)
+        bottom: SIZES.base(8.5)
     },
     badge: {
         position: 'absolute',

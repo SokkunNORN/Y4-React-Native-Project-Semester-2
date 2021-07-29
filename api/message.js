@@ -8,7 +8,7 @@ export const getMessages = async (uid, participant_id) => {
     let messages = []
 
     await docRef
-    .orderBy('created_at', 'asc')
+    .orderBy('created_at', 'desc')
     .get()
     .then(document => {
         document.forEach(element => {
