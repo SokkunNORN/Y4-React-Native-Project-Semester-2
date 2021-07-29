@@ -57,7 +57,7 @@ const ChatDetail = ({ route }) => {
         const user = await getCachedUser()
 
         try {
-            const response = await getMessages(user.id, participant.contact_profile.uid)
+            const response = await getMessages(user.id, participant.id)
 
             setMessages(response)
         } catch (error) {
@@ -67,6 +67,7 @@ const ChatDetail = ({ route }) => {
 
     const onSendMessage = async isSend => {
         const newParticipant = _.omit(participant, 'contact_profile')
+        delete newParticipant.id
 
         if (isSend) {
             const user = await getCachedUser()
@@ -75,7 +76,7 @@ const ChatDetail = ({ route }) => {
                 created_at: new Date(),
                 updated_at: new Date(),
                 message: message,
-                participant_id: participant.contact_profile.uid,
+                participant_id: participant.id,
                 seen: false,
                 uid: user.id
             }

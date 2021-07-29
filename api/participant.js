@@ -6,7 +6,10 @@ const docRef = firestore().collection("participant")
 
 export const getParticipant = async (uid) => {
     let participants = [] 
-    await docRef.orderBy('last_message.created_at', 'desc').get().then(document => {
+    await docRef
+    .orderBy('last_message.created_at', 'desc')
+    .get()
+    .then(document => {
         document.forEach(doc => {
             const usersId = doc.data().participants.map(item => item.uid)
 
