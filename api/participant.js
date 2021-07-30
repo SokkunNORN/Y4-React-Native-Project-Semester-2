@@ -19,7 +19,6 @@ export const getParticipant = async (uid) => {
                 participant.id = doc.id
                 participant.last_message.created_at = dateFormat(doc.data().last_message.created_at)
                 participant.last_message.updated_at = dateFormat(doc.data().last_message.updated_at)
-                participant.requested_at = dateFormat(doc.data().requested_at)
 
                 if (!doc.data().is_group) {
                     doc.data().participants.map(item => {

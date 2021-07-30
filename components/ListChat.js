@@ -44,8 +44,8 @@ const ListChat = ({
                             styles.selected
                         ]}
                         title={ participant.contact_profile.fname }
-                        description={ participant.last_message.message }
-                        left={ props => (
+                        description={ participant.last_message.message || '' }
+                        left={ () => (
                             <View style={ styles.profile }>
                                 <Avatar.Image size={60} source={require('../asset/profile.jpeg')} />
                             </View>
