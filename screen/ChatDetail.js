@@ -21,6 +21,9 @@ import AppContext from '../context'
 import { getCachedUser } from '../utils'
 import { createMessage, getMessages, updateParticipant } from '../api'
 
+let isNeedScrollToTop = true
+let intervalId = null
+
 const ChatDetail = ({ route }) => {
 
     const scrollViewRef = useRef()
@@ -36,9 +39,11 @@ const ChatDetail = ({ route }) => {
     const onScroll = (event) => {
         const yPosition = event.nativeEvent.contentOffset.y
 
-        if (yPosition < 50) {
+        if (yPosition < 5) {
+            isNeedScrollToTop = true
             setIsBtnScrollDown(false)
         } else {
+            isNeedScrollToTop = false
             setIsBtnScrollDown(true)
         }
     }
@@ -52,6 +57,8 @@ const ChatDetail = ({ route }) => {
             setMessages(response)
         } catch (error) {
             alert(error)
+        } finally {
+            isNeedScrollToTop && onScrollDown()
         }
     }
 
@@ -95,6 +102,9 @@ const ChatDetail = ({ route }) => {
 
     useEffect(() => {
         getListMessages()
+        intervalId = setInterval(() => {
+            getListMessages() 
+        }, 1000)
     }, [])
 
     return (
