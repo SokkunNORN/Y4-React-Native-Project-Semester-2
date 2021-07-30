@@ -19,7 +19,7 @@ export const getMessages = async (uid, participant_id) => {
                     message: element.data().message,
                     participant_id: element.data().participant_id,
                     updated_at: dateFormat(element.data().updated_at),
-                    owner: uid === element.data().uid
+                    owner: uid === element.data().user.id
                 }
                 messages.push(message)
             }

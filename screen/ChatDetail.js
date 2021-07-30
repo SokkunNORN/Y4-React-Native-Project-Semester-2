@@ -60,7 +60,14 @@ const ChatDetail = ({ route }) => {
         delete newParticipant.id
 
         if (isSend) {
-            const user = await getCachedUser()
+            const auth = await getCachedUser()
+
+            const user = {
+                fname: auth.fname,
+                lname: auth.lname,
+                id: auth.id,
+                image_profile: auth.image_profile
+            }
 
             const msg = {
                 created_at: new Date(),
@@ -68,7 +75,7 @@ const ChatDetail = ({ route }) => {
                 message: message,
                 participant_id: participant.id,
                 seen: false,
-                uid: user.id
+                user: user
             }
             
             try {
