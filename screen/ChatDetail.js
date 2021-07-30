@@ -100,11 +100,15 @@ const ChatDetail = ({ route }) => {
         }
     }
 
+    const onNavigationBack = () => {
+        clearInterval(intervalId)
+    }
+
     useEffect(() => {
         getListMessages()
         intervalId = setInterval(() => {
             getListMessages() 
-        }, 1000)
+        }, 1500)
     }, [])
 
     return (
@@ -131,6 +135,7 @@ const ChatDetail = ({ route }) => {
                         iconRight3='dots-vertical'
                         name={ participant.contact_profile.fname }
                         isProfile
+                        onNavigationBack={ () => onNavigationBack() }
                     />
                     <View style={ styles.container }>
                         <View style={ styles.header }>
