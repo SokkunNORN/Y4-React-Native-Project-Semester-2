@@ -20,6 +20,7 @@ import MessageBubble from '../components/MessageBubble'
 import AppContext from '../context'
 import { getCachedUser } from '../utils'
 import { createMessage, getMessages, getUnseenMessageNumber, updateParticipant } from '../api'
+import uuid from 'react-native-uuid'
 
 let isNeedScrollToTop = true
 let intervalId = null
@@ -62,13 +63,14 @@ const ChatDetail = ({ route }) => {
         }
     }
 
-    const onUpdateParticipant = async (id, msg) => {
+    const onUpdateParticipant = async (id, msg, uid) => {
         const newParticipant = _.omit(participant, 'contact_profile')
         delete newParticipant.id
         newParticipant.last_message = msg
-
-        const numberOfUnseenMessage = await getUnseenMessageNumber(msg.user.id, id)
-        newParticipant.unseen_message = numberOfUnseenMessage
+        newParticipant.unseen_messages.push({
+            uid: uid,
+            message_id: msg.id
+        })
 
         updateParticipant(id, newParticipant)
     }
@@ -85,6 +87,7 @@ const ChatDetail = ({ route }) => {
             }
 
             const msg = {
+                id: uuid.v4(),
                 created_at: new Date(),
                 updated_at: new Date(),
                 message: message,
@@ -100,7 +103,7 @@ const ChatDetail = ({ route }) => {
                 setMessage('')
                 onScrollDown()
 
-                onUpdateParticipant(participant.id, msg)
+                onUpdateParticipant(participant.id, msg, auth.id)
             } catch (error) {
                 alert(error)
             }
