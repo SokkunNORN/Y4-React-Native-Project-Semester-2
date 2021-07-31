@@ -14,6 +14,7 @@ import {
 
 import {
     getMessages,
+    getUnseenMessageNumber,
     createMessage
 } from './message'
 
@@ -28,5 +29,6 @@ export {
     updateParticipant,
 
     getMessages,
+    getUnseenMessageNumber,
     createMessage
 }

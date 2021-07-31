@@ -19,7 +19,7 @@ const keyboardVerticalOffset = Platform.OS === 'ios' ? SIZES.base(12.5) : 0
 import MessageBubble from '../components/MessageBubble'
 import AppContext from '../context'
 import { getCachedUser } from '../utils'
-import { createMessage, getMessages, updateParticipant } from '../api'
+import { createMessage, getMessages, getUnseenMessageNumber, updateParticipant } from '../api'
 
 let isNeedScrollToTop = true
 let intervalId = null
@@ -62,10 +62,18 @@ const ChatDetail = ({ route }) => {
         }
     }
 
-    const onSendMessage = async isSend => {
+    const onUpdateParticipant = async (id, msg) => {
         const newParticipant = _.omit(participant, 'contact_profile')
         delete newParticipant.id
+        newParticipant.last_message = msg
 
+        const numberOfUnseenMessage = await getUnseenMessageNumber(msg.user.id, id)
+        newParticipant.unseen_message = numberOfUnseenMessage
+
+        updateParticipant(id, newParticipant)
+    }
+
+    const onSendMessage = async isSend => {
         if (isSend) {
             const auth = await getCachedUser()
 
@@ -91,9 +99,8 @@ const ChatDetail = ({ route }) => {
                 getListMessages()
                 setMessage('')
                 onScrollDown()
-                newParticipant.last_message = msg
 
-                updateParticipant(participant.id, newParticipant)
+                onUpdateParticipant(participant.id, msg)
             } catch (error) {
                 alert(error)
             }

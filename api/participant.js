@@ -20,6 +20,10 @@ export const getParticipant = async (uid) => {
                 participant.last_message.created_at = dateFormat(doc.data().last_message.created_at)
                 participant.last_message.updated_at = dateFormat(doc.data().last_message.updated_at)
 
+                if (participant.last_message.user.id == uid) {
+                    participant.unseen_message = 0
+                }
+
                 if (!doc.data().is_group) {
                     doc.data().participants.map(item => {
                         if (item.uid !== uid) {
