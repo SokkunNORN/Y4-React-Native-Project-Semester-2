@@ -9,6 +9,8 @@ import ListChat from '../components/ListChat'
 import { getParticipant } from '../api'
 import { getCachedUser } from '../utils'
 
+let intervalId = null
+
 const Chat = () => {
 
   const navigation = useNavigation()
@@ -33,10 +35,16 @@ const Chat = () => {
     useEffect(() => {
         getListParticipants()
 
-        const unsubscribe = navigation.addListener('focus', () => {
+        navigation.addListener('focus', () => {
             getListParticipants()
+            intervalId = setInterval(() => {
+                getListParticipants()
+            }, 1500)
         })
-        return unsubscribe
+
+        navigation.addListener('blur', () => {
+            clearInterval(intervalId)
+        })
     }, [])
 
     return (
