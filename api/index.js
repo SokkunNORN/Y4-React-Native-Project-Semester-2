@@ -9,12 +9,12 @@ import {
 
 import {
     getParticipant,
-    updateParticipant
+    updateParticipant,
+    participantSeenMessage
 } from './participant'
 
 import {
     getMessages,
-    getUnseenMessageNumber,
     createMessage
 } from './message'
 
@@ -27,8 +27,8 @@ export {
 
     getParticipant,
     updateParticipant,
+    participantSeenMessage,
 
     getMessages,
-    getUnseenMessageNumber,
     createMessage
 }

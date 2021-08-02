@@ -19,7 +19,7 @@ const keyboardVerticalOffset = Platform.OS === 'ios' ? SIZES.base(12.5) : 0
 import MessageBubble from '../components/MessageBubble'
 import AppContext from '../context'
 import { getCachedUser } from '../utils'
-import { createMessage, getMessages, getUnseenMessageNumber, updateParticipant } from '../api'
+import { createMessage, getMessages, participantSeenMessage, updateParticipant } from '../api'
 import uuid from 'react-native-uuid'
 
 let isNeedScrollToTop = true
@@ -114,7 +114,14 @@ const ChatDetail = ({ route }) => {
         clearInterval(intervalId)
     }
 
+    const onSeenMessage = async () => {
+        const auth = await getCachedUser()
+
+        participantSeenMessage(auth.id, participant)
+    }
+
     useEffect(() => {
+        onSeenMessage()
         getListMessages()
         intervalId = setInterval(() => {
             getListMessages() 

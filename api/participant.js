@@ -53,3 +53,21 @@ export const updateParticipant = async (id, payload) => {
 
     return false
 }
+
+export const participantSeenMessage = async (uid, payload) => {
+
+    payload.unseen_messages.map((item, i) => {
+        if (item.uid != uid) {
+            payload.unseen_messages.splice(i, 1)
+        }
+    })
+
+    await docRef.doc(payload.id).update({
+        unseen_messages: payload.unseen_messages
+    })
+    .then(() => {
+        return true
+    })
+
+    return false
+}

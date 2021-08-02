@@ -29,27 +29,6 @@ export const getMessages = async (uid, participant_id) => {
     return messages
 }
 
-export const getUnseenMessageNumber = async (uid, participant_id) => {
-    let unseenMessage = 0
-
-    await docRef
-    .orderBy('created_at', 'desc')
-    .get()
-    .then(document => {
-        document.forEach(element => {
-            if (
-                participant_id == element.data().participant_id &&
-                uid == element.data().user.id &&
-                !element.data().seen
-            ) {
-                unseenMessage++
-            }
-        })
-    })
-    console.log(unseenMessage)
-    return unseenMessage
-}
-
 export const createMessage = async payload => {
     await docRef.add(payload)
     .then(() => {
