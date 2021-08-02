@@ -15,9 +15,11 @@ const Chat = () => {
 
   const navigation = useNavigation()
   const [participants, setParticipants] = useState([])
+  const [auth, setAuth] = useState(null)
 
     const getListParticipants = async () => {
         const user = await getCachedUser()
+        setAuth(user)
 
         try {
             const response = await getParticipant(user.id)
@@ -63,6 +65,7 @@ const Chat = () => {
                         <ListChat
                             key={ i }
                             participant={ item }
+                            auth={ auth }
                             selectParticipant={ value => onSelectParticipant(value) }
                         />
                     ))

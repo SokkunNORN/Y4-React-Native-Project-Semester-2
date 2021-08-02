@@ -19,6 +19,7 @@ import AppContext from '../context'
 
 const ListChat = ({
   participant = null,
+  auth = null,
   selectParticipant = () => {}
 }) => {
     return (
@@ -48,7 +49,11 @@ const ListChat = ({
                             : COLORS.primary
                         }}
                         title={ participant.contact_profile.fname }
-                        description={ participant.last_message.message || '' }
+                        description={ 
+                            participant.last_message.user.id == auth.id 
+                            ? `You: ${ participant.last_message.message || '' }`
+                            : `${ participant.last_message.message || '' }`
+                        }
                         left={ () => (
                             <View style={ styles.profile }>
                                 <Avatar.Image size={60} source={require('../asset/profile.jpeg')} />
