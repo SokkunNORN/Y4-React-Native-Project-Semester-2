@@ -40,9 +40,13 @@ const ListChat = ({
                                 color: isDark ? COLORS.white : COLORS.black
                             }
                         ]}
-                        descriptionStyle={[
-                            styles.selected
-                        ]}
+                        descriptionStyle={{
+                            color: participant.unseen_message <= 0 
+                            ? COLORS.secondary1 
+                            : isDark 
+                            ? COLORS.secondary 
+                            : COLORS.primary
+                        }}
                         title={ participant.contact_profile.fname }
                         description={ participant.last_message.message || '' }
                         left={ () => (
