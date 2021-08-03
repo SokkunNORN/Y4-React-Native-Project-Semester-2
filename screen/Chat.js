@@ -34,6 +34,10 @@ const Chat = () => {
         navigation.push(Routes.CHAT_DETAIL, participant)
     }
 
+    const onAddConnection = () => {
+        navigation.push(Routes.ADD_CONNECTION)
+    }
+
     useEffect(() => {
         getListParticipants()
 
@@ -55,7 +59,7 @@ const Chat = () => {
                 title="Chat Plus"
                 isSearch
                 icon="plus"
-                onClickBtnOne={ () => {} }
+                onClickBtnOne={ () => onAddConnection() }
             />
             <ScrollView
                 showsVerticalScrollIndicator={ false }
