@@ -4,7 +4,8 @@ import {
     createUser,
     getAuthentication,
     updateAuthentication,
-    signOut
+    signOut,
+    findUser
 } from './auth'
 
 import {
@@ -24,6 +25,7 @@ export {
     getAuthentication,
     updateAuthentication,
     signOut,
+    findUser,
 
     getParticipant,
     updateParticipant,

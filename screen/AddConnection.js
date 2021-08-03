@@ -13,6 +13,7 @@ import { COLORS, SIZES, FONTS } from '../constant'
 import AppContext from '../context'
 import { useNavigation } from '@react-navigation/native'
 import { getCachedUser } from '../utils/cache-authentication'
+import { findUser } from '../api'
 
 const AddConnection = () => {
 
@@ -22,8 +23,16 @@ const AddConnection = () => {
     const [isValidPhoneNumber, setIsValidPhoneNumber] = useState(false)
     const [participantName, setParticipantName] = useState('')
 
-    const onFindParticipant = async () => {
+    const onFindParticipant = async phone => {
+        const response = await findUser(phone)
 
+        if (response) {
+            setParticipantName(response.fname)
+            setIsValidPhoneNumber(true)
+        } else {
+            setParticipantName('')
+            setIsValidPhoneNumber(false)
+        }
     }
 
     const onTextChange = value => {
@@ -36,8 +45,11 @@ const AddConnection = () => {
             newTxt += cleaned[i]
         }
 
-        if (value.length >= 8) {
-            onFindParticipant()
+        if (value.length >= 10) {
+            onFindParticipant(newTxt)
+        } else {
+            setParticipantName('')
+            setIsValidPhoneNumber(false)
         }
 
         setPhoneNumber(newTxt)
@@ -109,11 +121,11 @@ const AddConnection = () => {
                             style={[
                                 styles.btn_continue,
                                 {
-                                    backgroundColor: phoneNumber.length >= 10 ? COLORS.warning : 
+                                    backgroundColor: isValidPhoneNumber ? COLORS.warning : 
                                     !isDark ? COLORS.secondary : COLORS.secondary1
                                 }
                             ]}
-                            disabled={ phoneNumber.length >= 10 ? false : true }
+                            disabled={ !isValidPhoneNumber }
                             labelStyle={ styles.label_btn_continue }
                             color={ COLORS.secondary }
                             uppercase={ false }
