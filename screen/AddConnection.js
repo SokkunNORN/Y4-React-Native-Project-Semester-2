@@ -82,10 +82,10 @@ const AddConnection = () => {
                 seen: false,
                 updated_at: new Date(),
                 user: {
-                    fname: auth.fname,
-                    id: auth.id,
-                    image_profile: auth.image_profile,
-                    lname: auth.lname
+                    fname: null,
+                    id: null,
+                    image_profile: null,
+                    lname: null
                 }
             },
             participants: [
