@@ -66,6 +66,7 @@ const ChatDetail = ({ route }) => {
     const onUpdateParticipant = async (id, msg, uid) => {
         const newParticipant = _.omit(participant, 'contact_profile')
         delete newParticipant.id
+        delete newParticipant.unseen_message
         newParticipant.last_message = msg
         newParticipant.unseen_messages.push({
             uid: uid,
