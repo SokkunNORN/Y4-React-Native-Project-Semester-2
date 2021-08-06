@@ -12,7 +12,7 @@ export const getParticipant = async (uid) => {
     .then(document => {
         document.forEach(doc => {
             const usersId = doc.data().participants.map(item => item.uid)
-            console.log(usersId);
+
             if (usersId.includes(uid)) {
                 const participant = doc.data()
 
@@ -81,4 +81,25 @@ export const createParticipant = async payload => {
     .catch(() => {
         return false
     })
+}
+
+export const checkParticipantConnected = async (uid, participantId) => {
+    let isParticipantConnected = false
+
+    await docRef
+    .get()
+    .then(document => {
+        document.forEach(doc => {
+            const connectionIds = doc.data().participants.map(item => item.uid)
+
+            if (
+                connectionIds.includes(uid) && 
+                connectionIds.includes(participantId)
+            ) {
+                isParticipantConnected = true
+            }
+        })
+    })
+
+    return isParticipantConnected
 }

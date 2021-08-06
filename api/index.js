@@ -12,7 +12,8 @@ import {
     getParticipant,
     updateParticipant,
     participantSeenMessage,
-    createParticipant
+    createParticipant,
+    checkParticipantConnected
 } from './participant'
 
 import {
@@ -32,6 +33,7 @@ export {
     updateParticipant,
     participantSeenMessage,
     createParticipant,
+    checkParticipantConnected,
 
     getMessages,
     createMessage

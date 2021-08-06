@@ -13,7 +13,7 @@ import { COLORS, SIZES, FONTS } from '../constant'
 import AppContext from '../context'
 import { useNavigation } from '@react-navigation/native'
 import { getCachedUser } from '../utils/cache-authentication'
-import { createParticipant, findUser, getParticipant } from '../api'
+import { checkParticipantConnected, createParticipant, findUser } from '../api'
 
 const AddConnection = () => {
 
@@ -29,11 +29,11 @@ const AddConnection = () => {
         if (auth.phone === `+855 ${phone}`) return
 
         const response = await findUser(phone)
-        console.log(response.id);
 
         if (response) {
-            const participants = await getParticipant(response.id)
-            if (participants.length > 0) {
+            const isParticipantConnected = await checkParticipantConnected(auth.id, response.id)
+
+            if (isParticipantConnected) {
                 alert('The phone number is already connected.')
             } else {
                 setParticipantObject(response)
