@@ -13,7 +13,7 @@ import { COLORS, SIZES, FONTS } from '../constant'
 import AppContext from '../context'
 import { useNavigation } from '@react-navigation/native'
 import { getCachedUser } from '../utils/cache-authentication'
-import { findUser, getParticipant } from '../api'
+import { createParticipant, findUser, getParticipant } from '../api'
 
 const AddConnection = () => {
 
@@ -21,7 +21,7 @@ const AddConnection = () => {
 
     const [phoneNumber, setPhoneNumber] = useState('')
     const [isValidPhoneNumber, setIsValidPhoneNumber] = useState(false)
-    const [participantName, setParticipantName] = useState('')
+    const [participantObject, setParticipantObject] = useState(null)
 
     const onFindParticipant = async phone => {
         const auth = await getCachedUser()
@@ -36,11 +36,11 @@ const AddConnection = () => {
             if (participants.length > 0) {
                 alert('The phone number is already connected.')
             } else {
-                setParticipantName(response.fname)
+                setParticipantObject(response)
                 setIsValidPhoneNumber(true)
             }
         } else {
-            setParticipantName('')
+            setParticipantObject(null)
             setIsValidPhoneNumber(false)
         }
     }
@@ -58,7 +58,7 @@ const AddConnection = () => {
         if (value.length >= 10) {
             onFindParticipant(newTxt)
         } else {
-            setParticipantName('')
+            setParticipantObject('')
             setIsValidPhoneNumber(false)
         }
 
@@ -71,8 +71,47 @@ const AddConnection = () => {
 
     const onAddParticipant = async () => {
         const auth = await getCachedUser()
+        const newParticipant = {
+            isConnected: false,
+            is_group: false,
+            last_message: {
+                created_at: new Date(),
+                id: null,
+                message: null,
+                participant_id: auth.id,
+                seen: false,
+                updated_at: new Date(),
+                user: {
+                    fname: auth.fname,
+                    id: auth.id,
+                    image_profile: auth.image_profile,
+                    lname: auth.lname
+                }
+            },
+            participants: [
+                {
+                    fname: participantObject.fname,
+                    uid: participantObject.id,
+                    image_profile: participantObject.image_profile,
+                    lname: participantObject.lname
+                },
+                {
+                    fname: auth.fname,
+                    uid: auth.id,
+                    image_profile: auth.image_profile,
+                    lname: auth.lname
+                }
+            ],
+            requested_at: new Date(),
+            unseen_messages: []
+        }
 
-        onBack()
+        try {
+            await createParticipant(newParticipant)
+            onBack()
+        } catch (error) {
+            alert(error)
+        }
     }
 
     return (
@@ -123,7 +162,7 @@ const AddConnection = () => {
                                 }}
                             >
                                 Name:
-                                <Text style={ styles.participant_name }> { participantName || '...' }</Text>
+                                <Text style={ styles.participant_name }> { participantObject?.fname || '...' }</Text>
                             </Text>
                         </View>
 
