@@ -60,12 +60,15 @@ const SlideShow = ({
                 >
                     {
                         elements.map((item, i) => (
-                            <Card style={[
-                                styles.card,
-                                {
-                                    backgroundColor: isDark ? COLORS.primary : COLORS.secondary
-                                }
-                            ]}>
+                            <Card 
+                                style={[
+                                    styles.card,
+                                    {
+                                        backgroundColor: isDark ? COLORS.primary : COLORS.secondary
+                                    }
+                                ]}
+                                key={ i }
+                            >
 
                                 <ImageBackground
                                     source={ require('../asset/feature.jpeg') }

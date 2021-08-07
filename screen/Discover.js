@@ -159,12 +159,13 @@ const Discover = () => {
                             return (
                                 <ScrollView
                                     showsVerticalScrollIndicator={ false }
+                                    key={ index }
                                 >
                                     <SlideShow elements={ slideShows } />
 
                                     {
-                                        element.listDiscovers.map(item => (
-                                            <ListDiscover item={ item }/>
+                                        element.listDiscovers.map((item, i) => (
+                                            <ListDiscover item={ item } key={ i } />
                                         ))
                                     }
                                 </ScrollView>
@@ -173,10 +174,11 @@ const Discover = () => {
                         return (
                             <ScrollView
                                 showsVerticalScrollIndicator={ false }
+                                key={ index }
                             >
                                 {
-                                    element.listDiscovers.map(item => (
-                                        <ListDiscover item={ item }/>
+                                    element.listDiscovers.map((item, i) => (
+                                        <ListDiscover item={ item } key={ i } />
                                     ))
                                 }
                             </ScrollView>
