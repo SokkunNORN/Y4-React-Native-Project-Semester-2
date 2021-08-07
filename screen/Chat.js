@@ -9,13 +9,17 @@ import ListChat from '../components/ListChat'
 import { getParticipant } from '../api'
 import { getCachedUser } from '../utils'
 
+let intervalId = null
+
 const Chat = () => {
 
   const navigation = useNavigation()
   const [participants, setParticipants] = useState([])
+  const [auth, setAuth] = useState(null)
 
     const getListParticipants = async () => {
         const user = await getCachedUser()
+        setAuth(user)
 
         try {
             const response = await getParticipant(user.id)
@@ -30,13 +34,23 @@ const Chat = () => {
         navigation.push(Routes.CHAT_DETAIL, participant)
     }
 
+    const onAddConnection = () => {
+        navigation.push(Routes.ADD_CONNECTION)
+    }
+
     useEffect(() => {
         getListParticipants()
 
-        const unsubscribe = navigation.addListener('focus', () => {
+        navigation.addListener('focus', () => {
             getListParticipants()
+            intervalId = setInterval(() => {
+                getListParticipants()
+            }, 1500)
         })
-        return unsubscribe
+
+        navigation.addListener('blur', () => {
+            clearInterval(intervalId)
+        })
     }, [])
 
     return (
@@ -45,7 +59,7 @@ const Chat = () => {
                 title="Chat Plus"
                 isSearch
                 icon="plus"
-                onClickBtnOne={ () => {} }
+                onClickBtnOne={ () => onAddConnection() }
             />
             <ScrollView
                 showsVerticalScrollIndicator={ false }
@@ -55,6 +69,7 @@ const Chat = () => {
                         <ListChat
                             key={ i }
                             participant={ item }
+                            auth={ auth }
                             selectParticipant={ value => onSelectParticipant(value) }
                         />
                     ))

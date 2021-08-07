@@ -10,7 +10,8 @@ import {
     Information,
     EditAccount,
     ImageProfile,
-    Greeting
+    Greeting,
+    AddConnection
 } from '../screen'
 import {
     COLORS, HexToRGB
@@ -115,6 +116,17 @@ const Navigate = () => {
                         cardStyle: {
                             backgroundColor: isDark ? COLORS.primary1 : COLORS.light_gray
                         }
+                    }}
+                />
+                <Stack.Screen
+                    name={ Routes.ADD_CONNECTION }
+                    component={ AddConnection }
+                    options={{
+                        headerShown: false,
+                        cardStyle: {
+                            backgroundColor: isDark ? COLORS.primary1 : COLORS.light_gray
+                        },
+                        cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS
                     }}
                 />
                 <Stack.Screen

@@ -37,3 +37,18 @@ export const signOut = async () => {
         return false
     }
 }
+
+export const findUser = async phoneNumber => {
+    let users = []
+
+    await docRef
+    .where('phone', '==', `+855 ${phoneNumber}`)
+    .get()
+    .then(document => {
+        document.forEach(item => {
+            users.push(item.data())
+        })
+    })
+
+    return users ? users[0] : null
+}

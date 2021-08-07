@@ -4,12 +4,16 @@ import {
     createUser,
     getAuthentication,
     updateAuthentication,
-    signOut
+    signOut,
+    findUser
 } from './auth'
 
 import {
     getParticipant,
-    updateParticipant
+    updateParticipant,
+    participantSeenMessage,
+    createParticipant,
+    checkParticipantConnected
 } from './participant'
 
 import {
@@ -23,9 +27,13 @@ export {
     getAuthentication,
     updateAuthentication,
     signOut,
+    findUser,
 
     getParticipant,
     updateParticipant,
+    participantSeenMessage,
+    createParticipant,
+    checkParticipantConnected,
 
     getMessages,
     createMessage

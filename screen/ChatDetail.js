@@ -19,7 +19,11 @@ const keyboardVerticalOffset = Platform.OS === 'ios' ? SIZES.base(12.5) : 0
 import MessageBubble from '../components/MessageBubble'
 import AppContext from '../context'
 import { getCachedUser } from '../utils'
-import { createMessage, getMessages, updateParticipant } from '../api'
+import { createMessage, getMessages, participantSeenMessage, updateParticipant } from '../api'
+import uuid from 'react-native-uuid'
+
+let isNeedScrollToTop = true
+let intervalId = null
 
 const ChatDetail = ({ route }) => {
 
@@ -36,9 +40,11 @@ const ChatDetail = ({ route }) => {
     const onScroll = (event) => {
         const yPosition = event.nativeEvent.contentOffset.y
 
-        if (yPosition < 50) {
+        if (yPosition < 5) {
+            isNeedScrollToTop = true
             setIsBtnScrollDown(false)
         } else {
+            isNeedScrollToTop = false
             setIsBtnScrollDown(true)
         }
     }
@@ -52,13 +58,25 @@ const ChatDetail = ({ route }) => {
             setMessages(response)
         } catch (error) {
             alert(error)
+        } finally {
+            isNeedScrollToTop && onScrollDown()
         }
     }
 
-    const onSendMessage = async isSend => {
+    const onUpdateParticipant = async (id, msg, uid) => {
         const newParticipant = _.omit(participant, 'contact_profile')
         delete newParticipant.id
+        delete newParticipant.unseen_message
+        newParticipant.last_message = msg
+        newParticipant.unseen_messages.push({
+            uid: uid,
+            message_id: msg.id
+        })
 
+        updateParticipant(id, newParticipant)
+    }
+
+    const onSendMessage = async isSend => {
         if (isSend) {
             const auth = await getCachedUser()
 
@@ -70,6 +88,7 @@ const ChatDetail = ({ route }) => {
             }
 
             const msg = {
+                id: uuid.v4(),
                 created_at: new Date(),
                 updated_at: new Date(),
                 message: message,
@@ -84,17 +103,30 @@ const ChatDetail = ({ route }) => {
                 getListMessages()
                 setMessage('')
                 onScrollDown()
-                newParticipant.last_message = msg
 
-                updateParticipant(participant.id, newParticipant)
+                onUpdateParticipant(participant.id, msg, auth.id)
             } catch (error) {
                 alert(error)
             }
         }
     }
 
+    const onNavigationBack = () => {
+        clearInterval(intervalId)
+    }
+
+    const onSeenMessage = async () => {
+        const auth = await getCachedUser()
+
+        participantSeenMessage(auth.id, participant)
+    }
+
     useEffect(() => {
+        onSeenMessage()
         getListMessages()
+        intervalId = setInterval(() => {
+            getListMessages() 
+        }, 1500)
     }, [])
 
     return (
@@ -121,6 +153,7 @@ const ChatDetail = ({ route }) => {
                         iconRight3='dots-vertical'
                         name={ participant.contact_profile.fname }
                         isProfile
+                        onNavigationBack={ () => onNavigationBack() }
                     />
                     <View style={ styles.container }>
                         <View style={ styles.header }>

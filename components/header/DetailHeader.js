@@ -27,10 +27,16 @@ const DetailHeader = ({
     iconRight1 = '',
     iconRight2 = '',
     iconRight3 = '',
-    isTitleCenter = false
+    isTitleCenter = false,
+    onNavigationBack = () => {}
 }) => {
 
     const navigation = useNavigation()
+
+    const onBack = () => {
+        onNavigationBack()
+        navigation.pop()
+    }
 
     return (
         <AppContext.Consumer>
@@ -53,7 +59,7 @@ const DetailHeader = ({
                             <Appbar.Action
                                 icon='chevron-left' 
                                 color={ COLORS.warning } 
-                                onPress={ () => navigation.pop() }
+                                onPress={ () => onBack() }
                             /> : <></>
                         }
                         {

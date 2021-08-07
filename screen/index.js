@@ -10,6 +10,7 @@ import Setting from './Setting'
 import SettingDetail from './SettingDetail'
 import EditAccount from './EditProfile'
 import ImageProfile from './ImageProfile'
+import AddConnection from './AddConnection'
 
 export {
     Greeting,
@@ -22,5 +23,6 @@ export {
     Setting,
     SettingDetail,
     EditAccount,
-    ImageProfile
+    ImageProfile,
+    AddConnection
 }
