@@ -33,21 +33,20 @@ const ListDiscover = ({
                     ]}
                 >
                     <Card.Cover
-                        source={ require('../asset/feature.jpeg') }
+                        source={{ uri: item.urlToImage }}
                         style={[
                             styles.image_news,
                             Rounder(SIZES.base(5))
                         ]}
                     />
                     <View style={ styles.view_news }>
-                        <Text style={ styles.para }>{ item.category.title }</Text>
                         <Title style={[
                             styles.title,
                             {
                                 color: isDark ? COLORS.secondary : COLORS.black
                             }
                         ]} numberOfLines={ 1 }>{ item.title }</Title>
-                        <Text style={ styles.para } numberOfLines={ 2 }>{ item.content }</Text>
+                        <Text style={ styles.para } numberOfLines={ 3 }>{ item.content }</Text>
                     </View>
     
                     <View style={[
@@ -65,7 +64,7 @@ const ListDiscover = ({
                             ]}
                         />
                         <View style={ styles.title_profile }>
-                            <Paragraph style={ styles.name_profile } numberOfLines={ 1 }>{ item.profile.name }</Paragraph>
+                            <Paragraph style={ styles.name_profile } numberOfLines={ 1 }>{ item.source.name }</Paragraph>
                         </View>
     
                         <Button
@@ -79,8 +78,7 @@ const ListDiscover = ({
                                 }
                             ]}
                             labelStyle={[
-                                styles.label_style,
-                                item.isJoined ? {} : styles.label_join_btn
+                                styles.label_style
                             ]}
                             uppercase={ false }
                             mode='outlined'
@@ -113,7 +111,7 @@ const styles = StyleSheet.create({
         borderTopRightRadius: SIZES.base(12)
     },
     view_news: {
-        marginTop: -SIZES.base(5),
+        marginTop: -SIZES.base(5.5),
         marginStart: SIZES.base(7),
         marginEnd: SIZES.base(.5)
     },
