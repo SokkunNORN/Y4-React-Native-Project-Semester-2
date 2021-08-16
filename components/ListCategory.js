@@ -70,7 +70,6 @@ const styles = StyleSheet.create({
         paddingBottom: SIZES.base(1.7)
     },
     list: {
-        width: SIZES.base(12),
         marginEnd: SIZES.base(1),
         height: SIZES.defaultHieghtTextField - 7,
         borderRadius: SIZES.radius(4),
