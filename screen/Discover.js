@@ -23,36 +23,6 @@ const Discover = () => {
     const [sportLists, setSportLists] = useState([])
     const [entertainmentLists, setEntertainmentLists] = useState([])
 
-    const slideShows = [
-        {
-            category: LIST_CATEGORIES[1],
-            title: 'A component to show a list of actions inside a Card.',
-            profile: {
-                name: 'Reak Smey New Day'
-            },
-            joineder: 938,
-            isJoined: true
-        },
-        {
-            category: LIST_CATEGORIES[2],
-            title: 'A component to show a list of actions inside a Card.',
-            profile: {
-                name: 'Reak Smey New Day'
-            },
-            joineder: 98,
-            isJoined: false
-        },
-        {
-            category: LIST_CATEGORIES[3],
-            title: 'A component to show a list of actions inside a Card.',
-            profile: {
-                name: 'Reak Smey New Day'
-            },
-            joineder: 98,
-            isJoined: false
-        }
-    ]
-
     const data = [
         generalLists,
         businessLists,
