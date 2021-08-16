@@ -97,34 +97,51 @@ const Discover = () => {
         setSelectCategory(LIST_CATEGORIES[i])
     }
 
-    const getListNew = async () => {
-        const response = await getNews()
+    const getGeneralNews = async () => {
+        const { articles } = await getNews()
 
-        const slideShows = response.articles.slice(0, LIST_CATEGORIES.length)
-        setTopSlideShow(slideShows)
-        setGeneralLists(response.articles.slice(LIST_CATEGORIES.length))
+        setTopSlideShow(articles.slice(0, LIST_CATEGORIES.length))
+        setGeneralLists(articles.slice(LIST_CATEGORIES.length))
+    }
 
-        const business = await getNews(1)
-        setBusinessLists(business.articles)
+    const getBusinessNews = async () => {
+        const { articles } = await getNews(1)
+        setBusinessLists(articles)
+    }
 
-        const technology = await getNews(2)
-        setTechnologyList(technology.articles)
+    const getTechnologyNews = async () => {
+        const { articles } = await getNews(2)
+        setTechnologyList(articles)
+    }
 
-        const health = await getNews(3)
-        setHealthLists(health.articles)
+    const getHealthNews = async () => {
+        const { articles } = await getNews(3)
+        setHealthLists(articles)
+    }
 
-        const science = await getNews(4)
-        setScienceLists(science.articles)
+    const getScienceNews = async () => {
+        const { articles } = await getNews(4)
+        setScienceLists(articles)
+    }
 
-        const sport = await getNews(5)
-        setSportLists(sport.articles)
+    const getSportNews = async () => {
+        const { articles } = await getNews(5)
+        setSportLists(articles)
+    }
 
-        const entertainment = await getNews(6)
-        setEntertainmentLists(entertainment.articles)
+    const getEntertainmentNews = async () => {
+        const { articles } = await getNews(6)
+        setEntertainmentLists(articles)
     }
 
     useEffect(() => {
-        getListNew()
+        getGeneralNews()
+        getBusinessNews()
+        getTechnologyNews()
+        getHealthNews()
+        getScienceNews()
+        getSportNews()
+        getEntertainmentNews()
     }, [])
 
     return (
