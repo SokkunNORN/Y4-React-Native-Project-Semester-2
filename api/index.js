@@ -21,6 +21,11 @@ import {
     createMessage
 } from './message'
 
+import {
+    LIST_CATEGORIES,
+    getNews
+} from './discover'
+
 export {
     signInWithPhoneNumber,
     createUser,
@@ -36,5 +41,8 @@ export {
     checkParticipantConnected,
 
     getMessages,
-    createMessage
+    createMessage,
+
+    LIST_CATEGORIES,
+    getNews
 }

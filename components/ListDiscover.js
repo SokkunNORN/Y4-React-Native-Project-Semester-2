@@ -33,21 +33,20 @@ const ListDiscover = ({
                     ]}
                 >
                     <Card.Cover
-                        source={ require('../asset/feature.jpeg') }
+                        source={{ uri: item.urlToImage }}
                         style={[
                             styles.image_news,
                             Rounder(SIZES.base(5))
                         ]}
                     />
                     <View style={ styles.view_news }>
-                        <Text style={ styles.para }>{ item.category.title }</Text>
                         <Title style={[
                             styles.title,
                             {
                                 color: isDark ? COLORS.secondary : COLORS.black
                             }
                         ]} numberOfLines={ 1 }>{ item.title }</Title>
-                        <Text style={ styles.para } numberOfLines={ 2 }>{ item.content }</Text>
+                        <Text style={ styles.para } numberOfLines={ 3 }>{ item.content }</Text>
                     </View>
     
                     <View style={[
@@ -57,12 +56,15 @@ const ListDiscover = ({
                         }
                     ]}>
                         <Card.Cover
-                            style={ styles.logo_slide }
-                            source={ require('../asset/news.png') }
+                            style={[
+                                styles.logo_slide,
+                                {
+                                    backgroundColor: isDark ? COLORS.primary1 : null
+                                }
+                            ]}
                         />
                         <View style={ styles.title_profile }>
-                            <Title style={ styles.name_profile }>{ item.profile.name }</Title>
-                            <Paragraph style={ styles.joineder }>{ item.joineder } Members</Paragraph>
+                            <Paragraph style={ styles.name_profile } numberOfLines={ 1 }>{ item.source.name }</Paragraph>
                         </View>
     
                         <Button
@@ -76,8 +78,7 @@ const ListDiscover = ({
                                 }
                             ]}
                             labelStyle={[
-                                styles.label_style,
-                                item.isJoined ? {} : styles.label_join_btn
+                                styles.label_style
                             ]}
                             uppercase={ false }
                             mode='outlined'
@@ -110,7 +111,7 @@ const styles = StyleSheet.create({
         borderTopRightRadius: SIZES.base(12)
     },
     view_news: {
-        marginTop: -SIZES.base(5),
+        marginTop: -SIZES.base(5.5),
         marginStart: SIZES.base(7),
         marginEnd: SIZES.base(.5)
     },
@@ -130,21 +131,19 @@ const styles = StyleSheet.create({
         borderBottomRightRadius: SIZES.base()
     },
     logo_slide: {
-        width: SIZES.base(7),
         height: SIZES.base(7),
-        borderTopRightRadius: SIZES.base(1.5),
+        borderBottomRightRadius: SIZES.base(1.5),
         borderBottomLeftRadius: SIZES.base(1.5)
     },
     title_profile: {
         position: 'absolute',
-        marginStart: SIZES.base(8),
+        marginStart: SIZES.base(),
         width: SIZES.width - (SIZES.base(28)),
         height: SIZES.base(4),
-        marginTop: SIZES.base(.3)
+        marginTop: SIZES.base(1.8)
     },
     name_profile: {
-        color: COLORS.secondary1,
-        fontSize: SIZES.font(17)
+        color: COLORS.secondary1
     },
     joineder: {
         color: COLORS.secondary1,

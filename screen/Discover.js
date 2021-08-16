@@ -1,10 +1,11 @@
-import React,{ useState, useRef } from 'react'
+import React,{ useState, useRef, useEffect } from 'react'
 import { ScrollView, StyleSheet, View } from 'react-native'
 import Header from '../components/header/Header'
 import ListCategory from '../components/ListCategory'
 import SlideShow from '../components/SlideShow'
 import ListDiscover from '../components/ListDiscover'
 import { SIZES } from '../constant'
+import { LIST_CATEGORIES, getNews } from '../api'
 
 let xPosition = 0
 
@@ -12,15 +13,19 @@ const Discover = () => {
 
     const mainScrollRef = useRef()
 
-    const categories = [
-        { title: 'All' },
-        { title: 'New' },
-        { title: 'Lifestyle' },
-        { title: 'Health' },
-    ]
+    const [selectedCategory, setSelectCategory] = useState(LIST_CATEGORIES[0])
+    const [topSlideShow, setTopSlideShow] = useState([])
+    const [generalLists, setGeneralLists] = useState([])
+    const [businessLists, setBusinessLists] = useState([])
+    const [technologyLists, setTechnologyList] = useState([])
+    const [healthLists, setHealthLists] = useState([])
+    const [scienceLists, setScienceLists] = useState([])
+    const [sportLists, setSportLists] = useState([])
+    const [entertainmentLists, setEntertainmentLists] = useState([])
+
     const slideShows = [
         {
-            category: categories[1],
+            category: LIST_CATEGORIES[1],
             title: 'A component to show a list of actions inside a Card.',
             profile: {
                 name: 'Reak Smey New Day'
@@ -29,7 +34,7 @@ const Discover = () => {
             isJoined: true
         },
         {
-            category: categories[2],
+            category: LIST_CATEGORIES[2],
             title: 'A component to show a list of actions inside a Card.',
             profile: {
                 name: 'Reak Smey New Day'
@@ -38,80 +43,28 @@ const Discover = () => {
             isJoined: false
         },
         {
-            category: categories[3],
+            category: LIST_CATEGORIES[3],
             title: 'A component to show a list of actions inside a Card.',
             profile: {
                 name: 'Reak Smey New Day'
             },
             joineder: 98,
             isJoined: false
-        }
-    ]
-    const [selectedCategory, setSelectCategory] = useState(categories[0])
-    const listDiscovers = [
-        {
-            title: 'A component to show a list of actions inside a Card.',
-            content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s',
-            category: categories[1],
-            isJoined: false,
-            joineder: 98,
-            profile: {
-                name: 'Reak Smey New Day'
-            }
-        },
-        {
-            title: 'A component to show a list of actions inside a Card.',
-            content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s',
-            category: categories[1],
-            isJoined: true,
-            joineder: 18,
-            profile: {
-                name: 'Reak Smey New Day'
-            }
-        },
-        {
-            title: 'A component to show a list of actions inside a Card.',
-            content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s',
-            category: categories[1],
-            isJoined: false,
-            joineder: 90,
-            profile: {
-                name: 'Reak Smey New Day'
-            }
-        },
-        {
-            title: 'A component to show a list of actions inside a Card.',
-            content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s',
-            category: categories[1],
-            isJoined: false,
-            joineder: 90,
-            profile: {
-                name: 'Reak Smey New Day'
-            }
         }
     ]
 
     const data = [
-        {
-            cagetory: categories[0],
-            listDiscovers: listDiscovers
-        },
-        {
-            cagetory: categories[1],
-            listDiscovers: listDiscovers
-        },
-        {
-            cagetory: categories[2],
-            listDiscovers: listDiscovers
-        },
-        {
-            cagetory: categories[3],
-            listDiscovers: listDiscovers
-        }
+        generalLists,
+        businessLists,
+        technologyLists,
+        healthLists,
+        scienceLists,
+        sportLists,
+        entertainmentLists
     ]
 
     const onSelectCategory = value => {
-        const i = categories.indexOf(value)
+        const i = LIST_CATEGORIES.indexOf(value)
         xPosition = SIZES.width * i
         onScrollMainContain()
     }
@@ -127,8 +80,55 @@ const Discover = () => {
     const onScollEnd = (event) => {
         xPosition = event.nativeEvent.contentOffset.x
         const i = Math.trunc(xPosition / SIZES.width)
-        setSelectCategory(categories[i])
+        setSelectCategory(LIST_CATEGORIES[i])
     }
+
+    const getGeneralNews = async () => {
+        const { articles } = await getNews()
+
+        setTopSlideShow(articles.slice(0, LIST_CATEGORIES.length))
+        setGeneralLists(articles.slice(LIST_CATEGORIES.length))
+    }
+
+    const getBusinessNews = async () => {
+        const { articles } = await getNews(1)
+        setBusinessLists(articles)
+    }
+
+    const getTechnologyNews = async () => {
+        const { articles } = await getNews(2)
+        setTechnologyList(articles)
+    }
+
+    const getHealthNews = async () => {
+        const { articles } = await getNews(3)
+        setHealthLists(articles)
+    }
+
+    const getScienceNews = async () => {
+        const { articles } = await getNews(4)
+        setScienceLists(articles)
+    }
+
+    const getSportNews = async () => {
+        const { articles } = await getNews(5)
+        setSportLists(articles)
+    }
+
+    const getEntertainmentNews = async () => {
+        const { articles } = await getNews(6)
+        setEntertainmentLists(articles)
+    }
+
+    useEffect(() => {
+        getGeneralNews()
+        getBusinessNews()
+        getTechnologyNews()
+        getHealthNews()
+        getScienceNews()
+        getSportNews()
+        getEntertainmentNews()
+    }, [])
 
     return (
         <>
@@ -141,7 +141,7 @@ const Discover = () => {
             <View>
                 <ListCategory
                     selected={ selectedCategory }
-                    categories={ categories }
+                    categories={ LIST_CATEGORIES }
                     setSelectCategory={ category => onSelectCategory(category) }
                 />
             </View>
@@ -154,17 +154,18 @@ const Discover = () => {
                 onMomentumScrollEnd={ onScollEnd }
             >
                 {
-                    data.map((element, index) => {
+                    data.map((elements, index) => {
                         if (index === 0) {
                             return (
                                 <ScrollView
                                     showsVerticalScrollIndicator={ false }
+                                    key={ index }
                                 >
-                                    <SlideShow elements={ slideShows } />
+                                    <SlideShow elements={ topSlideShow } />
 
                                     {
-                                        element.listDiscovers.map(item => (
-                                            <ListDiscover item={ item }/>
+                                        elements.map((item, i) => (
+                                            <ListDiscover item={ item } key={ i } />
                                         ))
                                     }
                                 </ScrollView>
@@ -173,10 +174,11 @@ const Discover = () => {
                         return (
                             <ScrollView
                                 showsVerticalScrollIndicator={ false }
+                                key={ index }
                             >
                                 {
-                                    element.listDiscovers.map(item => (
-                                        <ListDiscover item={ item }/>
+                                    elements.map((item, i) => (
+                                        <ListDiscover item={ item } key={ i } />
                                     ))
                                 }
                             </ScrollView>

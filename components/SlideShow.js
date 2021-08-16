@@ -10,7 +10,6 @@ import {
 } from 'react-native'
 import {
     Title,
-    Paragraph,
     Card,
     Button
 } from 'react-native-paper'
@@ -60,15 +59,18 @@ const SlideShow = ({
                 >
                     {
                         elements.map((item, i) => (
-                            <Card style={[
-                                styles.card,
-                                {
-                                    backgroundColor: isDark ? COLORS.primary : COLORS.secondary
-                                }
-                            ]}>
+                            <Card 
+                                style={[
+                                    styles.card,
+                                    {
+                                        backgroundColor: isDark ? COLORS.primary : COLORS.secondary
+                                    }
+                                ]}
+                                key={ i }
+                            >
 
                                 <ImageBackground
-                                    source={ require('../asset/feature.jpeg') }
+                                    source={{ uri: item.urlToImage }}
                                     imageStyle={ styles.imgFeature }
                                     style={ styles.imgFeature }
                                 >
@@ -91,22 +93,19 @@ const SlideShow = ({
                                         </View>
                                         <View>
                                             <View style={ styles.feature_contain }>
-                                                <Text style={{ 
-                                                    color: isDark ? COLORS.secondary1 : HexToRGB(COLORS.black, .5)
-                                                 }}>{ item.category.title }</Text>
                                                 <Title 
                                                     style={{
                                                         color: isDark ? COLORS.white : COLORS.black
                                                     }}
                                                     numberOfLines={ 1 }>
-                                                    { item.profile.name }
+                                                    { item.title }
                                                 </Title>
                                                 <Text
                                                     style={{
                                                         color: isDark ? COLORS.secondary1 : HexToRGB(COLORS.black, .7)
                                                     }} 
                                                     numberOfLines={ 2 }>
-                                                    { item.title }
+                                                    { item.content }
                                                 </Text>
                                             </View>
                                         </View>
@@ -115,8 +114,12 @@ const SlideShow = ({
 
                                 <View>
                                     <Card.Cover
-                                        style={ styles.logoSlide }
-                                        source={ require('../asset/news.png') }
+                                        style={[
+                                            styles.logoSlide,
+                                            {
+                                                backgroundColor: isDark ? COLORS.primary1 : null
+                                            }
+                                        ]}
                                     />
                                     <View style={ styles.title }>
                                         <Title
@@ -124,9 +127,8 @@ const SlideShow = ({
                                                 styles.name
                                             ]}
                                             numberOfLines={ 1 }>
-                                            { item.profile.name }
+                                            { item.source.name }
                                         </Title>
-                                        <Paragraph style={ styles.joineder }>{ item.joineder } Members</Paragraph>
                                     </View>
 
                                     <Button
@@ -140,8 +142,7 @@ const SlideShow = ({
                                             }
                                         ]}
                                         labelStyle={[
-                                            styles.labelStyle,
-                                            item.isJoined ? {} : styles.labelJoinBtn
+                                            styles.labelStyle
                                         ]}
                                         uppercase={ false }
                                         mode='outlined'
@@ -206,17 +207,16 @@ const styles = StyleSheet.create({
         marginBottom: SIZES.base()
     },
     logoSlide: {
-        width: SIZES.base(7),
         height: SIZES.base(7),
-        borderTopRightRadius: SIZES.base(1.5),
-        borderBottomLeftRadius: SIZES.base(1.5)
+        borderBottomLeftRadius: SIZES.base(1.5),
+        borderBottomEndRadius: SIZES.base(1.5)
     },
     title: {
         position: 'absolute',
-        marginStart: SIZES.base(8),
-        width: SIZES.width - (SIZES.base(28)),
+        marginStart: SIZES.base(),
+        width: SIZES.width - (SIZES.base(23)),
         height: SIZES.base(4),
-        marginTop: SIZES.base(.3)
+        marginTop: SIZES.base(1.3)
     },
     name: {
         color: COLORS.secondary1,
