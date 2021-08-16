@@ -57,12 +57,15 @@ const ListDiscover = ({
                         }
                     ]}>
                         <Card.Cover
-                            style={ styles.logo_slide }
-                            source={ require('../asset/news.png') }
+                            style={[
+                                styles.logo_slide,
+                                {
+                                    backgroundColor: isDark ? COLORS.primary1 : null
+                                }
+                            ]}
                         />
                         <View style={ styles.title_profile }>
-                            <Title style={ styles.name_profile }>{ item.profile.name }</Title>
-                            <Paragraph style={ styles.joineder }>{ item.joineder } Members</Paragraph>
+                            <Paragraph style={ styles.name_profile } numberOfLines={ 1 }>{ item.profile.name }</Paragraph>
                         </View>
     
                         <Button
@@ -130,21 +133,19 @@ const styles = StyleSheet.create({
         borderBottomRightRadius: SIZES.base()
     },
     logo_slide: {
-        width: SIZES.base(7),
         height: SIZES.base(7),
-        borderTopRightRadius: SIZES.base(1.5),
+        borderBottomRightRadius: SIZES.base(1.5),
         borderBottomLeftRadius: SIZES.base(1.5)
     },
     title_profile: {
         position: 'absolute',
-        marginStart: SIZES.base(8),
+        marginStart: SIZES.base(),
         width: SIZES.width - (SIZES.base(28)),
         height: SIZES.base(4),
-        marginTop: SIZES.base(.3)
+        marginTop: SIZES.base(1.8)
     },
     name_profile: {
-        color: COLORS.secondary1,
-        fontSize: SIZES.font(17)
+        color: COLORS.secondary1
     },
     joineder: {
         color: COLORS.secondary1,
