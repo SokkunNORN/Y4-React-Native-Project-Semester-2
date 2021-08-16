@@ -10,7 +10,6 @@ import {
 } from 'react-native'
 import {
     Title,
-    Paragraph,
     Card,
     Button
 } from 'react-native-paper'
@@ -71,7 +70,7 @@ const SlideShow = ({
                             >
 
                                 <ImageBackground
-                                    source={ require('../asset/feature.jpeg') }
+                                    source={{ uri: item.urlToImage }}
                                     imageStyle={ styles.imgFeature }
                                     style={ styles.imgFeature }
                                 >
