@@ -39,6 +39,5 @@ export const getNews = async (categoryIndex = 0) => {
     const { data } = await axios
         .get(`${base_url}?country=${country_code}&category=${LIST_CATEGORIES[categoryIndex].key}&apiKey=${api_key}`)
 
-        console.log(data.articles[1]);
     return data
 }

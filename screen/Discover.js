@@ -16,6 +16,12 @@ const Discover = () => {
     const [selectedCategory, setSelectCategory] = useState(LIST_CATEGORIES[0])
     const [topSlideShow, setTopSlideShow] = useState([])
     const [generalLists, setGeneralLists] = useState([])
+    const [businessLists, setBusinessLists] = useState([])
+    const [technologyLists, setTechnologyList] = useState([])
+    const [healthLists, setHealthLists] = useState([])
+    const [scienceLists, setScienceLists] = useState([])
+    const [sportLists, setSportLists] = useState([])
+    const [entertainmentLists, setEntertainmentLists] = useState([])
 
     const slideShows = [
         {
@@ -49,20 +55,25 @@ const Discover = () => {
 
     const data = [
         {
-            cagetory: LIST_CATEGORIES[0],
             listDiscovers: generalLists
         },
         {
-            cagetory: LIST_CATEGORIES[1],
-            listDiscovers: generalLists
+            listDiscovers: businessLists
         },
         {
-            cagetory: LIST_CATEGORIES[2],
-            listDiscovers: generalLists
+            listDiscovers: technologyLists
         },
         {
-            cagetory: LIST_CATEGORIES[3],
-            listDiscovers: generalLists
+            listDiscovers: healthLists
+        },
+        {
+            listDiscovers: scienceLists
+        },
+        {
+            listDiscovers: sportLists
+        },
+        {
+            listDiscovers: entertainmentLists
         }
     ]
 
@@ -92,6 +103,24 @@ const Discover = () => {
         const slideShows = response.articles.slice(0, LIST_CATEGORIES.length)
         setTopSlideShow(slideShows)
         setGeneralLists(response.articles.slice(LIST_CATEGORIES.length))
+
+        const business = await getNews(1)
+        setBusinessLists(business.articles)
+
+        const technology = await getNews(2)
+        setTechnologyList(technology.articles)
+
+        const health = await getNews(3)
+        setHealthLists(health.articles)
+
+        const science = await getNews(4)
+        setScienceLists(science.articles)
+
+        const sport = await getNews(5)
+        setSportLists(sport.articles)
+
+        const entertainment = await getNews(6)
+        setEntertainmentLists(entertainment.articles)
     }
 
     useEffect(() => {
