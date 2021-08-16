@@ -54,27 +54,13 @@ const Discover = () => {
     ]
 
     const data = [
-        {
-            listDiscovers: generalLists
-        },
-        {
-            listDiscovers: businessLists
-        },
-        {
-            listDiscovers: technologyLists
-        },
-        {
-            listDiscovers: healthLists
-        },
-        {
-            listDiscovers: scienceLists
-        },
-        {
-            listDiscovers: sportLists
-        },
-        {
-            listDiscovers: entertainmentLists
-        }
+        generalLists,
+        businessLists,
+        technologyLists,
+        healthLists,
+        scienceLists,
+        sportLists,
+        entertainmentLists
     ]
 
     const onSelectCategory = value => {
@@ -168,7 +154,7 @@ const Discover = () => {
                 onMomentumScrollEnd={ onScollEnd }
             >
                 {
-                    data.map((element, index) => {
+                    data.map((elements, index) => {
                         if (index === 0) {
                             return (
                                 <ScrollView
@@ -178,7 +164,7 @@ const Discover = () => {
                                     <SlideShow elements={ topSlideShow } />
 
                                     {
-                                        element.listDiscovers.map((item, i) => (
+                                        elements.map((item, i) => (
                                             <ListDiscover item={ item } key={ i } />
                                         ))
                                     }
@@ -191,7 +177,7 @@ const Discover = () => {
                                 key={ index }
                             >
                                 {
-                                    element.listDiscovers.map((item, i) => (
+                                    elements.map((item, i) => (
                                         <ListDiscover item={ item } key={ i } />
                                     ))
                                 }

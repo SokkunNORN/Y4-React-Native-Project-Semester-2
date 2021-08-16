@@ -114,7 +114,12 @@ const SlideShow = ({
 
                                 <View>
                                     <Card.Cover
-                                        style={ styles.logoSlide }
+                                        style={[
+                                            styles.logoSlide,
+                                            {
+                                                backgroundColor: isDark ? COLORS.primary1 : null
+                                            }
+                                        ]}
                                     />
                                     <View style={ styles.title }>
                                         <Title
@@ -203,7 +208,8 @@ const styles = StyleSheet.create({
     },
     logoSlide: {
         height: SIZES.base(7),
-        borderBottomLeftRadius: SIZES.base(1.5)
+        borderBottomLeftRadius: SIZES.base(1.5),
+        borderBottomEndRadius: SIZES.base(1.5)
     },
     title: {
         position: 'absolute',
